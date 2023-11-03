@@ -8,11 +8,20 @@ public class GrenadeHandler : MonoBehaviour
     public Transform releaseTransform;
 
     private GameObject heldGrenade;
-    private GrenadeType currentGrenadeType;
-    private enum GrenadeType
+    public GrenadeType currentGrenadeType;
+    public enum GrenadeType
     {
         Regular,
         Smoke
+    }
+
+    public delegate void GrenadeTypeChangedHandler(GrenadeType newType);
+    public event GrenadeTypeChangedHandler GrenadeTypeChanged;
+
+
+    private void Awake()
+    {
+        currentGrenadeType = GrenadeType.Regular;
     }
 
     void Update()
@@ -29,13 +38,13 @@ public class GrenadeHandler : MonoBehaviour
             if (currentGrenadeType == GrenadeType.Regular)
             {
                 currentGrenadeType = GrenadeType.Smoke;
-                Debug.Log("Smoke");
             }
             else
             {
                 currentGrenadeType = GrenadeType.Regular;
-                Debug.Log("Regular");
             }
+
+            GrenadeTypeChanged?.Invoke(currentGrenadeType);
         }
     }
 
@@ -59,7 +68,7 @@ public class GrenadeHandler : MonoBehaviour
 
     void HoldGrenade()
     {
-        int availableGrenades = currentGrenadeType == GrenadeType.Regular ? GrenadeInventory.Instance.currentGranatCount : GrenadeInventory.Instance.currentSmokeGranatCount;
+        int availableGrenades = currentGrenadeType == GrenadeType.Regular ? GrenadeInventory.Instance.currentGranat : GrenadeInventory.Instance.currentSmokeGranat;
         if (availableGrenades > 0)
         {
             GrenadeSO selectedGrenade = currentGrenadeType == GrenadeType.Regular ? granatPrefab : smokeGranatPrefab;
@@ -69,11 +78,11 @@ public class GrenadeHandler : MonoBehaviour
 
             if (currentGrenadeType == GrenadeType.Regular)
             {
-                GrenadeInventory.Instance.currentGranatCount--;
+                GrenadeInventory.Instance.RemoveGrenade();
             }
             else
             {
-                GrenadeInventory.Instance.currentSmokeGranatCount--;
+                GrenadeInventory.Instance.RemoveSmokeGrenade();
             }
         }
     }
@@ -81,7 +90,8 @@ public class GrenadeHandler : MonoBehaviour
     void ThrowGrenade()
     {
         if (heldGrenade != null)
-        {           
+        {
+            GrenadeTypeChanged?.Invoke(currentGrenadeType);
             heldGrenade.GetComponent<Rigidbody>().isKinematic = false;
             Rigidbody rb = heldGrenade.GetComponent<Rigidbody>();
             rb.AddForce(releaseTransform.forward * 10.0f, ForceMode.Impulse);

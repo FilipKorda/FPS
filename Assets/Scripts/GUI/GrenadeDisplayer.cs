@@ -1,33 +1,38 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GrenadeDisplayer : MonoBehaviour
 {
     [SerializeField]
-    private GrenadeThrower grenadeThrower;
+    private GrenadeHandler grenadeHandler;
     [SerializeField]
-    private TextMeshProUGUI greandeAmmoText;
+    private TextMeshProUGUI grenadeAmmoText;
 
     private void Awake()
     {
-        greandeAmmoText = GetComponent<TextMeshProUGUI>();
+        grenadeAmmoText = GetComponent<TextMeshProUGUI>();
     }
 
     private void OnEnable()
     {
-       // grenadeThrower.GrenadeChangedOnGUI += UpdateGrenadeCount;
+        grenadeHandler.GrenadeTypeChanged += SwitchGranateType;
     }
 
     private void OnDisable()
     {
-       // grenadeThrower.GrenadeChangedOnGUI -= UpdateGrenadeCount;
+        grenadeHandler.GrenadeTypeChanged -= SwitchGranateType;
     }
 
-    private void UpdateGrenadeCount(List<GameObject> activeGrenadeList)
+    public void SwitchGranateType(GrenadeHandler.GrenadeType newType)
     {
-        int currentGrenadeCount = activeGrenadeList.Count;
-        greandeAmmoText.text = $"{currentGrenadeCount}";
+        if (newType == GrenadeHandler.GrenadeType.Regular)
+        {
+            grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentGranat}";
+        }
+        else if (newType == GrenadeHandler.GrenadeType.Smoke)
+        {
+            grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentSmokeGranat}";
+        }
     }
 
 }

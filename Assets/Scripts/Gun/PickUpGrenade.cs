@@ -3,20 +3,23 @@ using UnityEngine;
 public class PickUpGrenade : MonoBehaviour
 {
     [SerializeField] private bool isSmoke;
+    [SerializeField] private GrenadeInventory grenadeInventory;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            
+
+
             if (isSmoke)
             {
-                GrenadeInventory.Instance.currentSmokeGranatCount++;
-            }    
+                GrenadeInventory.Instance.AddSmokeGrenade();
+            }
             else
             {
-                GrenadeInventory.Instance.currentGranatCount++;
+                GrenadeInventory.Instance.AddGrenade();
             }
         }
 

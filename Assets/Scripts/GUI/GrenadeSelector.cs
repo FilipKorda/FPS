@@ -5,35 +5,36 @@ using UnityEngine.UI;
 public class GrenadeSelector : MonoBehaviour
 {
     [SerializeField]
-    private GrenadeThrower grenadeThrower;
+    private GrenadeHandler grenadeHandler;
     [SerializeField]
     private Image grenadeIcon;      
     [SerializeField]
     private TextMeshProUGUI grenadeNameText;
 
+
     private void OnEnable()
     {
-        //grenadeThrower.OnGrenadeSelectionChanged += UpdateGrenadeSelector;
+        grenadeHandler.GrenadeTypeChanged += UpdateGrenadeSelector;
     }
 
     private void OnDisable()
     {
-      //  grenadeThrower.OnGrenadeSelectionChanged -= UpdateGrenadeSelector;
+        grenadeHandler.GrenadeTypeChanged -= UpdateGrenadeSelector;
     }
 
-    private void UpdateGrenadeSelector(int activeListIndex)
+    private void UpdateGrenadeSelector(GrenadeHandler.GrenadeType newType)
     {
-        if (grenadeThrower.activeListIndex == 0)
+        if (newType == GrenadeHandler.GrenadeType.Regular)
         {
-            Sprite gunIconOne = grenadeThrower.grenade.GrenadeIcon;
-            grenadeIcon.sprite = gunIconOne;
-            grenadeNameText.text = grenadeThrower.grenade.name;
+            Sprite grenadeIconSprite = grenadeHandler.granatPrefab.GrenadeIcon;
+            grenadeIcon.sprite = grenadeIconSprite;
+            grenadeNameText.text = grenadeHandler.granatPrefab.name;
         }
-        else if (grenadeThrower.activeListIndex == 1)
+        else if (newType == GrenadeHandler.GrenadeType.Smoke)
         {
-            Sprite gunIconOne = grenadeThrower.smokeGrenade.GrenadeIcon;
-            grenadeIcon.sprite = gunIconOne;
-            grenadeNameText.text = grenadeThrower.smokeGrenade.name;
-        }       
+            Sprite smokeGrenadeIconSprite = grenadeHandler.smokeGranatPrefab.GrenadeIcon;
+            grenadeIcon.sprite = smokeGrenadeIconSprite;
+            grenadeNameText.text = grenadeHandler.smokeGranatPrefab.name;
+        }
     }
 }

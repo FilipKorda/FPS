@@ -453,6 +453,7 @@ MonoBehaviour:
   granatPrefab: {fileID: 11400000, guid: 53edc2bda25831c4890947bdb42ce811, type: 2}
   smokeGranatPrefab: {fileID: 11400000, guid: 3b138186157984d47b49cd574eff93d4, type: 2}
   releaseTransform: {fileID: 1163110931}
+  currentGrenadeType: 0
 --- !u!114 &192806254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,10 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd25d8095949724ea48044cebd90e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGranatCount: 3
-  maxSmokeGranatCount: 3
-  currentGranatCount: 0
-  currentSmokeGranatCount: 0
+  currentGranat: 0
+  currentSmokeGranat: 0
 --- !u!1 &252002676
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 1
+  grenadeInventory: {fileID: 192806254}
 --- !u!136 &528547930
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1246,8 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf522ca67608ef04ca75c68ddef205b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeThrower: {fileID: 0}
-  greandeAmmoText: {fileID: 616167278}
+  grenadeHandler: {fileID: 192806253}
+  grenadeAmmoText: {fileID: 616167278}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,6 +2621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 0
+  grenadeInventory: {fileID: 192806254}
 --- !u!136 &1389749612
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3693,7 +3694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd5acc134d1b744ca1bd95215a95544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeThrower: {fileID: 0}
+  grenadeHandler: {fileID: 192806253}
   grenadeIcon: {fileID: 1448427305}
   grenadeNameText: {fileID: 890872236}
 --- !u!1 &1906854904
@@ -4056,6 +4057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 1
+  grenadeInventory: {fileID: 192806254}
 --- !u!136 &1980061821
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4190,6 +4192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 0
+  grenadeInventory: {fileID: 192806254}
 --- !u!136 &2093692230
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5142,6 +5145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 1
+  grenadeInventory: {fileID: 192806254}
 --- !u!4 &5424547500432586349
 Transform:
   m_ObjectHideFlags: 0
@@ -5765,6 +5769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSmoke: 0
+  grenadeInventory: {fileID: 192806254}
 --- !u!1 &8614939117730467330
 GameObject:
   m_ObjectHideFlags: 0
