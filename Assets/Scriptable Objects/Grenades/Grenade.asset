@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f5b3ec17446754eb3ec04b8f49b58f, type: 3}
+  m_Name: Grenade
+  m_EditorClassIdentifier: 
+  GrenadeIcon: {fileID: 21300000, guid: 04a89611db93c214da32ae3e1eefc5e3, type: 3}
+  Name: Grenade
+  ModelPrefab: {fileID: 7875520364351733718, guid: 9a4f2dc0bd514f14ea22a1c19dbc2228, type: 3}
+  DamageGrenadeConfig: {fileID: 11400000, guid: feccdfe6dbdf82e4291a297ac2e15b00, type: 2}
+  sphereCollider: {fileID: 3045000470701614510, guid: 9a4f2dc0bd514f14ea22a1c19dbc2228, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  ExplosionDelay: 5
+  DestroyDelay: 6
+  ExplosionParticleSystem: {fileID: 4399636482972324979, guid: d6af7d081cd01364b82f8c44c6d2d56e, type: 3}

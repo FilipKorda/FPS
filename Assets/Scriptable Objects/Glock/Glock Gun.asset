@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cb2bba4557cb94e94e32e045ca72b4, type: 3}
+  m_Name: Glock Gun
+  m_EditorClassIdentifier: 
+  ImpactType: {fileID: 11400000, guid: 26f8d26982556c443a610610b1c48691, type: 2}
+  Type: 0
+  GunIcon: {fileID: 21300000, guid: d940450681f67a64889bdcd722fba912, type: 3}
+  Name: Glock
+  ModelPrefab: {fileID: 5064531939109413833, guid: 116c75b33cb942b4a91a8a1a6f9d2178, type: 3}
+  SpawnPoint: {x: 0, y: 0, z: 0}
+  SpawnRotation: {x: 0, y: 0, z: 0}
+  DamageConfig: {fileID: 11400000, guid: 59b0429f64877e8478c1ff042e424290, type: 2}
+  ShootConfig: {fileID: 11400000, guid: 9ccf93d1835c61745be9f84b66807faa, type: 2}
+  AmmoConfig: {fileID: 11400000, guid: b2a6008b245ac5d48bede8c7239385ea, type: 2}
+  TrailConfig: {fileID: 11400000, guid: 5729f8cd1ab0a824d8d92b9605d8dab8, type: 2}
+  AudioConfig: {fileID: 11400000, guid: 4b7e76a754a3b6949baa713f7209e8ac, type: 2}
+  BulletPenConfig: {fileID: 11400000, guid: 3c48333802b1aea44a063dd5590f3b60, type: 2}
