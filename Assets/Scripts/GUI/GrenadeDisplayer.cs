@@ -8,6 +8,8 @@ public class GrenadeDisplayer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI grenadeAmmoText;
 
+    private GrenadeHandler.GrenadeType lastPickedGrenadeType;
+
     private void Awake()
     {
         grenadeAmmoText = GetComponent<TextMeshProUGUI>();
@@ -16,6 +18,7 @@ public class GrenadeDisplayer : MonoBehaviour
     private void OnEnable()
     {
         grenadeHandler.GrenadeTypeChanged += SwitchGranateType;
+        UpdateGrenadeCount();
     }
 
     private void OnDisable()
@@ -23,13 +26,20 @@ public class GrenadeDisplayer : MonoBehaviour
         grenadeHandler.GrenadeTypeChanged -= SwitchGranateType;
     }
 
+
     public void SwitchGranateType(GrenadeHandler.GrenadeType newType)
     {
-        if (newType == GrenadeHandler.GrenadeType.Regular)
+        lastPickedGrenadeType = newType;
+        UpdateGrenadeCount();
+    }
+
+    public void UpdateGrenadeCount()
+    {
+        if (lastPickedGrenadeType == GrenadeHandler.GrenadeType.Regular)
         {
             grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentGranat}";
         }
-        else if (newType == GrenadeHandler.GrenadeType.Smoke)
+        else if (lastPickedGrenadeType == GrenadeHandler.GrenadeType.Smoke)
         {
             grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentSmokeGranat}";
         }

@@ -11,7 +11,6 @@ public class GrenadeSelector : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI grenadeNameText;
 
-
     private void OnEnable()
     {
         grenadeHandler.GrenadeTypeChanged += UpdateGrenadeSelector;
@@ -34,7 +33,9 @@ public class GrenadeSelector : MonoBehaviour
         {
             Sprite smokeGrenadeIconSprite = grenadeHandler.smokeGranatPrefab.GrenadeIcon;
             grenadeIcon.sprite = smokeGrenadeIconSprite;
-            grenadeNameText.text = grenadeHandler.smokeGranatPrefab.name;
+            grenadeNameText.text = grenadeHandler.smokeGranatPrefab.name;         
         }
     }
+
+
 }

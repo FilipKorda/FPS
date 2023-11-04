@@ -3,8 +3,8 @@ using UnityEngine;
 public class PickUpGrenade : MonoBehaviour
 {
     [SerializeField] private bool isSmoke;
-    [SerializeField] private GrenadeInventory grenadeInventory;
-
+    [SerializeField] private GrenadeHandler grenadeHandler;
+    [SerializeField] private GrenadeDisplayer grenadeDisplayer;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,14 +12,19 @@ public class PickUpGrenade : MonoBehaviour
         {
             Destroy(gameObject);
 
-
             if (isSmoke)
             {
+                NotificationSystem.Instance.ShowNotification($"Pick up 1 {grenadeHandler.smokeGranatPrefab.Name}", 1.0f);
                 GrenadeInventory.Instance.AddSmokeGrenade();
             }
             else
             {
+                NotificationSystem.Instance.ShowNotification($"Pick up 1 {grenadeHandler.granatPrefab.Name}", 1.0f);
                 GrenadeInventory.Instance.AddGrenade();
+            }
+            if (grenadeDisplayer != null)
+            {
+                grenadeDisplayer.UpdateGrenadeCount();
             }
         }
 

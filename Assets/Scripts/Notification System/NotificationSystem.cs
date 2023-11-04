@@ -47,7 +47,6 @@ public class NotificationSystem : MonoBehaviour
     {
         if (activeGunNotification != null)
         {
-            // Jeœli istnieje aktywne powiadomienie, zniszcz je
             Destroy(activeGunNotification);
         }
 
