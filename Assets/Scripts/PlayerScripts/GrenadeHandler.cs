@@ -97,7 +97,8 @@ public class GrenadeHandler : MonoBehaviour
             pinRigidbody.isKinematic = true;
             pinRigidbody.transform.parent = null;
 
-            BoxCollider boxCollider = pinTransform.GetComponent<BoxCollider>();
+            BoxCollider[] boxColliders = pinTransform.GetComponents<BoxCollider>();
+
 
             float duration = 0.1f;
             Sequence pinRemovalSequence = DOTween.Sequence();
@@ -115,7 +116,10 @@ public class GrenadeHandler : MonoBehaviour
                 rb.isKinematic = false;
                 rb.velocity = initialVelocity + Vector3.up * verticalSpeed;
 
-                boxCollider.isTrigger = true;
+                foreach (var collider in boxColliders)
+                {
+                    collider.isTrigger = true;
+                }
 
                 heldGrenade.GetComponent<Rigidbody>().isKinematic = false;
                 heldGrenade.transform.parent = null;
@@ -123,7 +127,7 @@ public class GrenadeHandler : MonoBehaviour
                 StartCoroutine(ExplodeAfterDelay(heldGrenade));
                 heldGrenade = null;
 
-                StartCoroutine(EnableBoxColliderAfterDelay(boxCollider, 0.1f));
+                StartCoroutine(EnableBoxColliderAfterDelay(boxColliders, 0.1f));
             });
 
             pinRemovalSequence.Play();
@@ -133,10 +137,14 @@ public class GrenadeHandler : MonoBehaviour
         }
     }
 
-    IEnumerator EnableBoxColliderAfterDelay(BoxCollider collider, float delay)
+    IEnumerator EnableBoxColliderAfterDelay(BoxCollider[] colliders, float delay)
     {
         yield return new WaitForSeconds(delay);
-        collider.isTrigger = false;
+
+        foreach (var collider in colliders)
+        {
+            collider.isTrigger = false;
+        }
     }
 
     private IEnumerator ExplodeAfterDelay(GameObject grenadeObject)
