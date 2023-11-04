@@ -5,7 +5,7 @@ public class Object : MonoBehaviour, IInteractable
 {
     private Renderer objectRenderer;
     private Material originalMaterial;
-    public Material highlightMaterial; 
+    public Material highlightMaterial;
 
     private void Start()
     {
@@ -25,8 +25,7 @@ public class Object : MonoBehaviour, IInteractable
 
     private IEnumerator RestoreMaterial()
     {
-        yield return new WaitForSeconds(2.0f);
-
+        yield return new WaitForSeconds(4.0f);
         objectRenderer.material = originalMaterial;
     }
 }
