@@ -4,20 +4,29 @@ using DG.Tweening;
 
 public class InteractionManager : MonoBehaviour
 {
-    [SerializeField] private float maxDetectionRadius = 5f;
+    public float maxDetectionRadius = 15f;
     [SerializeField] private Image eagleVision;
     [SerializeField] private float fadeInDuration = 0.2f;
-    [SerializeField] private float durationToMaintain = 3.95f;
+    [SerializeField] private float durationToMaintain = 4f;
     [SerializeField] private float fadeOutDuration = 0.2f;
-
+    [SerializeField] private GameObject eagleVisionWave;
     private float detectionRadius = 0f;
-    private bool isExpanding = false;
-    [SerializeField] private float radiusIncreaseSpeed = 2.0f;
+    public bool isExpanding = false;
+    public float radiusIncreaseSpeed = 10f;
+
+
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {           
+        HandleEagleVision();
+    }
+
+    public void HandleEagleVision()
+    {
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            ShakeCamera();
+            eagleVisionWave.SetActive(true);
             isExpanding = true;
         }
 
@@ -30,12 +39,12 @@ public class InteractionManager : MonoBehaviour
 
             if (detectionRadius >= maxDetectionRadius)
             {
-                isExpanding = false;            
+                isExpanding = false;
             }
         }
         else
         {
-            detectionRadius = 0f; 
+            detectionRadius = 0f;
         }
     }
 
@@ -73,4 +82,19 @@ public class InteractionManager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
+    void ShakeCamera()
+    {       
+        float shakeDuration = 0.1f;
+        float shakeIntensity = 0.2f;
+        float zoomFOV = 55f;
+        float originalFOV = 60f;
+        float zoomDuration = 0.1f;
+
+        Sequence cameraSequence = DOTween.Sequence();
+        cameraSequence.Append(Camera.main.DOFieldOfView(zoomFOV, zoomDuration));
+        cameraSequence.Append(Camera.main.transform.DOShakePosition(shakeDuration, shakeIntensity, 10, 90, false, false));
+        cameraSequence.Append(Camera.main.DOFieldOfView(originalFOV, zoomDuration));
+  
+        cameraSequence.Play();
+    }
 }

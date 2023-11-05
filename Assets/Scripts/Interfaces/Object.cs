@@ -6,6 +6,7 @@ public class Object : MonoBehaviour, IInteractable
     private Renderer objectRenderer;
     private Material originalMaterial;
     public Material highlightMaterial;
+    private bool isDetected = false;
 
     private void Start()
     {
@@ -15,17 +16,23 @@ public class Object : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        string objectName = gameObject.name;
-        Debug.Log(objectName);
+        if (!isDetected)
+        {
+            string objectName = gameObject.name;
+            Debug.Log(objectName);
 
-        objectRenderer.material = highlightMaterial;
+            isDetected = true;
 
-        StartCoroutine(RestoreMaterial());
+            StartCoroutine(RestoreMaterial());
+
+            objectRenderer.material = highlightMaterial;
+        }
     }
 
     private IEnumerator RestoreMaterial()
     {
         yield return new WaitForSeconds(4.0f);
         objectRenderer.material = originalMaterial;
+        isDetected = false;
     }
 }
