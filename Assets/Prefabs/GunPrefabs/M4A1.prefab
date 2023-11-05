@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2466753120881462149}
   - component: {fileID: 8322804030561005905}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: M4A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
