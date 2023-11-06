@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7676849387986585825}
   - component: {fileID: 1588790661451219287}
   - component: {fileID: 8161306623164878187}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh1_Group2_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8318165084349851202}
   - component: {fileID: 6398865099047057035}
   - component: {fileID: 6423175738880938461}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh2_Group3_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

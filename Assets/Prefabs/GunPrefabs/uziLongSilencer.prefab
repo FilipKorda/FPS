@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2556984561639046451}
   - component: {fileID: 8490108143952912238}
   - component: {fileID: 1916023163597945902}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3037605707636318456}
   - component: {fileID: 8798263487223269516}
   - component: {fileID: 6015009861544487534}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh5_Group6_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 7819321361983933929}
   - component: {fileID: 4389687338097145498}
   - component: {fileID: 3225847328750108985}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh4_Group5_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4724150887214897056}
   - component: {fileID: 3956212010043171832}
   - component: {fileID: 541026265418579074}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5240,7 +5240,7 @@ GameObject:
   - component: {fileID: 5424547502033451785}
   - component: {fileID: 1303161032775133464}
   - component: {fileID: 9109281442282430466}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh2_Group3_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5323,7 +5323,7 @@ GameObject:
   - component: {fileID: 8725067869527574703}
   - component: {fileID: 580491775449864824}
   - component: {fileID: 7111073873116227592}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh3_Group4_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5405,7 +5405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6994910019248925210}
   - component: {fileID: 7741603937646491936}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: uziLongSilencer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5541,7 +5541,7 @@ GameObject:
   - component: {fileID: 185777801856519775}
   - component: {fileID: 6609082278222327388}
   - component: {fileID: 7992929749406273974}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mesh1_Group2_Group1_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
