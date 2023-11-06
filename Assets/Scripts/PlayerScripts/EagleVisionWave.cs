@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EagleVisionWave : MonoBehaviour
 {
-    [SerializeField] private InteractionManager interactionManager;
+    [SerializeField] private EagleVisionManager interactionManager;
     private readonly int pointCounts = 50;
     private readonly float startWidth = 1f;
 

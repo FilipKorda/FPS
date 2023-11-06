@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             TryPickupGun();
         }
+
     }
 
     void TryPickupGun()
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
             NotificationSystem.Instance.ShowNotification("You can only change second gun", 1.0f);
         }
     }
+
 
     void Move()
     {
