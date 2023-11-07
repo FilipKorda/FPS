@@ -42,16 +42,16 @@ namespace FPS.Guns
         }
 
 
+        public void AddAmmoFromAmmoPack()
+        {
+            CurrentAmmo = MaxAmmo;
+        }
+
         public object Clone()
         {
-
             AmmoConfigScriptableObject config = CreateInstance<AmmoConfigScriptableObject>();
-
             Utilities.CopyValues(this, config);
-
             return config;
-
-
         }
     }
 }

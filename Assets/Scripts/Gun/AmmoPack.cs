@@ -8,6 +8,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
     private Color originalColor;
     private new Renderer renderer;
 
+    public int totalAmmo = 100;
+
     private void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -16,25 +18,30 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     public void Pickup()
     {
-        if (playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[0] && playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[1])
-        {
-            AddAmmo();
-        }
+        AddAmmo();
     }
 
     void AddAmmo()
     {
-        foreach (var gun in playerGunSelector.Guns)
+        if (playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo < playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo)
         {
-            gun.AmmoConfig.CurrentAmmo = gun.AmmoConfig.MaxAmmo;
-        }
 
-        Debug.Log("You get ammo");
+            playerGunSelector.ActiveGun.AmmoConfig.AddAmmoFromAmmoPack();
+        }
     }
+
+    void IncreaseAmountOfAmmo()
+    {
+        int maxReloadAmount = Mathf.Min(totalAmmo, playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo);
+        int availableBulletsInCurrentClip = playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo - totalAmmo;
+        int reloadAmount = Mathf.Min(maxReloadAmount, availableBulletsInCurrentClip);
+        playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo += reloadAmount;
+    }
+
 
     public void Highlight()
     {
-        renderer.material.color = Color.yellow; 
+        renderer.material.color = Color.yellow;
     }
 
     public void ResetHighlight()

@@ -23,9 +23,16 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        foreach (var gunPickup in gunPickupList)
         {
-            TryPickupGun();
+            if (gunPickup.isImageActivate)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    TryPickupGun();
+                }
+            }
+
         }
 
     }
