@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Object : MonoBehaviour, IInteractable
+public class Object : MonoBehaviour, IEagleVision
 {
     private Renderer objectRenderer;
     private Material originalMaterial;
@@ -14,7 +14,7 @@ public class Object : MonoBehaviour, IInteractable
         originalMaterial = objectRenderer.material;
     }
 
-    public void Interact()
+    public void InteractEagleVision()
     {
         if (!isDetected)
         {

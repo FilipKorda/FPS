@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9f7b1b437af077d49b90958a08c07968, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &178274510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,7 +1786,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e77df20d86d24eb459fe481f2a94c407, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1845,10 +1845,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerGunSelector: {fileID: 8758285126961114523}
-  player: {fileID: 5376034292776555948}
-  activationDistance: 2
-  imageToActivate: {fileID: 178274510}
-  inRangeToPickup: 0
+  originalMaterial: {fileID: 2100000, guid: e77df20d86d24eb459fe481f2a94c407, type: 2}
+  newMaterial: {fileID: 2100000, guid: 77368e2f9c5b71942ab22a458365d345, type: 2}
 --- !u!1 &1552982466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6324,6 +6322,7 @@ GameObject:
   - component: {fileID: 3944284652724662924}
   - component: {fileID: 8322808494697957512}
   - component: {fileID: 8758285126961114524}
+  - component: {fileID: 8758285126961114525}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8241,6 +8240,20 @@ MonoBehaviour:
   eagleVisionWave: {fileID: 847878687}
   isExpanding: 0
   radiusIncreaseSpeed: 10
+--- !u!114 &8758285126961114525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900164544944447696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d4cbe875dd485439fb55c0ddcd74f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformPosition: {fileID: 3680194319533020874}
+  maxRaycastDistance: 3
 --- !u!222 &8758443893770190025
 CanvasRenderer:
   m_ObjectHideFlags: 0

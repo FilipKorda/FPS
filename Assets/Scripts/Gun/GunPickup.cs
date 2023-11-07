@@ -14,7 +14,6 @@ public class GunPickup : MonoBehaviour
     public bool isImageActivate = false;
     private bool hasShownNotification = false;
 
-
     private void Update()
     {
         if (player == null || imageToActivate == null)
@@ -88,5 +87,8 @@ public class GunPickup : MonoBehaviour
             }
         }
     }
+
+
+
 
 }

@@ -56,9 +56,9 @@ public class EagleVisionManager : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(playerPosition, detectionRadius);
         foreach (Collider collider in hitColliders)
         {
-            if (collider.TryGetComponent<IInteractable>(out var objectDetector))
+            if (collider.TryGetComponent<IEagleVision>(out var objectDetector))
             {
-                objectDetector.Interact();
+                objectDetector.InteractEagleVision();
             }
         }
 

@@ -2,23 +2,58 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    public Camera mainCamera;
-    public float maxRaycastDistance = 10f;
+    public Transform transformPosition;
+    public float maxRaycastDistance = 3f;
 
+    private IPickupable currentlyHighlightedObject;
     private void Update()
     {
+        Vector3 playerPosition = transformPosition.position;
+        Vector3 playerDirection = transformPosition.forward;
+
+        Debug.DrawRay(playerPosition, playerDirection * maxRaycastDistance, Color.red, maxRaycastDistance);
+
+        if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
+        {
+            currentlyHighlightedObject?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
+            {
+                interactable.Highlight();
+                currentlyHighlightedObject = interactable;
+            }
+            else
+            {
+                currentlyHighlightedObject = null;
+            }
+        }
+        else
+        {
+            if (currentlyHighlightedObject != null)
+            {
+                currentlyHighlightedObject.ResetHighlight();
+                currentlyHighlightedObject = null;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            RaycastHit hit;
+            InteractWith();
+        }
+    }
 
-            if (Physics.Raycast(ray, out hit, maxRaycastDistance))
+    private void InteractWith()
+    {
+        Vector3 playerPosition = transformPosition.position;
+        Vector3 playerDirection = transformPosition.forward;
+
+        if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
+        {
+            if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
-                if (hit.collider.TryGetComponent<IPickupable>(out var pickupableObject))
-                {
-                    pickupableObject.Pickup();
-                }
+                interactable.Pickup();
             }
         }
     }
+
+
 }

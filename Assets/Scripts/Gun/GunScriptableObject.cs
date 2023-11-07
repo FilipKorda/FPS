@@ -249,6 +249,8 @@ namespace FPS.Guns
                              ShootSystem.transform.position
                          );
             }
+
+            
             return origin;
         }
 
