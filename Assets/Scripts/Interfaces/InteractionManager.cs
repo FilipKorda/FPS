@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    public Transform transformPosition;
-    public float maxRaycastDistance = 3f;
+    [SerializeField] private Transform transformPosition;
+    [SerializeField] private float maxRaycastDistance = 3f;
 
     private IPickupable currentlyHighlightedObject;
+
     private void Update()
     {
         Vector3 playerPosition = transformPosition.position;
@@ -16,10 +17,12 @@ public class InteractionManager : MonoBehaviour
         if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
         {
             currentlyHighlightedObject?.ResetHighlight();
+            currentlyHighlightedObject?.HideAmmoPackPanel();
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
-                interactable.Highlight();
                 currentlyHighlightedObject = interactable;
+                interactable.Highlight();               
+                interactable.ShowAmmoPackPanel();
             }
             else
             {
@@ -30,6 +33,7 @@ public class InteractionManager : MonoBehaviour
         {
             if (currentlyHighlightedObject != null)
             {
+                currentlyHighlightedObject.HideAmmoPackPanel();
                 currentlyHighlightedObject.ResetHighlight();
                 currentlyHighlightedObject = null;
             }

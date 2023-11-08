@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 namespace FPS.Guns.Demo
 {
@@ -19,6 +20,12 @@ namespace FPS.Guns.Demo
         private void Update()
         {
             AmmoText.SetText($"{GunSelector.ActiveGun.AmmoConfig.CurrentClipAmmo} / " + $"{GunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
+        }     
+
+
+        private void AmmoChanged()
+        {
+            
         }
     }
 }
