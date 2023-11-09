@@ -9,8 +9,19 @@ namespace FPS.Guns.Demo
     public class AmmoDisplayer : MonoBehaviour
     {
         [SerializeField]
-        private PlayerGunSelector GunSelector;
+        private PlayerGunSelector playerGunSelector;
         private TextMeshProUGUI AmmoText;
+
+        public bool isCurrentAmmo;
+        private Vector3 originalTotalAmmoTextScale;
+        private Color originalAmmoColor;
+
+
+        private void Start()
+        {
+            originalTotalAmmoTextScale = AmmoText.transform.localScale;
+            originalAmmoColor = AmmoText.material.color;
+        }
 
         private void Awake()
         {
@@ -19,13 +30,35 @@ namespace FPS.Guns.Demo
 
         private void Update()
         {
-            AmmoText.SetText($"{GunSelector.ActiveGun.AmmoConfig.CurrentClipAmmo} / " + $"{GunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
-        }     
+            if (isCurrentAmmo)
+            {
+                AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
+            }
+            else
+            {
+                AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentClipAmmo}");
+            }
 
+        }
 
-        private void AmmoChanged()
+        public void AmmoChanged()
         {
-            
+            AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
+
+            AmmoText.DOColor(Color.green, 0.05f)
+                .OnComplete(() =>
+                {
+                    AmmoText.DOColor(originalAmmoColor, 0.2f);
+                });
+
+            AmmoText.transform.DOScale(originalTotalAmmoTextScale * 1.5f, 0.05f)
+                .OnComplete(() =>
+                {
+                    AmmoText.transform.DOScale(originalTotalAmmoTextScale, 0.2f);
+                });
+
+
+
         }
     }
 }

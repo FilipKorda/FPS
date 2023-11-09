@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using FPS.ImpactSystem.Effects;
 using FPS.ImpactSystem.Pool;
+using System.Linq;
 
 namespace FPS.ImpactSystem
 {
@@ -148,34 +149,38 @@ namespace FPS.ImpactSystem
             return null;
         }
 
-        private Texture GetTextureFromMesh(Mesh Mesh, int TriangleIndex, Material[] Materials)
+        private Texture GetTextureFromMesh(Mesh mesh, int triangleIndex, Material[] materials)
         {
-            if (Mesh.subMeshCount > 1)
+            if (mesh.subMeshCount > 1)
             {
                 int[] hitTriangleIndices = new int[]
                 {
-                    Mesh.triangles[TriangleIndex * 3],
-                    Mesh.triangles[TriangleIndex * 3 + 1],
-                    Mesh.triangles[TriangleIndex * 3 + 2]
+                    triangleIndex * 3,
+                    triangleIndex * 3 + 1,
+                    triangleIndex * 3 + 2
                 };
 
-                for (int i = 0; i < Mesh.subMeshCount; i++)
+                if (hitTriangleIndices.All(index => index < mesh.triangles.Length))
                 {
-                    int[] submeshTriangles = Mesh.GetTriangles(i);
-                    for (int j = 0; j < submeshTriangles.Length; j += 3)
+                    for (int i = 0; i < mesh.subMeshCount; i++)
                     {
-                        if (submeshTriangles[j] == hitTriangleIndices[0]
-                            && submeshTriangles[j + 1] == hitTriangleIndices[1]
-                            && submeshTriangles[j + 2] == hitTriangleIndices[2])
+                        int[] submeshTriangles = mesh.GetTriangles(i);
+                        for (int j = 0; j < submeshTriangles.Length; j += 3)
                         {
-                            return Materials[i].mainTexture;
+                            if (submeshTriangles[j] == hitTriangleIndices[0]
+                                && submeshTriangles[j + 1] == hitTriangleIndices[1]
+                                && submeshTriangles[j + 2] == hitTriangleIndices[2])
+                            {
+                                return materials[i].mainTexture;
+                            }
                         }
                     }
                 }
             }
 
-            return Materials[0].mainTexture;
+            return materials[0].mainTexture;
         }
+
 
         private void PlayEffects(Vector3 HitPoint, Vector3 HitNormal, SurfaceEffect SurfaceEffect, float SoundOffset)
         {

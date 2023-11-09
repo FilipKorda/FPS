@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 609427339171286789, guid: 76d514b8e40d88c40acbd2d72a3821ca, type: 3}
   Probability: 1
-  RandomizeRotation: 0
+  RandomizeRotation: 1
   RandomizedRotationMultiplier: {x: 0, y: 0, z: 0}

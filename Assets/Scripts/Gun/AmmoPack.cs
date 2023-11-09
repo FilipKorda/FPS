@@ -6,6 +6,7 @@ using UnityEngine;
 public class AmmoPack : MonoBehaviour, IPickupable
 {
     [SerializeField] private PlayerGunSelector playerGunSelector;
+    [SerializeField] private AmmoDisplayer ammoDisplayer;
 
     private Color originalColor;
     private new Renderer renderer;
@@ -24,6 +25,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
     private Vector3 originalTotalAmmoTextScale;
     private Color originalAmmoColor;
 
+    [SerializeField] private GameObject ammoPackModel;
+
 
     private void Start()
     {
@@ -41,8 +44,14 @@ public class AmmoPack : MonoBehaviour, IPickupable
     void AddAmmo()
     {
         if (playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo < playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo)
-        {
+        {          
             IncreaseAmountOfAmmo();
+            ShakeAmmoPackModel();
+            ammoDisplayer.AmmoChanged();
+        }
+        else
+        {
+            NotificationSystem.Instance.ShowNotification($"This {playerGunSelector.ActiveGun.Name} have full ammo", 1f);
         }
     }
 
@@ -53,6 +62,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
         int AmountToAdd = Mathf.Min(maxAmmoPacklAmount, availableBulletsInAmmoPack);
         playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo += AmountToAdd;
         totalAmmo -= AmountToAdd;
+
+        NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {playerGunSelector.ActiveGun.Name}", 1f);
 
         totalAmmoText.DOColor(Color.red, 0.05f)
            .OnComplete(() =>
@@ -65,6 +76,15 @@ public class AmmoPack : MonoBehaviour, IPickupable
             {
                 totalAmmoText.transform.DOScale(originalTotalAmmoTextScale, 0.2f);
             });
+    }
+
+    void ShakeAmmoPackModel()
+    {
+        float duration = 0.1f;
+        float strength = 0.05f;
+        int vibrato = 1;
+
+        ammoPackModel.transform.DOShakePosition(duration, strength, vibrato);
     }
 
     public void Highlight()

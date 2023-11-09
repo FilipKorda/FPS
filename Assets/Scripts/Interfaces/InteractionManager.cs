@@ -1,3 +1,4 @@
+using FPS.Guns.Demo;
 using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
@@ -12,8 +13,6 @@ public class InteractionManager : MonoBehaviour
         Vector3 playerPosition = transformPosition.position;
         Vector3 playerDirection = transformPosition.forward;
 
-        Debug.DrawRay(playerPosition, playerDirection * maxRaycastDistance, Color.red, maxRaycastDistance);
-
         if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
         {
             currentlyHighlightedObject?.ResetHighlight();
@@ -21,7 +20,7 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
                 currentlyHighlightedObject = interactable;
-                interactable.Highlight();               
+                interactable.Highlight();
                 interactable.ShowAmmoPackPanel();
             }
             else

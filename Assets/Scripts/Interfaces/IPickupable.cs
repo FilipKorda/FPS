@@ -5,5 +5,4 @@ public interface IPickupable
     void ResetHighlight();
     void ShowAmmoPackPanel();
     void HideAmmoPackPanel();
-
 }
