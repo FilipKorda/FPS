@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: M4A1 Shoot Config
   m_EditorClassIdentifier: 
   IsHitscan: 1
-  BulletPrefab: {fileID: -4243467886990021789, guid: 76d514b8e40d88c40acbd2d72a3821ca, type: 3}
+  BulletPrefab: {fileID: 8590896242834163282, guid: c5cc93d5eee8140458591e1f4f1b3ec1, type: 3}
   BulletSpawnForce: 100
   HitMask:
     serializedVersion: 2
     m_Bits: 65
-  FireRate: 0.15
+  FireRate: 0.1
   SpreadType: 0
-  RecoilRecoverySpeed: 1
+  RecoilRecoverySpeed: 5
   MaxSpreadTime: 1
-  BulletWeight: 0.1
+  BulletWeight: 0.5
   ShootType: 1
-  Spread: {x: 0.05, y: 0.05, z: 0.05}
-  SpreadMultiplier: 0.1
+  Spread: {x: 0, y: 0.01, z: 0}
+  SpreadMultiplier: 0.05
   SpreadTexture: {fileID: 0}

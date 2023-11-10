@@ -38,7 +38,7 @@ namespace FPS.Guns
                     Vector3.zero,
                     new Vector3(
                         Random.Range(-Spread.x, Spread.x),
-                        Random.Range(-Spread.y, Spread.y),
+                        Random.Range(Spread.y, Spread.y),
                         Random.Range(-Spread.z, Spread.z)
                     ),
                     Mathf.Clamp01(ShootTime / MaxSpreadTime)
