@@ -6,6 +6,8 @@ namespace FPS.Guns.Demo
     [DisallowMultipleComponent]
     public class PlayerGunSelector : MonoBehaviour
     {
+        public static PlayerGunSelector Instance { get; private set; }
+
         public Camera Camera;
         [field: SerializeField] public GunType Gun { get; private set; }
 
@@ -36,6 +38,11 @@ namespace FPS.Guns.Demo
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
             ActiveGun = GetCachedGun(ActiveBaseGun);
             ActiveGun.Spawn(GunParent, this, Camera);
+        }
+
+        private void Awake()
+        {
+            Instance = this;
         }
 
         private void Update()

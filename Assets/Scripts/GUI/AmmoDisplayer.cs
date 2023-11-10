@@ -8,8 +8,8 @@ namespace FPS.Guns.Demo
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class AmmoDisplayer : MonoBehaviour
     {
-        [SerializeField]
-        private PlayerGunSelector playerGunSelector;
+        public static AmmoDisplayer Instance { get; private set; }
+
         private TextMeshProUGUI AmmoText;
 
         public bool isCurrentAmmo;
@@ -25,6 +25,7 @@ namespace FPS.Guns.Demo
 
         private void Awake()
         {
+            Instance = this;
             AmmoText = GetComponent<TextMeshProUGUI>();
         }
 
@@ -32,30 +33,36 @@ namespace FPS.Guns.Demo
         {
             if (isCurrentAmmo)
             {
-                AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
+                AmmoText.SetText($"{PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo}");
             }
             else
             {
-                AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentClipAmmo}");
+                AmmoText.SetText($"{PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentClipAmmo}");
             }
 
         }
 
         public void AmmoChanged()
         {
-            AmmoText.SetText($"{playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo}");
+
+            AmmoText.SetText($"{PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo}");
+
 
             AmmoText.DOColor(Color.green, 0.05f)
-                .OnComplete(() =>
-                {
-                    AmmoText.DOColor(originalAmmoColor, 0.2f);
-                });
+         .OnComplete(() =>
+         {
+             AmmoText.DOColor(originalAmmoColor, 0.2f);
+         });
 
             AmmoText.transform.DOScale(originalTotalAmmoTextScale * 1.5f, 0.05f)
                 .OnComplete(() =>
                 {
                     AmmoText.transform.DOScale(originalTotalAmmoTextScale, 0.2f);
                 });
+
+
+
+
 
 
 

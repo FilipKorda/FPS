@@ -7,7 +7,6 @@ namespace FPS.Guns.Demo
     [DisallowMultipleComponent]
     public class PlayerAction : MonoBehaviour
     {
-        public PlayerGunSelector GunSelector;
         [SerializeField]
         private Image Crosshair;
         public bool IsReloading;
@@ -29,17 +28,17 @@ namespace FPS.Guns.Demo
             }
             else
             {
-                GunSelector.ActiveGun.Tick(
+                PlayerGunSelector.Instance.ActiveGun.Tick(
                     Application.isFocused && Input.GetMouseButton(0)
-                    && GunSelector.ActiveGun != null
+                    && PlayerGunSelector.Instance.ActiveGun != null
                 );
 
                 if (ShouldManualReload())
                 {
-                    GunSelector.ActiveGun.StartReloading();
+                    PlayerGunSelector.Instance.ActiveGun.StartReloading();
                     IsReloading = true;
-                    StartCoroutine(ChangeSliderValueOverTime(GunSelector.ActiveGun.AmmoConfig.reloadTime));
-                    reloadTimer = GunSelector.ActiveGun.AmmoConfig.reloadTime;
+                    StartCoroutine(ChangeSliderValueOverTime(PlayerGunSelector.Instance.ActiveGun.AmmoConfig.reloadTime));
+                    reloadTimer = PlayerGunSelector.Instance.ActiveGun.AmmoConfig.reloadTime;
                 }
             }
             UpdateCrosshair();
@@ -71,27 +70,27 @@ namespace FPS.Guns.Demo
 
         private void UpdateCrosshair()
         {
-            Vector3 gunTipPoint = GunSelector.ActiveGun.GetRaycastOrigin();
+            Vector3 gunTipPoint = PlayerGunSelector.Instance.ActiveGun.GetRaycastOrigin();
             Vector3 forward;
-            if (GunSelector.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
+            if (PlayerGunSelector.Instance.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
             {
-                forward = GunSelector.ActiveGun.GetGunForward();
+                forward = PlayerGunSelector.Instance.ActiveGun.GetGunForward();
             }
             else
             {
-                forward = GunSelector.Camera.transform.forward;
+                forward = PlayerGunSelector.Instance.Camera.transform.forward;
             }
 
             Vector3 hitPoint = gunTipPoint + forward * 10;
 
-            if (Physics.Raycast(gunTipPoint, forward, out RaycastHit hit, float.MaxValue, GunSelector.ActiveGun.ShootConfig.HitMask))
+            if (Physics.Raycast(gunTipPoint, forward, out RaycastHit hit, float.MaxValue, PlayerGunSelector.Instance.ActiveGun.ShootConfig.HitMask))
             {
                 hitPoint = hit.point;
             }
 
-            if (GunSelector.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
+            if (PlayerGunSelector.Instance.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)
             {
-                Vector3 screenSpaceLocation = GunSelector.Camera.WorldToScreenPoint(hitPoint);
+                Vector3 screenSpaceLocation = PlayerGunSelector.Instance.Camera.WorldToScreenPoint(hitPoint);
 
                 if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
                     (RectTransform)Crosshair.transform.parent,
@@ -116,12 +115,12 @@ namespace FPS.Guns.Demo
         {
             return !IsReloading
                 && Input.GetKeyUp(KeyCode.R)
-                && GunSelector.ActiveGun.CanReload();
+                && PlayerGunSelector.Instance.ActiveGun.CanReload();
         }
 
         private void EndReload()
         {
-            GunSelector.ActiveGun.EndReload();
+            PlayerGunSelector.Instance.ActiveGun.EndReload();
             IsReloading = false;
         }
     }

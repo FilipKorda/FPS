@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class AmmoPack : MonoBehaviour, IPickupable
 {
-    [SerializeField] private PlayerGunSelector playerGunSelector;
-    [SerializeField] private AmmoDisplayer ammoDisplayer;
-
     private Color originalColor;
     private new Renderer renderer;
 
@@ -43,27 +40,29 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     void AddAmmo()
     {
-        if (playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo < playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo)
-        {          
+        if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo < PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo)
+        {
             IncreaseAmountOfAmmo();
             ShakeAmmoPackModel();
-            ammoDisplayer.AmmoChanged();
+            
+                AmmoDisplayer.Instance.AmmoChanged();
+            
         }
         else
         {
-            NotificationSystem.Instance.ShowNotification($"This {playerGunSelector.ActiveGun.Name} have full ammo", 1f);
+            NotificationSystem.Instance.ShowNotification($"This {PlayerGunSelector.Instance.ActiveGun.Name} have full ammo", 1f);
         }
     }
 
     void IncreaseAmountOfAmmo()
     {
-        int maxAmmoPacklAmount = Mathf.Min(totalAmmo, playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo);
-        int availableBulletsInAmmoPack = playerGunSelector.ActiveGun.AmmoConfig.MaxAmmo - playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo;
+        int maxAmmoPacklAmount = Mathf.Min(totalAmmo, PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo);
+        int availableBulletsInAmmoPack = PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo - PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo;
         int AmountToAdd = Mathf.Min(maxAmmoPacklAmount, availableBulletsInAmmoPack);
-        playerGunSelector.ActiveGun.AmmoConfig.CurrentAmmo += AmountToAdd;
+        PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo += AmountToAdd;
         totalAmmo -= AmountToAdd;
 
-        NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {playerGunSelector.ActiveGun.Name}", 1f);
+        NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1f);
 
         totalAmmoText.DOColor(Color.red, 0.05f)
            .OnComplete(() =>

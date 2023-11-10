@@ -5,7 +5,6 @@ using UnityEngine;
 public class GunPickup : MonoBehaviour
 {
     public GunScriptableObject Gun;
-    public PlayerGunSelector playerGunSelector;
     public GunSelector gunSelector;
 
     public Transform player;
@@ -25,14 +24,14 @@ public class GunPickup : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         imageToActivate.transform.LookAt(player.position);
 
-        if (distance <= activationDistance && hasShownNotification && playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[0])
+        if (distance <= activationDistance && hasShownNotification && PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[0])
         {
             NotificationSystem.Instance.HideGunNotification();
             hasShownNotification = false;
             isImageActivate = true;
             imageToActivate.SetActive(true);
 
-           
+
         }
         else if (distance > activationDistance && !hasShownNotification)
         {
@@ -49,40 +48,40 @@ public class GunPickup : MonoBehaviour
             isImageActivate = true;
             imageToActivate.SetActive(true);
 
-            if (playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[1])
+            if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
             {
                 NotificationSystem.Instance.ShowGunNotification($"Press [E] to pick up {Gun.Name}");
                 hasShownNotification = true;
-          
+
             }
 
-            
+
         }
         else if (distance > activationDistance && hasShownNotification)
         {
             NotificationSystem.Instance.HideGunNotification();
             isImageActivate = false;
             imageToActivate.SetActive(false);
-            
+
             hasShownNotification = false;
         }
 
-       
+
     }
 
 
     public void PickupGun()
     {
-        if (playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[1])
+        if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
         {
-            playerGunSelector.SetupNewGun(Gun);
+            PlayerGunSelector.Instance.SetupNewGun(Gun);
             Destroy(gameObject);
             isImageActivate = false;
             NotificationSystem.Instance.HideGunNotification();
-            if (playerGunSelector.Guns.Count >= 2)
+            if (PlayerGunSelector.Instance.Guns.Count >= 2)
             {
 
-                Sprite gunIconTwo = playerGunSelector.Guns[1].GunIcon;
+                Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[1].GunIcon;
                 gunSelector.secondGunIcon.sprite = gunIconTwo;
             }
         }

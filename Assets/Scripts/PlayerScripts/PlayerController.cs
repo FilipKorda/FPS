@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController character_Controller;
-    public PlayerGunSelector playerGunSelector;
     private Vector3 move_Direction;
     public float speed = 5f;
     private readonly float gravity = 20f;
@@ -39,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void TryPickupGun()
     {
-        if (playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[1])
+        if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
         {
             foreach (var gunPickup in gunPickupList)
             {

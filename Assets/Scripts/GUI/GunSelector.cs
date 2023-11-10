@@ -6,8 +6,6 @@ namespace FPS.Guns.Demo
 {
     public class GunSelector : MonoBehaviour
     {
-        [SerializeField]
-        private PlayerGunSelector playerGunSelector;
         [Header("Current Gun Selected")]
         [Space(5)]
         [SerializeField]
@@ -36,30 +34,30 @@ namespace FPS.Guns.Demo
 
         private void Update()
         {
-            if (playerGunSelector.Guns.Count >= 1)
+            if (PlayerGunSelector.Instance.Guns.Count >= 1)
             {
-                Sprite gunIconOne = playerGunSelector.Guns[0].GunIcon;
+                Sprite gunIconOne = PlayerGunSelector.Instance.Guns[0].GunIcon;
                 firstGunIcon.sprite = gunIconOne;
             }
 
-            if (playerGunSelector.Guns.Count >= 2)
+            if (PlayerGunSelector.Instance.Guns.Count >= 2)
             {
-                Sprite gunIconTwo = playerGunSelector.Guns[1].GunIcon;
+                Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[1].GunIcon;
                 secondGunIcon.sprite = gunIconTwo;
             }
         }
-      
+
         public void SwitchGunOnUI(int gunIndex)
         {
-            if (gunIndex >= 0 && gunIndex < playerGunSelector.Guns.Count)
+            if (gunIndex >= 0 && gunIndex < PlayerGunSelector.Instance.Guns.Count)
             {
-                if (playerGunSelector.Guns[playerGunSelector.activeGunIndex] == playerGunSelector.Guns[0])
+                if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[0])
                 {
                     HLFirstGunImage.DOFade(0.2f, durationFade);
                     HLSecondGunImage.DOFade(0f, durationFade);
 
                     AnimateScale(HLFirstGunImage, initialPistolScale);
-                    Sprite gunIconOne = playerGunSelector.Guns[gunIndex].GunIcon;
+                    Sprite gunIconOne = PlayerGunSelector.Instance.Guns[gunIndex].GunIcon;
 
                     firstGunIcon.sprite = gunIconOne;
 
@@ -71,7 +69,7 @@ namespace FPS.Guns.Demo
 
                     AnimateScale(HLSecondGunImage, initialMachineGunScale);
 
-                    Sprite gunIconTwo = playerGunSelector.Guns[gunIndex].GunIcon;
+                    Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[gunIndex].GunIcon;
 
                     secondGunIcon.sprite = gunIconTwo;
                 }
@@ -100,10 +98,10 @@ namespace FPS.Guns.Demo
             HLSecondGunImage.color = startSecondGunColor;
 
             //Show Icons on UI
-            Sprite initialFirstGunIcon = playerGunSelector.Guns[0].GunIcon;
+            Sprite initialFirstGunIcon = PlayerGunSelector.Instance.Guns[0].GunIcon;
             firstGunIcon.sprite = initialFirstGunIcon;
 
-            Sprite initialSecondGunIcon = playerGunSelector.Guns[1].GunIcon;
+            Sprite initialSecondGunIcon = PlayerGunSelector.Instance.Guns[1].GunIcon;
             secondGunIcon.sprite = initialSecondGunIcon;
         }
     }
