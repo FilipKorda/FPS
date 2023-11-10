@@ -22,6 +22,15 @@ namespace FPS.Guns.Demo
 
         private readonly Dictionary<GunType, GunScriptableObject> gunCache = new();
 
+        public float normalFOV = 60f;
+        public float zoomFOV = 30f;
+        public float zoomSpeed = 5f;
+        private bool isZoomed = false;
+        private Vector3 originalWeaponPosition = new(0.35f, -0.3f, 0.6f);
+        public Vector3 glockZoomedPosition = new(0f, -0.14f, 0.33f);
+        public Vector3 m4a1ZoomedPosition = new(0f, -0.155f, 0.4f);
+        public Vector3 uziSilencerZoomedPosition = new(0f, -0.155f, 0.4f);
+
         private void Start()
         {
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
@@ -30,7 +39,21 @@ namespace FPS.Guns.Demo
         }
 
         private void Update()
-        {           
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                isZoomed = true;
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                isZoomed = false;
+            }
+
+            UpdateZoom();
+
+
+
             if (!PlayerAction.IsReloading)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1) && activeGunIndex != 0)
@@ -47,6 +70,32 @@ namespace FPS.Guns.Demo
                 }
             }
         }
+
+        void UpdateZoom()
+        {
+            float targetFOV = isZoomed ? zoomFOV : normalFOV;
+            Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+
+            float lerpValue = isZoomed ? 1f : 0f;
+
+            if(ActiveGun.Type == GunType.Glock)
+            {
+                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, glockZoomedPosition, lerpValue);
+            }
+
+            if (ActiveGun.Type == GunType.M4A1)
+            {
+                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, m4a1ZoomedPosition, lerpValue);
+            }
+
+            if (ActiveGun.Type == GunType.UziSilencer)
+            {
+                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, uziSilencerZoomedPosition, lerpValue);
+            }
+        }
+
+
+
 
         public void SetupNewGun(GunScriptableObject newGun)
         {
