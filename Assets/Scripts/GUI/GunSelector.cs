@@ -38,12 +38,29 @@ namespace FPS.Guns.Demo
             {
                 Sprite gunIconOne = PlayerGunSelector.Instance.Guns[0].GunIcon;
                 firstGunIcon.sprite = gunIconOne;
+
+                if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo == 0)
+                {
+                    firstGunIcon.color = Color.red;
+                }
+                else
+                {
+                    firstGunIcon.color = Color.white;
+                }
             }
 
             if (PlayerGunSelector.Instance.Guns.Count >= 2)
             {
                 Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[1].GunIcon;
                 secondGunIcon.sprite = gunIconTwo;
+                if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo == 0)
+                {
+                    secondGunIcon.color = Color.red;
+                }
+                else
+                {
+                    secondGunIcon.color = Color.white;
+                }
             }
         }
 

@@ -1,74 +1,74 @@
 using FPS.Guns;
 using FPS.Guns.Demo;
+using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
-public class GunPickup : MonoBehaviour
+public class GunPickup : MonoBehaviour, IGunPickupable
 {
     public GunScriptableObject Gun;
     public GunSelector gunSelector;
 
-    public Transform player;
-    public float activationDistance = 2f;
     public GameObject imageToActivate;
     public bool isImageActivate = false;
-    private bool hasShownNotification = false;
 
-    private void Update()
+
+    [SerializeField] private GameObject gunPanel;
+    [SerializeField] private TextMeshProUGUI currentGunText;
+    [SerializeField] private TextMeshProUGUI dmgNumberText;
+    [SerializeField] private TextMeshProUGUI frNumberText;
+    [SerializeField] private TextMeshProUGUI taNumberText;
+    [SerializeField] private TextMeshProUGUI rtNumberText;
+    [SerializeField] private TextMeshProUGUI msNumberText;
+    [SerializeField] private TextMeshProUGUI rrNumberText;
+
+    [SerializeField] private Vector3 hide = new(1100f, 0f, 0f);
+    [SerializeField] private Vector3 show = new(680f, 0f, 0f);
+
+
+    public void ShowNotification()
     {
-        if (player == null || imageToActivate == null)
-        {
-            Debug.LogWarning("Player or Image not assigned in the inspector.");
-            return;
-        }
+        gunPanel.transform.DOLocalMove(show, 0.2f);
 
-        float distance = Vector3.Distance(player.position, transform.position);
-        imageToActivate.transform.LookAt(player.position);
+        currentGunText.text = Gun.Name;
 
-        if (distance <= activationDistance && hasShownNotification && PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[0])
-        {
-            NotificationSystem.Instance.HideGunNotification();
-            hasShownNotification = false;
-            isImageActivate = true;
-            imageToActivate.SetActive(true);
+        float minDamage = Gun.DamageConfig.DamageCurve.constantMin;
+        float maxDamage = Gun.DamageConfig.DamageCurve.constantMax;
 
+        dmgNumberText.text = $"{Mathf.CeilToInt(minDamage)}-{Mathf.CeilToInt(maxDamage)}";
 
-        }
-        else if (distance > activationDistance && !hasShownNotification)
-        {
-            NotificationSystem.Instance.HideGunNotification();
-            isImageActivate = false;
-            imageToActivate.SetActive(false);
+        frNumberText.text = Gun.ShootConfig.FireRate.ToString();
+        taNumberText.text = Gun.AmmoConfig.MaxAmmo.ToString();
+        rtNumberText.text = Gun.AmmoConfig.reloadTime.ToString();
+        msNumberText.text = Gun.AmmoConfig.CurrentClipAmmo.ToString();
+        rrNumberText.text = Gun.ShootConfig.RecoilRecoverySpeed.ToString();
 
-            hasShownNotification = false;
-        }
-
-
-        if (distance <= activationDistance && !hasShownNotification)
-        {
-            isImageActivate = true;
-            imageToActivate.SetActive(true);
-
-            if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
-            {
-                NotificationSystem.Instance.ShowGunNotification($"Press [E] to pick up {Gun.Name}");
-                hasShownNotification = true;
-
-            }
-
-
-        }
-        else if (distance > activationDistance && hasShownNotification)
-        {
-            NotificationSystem.Instance.HideGunNotification();
-            isImageActivate = false;
-            imageToActivate.SetActive(false);
-
-            hasShownNotification = false;
-        }
-
+        imageToActivate.SetActive(true);
+        isImageActivate = true;
+        NotificationSystem.Instance.ShowInfiniteNotification($"Press [E] to pick up {Gun.Name}");
 
     }
 
+    public void HideNotification()
+    {
+        if (imageToActivate != null)
+        {
+            gunPanel.transform.DOLocalMove(hide, 0.2f);
+
+            currentGunText.text = "";
+            dmgNumberText.text = "";
+            frNumberText.text = "";
+            taNumberText.text = "";
+            rtNumberText.text = "";
+            msNumberText.text = "";
+            rrNumberText.text = "";
+
+            imageToActivate.SetActive(false);
+            isImageActivate = false;
+            NotificationSystem.Instance.HideInfiniteNotification();
+        }
+
+    }
 
     public void PickupGun()
     {
@@ -76,18 +76,12 @@ public class GunPickup : MonoBehaviour
         {
             PlayerGunSelector.Instance.SetupNewGun(Gun);
             Destroy(gameObject);
-            isImageActivate = false;
-            NotificationSystem.Instance.HideGunNotification();
+            HideNotification();
             if (PlayerGunSelector.Instance.Guns.Count >= 2)
             {
-
                 Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[1].GunIcon;
                 gunSelector.secondGunIcon.sprite = gunIconTwo;
             }
         }
     }
-
-
-
-
 }

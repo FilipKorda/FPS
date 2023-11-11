@@ -16,7 +16,7 @@ MonoBehaviour:
   Type: 0
   GunIcon: {fileID: 21300000, guid: d940450681f67a64889bdcd722fba912, type: 3}
   Name: Glock
-  ModelPrefab: {fileID: 5064531939109413833, guid: 116c75b33cb942b4a91a8a1a6f9d2178, type: 3}
+  ModelPrefab: {fileID: 7310703180141472677, guid: 085f24972bb0e6f40b54e14274b4d7a4, type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
   DamageConfig: {fileID: 11400000, guid: 59b0429f64877e8478c1ff042e424290, type: 2}

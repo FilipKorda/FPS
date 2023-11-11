@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136aa6983723ee64ba03747e031633de, type: 3}
-  m_Name: UziSilencer Trail Config
+  m_Name: AR-10 Trail Config
   m_EditorClassIdentifier: 
   Material: {fileID: 2100000, guid: 5634c61ca1e2d60419e4535693fc609b, type: 2}
   WidthCurve:

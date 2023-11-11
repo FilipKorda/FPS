@@ -33,7 +33,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
         originalAmmoColor = totalAmmoText.material.color;
     }
 
-    public void Pickup()
+    public void PickupAmmo()
     {
         AddAmmo();
     }
@@ -44,9 +44,9 @@ public class AmmoPack : MonoBehaviour, IPickupable
         {
             IncreaseAmountOfAmmo();
             ShakeAmmoPackModel();
-            
-                AmmoDisplayer.Instance.AmmoChanged();
-            
+
+            AmmoDisplayer.Instance.AmmoChanged();
+
         }
         else
         {
@@ -102,6 +102,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
         headerText.text = headerString;
         mainFirstText.text = mainFirstString;
         totalAmmoText.text = totalAmmo.ToString();
+        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to restore Ammo!");
     }
 
     public void HideAmmoPackPanel()
@@ -110,5 +111,6 @@ public class AmmoPack : MonoBehaviour, IPickupable
         headerText.text = "";
         mainFirstText.text = "";
         totalAmmoText.text = "";
+        NotificationSystem.Instance.HideInfiniteNotification();
     }
 }

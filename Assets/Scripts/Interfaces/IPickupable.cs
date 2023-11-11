@@ -1,6 +1,6 @@
 public interface IPickupable
 {
-    void Pickup();
+    void PickupAmmo();
     void Highlight();
     void ResetHighlight();
     void ShowAmmoPackPanel();

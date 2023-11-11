@@ -30,14 +30,17 @@ namespace FPS.Guns.Demo
         private bool isZoomed = false;
         private Vector3 originalWeaponPosition = new(0.35f, -0.3f, 0.6f);
         public Vector3 glockZoomedPosition = new(0f, -0.14f, 0.33f);
-        public Vector3 m4a1ZoomedPosition = new(0f, -0.155f, 0.4f);
+        public Vector3 m4a1ZoomedPosition = new(0f, -0.1f, 0.3f);
         public Vector3 uziSilencerZoomedPosition = new(0f, -0.155f, 0.4f);
 
         private void Start()
         {
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
             ActiveGun = GetCachedGun(ActiveBaseGun);
+
             ActiveGun.Spawn(GunParent, this, Camera);
+
+
         }
 
         private void Awake()
@@ -85,7 +88,7 @@ namespace FPS.Guns.Demo
 
             float lerpValue = isZoomed ? 1f : 0f;
 
-            if(ActiveGun.Type == GunType.Glock)
+            if (ActiveGun.Type == GunType.Glock)
             {
                 GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, glockZoomedPosition, lerpValue);
             }

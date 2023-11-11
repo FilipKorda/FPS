@@ -60,6 +60,7 @@ public class EagleVisionManager : MonoBehaviour
             {
                 objectDetector.InteractEagleVision();
             }
+           
         }
 
         eagleVision.DOFade(0.3f, fadeInDuration)

@@ -22,7 +22,7 @@ public class Object : MonoBehaviour, IEagleVision
             Debug.Log(objectName);
 
             isDetected = true;
-
+            gameObject.layer = LayerMask.NameToLayer("EagleVisionObject");
             StartCoroutine(RestoreMaterial());
 
             objectRenderer.material = highlightMaterial;
@@ -32,6 +32,7 @@ public class Object : MonoBehaviour, IEagleVision
     private IEnumerator RestoreMaterial()
     {
         yield return new WaitForSeconds(4.0f);
+        gameObject.layer = LayerMask.NameToLayer("Default");
         objectRenderer.material = originalMaterial;
         isDetected = false;
     }

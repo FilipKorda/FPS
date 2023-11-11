@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImpactType: {fileID: 11400000, guid: 96209649004732849abd5eb7b856a671, type: 2}
   Type: 1
-  GunIcon: {fileID: 21300000, guid: e9ea8c52702bdd945b6a3abd6c16c185, type: 3}
+  GunIcon: {fileID: 21300000, guid: f1345b138a93aa840a5f4f58cf845520, type: 3}
   Name: M4A1
-  ModelPrefab: {fileID: 6296280811227305299, guid: e6423a76c006b5c4bbb9447c9cf7be14, type: 3}
+  ModelPrefab: {fileID: 7598501749658747623, guid: 2cc13f6a5f5c0c144b352dc85dbff954, type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
   DamageConfig: {fileID: 11400000, guid: 58a4a249716e489428e874ff0181a269, type: 2}

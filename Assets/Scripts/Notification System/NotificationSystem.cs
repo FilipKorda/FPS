@@ -43,7 +43,7 @@ public class NotificationSystem : MonoBehaviour
             });
     }
 
-    public void ShowGunNotification(string message)
+    public void ShowInfiniteNotification(string message)
     {
         if (activeGunNotification != null)
         {
@@ -58,7 +58,7 @@ public class NotificationSystem : MonoBehaviour
         }
     }
 
-    public void HideGunNotification()
+    public void HideInfiniteNotification()
     {
         if (activeGunNotification != null)
         {

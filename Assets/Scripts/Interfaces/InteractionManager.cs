@@ -6,7 +6,8 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private Transform transformPosition;
     [SerializeField] private float maxRaycastDistance = 3f;
 
-    private IPickupable currentlyHighlightedObject;
+    private IPickupable currentlyPickupableHighlightedObject;
+    private IGunPickupable currentlyGunPickupableHighlightedObject;
 
     private void Update()
     {
@@ -15,27 +16,48 @@ public class InteractionManager : MonoBehaviour
 
         if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
         {
-            currentlyHighlightedObject?.ResetHighlight();
-            currentlyHighlightedObject?.HideAmmoPackPanel();
+            currentlyPickupableHighlightedObject?.ResetHighlight();
+            currentlyPickupableHighlightedObject?.HideAmmoPackPanel();
+
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
-                currentlyHighlightedObject = interactable;
+                currentlyPickupableHighlightedObject = interactable;
                 interactable.Highlight();
                 interactable.ShowAmmoPackPanel();
             }
             else
             {
-                currentlyHighlightedObject = null;
+                currentlyPickupableHighlightedObject = null;
             }
+
+
+            currentlyGunPickupableHighlightedObject?.HideNotification();
+            if (hit.collider.TryGetComponent<IGunPickupable>(out var gunPickupable))
+            {
+                currentlyGunPickupableHighlightedObject = gunPickupable;
+                gunPickupable.ShowNotification();
+            }
+            else
+            {
+                currentlyGunPickupableHighlightedObject = null;
+            }
+
         }
         else
         {
-            if (currentlyHighlightedObject != null)
+            if (currentlyPickupableHighlightedObject != null)
             {
-                currentlyHighlightedObject.HideAmmoPackPanel();
-                currentlyHighlightedObject.ResetHighlight();
-                currentlyHighlightedObject = null;
+                currentlyPickupableHighlightedObject.HideAmmoPackPanel();
+                currentlyPickupableHighlightedObject.ResetHighlight();
+                currentlyPickupableHighlightedObject = null;
             }
+
+            if (currentlyGunPickupableHighlightedObject != null)
+            {
+                currentlyGunPickupableHighlightedObject.HideNotification();
+                currentlyGunPickupableHighlightedObject = null;
+            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -53,7 +75,12 @@ public class InteractionManager : MonoBehaviour
         {
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
-                interactable.Pickup();
+                interactable.PickupAmmo();
+            }
+
+            if (hit.collider.TryGetComponent<IGunPickupable>(out var gunPickupable))
+            {
+                gunPickupable.PickupGun();
             }
         }
     }

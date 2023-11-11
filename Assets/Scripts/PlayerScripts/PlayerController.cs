@@ -21,19 +21,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        HandleGunPickups();
+    }
+
+    void HandleGunPickups()
+    {
+       // List<GunPickup> pickupsToRemove = new();
 
         foreach (var gunPickup in gunPickupList)
         {
-            if (gunPickup.isImageActivate)
+            if (gunPickup.isImageActivate && Input.GetKeyDown(KeyCode.E))
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    TryPickupGun();
-                }
+                TryPickupGun();
+              //  pickupsToRemove.Add(gunPickup);
             }
-
         }
 
+      //  RemovePickups(pickupsToRemove);
     }
 
     void TryPickupGun()
@@ -45,7 +49,7 @@ public class PlayerController : MonoBehaviour
                 if (gunPickup.isImageActivate)
                 {
                     gunPickup.PickupGun();
-                    gunPickupList.Remove(gunPickup);
+            
                     break;
                 }
             }
@@ -56,6 +60,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+  /*  void RemovePickups(List<GunPickup> pickupsToRemove)
+    {
+        foreach (var pickupToRemove in pickupsToRemove)
+        {
+            gunPickupList.Remove(pickupToRemove);
+        }
+    }*/
 
     void Move()
     {

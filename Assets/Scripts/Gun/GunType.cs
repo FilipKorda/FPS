@@ -12,7 +12,8 @@ namespace FPS.Guns
     {
         Glock,
         M4A1,
-        UziSilencer
+        UziSilencer,
+        AR10
     }
 
     public enum ShootType
