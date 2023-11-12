@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 namespace FPS.Guns.Demo
 {
@@ -17,6 +18,12 @@ namespace FPS.Guns.Demo
         [SerializeField]
         private Image firstGunIcon;
         public Image secondGunIcon;
+        [Header("Gun Names")]
+        [Space(5)]
+        [SerializeField]
+        private TextMeshProUGUI firstGunNameText;
+        [SerializeField]
+        private TextMeshProUGUI secondGunNameText;
 
         private Vector3 initialPistolScale;
         private Vector3 initialMachineGunScale;
@@ -26,6 +33,9 @@ namespace FPS.Guns.Demo
         private Color startFirstGunColor;
         private Color startSecondGunColor;
 
+        public Color outOfBulletsColor = Color.red;
+        public Color haveBullets = Color.white;
+
 
         private void Start()
         {
@@ -34,33 +44,19 @@ namespace FPS.Guns.Demo
 
         private void Update()
         {
+            AmmoHightlighter();
+
             if (PlayerGunSelector.Instance.Guns.Count >= 1)
             {
                 Sprite gunIconOne = PlayerGunSelector.Instance.Guns[0].GunIcon;
                 firstGunIcon.sprite = gunIconOne;
-
-                if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo == 0)
-                {
-                    firstGunIcon.color = Color.red;
-                }
-                else
-                {
-                    firstGunIcon.color = Color.white;
-                }
+                firstGunNameText.text = PlayerGunSelector.Instance.Guns[0].Name;
             }
-
             if (PlayerGunSelector.Instance.Guns.Count >= 2)
             {
                 Sprite gunIconTwo = PlayerGunSelector.Instance.Guns[1].GunIcon;
                 secondGunIcon.sprite = gunIconTwo;
-                if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo == 0)
-                {
-                    secondGunIcon.color = Color.red;
-                }
-                else
-                {
-                    secondGunIcon.color = Color.white;
-                }
+                secondGunNameText.text = PlayerGunSelector.Instance.Guns[1].Name;
             }
         }
 
@@ -97,6 +93,27 @@ namespace FPS.Guns.Demo
         {
             obj.transform.DOScale(initialScale * scaleFactor, scaleDuration)
                 .OnComplete(() => obj.transform.DOScale(initialScale, 0.0f));
+        }
+
+        private void AmmoHightlighter()
+        {
+            if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[0] && PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo == 0)
+            {
+                firstGunIcon.color = outOfBulletsColor;
+            }
+            else if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[0] && PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo > 0)
+            {
+                firstGunIcon.color = haveBullets;
+            }
+            if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1] && PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo == 0)
+            {
+                secondGunIcon.color = outOfBulletsColor;
+            }
+            else if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1] && PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo > 0)
+            {
+                secondGunIcon.color = haveBullets;
+
+            }
         }
 
         private void DoOnStart()

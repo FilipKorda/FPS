@@ -15,7 +15,7 @@ MonoBehaviour:
   ImpactType: {fileID: 11400000, guid: f20b4fa4e6815e44483c36aa438e3ceb, type: 2}
   Type: 2
   GunIcon: {fileID: 21300000, guid: 0f4454fb919c0634a80fa66bad3e0130, type: 3}
-  Name: Uzi Silencer
+  Name: Uzi
   ModelPrefab: {fileID: 6464366683518049403, guid: 02d654e826f5fd140afe89e6674d1694, type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f5cccb0d5a6cb4c9fdfdf57d6b0925, type: 3}
   m_Name: M4A1 Ammo Config
   m_EditorClassIdentifier: 
-  MaxAmmo: 240
-  ClipSize: 200
-  CurrentAmmo: 240
-  CurrentClipAmmo: 200
-  reloadTime: 3
+  MaxAmmo: 1
+  ClipSize: 1
+  CurrentAmmo: 1
+  CurrentClipAmmo: 1
+  reloadTime: 1

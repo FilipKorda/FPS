@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UziSilencer Damage Config
   m_EditorClassIdentifier: 
   DamageCurve:
-    m_Mode: 1
+    m_Mode: 3
     m_CurveMultiplier: 1
     m_CurveMin:
       serializedVersion: 2
@@ -45,5 +45,5 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_ConstantMin: 0
-    m_ConstantMax: 0
+    m_ConstantMin: 4
+    m_ConstantMax: 5

@@ -26,18 +26,13 @@ public class PlayerController : MonoBehaviour
 
     void HandleGunPickups()
     {
-       // List<GunPickup> pickupsToRemove = new();
-
         foreach (var gunPickup in gunPickupList)
         {
             if (gunPickup.isImageActivate && Input.GetKeyDown(KeyCode.E))
             {
                 TryPickupGun();
-              //  pickupsToRemove.Add(gunPickup);
             }
         }
-
-      //  RemovePickups(pickupsToRemove);
     }
 
     void TryPickupGun()
@@ -59,14 +54,6 @@ public class PlayerController : MonoBehaviour
             NotificationSystem.Instance.ShowNotification("You can only change second gun", 1.0f);
         }
     }
-
-  /*  void RemovePickups(List<GunPickup> pickupsToRemove)
-    {
-        foreach (var pickupToRemove in pickupsToRemove)
-        {
-            gunPickupList.Remove(pickupToRemove);
-        }
-    }*/
 
     void Move()
     {
