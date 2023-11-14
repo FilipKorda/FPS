@@ -8,6 +8,7 @@ public class InteractionManager : MonoBehaviour
 
     private IPickupable currentlyPickupableHighlightedObject;
     private IGunPickupable currentlyGunPickupableHighlightedObject;
+    private IBridgeController currentlyBridgeController;
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class InteractionManager : MonoBehaviour
         {
             currentlyPickupableHighlightedObject?.ResetHighlight();
             currentlyPickupableHighlightedObject?.HideAmmoPackPanel();
+          //  currentlyBridgeController?.ResetHighlight();
 
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
@@ -42,6 +44,19 @@ public class InteractionManager : MonoBehaviour
                 currentlyGunPickupableHighlightedObject = null;
             }
 
+
+            currentlyBridgeController?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IBridgeController>(out var iBridgeController))
+            {
+                currentlyBridgeController = iBridgeController;
+                iBridgeController.Highlight();
+
+            }
+            else
+            {
+                currentlyBridgeController = null;
+            }
+
         }
         else
         {
@@ -56,6 +71,12 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyGunPickupableHighlightedObject.HideNotification();
                 currentlyGunPickupableHighlightedObject = null;
+            }
+
+            if (currentlyBridgeController != null)
+            {
+                currentlyBridgeController.ResetHighlight();
+                currentlyBridgeController = null;
             }
 
         }
@@ -81,6 +102,11 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IGunPickupable>(out var gunPickupable))
             {
                 gunPickupable.PickupGun();
+            }
+
+            if (hit.collider.TryGetComponent<IBridgeController>(out var bridgeController))
+            {
+                bridgeController.ActivateBridge();
             }
         }
     }

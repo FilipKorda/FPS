@@ -6,7 +6,7 @@ using UnityEngine;
 public class AmmoPack : MonoBehaviour, IPickupable
 {
     private Color originalColor;
-    private new Renderer renderer;
+    private new Renderer originalColorRenderer;
 
     [SerializeField] private GameObject AmmoPackPanel;
     [SerializeField] private TextMeshProUGUI headerText;
@@ -27,8 +27,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
-        originalColor = renderer.material.color;
+        originalColorRenderer = GetComponent<Renderer>();
+        originalColor = originalColorRenderer.material.color;
         originalTotalAmmoTextScale = totalAmmoText.transform.localScale;
         originalAmmoColor = totalAmmoText.material.color;
     }
@@ -88,12 +88,12 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     public void Highlight()
     {
-        renderer.material.color = Color.yellow;
+        originalColorRenderer.material.color = Color.yellow;
     }
 
     public void ResetHighlight()
     {
-        renderer.material.color = originalColor;
+        originalColorRenderer.material.color = originalColor;
     }
 
     public void ShowAmmoPackPanel()

@@ -10,8 +10,15 @@ public class PlayerController : MonoBehaviour
     private readonly float gravity = 20f;
     public float jump_Force = 10f;
     private float vertical_Velocity;
-
     public List<GunPickup> gunPickupList;
+
+    private readonly float slidingForce = 10f;
+    private readonly float raycastDistance = 1.05f;
+    private bool isSliding = false;
+    private Vector3 raycastDir = Vector3.down;
+    private Vector3 slidingDirection = Vector3.left;
+
+
 
     void Awake()
     {
@@ -22,6 +29,29 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         HandleGunPickups();
+
+        if (Physics.Raycast(transform.position, raycastDir, out RaycastHit hit, raycastDistance))
+        {
+            if (hit.collider.CompareTag("SlipperySurface"))
+            {
+                isSliding = true;
+
+                Vector3 currentPosition = transform.position;
+                Vector3 newPosition = currentPosition + slidingDirection * slidingForce * Time.deltaTime;
+                transform.position = newPosition;
+            }
+            else
+            {
+                isSliding = false;
+            }
+        }
+        else
+        {
+            isSliding = false;
+        }
+
+        Debug.DrawRay(transform.position, raycastDir * raycastDistance, Color.red);
+
     }
 
     void HandleGunPickups()
@@ -44,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 if (gunPickup.isImageActivate)
                 {
                     gunPickup.PickupGun();
-            
+
                     break;
                 }
             }
@@ -72,6 +102,7 @@ public class PlayerController : MonoBehaviour
         move_Direction.y = vertical_Velocity * Time.deltaTime;
     }
 
+
     void PlayerJump()
     {
         if (character_Controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -79,5 +110,8 @@ public class PlayerController : MonoBehaviour
             vertical_Velocity = jump_Force;
         }
     }
+
+
+
 
 }
