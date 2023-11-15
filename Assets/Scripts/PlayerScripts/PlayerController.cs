@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isSliding = false;
     private Vector3 raycastDir = Vector3.down;
     private Vector3 slidingDirection = Vector3.left;
+    public BridgeButton bridgeButton;
 
 
 
@@ -43,6 +44,15 @@ public class PlayerController : MonoBehaviour
             else
             {
                 isSliding = false;
+            }
+
+            if (hit.collider.CompareTag("Platform"))
+            {
+                character_Controller.Move(bridgeButton.speed * Time.deltaTime * bridgeButton.direction);
+            }
+            else
+            {
+                move_Direction *= speed * Time.deltaTime;
             }
         }
         else

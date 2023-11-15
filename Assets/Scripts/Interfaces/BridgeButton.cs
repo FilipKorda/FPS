@@ -1,17 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BridgeButton : MonoBehaviour, IBridgeController
 {
     private Color originalColor;
     private Renderer originalColorRenderer;
-    [SerializeField] private CharacterController playerController;
     [SerializeField] private Transform[] points;
     [SerializeField] private GameObject platform;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] public float speed = 5f;
+    [SerializeField] private CharacterController characterController;
     private int currentPointIndex = 0;
     public bool isPlatformActive = false;
+
+    public Vector3 direction;
+    [SerializeField] private int[] stopIndexes;
 
     private void Start()
     {
@@ -47,7 +49,7 @@ public class BridgeButton : MonoBehaviour, IBridgeController
             {
                 currentPointIndex++;
 
-                if (currentPointIndex == 1 || currentPointIndex == 2)
+                if (IsStopIndex(currentPointIndex))
                 {
                     yield return new WaitForSeconds(2f);
                 }
@@ -58,20 +60,13 @@ public class BridgeButton : MonoBehaviour, IBridgeController
                 }
             }
 
-            if (playerController != null && playerController.isGrounded)
-            {
-                Vector3 moveWithPlatform = platform.transform.position - playerController.transform.position;
-                playerController.Move(moveWithPlatform);
-                
-            }
-
             yield return null;
         }
     }
 
-    private void MovePlatformTowardsPoint(Transform targetPoint)
+    public void MovePlatformTowardsPoint(Transform targetPoint)
     {
-        Vector3 direction = (targetPoint.position - platform.transform.position).normalized;
+        direction = (targetPoint.position - platform.transform.position).normalized;
         platform.transform.Translate(speed * Time.deltaTime * direction);
     }
 
@@ -81,5 +76,17 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         currentPointIndex = 0;
     }
 
+    private bool IsStopIndex(int index)
+    {
+        foreach (var stopIndex in stopIndexes)
+        {
+            if (index == stopIndex)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - SlipperySurface
+  - Platform
   layers:
   - Default
   - TransparentFX
