@@ -5,15 +5,14 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 {
     private Color originalColor;
     private Renderer originalColorRenderer;
-    [SerializeField] private Transform[] points;
-    [SerializeField] private GameObject platform;
-    [SerializeField] public float speed = 5f;
-    [SerializeField] private CharacterController characterController;
-    private int currentPointIndex = 0;
-    public bool isPlatformActive = false;
 
-    public Vector3 direction;
-    [SerializeField] private int[] stopIndexes;
+    [SerializeField] private Transform[] points;
+    [SerializeField] private float speed = 2f;
+    [SerializeField] private GameObject platform;
+
+    private int currentPoint = 0;
+    private bool isActivated = false;
+
 
     private void Start()
     {
@@ -21,10 +20,58 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         originalColor = originalColorRenderer.material.color;
     }
 
+    void Update()
+    {
+        if (isActivated && platform != null)
+        {
+            MovePlatformToNextPoint(platform);
+        }
+    }
+
+    void MovePlatformToNextPoint(GameObject platform)
+    {
+        if (points.Length == 0)
+            return;
+
+
+
+        Vector3 direction = points[currentPoint].position - platform.transform.position;
+
+        direction.Normalize();
+
+        platform.transform.Translate(speed * Time.deltaTime * direction);
+
+        float distanceToNextPoint = Vector3.Distance(platform.transform.position, points[currentPoint].position);
+
+        if (distanceToNextPoint < 0.1f)
+        {
+            currentPoint = (currentPoint + 1) % points.Length;
+
+            if (currentPoint == points.Length - 1)
+            {
+                isActivated = false;
+            }
+        }
+    }
+
+    public void ActivateBridge()
+    {
+        if (currentPoint == points.Length - 1)
+        {
+            isActivated = false;
+        }
+        else
+        {
+            isActivated = true;
+        }
+    }
+
     public void Highlight()
     {
+
         NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Activate Bridge!");
         originalColorRenderer.material.color = Color.yellow;
+
     }
 
     public void ResetHighlight()
@@ -33,60 +80,8 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         originalColorRenderer.material.color = originalColor;
     }
 
-    public void ActivateBridge()
+    public bool IsPlatformInTheRightPosition()
     {
-        isPlatformActive = true;
-        StartCoroutine(MoveAlongPath());
+        return currentPoint == points.Length - 1;
     }
-
-    IEnumerator MoveAlongPath()
-    {
-        while (isPlatformActive)
-        {
-            MovePlatformTowardsPoint(points[currentPointIndex]);
-
-            if (Vector3.Distance(platform.transform.position, points[currentPointIndex].position) < 0.1f)
-            {
-                currentPointIndex++;
-
-                if (IsStopIndex(currentPointIndex))
-                {
-                    yield return new WaitForSeconds(2f);
-                }
-
-                if (currentPointIndex >= points.Length)
-                {
-                    StopMovementAndRestartIndex();
-                }
-            }
-
-            yield return null;
-        }
-    }
-
-    public void MovePlatformTowardsPoint(Transform targetPoint)
-    {
-        direction = (targetPoint.position - platform.transform.position).normalized;
-        platform.transform.Translate(speed * Time.deltaTime * direction);
-    }
-
-    private void StopMovementAndRestartIndex()
-    {
-        isPlatformActive = false;
-        currentPointIndex = 0;
-    }
-
-    private bool IsStopIndex(int index)
-    {
-        foreach (var stopIndex in stopIndexes)
-        {
-            if (index == stopIndex)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 }

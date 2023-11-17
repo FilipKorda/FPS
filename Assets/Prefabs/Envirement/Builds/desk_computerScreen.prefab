@@ -122,11 +122,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   platform: {fileID: 0}
   speed: 5
-  characterController: {fileID: 0}
   isPlatformActive: 0
   direction: {x: 0, y: 0, z: 0}
+  stopIndexes: 01000000
 --- !u!1 &2973347653135770875
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,15 +12,6 @@ public class PlayerController : MonoBehaviour
     private float vertical_Velocity;
     public List<GunPickup> gunPickupList;
 
-    private readonly float slidingForce = 10f;
-    private readonly float raycastDistance = 1.05f;
-    private bool isSliding = false;
-    private Vector3 raycastDir = Vector3.down;
-    private Vector3 slidingDirection = Vector3.left;
-    public BridgeButton bridgeButton;
-
-
-
     void Awake()
     {
         character_Controller = GetComponent<CharacterController>();
@@ -30,38 +21,6 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         HandleGunPickups();
-
-        if (Physics.Raycast(transform.position, raycastDir, out RaycastHit hit, raycastDistance))
-        {
-            if (hit.collider.CompareTag("SlipperySurface"))
-            {
-                isSliding = true;
-
-                Vector3 currentPosition = transform.position;
-                Vector3 newPosition = currentPosition + slidingDirection * slidingForce * Time.deltaTime;
-                transform.position = newPosition;
-            }
-            else
-            {
-                isSliding = false;
-            }
-
-            if (hit.collider.CompareTag("Platform"))
-            {
-                character_Controller.Move(bridgeButton.speed * Time.deltaTime * bridgeButton.direction);
-            }
-            else
-            {
-                move_Direction *= speed * Time.deltaTime;
-            }
-        }
-        else
-        {
-            isSliding = false;
-        }
-
-        Debug.DrawRay(transform.position, raycastDir * raycastDistance, Color.red);
-
     }
 
     void HandleGunPickups()

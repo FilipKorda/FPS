@@ -6,9 +6,18 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private Transform transformPosition;
     [SerializeField] private float maxRaycastDistance = 3f;
 
+    [SerializeField] private GameObject platform;
+
+
     private IPickupable currentlyPickupableHighlightedObject;
     private IGunPickupable currentlyGunPickupableHighlightedObject;
     private IBridgeController currentlyBridgeController;
+
+
+    void Start()
+    {
+        currentlyBridgeController = platform.GetComponent<IBridgeController>();
+    }
 
     private void Update()
     {
@@ -19,7 +28,6 @@ public class InteractionManager : MonoBehaviour
         {
             currentlyPickupableHighlightedObject?.ResetHighlight();
             currentlyPickupableHighlightedObject?.HideAmmoPackPanel();
-          //  currentlyBridgeController?.ResetHighlight();
 
             if (hit.collider.TryGetComponent<IPickupable>(out var interactable))
             {
@@ -50,6 +58,11 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyBridgeController = iBridgeController;
                 iBridgeController.Highlight();
+
+                if (currentlyBridgeController.IsPlatformInTheRightPosition())
+                {
+                    iBridgeController.ResetHighlight();
+                }
 
             }
             else
