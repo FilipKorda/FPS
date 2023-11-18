@@ -86,6 +86,14 @@ namespace FPS.Guns.Demo
             if (Physics.Raycast(gunTipPoint, forward, out RaycastHit hit, float.MaxValue, PlayerGunSelector.Instance.ActiveGun.ShootConfig.HitMask))
             {
                 hitPoint = hit.point;
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    Crosshair.color = Color.red;
+                }
+                else
+                {
+                    Crosshair.color = Color.black;
+                }
             }
 
             if (PlayerGunSelector.Instance.ActiveGun.ShootConfig.ShootType == ShootType.FromGun)

@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using FPS.Guns.Demo;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSprintAndCrouch : MonoBehaviour
 {
@@ -12,13 +13,26 @@ public class PlayerSprintAndCrouch : MonoBehaviour
     private readonly float stand_Height = 0.5f;
     private readonly float crouch_Height = 0.1f;
     private bool is_Crouching = false;
-    private float sprint_Value = 100f;
-    public float sprint_Treshold = 7f;
+    public float sprint_Treshold = 0.1f;
+   // private Camera playerCamera;
+
+
+    [SerializeField] private Slider staminaSlider;
+    [SerializeField] private float maxStamina = 100f;
+    private float currentStamina;
+    private bool isRecovering = false;
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerController>();
         look_Root = transform.GetChild(0);
+    }
+
+    private void Start()
+    {
+      //  playerCamera = PlayerGunSelector.Instance.Camera;
+        currentStamina = maxStamina;
+        UpdateStaminaSlider();
     }
 
     void Update()
@@ -27,49 +41,95 @@ public class PlayerSprintAndCrouch : MonoBehaviour
         Crouch();
     }
 
+    public void UpdateStaminaSlider()
+    {
+        staminaSlider.value = currentStamina / maxStamina;
+
+        if (currentStamina == maxStamina)
+        {
+            staminaSlider.gameObject.SetActive(false);
+        }
+        else
+        {
+            staminaSlider.gameObject.SetActive(true);
+        }
+    }
+
+
+    void IncreaseStamina()
+    {
+        staminaSlider.gameObject.SetActive(true);
+
+        currentStamina += sprint_Treshold;
+
+        currentStamina = Mathf.Min(maxStamina, currentStamina);
+
+        if (currentStamina > 100f)
+        {
+            currentStamina = 100f;
+        }
+
+        isRecovering = true;
+        UpdateStaminaSlider();
+    }
+
+    void DecreaseStamina()
+    {
+        staminaSlider.gameObject.SetActive(true);
+
+        currentStamina -= sprint_Treshold;
+
+        currentStamina = Mathf.Max(0f, currentStamina);
+
+        if (currentStamina <= 0f)
+        {
+            currentStamina = 0f;
+            playerMovement.speed = move_Speed;
+
+        }
+
+        isRecovering = false;
+        UpdateStaminaSlider();
+    }
+
+    void ChangeFOVSmoothly(float targetFOV, float duration)
+    {
+        PlayerGunSelector.Instance.Camera.DOFieldOfView(targetFOV, duration);
+    }
+
     void Sprint()
     {
-        if (sprint_Value > 0f)
+        if (currentStamina > 0f)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching)
             {
+                
                 playerMovement.speed = sprint_Speed;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching)
         {
+            
             playerMovement.speed = move_Speed;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && !is_Crouching)
         {
-            sprint_Value -= sprint_Treshold * Time.deltaTime;
-
-            if (sprint_Value <= 0f)
-            {
-                sprint_Value = 0f;
-                playerMovement.speed = move_Speed;
-            }
+            ChangeFOVSmoothly(64, 1f);
+            DecreaseStamina();
         }
         else
         {
-            if (sprint_Value != 100f)
-            {
-                sprint_Value += (sprint_Treshold / 2f) * Time.deltaTime;
-
-                if (sprint_Value > 100f)
-                {
-                    sprint_Value = 100f;
-                }
-            }
+            ChangeFOVSmoothly(60, 1f);
+            IncreaseStamina();
         }
     }
 
     void Crouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        {        
+        {
             look_Root.localPosition = new Vector3(0f, crouch_Height, 0f);
             playerMovement.speed = crouch_Speed;
             is_Crouching = true;
