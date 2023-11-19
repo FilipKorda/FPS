@@ -1,23 +1,32 @@
 using UnityEngine;
 
-namespace FPS.Guns.Demo.Enemy
+namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
     public class Enemy : MonoBehaviour
     {
-        public EnemyHealth Health;
-        public EnemyMovement Movement;
+        public PartHealth Health;
         public EnemyPainResponse PainResponse;
 
         private void Start()
         {
             Health.OnTakeDamage += PainResponse.HandlePain;
-            Health.OnDeath += Die;
+            Health.ParticleOnDeath += Die;
+            Health.DropOnDeath += Die;
         }
 
         private void Die(Vector3 Position)
         {
-            Movement.StopMoving();
+            if (EnemyMovementController.Instance.Movement != null)
+            {
+                EnemyMovementController.Instance.Movement.StopMoving();
+            }
+
+            if (Health.Name == "Head" || Health.Name == "Body")
+            {
+                PainResponse.HandleAllPartDeath();
+            }
+
             PainResponse.HandleDeath();
         }
     }

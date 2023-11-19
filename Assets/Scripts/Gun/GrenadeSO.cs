@@ -1,4 +1,4 @@
-using FPS.Guns;
+using FPS.Enemy;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Grenade", menuName = "Grenades/Grenade", order = 0)]

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace FPS.Guns.Demo.Enemy
+namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(NavMeshAgent))]

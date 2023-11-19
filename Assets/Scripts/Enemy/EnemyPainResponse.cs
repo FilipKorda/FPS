@@ -1,12 +1,13 @@
 using UnityEngine;
 
-namespace FPS.Guns.Demo.Enemy
+namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
     public class EnemyPainResponse : MonoBehaviour
     {
+        [SerializeField] private GameObject wholeEnemy;
         [SerializeField]
-        private EnemyHealth Health;
+        private PartHealth Health;
         [SerializeField]
         [Range(1, 100)]
         private int MaxDamagePainThreshold = 5;
@@ -15,18 +16,24 @@ namespace FPS.Guns.Demo.Enemy
         {
             if (Health.CurrentHealth != 0)
             {
-                // you can do some cool stuff based on the
-                // amount of damage taken relative to max health
-                // here we're simply setting the additive layer
-                // weight based on damage vs max pain threshhold
-                Debug.Log("Enemy Die");
+                Debug.Log("Enemy Get Hit: " + gameObject.name + "" + Damage);
             }
         }
 
         public void HandleDeath()
         {
-            Debug.Log("Disaper");
+            Debug.Log("Destroy");
             Destroy(gameObject);
+
         }
+
+        public void HandleAllPartDeath()
+        {
+            if (wholeEnemy != null)
+            {
+                Destroy(wholeEnemy);
+            }
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FPS.Guns
+namespace FPS.Enemy
 {
     public interface IDamageable
     {
@@ -10,8 +10,11 @@ namespace FPS.Guns
         public delegate void TakeDamageEvent(int Damage);
         public event TakeDamageEvent OnTakeDamage;
 
-        public delegate void DeathEvent(Vector3 Position);
-        public event DeathEvent OnDeath;
+        public delegate void ParticleDeathEvent(Vector3 Position);
+        public event ParticleDeathEvent ParticleOnDeath;
+
+        public delegate void DropDeathEvent(Vector3 Position);
+        public event DropDeathEvent DropOnDeath;
 
         public void TakeDamage(int Damage);
     }

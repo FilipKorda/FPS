@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 using FPS.Guns.ImpactEffects;
+using FPS.Enemy;
 
 namespace FPS.Guns
 {

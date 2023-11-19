@@ -1,10 +1,11 @@
 using UnityEngine;
 
-namespace FPS.Guns.Demo.Enemy
+namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
-    public class EnemyHealth : MonoBehaviour, IDamageable
+    public class PartHealth : MonoBehaviour, IDamageable
     {
+        public string Name;
         [SerializeField]
         private int _Health;
         [SerializeField]
@@ -13,7 +14,8 @@ namespace FPS.Guns.Demo.Enemy
         public int MaxHealth { get => _MaxHealth; private set => _MaxHealth = value; }
 
         public event IDamageable.TakeDamageEvent OnTakeDamage;
-        public event IDamageable.DeathEvent OnDeath;
+        public event IDamageable.ParticleDeathEvent ParticleOnDeath;
+        public event IDamageable.DropDeathEvent DropOnDeath;
 
         private void OnEnable()
         {
@@ -33,7 +35,16 @@ namespace FPS.Guns.Demo.Enemy
 
             if (CurrentHealth == 0 && damageTaken != 0)
             {
-                OnDeath?.Invoke(transform.position);
+                if (Name == "Head" || Name == "Body")
+                {
+                    DropOnDeath?.Invoke(transform.position);
+                    ParticleOnDeath?.Invoke(transform.position);
+                }
+                else
+                {
+                    ParticleOnDeath?.Invoke(transform.position);
+                }
+
             }
         }
     }

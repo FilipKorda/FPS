@@ -1,11 +1,10 @@
 using UnityEngine;
-using FPS.Guns;
 
-namespace FPS.Guns.Demo
+namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IDamageable))]
-    public class SpawnParticleSystemOnDeath : MonoBehaviour
+    public class DoAfterEnemyDeath : MonoBehaviour
     {
         [SerializeField]
         private ParticleSystem DeathSystem;
@@ -22,17 +21,22 @@ namespace FPS.Guns.Demo
 
         private void OnEnable()
         {
-            Damageable.OnDeath += Damageable_OnDeath;
+            Damageable.ParticleOnDeath += Damageable_OnDeath_SpawnParticle;
+            Damageable.DropOnDeath += Damageable_OnDeath_DropObject;
         }
 
-        private void Damageable_OnDeath(Vector3 Position)
+        private void Damageable_OnDeath_SpawnParticle(Vector3 Position)
         {
-            DropOnDeath();
-            Instantiate(DeathSystem, Position, Quaternion.identity);
+            SpawnDeathParticleSystem(Position);
             gameObject.SetActive(false);
         }
 
-        private void DropOnDeath()
+        private void Damageable_OnDeath_DropObject(Vector3 Position)
+        {
+            SpawnObjectOnDeath();
+        }
+
+        private void SpawnObjectOnDeath()
         {
             if (spawnObjectPrefab != null)
             {
@@ -43,7 +47,7 @@ namespace FPS.Guns.Demo
                 GameObject spawnedObject = Instantiate(spawnObjectPrefab, transform.position, Quaternion.identity);
                 Rigidbody spawnedRigidbody = spawnedObject.GetComponent<Rigidbody>();
 
-                Vector3 randomForce = new Vector3(Random.Range(minForce, maxForce), Random.Range(minForce, maxForce), Random.Range(minForce, maxForce));
+                Vector3 randomForce = new(Random.Range(minForce, maxForce), Random.Range(minForce, maxForce), Random.Range(minForce, maxForce));
                 spawnedRigidbody.AddForce(randomForce, ForceMode.Impulse);
 
                 SphereCollider spawnedSphereCollider = spawnedObject.GetComponent<SphereCollider>();
@@ -51,6 +55,11 @@ namespace FPS.Guns.Demo
                 //     }
 
             }
+        }
+
+        private void SpawnDeathParticleSystem(Vector3 position)
+        {
+            Instantiate(DeathSystem, position, Quaternion.identity);
         }
     }
 }
