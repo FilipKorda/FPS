@@ -14,8 +14,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour
     private readonly float crouch_Height = 0.1f;
     private bool is_Crouching = false;
     public float sprint_Treshold = 0.1f;
-   // private Camera playerCamera;
-
 
     [SerializeField] private Slider staminaSlider;
     [SerializeField] private float maxStamina = 100f;
@@ -30,7 +28,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour
 
     private void Start()
     {
-      //  playerCamera = PlayerGunSelector.Instance.Camera;
         currentStamina = maxStamina;
         UpdateStaminaSlider();
     }

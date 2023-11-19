@@ -21,6 +21,13 @@ public class PlayerHealth : MonoBehaviour
     private readonly float oxygenDecreaseRate = 0.02f;
     private readonly float oxygenIncreaseRate = 0.1f;
 
+    [SerializeField] private GameObject filterMaks;
+    private Vector3 filterMaksTransformWhenInside = new(0f, 1100f, 0f);
+    private float timeWhenInsde = 1f;
+
+    private Vector3 filterMaksTransformWhenOutsisde = new(0f, 0f, 0f);
+    private float timeWhenOutInsde = 0.2f;
+
     private bool isInside = false;
 
     private void Awake()
@@ -59,10 +66,18 @@ public class PlayerHealth : MonoBehaviour
 
         if (isInside)
         {
+            if (filterMaks != null)
+            {
+                filterMaks.transform.DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
+            }           
             IncreaseOxygen();
         }
         else
         {
+            if (filterMaks != null)
+            {
+                filterMaks.transform.DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);
+            }        
             DecreaseOxygen();
         }
 
