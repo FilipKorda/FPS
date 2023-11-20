@@ -37,11 +37,11 @@ public class GrenadeDisplayer : MonoBehaviour
     {
         if (lastPickedGrenadeType == GrenadeHandler.GrenadeType.Regular)
         {
-            grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentGranat}";
+            grenadeAmmoText.text = $"{Inventory.Instance.currentGranat}";
         }
         else if (lastPickedGrenadeType == GrenadeHandler.GrenadeType.Smoke)
         {
-            grenadeAmmoText.text = $"{GrenadeInventory.Instance.currentSmokeGranat}";
+            grenadeAmmoText.text = $"{Inventory.Instance.currentSmokeGranat}";
         }
     }
 

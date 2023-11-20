@@ -67,7 +67,7 @@ public class GrenadeHandler : MonoBehaviour
 
     void HoldGrenade()
     {
-        int availableGrenades = currentGrenadeType == GrenadeType.Regular ? GrenadeInventory.Instance.currentGranat : GrenadeInventory.Instance.currentSmokeGranat;
+        int availableGrenades = currentGrenadeType == GrenadeType.Regular ? Inventory.Instance.currentGranat : Inventory.Instance.currentSmokeGranat;
         if (availableGrenades > 0)
         {
             GrenadeSO selectedGrenade = currentGrenadeType == GrenadeType.Regular ? granatPrefab : smokeGranatPrefab;
@@ -77,11 +77,11 @@ public class GrenadeHandler : MonoBehaviour
 
             if (currentGrenadeType == GrenadeType.Regular)
             {
-                GrenadeInventory.Instance.RemoveGrenade();
+                Inventory.Instance.RemoveGrenade();
             }
             else
             {
-                GrenadeInventory.Instance.RemoveSmokeGrenade();
+                Inventory.Instance.RemoveSmokeGrenade();
             }
         }
     }
