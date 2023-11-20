@@ -23,10 +23,10 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject filterMaks;
     private Vector3 filterMaksTransformWhenInside = new(0f, 1100f, 0f);
-    private float timeWhenInsde = 1f;
+    private readonly float timeWhenInsde = 1f;
 
     private Vector3 filterMaksTransformWhenOutsisde = new(0f, 0f, 0f);
-    private float timeWhenOutInsde = 0.2f;
+    private readonly float timeWhenOutInsde = 0.2f;
 
     private bool isInside = false;
 
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            AddOxygen(100);
+            UseOxygenContainer(100);
         }
 
         if (isInside)
@@ -69,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
             if (filterMaks != null)
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
-            }           
+            }
             IncreaseOxygen();
         }
         else
@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
             if (filterMaks != null)
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);
-            }        
+            }
             DecreaseOxygen();
         }
 
@@ -185,16 +185,58 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        currentHealth += healAmount;
-        currentHealth = Mathf.Min(maxHealth, currentHealth);
-        UpdateHealthSlider();
+        if (currentHealth < maxHealth)
+        {
+            if (MainInventory.Instance.currentHealthBandage > 0)
+            {
+                currentHealth += healAmount;
+                currentHealth = Mathf.Min(maxHealth, currentHealth);
+                UpdateHealthSlider();
+
+                MainInventory.Instance.RemoveHealthBandage();
+                if (MainInventory.Instance.currentHealthBandage == 0)
+                {
+                    MainInventory.Instance.isHealthBandageCreateAnPrefab = false;
+                    Destroy(MainInventory.Instance.instantiatedHealthBandagePrefab);
+                }
+            }
+            else
+            {
+                Debug.Log("Nie masz wiecej Health Bandage");
+            }
+        }
+        else
+        {
+            Debug.Log("Masz pe³en ¿ycie");
+        }
     }
 
-    public void AddOxygen(float oxygenAmount)
+    public void UseOxygenContainer(float oxygenAmount)
     {
-        currentOxygen += oxygenAmount;
-        currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
-        UpdateOxygenSlider();
+        if (currentOxygen < maxOxygen)
+        {
+            if (MainInventory.Instance.currentOxygenContainer > 0)
+            {
+                currentOxygen += oxygenAmount;
+                currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
+                UpdateOxygenSlider();
+
+                MainInventory.Instance.RemoveOxygenContainer();
+                if (MainInventory.Instance.currentOxygenContainer == 0)
+                {
+                    MainInventory.Instance.isOxygenCreateAnPrefab = false;
+                    Destroy(MainInventory.Instance.instantiatedOxygenContainerPrefab);
+                }
+            }
+            else
+            {
+                Debug.Log("Nie masz wiecej Oxyden Container");
+            }
+        }
+        else
+        {
+            Debug.Log("Masz pe³en tlen");
+        }
     }
 
     private void OnTriggerStay(Collider other)
