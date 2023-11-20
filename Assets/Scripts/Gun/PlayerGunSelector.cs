@@ -39,8 +39,6 @@ namespace FPS.Guns.Demo
             ActiveGun = GetCachedGun(ActiveBaseGun);
 
             ActiveGun.Spawn(GunParent, this, Camera);
-
-
         }
 
         private void Awake()
@@ -61,7 +59,6 @@ namespace FPS.Guns.Demo
             }
 
             UpdateZoom();
-
 
 
             if (!PlayerAction.IsReloading)
