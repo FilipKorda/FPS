@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainInventory : MonoBehaviour
 {
@@ -10,23 +11,30 @@ public class MainInventory : MonoBehaviour
     [SerializeField] private GameObject usebleItems;
 
     [Header("======= Oxygen Container =======")]
-    [Space(5)]   
+    [Space(5)]
     public int currentOxygenContainer = 0;
+    private int maxOxygenContainer = 3;
     [SerializeField] private GameObject oxygenContainerPrefab;
-    private TextMeshProUGUI oxygenItemText;
+    [SerializeField] private Sprite oxygenIcon;
+    [SerializeField] private string oxygenContainerName = "Oxygen";
+    private TextMeshProUGUI oxygenItemAmountText;
+    private TextMeshProUGUI oxygenItemNameText;
+    private Image oxygenImage;
     public GameObject instantiatedOxygenContainerPrefab;
     public bool isOxygenCreateAnPrefab;
-    private int maxOxygenContainer = 3;
 
     [Header("======= Health Bandage =======")]
-    [Space(5)]  
+    [Space(5)]
     public int currentHealthBandage = 0;
     private int maxHealthBandage = 3;
     [SerializeField] private GameObject healthBandagePrefab;
-    private TextMeshProUGUI healthBandageItemText;
+    [SerializeField] private Sprite healthBandageIcon;
+    [SerializeField] private string healthBandageName = "Bandage";
+    private TextMeshProUGUI healthBandageItemAmountText;
+    private TextMeshProUGUI healthBandageNameText;
+    private Image healthBandageImage;
     public GameObject instantiatedHealthBandagePrefab;
     public bool isHealthBandageCreateAnPrefab;
-
 
     private void Awake()
     {
@@ -51,14 +59,36 @@ public class MainInventory : MonoBehaviour
     {
         isOxygenCreateAnPrefab = true;
         instantiatedOxygenContainerPrefab = Instantiate(oxygenContainerPrefab, usebleItems.transform);
-        oxygenItemText = instantiatedOxygenContainerPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        //amount
+        oxygenItemAmountText = instantiatedOxygenContainerPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        //name
+        oxygenItemNameText = instantiatedOxygenContainerPrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        //Sorite
+        oxygenImage = instantiatedOxygenContainerPrefab.transform.GetChild(2).GetComponent<Image>();
+
     }
 
     private void UpdateAmountOfOxygenNumber()
     {
-        if (oxygenItemText != null)
+        if (oxygenItemAmountText != null)
         {
-            oxygenItemText.text = currentOxygenContainer.ToString();
+            oxygenItemAmountText.text = currentOxygenContainer.ToString();
+        }
+    }
+
+    private void UpdateOxygenName()
+    {
+        if (oxygenItemNameText != null)
+        {
+            oxygenItemNameText.text = oxygenContainerName;
+        }
+    }
+
+    private void UpdateOxygenImage()
+    {
+        if (oxygenImage != null)
+        {
+            oxygenImage.sprite = oxygenIcon;        
         }
     }
 
@@ -67,6 +97,8 @@ public class MainInventory : MonoBehaviour
         if (!isOxygenCreateAnPrefab)
         {
             OxygenUseblePrefabItemsToGUI();
+            UpdateOxygenName();
+            UpdateOxygenImage();
         }
 
         currentOxygenContainer++;
@@ -79,21 +111,39 @@ public class MainInventory : MonoBehaviour
         UpdateAmountOfOxygenNumber();
     }
 
-
-
-
     private void HealthBandageUseblePrefabItemsToGUI()
     {
         isHealthBandageCreateAnPrefab = true;
         instantiatedHealthBandagePrefab = Instantiate(healthBandagePrefab, usebleItems.transform);
-        healthBandageItemText = instantiatedHealthBandagePrefab.GetComponentInChildren<TextMeshProUGUI>();
+        //amount
+        healthBandageItemAmountText = instantiatedHealthBandagePrefab.GetComponentInChildren<TextMeshProUGUI>();
+        //name
+        healthBandageNameText = instantiatedHealthBandagePrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        //Sorite
+        healthBandageImage = instantiatedHealthBandagePrefab.transform.GetChild(2).GetComponent<Image>();
     }
 
     private void UpdateAmountOfHealthBandageNumber()
     {
-        if (healthBandageItemText != null)
+        if (healthBandageItemAmountText != null)
         {
-            healthBandageItemText.text = currentHealthBandage.ToString();
+            healthBandageItemAmountText.text = currentHealthBandage.ToString();
+        }
+    }
+
+    private void UpdateealthBandageName()
+    {
+        if (healthBandageNameText != null)
+        {
+            healthBandageNameText.text = healthBandageName;
+        }
+    }
+
+    private void UpdateHealthBandageImage()
+    {
+        if (healthBandageImage != null)
+        {
+            healthBandageImage.sprite = healthBandageIcon;
         }
     }
 
@@ -102,6 +152,8 @@ public class MainInventory : MonoBehaviour
         if (!isHealthBandageCreateAnPrefab)
         {
             HealthBandageUseblePrefabItemsToGUI();
+            UpdateealthBandageName();
+            UpdateHealthBandageImage();
         }
 
         currentHealthBandage++;

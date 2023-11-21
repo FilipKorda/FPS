@@ -17004,7 +17004,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0.000061035156, y: -39.916}
-  m_SizeDelta: {x: 451.4543, y: 165.45}
+  m_SizeDelta: {x: 451.454, y: 145.658}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1562263346
 MonoBehaviour:
@@ -17053,23 +17053,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562263344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 100
-  m_ChildAlignment: 1
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 223, y: 32.6}
+  m_Spacing: {x: 5, y: 5}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1001 &1562504996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36249,10 +36247,14 @@ MonoBehaviour:
   usebleItems: {fileID: 1562263344}
   currentOxygenContainer: 0
   oxygenContainerPrefab: {fileID: 5073565224511357805, guid: 9292b8fc2e392e44389582a54dab2c0e, type: 3}
+  oxygenIcon: {fileID: 21300000, guid: 26493ec46c65a9040968fb1050b8e13f, type: 3}
+  oxygenContainerName: Oxygen
   instantiatedOxygenContainerPrefab: {fileID: 0}
   isOxygenCreateAnPrefab: 0
   currentHealthBandage: 0
   healthBandagePrefab: {fileID: 8673544948869961307, guid: 6a36508105d16e4498c4f7cc7f2e4ece, type: 3}
+  healthBandageIcon: {fileID: 21300000, guid: 5602b6dcdb35b544399eb19dfc75db33, type: 3}
+  healthBandageName: Bandage
   instantiatedHealthBandagePrefab: {fileID: 0}
   isHealthBandageCreateAnPrefab: 0
 --- !u!1 &7345614056705156157
