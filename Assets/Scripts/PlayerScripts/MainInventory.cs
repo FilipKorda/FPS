@@ -14,11 +14,14 @@ public class MainInventory : MonoBehaviour
     [SerializeField] private GameObject buttonQuest;
 
     [SerializeField] private Color highlightButton;
-    
+
+
+
 
 
     private bool isPanelActive = false;
     [SerializeField] private GameObject usebleItems;
+    [SerializeField] private GameObject questItems;
 
     [Header("======= Oxygen Container =======")]
     [Space(5)]
@@ -46,6 +49,42 @@ public class MainInventory : MonoBehaviour
     public GameObject instantiatedHealthBandagePrefab;
     public bool isHealthBandageCreateAnPrefab;
 
+    [Header("======= Cards =======")]
+    [Space(5)]
+    [Header("==== Red ====")]
+    [Space(5)]
+    [SerializeField] private Color redCardColor;
+    [SerializeField] private GameObject redCardPrefab;
+    [SerializeField] private Sprite redCardIcon;
+    private TextMeshProUGUI redCardNameText;
+    private Image redCardMainImage;
+    private Image redCardImage;
+    public GameObject instantiatedRedCardPrefab;
+    public int redCard = 0;
+    [SerializeField] private string redCardName = "Red Card";
+    [Header("==== Green ====")]
+    [Space(5)]
+    [SerializeField] private Color greenCardColor;
+    [SerializeField] private GameObject greenCardPrefab;
+    [SerializeField] private Sprite greenCardIcon;
+    private TextMeshProUGUI greenCardNameText;
+    private Image greenCardMainImage;
+    private Image greenCardImage;
+    public GameObject instantiatedGreenCardPrefab;
+    public int greenCard = 0;
+    [SerializeField] private string greenCardName = "Green Card";
+    [Header("==== Blue ====")]
+    [Space(5)]
+    [SerializeField] private Color blueCardColor;
+    [SerializeField] private GameObject blueCardPrefab;
+    [SerializeField] private Sprite blueCardIcon;
+    private TextMeshProUGUI blueCardNameText;
+    private Image blueCardMainImage;
+    private Image blueCardImage;
+    public GameObject instantiatedBlueCardPrefab;
+    public int blueCard = 0;
+    [SerializeField] private string blueCardName = "Blue Card";
+
     private void Awake()
     {
         Instance = this;
@@ -69,12 +108,11 @@ public class MainInventory : MonoBehaviour
             ButtonTabPanel.SetActive(isPanelActive);
         }
 
-      
     }
 
     void InputHandler()
     {
-        if(isPanelActive)
+        if (isPanelActive)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -93,20 +131,16 @@ public class MainInventory : MonoBehaviour
                 inventory.SetActive(true);
                 quest.SetActive(false);
             }
-        }   
+        }
     }
 
     private void OxygenUseblePrefabItemsToGUI()
     {
         isOxygenCreateAnPrefab = true;
         instantiatedOxygenContainerPrefab = Instantiate(oxygenContainerPrefab, usebleItems.transform);
-        //amount
         oxygenItemAmountText = instantiatedOxygenContainerPrefab.GetComponentInChildren<TextMeshProUGUI>();
-        //name
         oxygenItemNameText = instantiatedOxygenContainerPrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        //Sorite
         oxygenImage = instantiatedOxygenContainerPrefab.transform.GetChild(2).GetComponent<Image>();
-
     }
 
     private void UpdateAmountOfOxygenNumber()
@@ -129,7 +163,7 @@ public class MainInventory : MonoBehaviour
     {
         if (oxygenImage != null)
         {
-            oxygenImage.sprite = oxygenIcon;        
+            oxygenImage.sprite = oxygenIcon;
         }
     }
 
@@ -156,11 +190,8 @@ public class MainInventory : MonoBehaviour
     {
         isHealthBandageCreateAnPrefab = true;
         instantiatedHealthBandagePrefab = Instantiate(healthBandagePrefab, usebleItems.transform);
-        //amount
         healthBandageItemAmountText = instantiatedHealthBandagePrefab.GetComponentInChildren<TextMeshProUGUI>();
-        //name
         healthBandageNameText = instantiatedHealthBandagePrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        //Sorite
         healthBandageImage = instantiatedHealthBandagePrefab.transform.GetChild(2).GetComponent<Image>();
     }
 
@@ -205,5 +236,74 @@ public class MainInventory : MonoBehaviour
     {
         currentHealthBandage--;
         UpdateAmountOfHealthBandageNumber();
+    }
+
+    public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
+    {
+        if (isRedCard)
+        {
+            RedCardQuestPrefabItemsGUI();
+            redCard++;
+        }
+        if (isGreenCard)
+        {
+            GreenCardQuestPrefabItemsGUI();
+            greenCard++;
+        }
+        if (isBlueCard)
+        {
+            BlueCardQuestPrefabItemsGUI();
+            blueCard++;
+        }
+    }
+
+    public void RemoveCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
+    {
+        if (isRedCard)
+        {
+            redCard--;
+        }
+        if (isGreenCard)
+        {
+            greenCard--;
+        }
+        if (isBlueCard)
+        {
+            blueCard--;
+        }
+    }
+
+    private void RedCardQuestPrefabItemsGUI()
+    {
+        instantiatedRedCardPrefab = Instantiate(redCardPrefab, questItems.transform);
+        redCardMainImage = instantiatedRedCardPrefab.GetComponent<Image>();
+        redCardNameText = instantiatedRedCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        redCardImage = instantiatedRedCardPrefab.transform.GetChild(1).GetComponent<Image>();
+
+        redCardMainImage.color = redCardColor;
+        redCardImage.sprite = redCardIcon;
+        redCardNameText.text = redCardName;
+    }
+    private void GreenCardQuestPrefabItemsGUI()
+    {
+        instantiatedGreenCardPrefab = Instantiate(greenCardPrefab, questItems.transform);
+        greenCardMainImage = instantiatedGreenCardPrefab.GetComponent<Image>();
+        greenCardNameText = instantiatedGreenCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        greenCardImage = instantiatedGreenCardPrefab.transform.GetChild(1).GetComponent<Image>();
+
+        greenCardMainImage.color = greenCardColor;
+        greenCardImage.sprite = greenCardIcon;
+        greenCardNameText.text = greenCardName;
+    }
+    private void BlueCardQuestPrefabItemsGUI()
+    {
+        instantiatedBlueCardPrefab = Instantiate(blueCardPrefab, questItems.transform);
+        blueCardMainImage = instantiatedBlueCardPrefab.GetComponent<Image>();
+        blueCardNameText = instantiatedBlueCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        blueCardImage = instantiatedBlueCardPrefab.transform.GetChild(1).GetComponent<Image>();
+
+        blueCardMainImage.color = blueCardColor;
+        blueCardImage.sprite = blueCardIcon;
+        blueCardNameText.text = blueCardName;
     }
 }
