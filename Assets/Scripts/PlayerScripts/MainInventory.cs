@@ -7,6 +7,16 @@ public class MainInventory : MonoBehaviour
     public static MainInventory Instance { get; private set; }
 
     [SerializeField] private GameObject ButtonTabPanel;
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject quest;
+
+    [SerializeField] private GameObject buttonInventory;
+    [SerializeField] private GameObject buttonQuest;
+
+    [SerializeField] private Color highlightButton;
+    
+
+
     private bool isPanelActive = false;
     [SerializeField] private GameObject usebleItems;
 
@@ -44,15 +54,46 @@ public class MainInventory : MonoBehaviour
     private void Start()
     {
         ButtonTabPanel.SetActive(false);
+        inventory.SetActive(true);
+
+        buttonInventory.GetComponentInChildren<TextMeshProUGUI>().color = highlightButton;
     }
 
     private void Update()
     {
+        InputHandler();
+
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
             isPanelActive = !isPanelActive;
             ButtonTabPanel.SetActive(isPanelActive);
         }
+
+      
+    }
+
+    void InputHandler()
+    {
+        if(isPanelActive)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                buttonInventory.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+                buttonQuest.GetComponentInChildren<TextMeshProUGUI>().color = highlightButton;
+
+                inventory.SetActive(false);
+                quest.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                buttonInventory.GetComponentInChildren<TextMeshProUGUI>().color = highlightButton;
+                buttonQuest.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+
+                inventory.SetActive(true);
+                quest.SetActive(false);
+            }
+        }   
     }
 
     private void OxygenUseblePrefabItemsToGUI()

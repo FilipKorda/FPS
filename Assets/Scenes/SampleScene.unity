@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 21646545}
   - component: {fileID: 21646544}
   m_Layer: 5
-  m_Name: QuestPanel
+  m_Name: Quest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,17 +598,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21646542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1580001590}
+  m_Father: {fileID: 1841546718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1356.2742, y: 290.66602}
-  m_SizeDelta: {x: 451.4543, y: 429.5003}
+  m_AnchoredPosition: {x: 258.28854, y: -303.95477}
+  m_SizeDelta: {x: 709.74, y: 300.3575}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &21646544
 MonoBehaviour:
@@ -2901,8 +2901,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286042367
+  m_fontColor: {r: 1, g: 0.8172024, b: 0.4669811, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17364,7 +17364,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1841546718}
-  - {fileID: 21646543}
   m_Father: {fileID: 5843682826360757449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20834,9 +20833,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 169856152}
   - {fileID: 674219043}
+  - {fileID: 169856152}
   - {fileID: 1794054875}
+  - {fileID: 21646543}
   m_Father: {fileID: 1580001590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -36244,6 +36244,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonTabPanel: {fileID: 1841546717}
+  inventory: {fileID: 1794054874}
+  quest: {fileID: 21646542}
+  buttonInventory: {fileID: 674219042}
+  buttonQuest: {fileID: 169856151}
+  highlightButton: {r: 1, g: 0.8156863, b: 0.46666667, a: 1}
   usebleItems: {fileID: 1562263344}
   currentOxygenContainer: 0
   oxygenContainerPrefab: {fileID: 5073565224511357805, guid: 9292b8fc2e392e44389582a54dab2c0e, type: 3}
