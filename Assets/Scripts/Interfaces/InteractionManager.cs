@@ -12,6 +12,7 @@ public class InteractionManager : MonoBehaviour
     private IPickupable currentlyPickupableHighlightedObject;
     private IGunPickupable currentlyGunPickupableHighlightedObject;
     private IBridgeController currentlyBridgeController;
+    private INpc currentlyNpc;
 
 
     void Start()
@@ -70,6 +71,17 @@ public class InteractionManager : MonoBehaviour
                 currentlyBridgeController = null;
             }
 
+            currentlyNpc?.DeactiveHint();
+            if (hit.collider.TryGetComponent<INpc>(out var iNpc))
+            {
+                currentlyNpc = iNpc;
+                iNpc.ActiveHint();
+            }
+            else
+            {
+                currentlyNpc = null;
+            }
+
         }
         else
         {
@@ -90,6 +102,12 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyBridgeController.ResetHighlight();
                 currentlyBridgeController = null;
+            }
+
+            if (currentlyNpc != null)
+            {
+                currentlyNpc.DeactiveHint();
+                currentlyNpc = null;
             }
 
         }
@@ -120,6 +138,11 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IBridgeController>(out var bridgeController))
             {
                 bridgeController.ActivateBridge();
+            }
+
+            if (hit.collider.TryGetComponent<INpc>(out var iNpc))
+            {
+                iNpc.TalkToNpc();
             }
         }
     }

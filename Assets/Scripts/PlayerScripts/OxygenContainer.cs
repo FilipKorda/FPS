@@ -6,6 +6,7 @@ public class OxygenContainer : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            NotificationSystem.Instance.ShowNotification("You collet Oxygen Container", 2f);
             MainInventory.Instance.AddOxygenContainer();
             Destroy(gameObject);
         }

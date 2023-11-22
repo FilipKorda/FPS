@@ -13,16 +13,19 @@ public class Cards : MonoBehaviour
         {
             if (isRedCard)
             {
+                NotificationSystem.Instance.ShowNotification("You collect Red Card", 2f);
                 MainInventory.Instance.AddCard(true,false,false);
                 Destroy(gameObject);
             }
             if (isGreenCard)
             {
+                NotificationSystem.Instance.ShowNotification("You collect Green Card", 2f);
                 MainInventory.Instance.AddCard(false, true, false);
                 Destroy(gameObject);
             }
             if (isBlueCard)
             {
+                NotificationSystem.Instance.ShowNotification("You collect Blue Card", 2f);
                 MainInventory.Instance.AddCard(false, false, true);
                 Destroy(gameObject);
             }

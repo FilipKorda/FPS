@@ -6,6 +6,7 @@ public class HealthBandage : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            NotificationSystem.Instance.ShowNotification("You collect Bandage", 2f);
             MainInventory.Instance.AddHealthBandage();
             Destroy(gameObject);
         }
