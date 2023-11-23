@@ -7,11 +7,21 @@ public class Npc : MonoBehaviour, INpc
     [SerializeField] private GameObject talkToNPC_Panel;
     [SerializeField] private TextMeshProUGUI hintText;
     private string HintString => $"Press [E] to Talk to {npcName}";
-
+    public DialogueLine[] dialogue;
+    public DialogueLine[] secondDialogue;
+    private bool hasTalkedOnce = false;
 
     public void TalkToNpc()
     {
-        DialogueManager.Instance.StartTalk();
+        if (!hasTalkedOnce)
+        {
+            DialogueManager.Instance.StartTalk(dialogue);
+            hasTalkedOnce = true;
+        }
+        else if (secondDialogue != null && secondDialogue.Length > 0)
+        {
+            DialogueManager.Instance.StartSecondTalk(secondDialogue);
+        }
     }
 
     public void ActiveHint()

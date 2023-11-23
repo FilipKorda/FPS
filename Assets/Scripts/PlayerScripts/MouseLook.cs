@@ -13,6 +13,8 @@ public class MouseLook : MonoBehaviour
     private Vector2 look_Angles;
     private Vector2 current_Mouse_Look;
 
+    public bool canLookAround = true;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,16 +49,20 @@ public class MouseLook : MonoBehaviour
 
     void LookAround()
     {
-        current_Mouse_Look = new Vector2(
+        if (!canLookAround)
+        {
+            current_Mouse_Look = new Vector2(
             Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
 
-        look_Angles.x += current_Mouse_Look.x * sensivity * (invert ? 1f : -1f);
-        look_Angles.y += current_Mouse_Look.y * sensivity;
+            look_Angles.x += current_Mouse_Look.x * sensivity * (invert ? 1f : -1f);
+            look_Angles.y += current_Mouse_Look.y * sensivity;
 
-        look_Angles.x = Mathf.Clamp(look_Angles.x, default_Look_Limits.x, default_Look_Limits.y);
+            look_Angles.x = Mathf.Clamp(look_Angles.x, default_Look_Limits.x, default_Look_Limits.y);
 
-        lookRoot.localRotation = Quaternion.Euler(look_Angles.x, 0f, 0f);
-        playerRoot.localRotation = Quaternion.Euler(0f, look_Angles.y, 0f);
+            lookRoot.localRotation = Quaternion.Euler(look_Angles.x, 0f, 0f);
+            playerRoot.localRotation = Quaternion.Euler(0f, look_Angles.y, 0f);
+        }
+
     }
 
 }

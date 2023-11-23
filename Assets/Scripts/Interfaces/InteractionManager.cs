@@ -25,6 +25,7 @@ public class InteractionManager : MonoBehaviour
         Vector3 playerPosition = transformPosition.position;
         Vector3 playerDirection = transformPosition.forward;
 
+
         if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
         {
             currentlyPickupableHighlightedObject?.ResetHighlight();
@@ -71,16 +72,21 @@ public class InteractionManager : MonoBehaviour
                 currentlyBridgeController = null;
             }
 
+
             currentlyNpc?.DeactiveHint();
             if (hit.collider.TryGetComponent<INpc>(out var iNpc))
             {
-                currentlyNpc = iNpc;
-                iNpc.ActiveHint();
+                if (!DialogueManager.Instance.isTalking)
+                {
+                    currentlyNpc = iNpc;
+                    iNpc.ActiveHint();
+                }
             }
             else
             {
                 currentlyNpc = null;
             }
+
 
         }
         else
@@ -112,6 +118,7 @@ public class InteractionManager : MonoBehaviour
 
         }
 
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteractWith();
@@ -140,10 +147,14 @@ public class InteractionManager : MonoBehaviour
                 bridgeController.ActivateBridge();
             }
 
-            if (hit.collider.TryGetComponent<INpc>(out var iNpc))
+            if (!DialogueManager.Instance.isTalking)
             {
-                iNpc.TalkToNpc();
+                if (hit.collider.TryGetComponent<INpc>(out var iNpc))
+                {
+                    iNpc.TalkToNpc();
+                }
             }
+
         }
     }
 

@@ -54,6 +54,13 @@ MonoBehaviour:
   npcName: Steve
   talkToNPC_Panel: {fileID: 0}
   hintText: {fileID: 0}
+  dialogue:
+  - Siema
+  - asdasdasd
+  - zxc
+  - zxczxc
+  - bbbbb
+  - aaaaa
 --- !u!65 &8736827413569528184
 BoxCollider:
   m_ObjectHideFlags: 0

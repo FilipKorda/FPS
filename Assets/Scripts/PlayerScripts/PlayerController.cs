@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jump_Force = 10f;
     private float vertical_Velocity;
     public List<GunPickup> gunPickupList;
+    public bool canMove = true;
 
     void Awake()
     {
@@ -56,12 +57,15 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        move_Direction = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f,
-                                     Input.GetAxis(Axis.VERTICAL));
-        move_Direction = transform.TransformDirection(move_Direction);
-        move_Direction *= speed * Time.deltaTime;
-        ApplyGravity();
-        character_Controller.Move(move_Direction);
+        if (!canMove)
+        {
+            move_Direction = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f,
+                                  Input.GetAxis(Axis.VERTICAL));
+            move_Direction = transform.TransformDirection(move_Direction);
+            move_Direction *= speed * Time.deltaTime;
+            ApplyGravity();
+            character_Controller.Move(move_Direction);
+        }
     }
 
     void ApplyGravity()
