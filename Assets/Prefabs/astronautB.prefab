@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258656382214164739}
-  - component: {fileID: 4282013718607897180}
   - component: {fileID: 8736827413569528184}
+  - component: {fileID: 4282013718607897180}
   m_Layer: 0
   m_Name: astronautB
   m_TagString: Untagged
@@ -39,28 +39,6 @@ Transform:
   - {fileID: 6814320098882755546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4282013718607897180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743066774127714601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e8d09d0783a6d489c02cf7685e6a6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcName: Steve
-  talkToNPC_Panel: {fileID: 0}
-  hintText: {fileID: 0}
-  dialogue:
-  - Siema
-  - asdasdasd
-  - zxc
-  - zxczxc
-  - bbbbb
-  - aaaaa
 --- !u!65 &8736827413569528184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82,6 +60,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5258198, y: 0.8189946, z: 0.26586342}
   m_Center: {x: 0.005917549, y: 0.40993103, z: 0.010354042}
+--- !u!114 &4282013718607897180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743066774127714601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e8d09d0783a6d489c02cf7685e6a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Steve
+  talkToNPC_Panel: {fileID: 0}
+  hintText: {fileID: 0}
+  dialogue:
+  - name: 
+    dialog: []
+    options: []
+  - name: 
+    dialog: []
+    options: []
+  - name: 
+    dialog: []
+    options: []
+  - name: 
+    dialog: []
+    options: []
+  - name: 
+    dialog: []
+    options: []
+  - name: 
+    dialog: []
+    options: []
 --- !u!1 &2853734272485369914
 GameObject:
   m_ObjectHideFlags: 0
