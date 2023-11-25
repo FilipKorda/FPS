@@ -10,7 +10,7 @@ namespace FPS.Enemy
         private PartHealth Health;
         [SerializeField]
         [Range(1, 100)]
-        private int MaxDamagePainThreshold = 5;
+        private readonly int MaxDamagePainThreshold = 5;
 
         public void HandlePain(int Damage)
         {

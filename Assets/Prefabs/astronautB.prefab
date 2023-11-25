@@ -76,24 +76,15 @@ MonoBehaviour:
   talkToNPC_Panel: {fileID: 0}
   hintText: {fileID: 0}
   dialogue:
-  - name: 
-    dialog: []
-    options: []
-  - name: 
-    dialog: []
-    options: []
-  - name: 
-    dialog: []
-    options: []
-  - name: 
-    dialog: []
-    options: []
-  - name: 
-    dialog: []
-    options: []
-  - name: 
-    dialog: []
-    options: []
+  - Name: Steve
+    Sentences:
+    - "Siema ale moze teraz to dzia\u0142a"
+    - dobrze bo czemu by nie
+  - Name: You
+    Sentences:
+    - 'A tu masz tylko 3 zdania '
+    - "kt\xF3re powinny sie wyswietlac"
+    - jeden po drugim za pomoca E
 --- !u!1 &2853734272485369914
 GameObject:
   m_ObjectHideFlags: 0

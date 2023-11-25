@@ -7,12 +7,12 @@ public class Npc : MonoBehaviour, INpc
     [SerializeField] private GameObject talkToNPC_Panel;
     [SerializeField] private TextMeshProUGUI hintText;
     private string HintString => $"Press [E] to Talk to {npcName}";
-    public DialogueLine[] dialogue;
 
+    public DialogueData[] dialogue;
 
     public void TalkToNpc()
     {
-        DialogueManager.Instance.StartTalk(dialogue);
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
 
     public void ActiveHint()

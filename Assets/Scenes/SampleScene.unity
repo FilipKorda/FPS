@@ -10563,7 +10563,7 @@ GameObject:
   - component: {fileID: 885877824}
   - component: {fileID: 885877823}
   m_Layer: 5
-  m_Name: TextField
+  m_Name: TextBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10608,7 +10608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text Field
+  m_text: Text Box
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0bc32ae99eeb1148b6107c05884f1b7, type: 2}
   m_sharedMaterial: {fileID: -8173730418409382133, guid: c0bc32ae99eeb1148b6107c05884f1b7, type: 2}
@@ -13764,13 +13764,11 @@ MonoBehaviour:
   playerController: {fileID: 3100954217740144636}
   mouseLook: {fileID: 7256972990214020546}
   dialogueView: {fileID: 545023105}
-  textField: {fileID: 885877823}
   nameText: {fileID: 1171173774}
+  textBox: {fileID: 885877823}
   typingSpeed: 0.02
   isTalking: 0
-  isAnswering: 0
-  optionOne: {fileID: 1025100251}
-  optionTwo: {fileID: 41334117}
+  isfullyDisplayedDialog: 0
 --- !u!1 &1220991372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 889941646764493695, guid: 776afac5276afbd4a9cc2f3944b44df7, type: 3}
@@ -26453,302 +26451,6 @@ PrefabInstance:
       propertyPath: talkToNPC_Panel
       value: 
       objectReference: {fileID: 5833580}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: secondDialogue.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].name
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].text
-      value: Hej
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].name
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].text
-      value: Hej!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].name
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].text
-      value: Pasku
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[3].name
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[3].text
-      value: "A\u015Bku"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[4].name
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[4].text
-      value: nara papa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[5].name
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[5].text
-      value: dowidzenia
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog
-      value: asddfg
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog
-      value: zzzzzzzz
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog
-      value: ccccc
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[3].dialog
-      value: dddd
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[4].dialog
-      value: eeee
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[5].dialog
-      value: ffff
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: secondDialogue.Array.data[0].name
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: secondDialogue.Array.data[1].name
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].speakerName
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].speakerName
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].speakerName
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[3].speakerName
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[4].speakerName
-      value: Steve
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[5].speakerName
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: secondDialogue.Array.data[0].dialog
-      value: suema poaoa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: secondDialogue.Array.data[1].dialog
-      value: "ale nie dzia\u0142a"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].answers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[4].requireNextDialogue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog.Array.data[0]
-      value: aaa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog.Array.data[1]
-      value: aa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog.Array.data[2]
-      value: bbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[0].dialog.Array.data[3]
-      value: bbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[0]
-      value: bbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[1]
-      value: bb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[2]
-      value: xxx
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[3]
-      value: cccc
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[4]
-      value: vvv
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[1].dialog.Array.data[5]
-      value: bbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[0]
-      value: To jest pytanie?
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[1]
-      value: To jest pytanie?
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[2]
-      value: xxx
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[3]
-      value: cccc
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[4]
-      value: vvv
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].dialog.Array.data[5]
-      value: bbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].optionText
-      value: W
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].optionText
-      value: Q
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer
-      value: Odpowiedz na A
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer
-      value: Odpowiedz na B
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].answers.Array.data[1].response.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.Array.data[0].answer
-      value: Odpowiedz na A
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.Array.data[1].answer
-      value: Odpowiedz na B
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.data[0]
-      value: 'ale tutaj '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.data[1]
-      value: jest taka beka
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.data[2]
-      value: pppp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.data[3]
-      value: ooooo
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[0].response.answer.Array.data[4]
-      value: iiiii
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.Array.data[0].answer
-      value: Odpowiedz na B
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.data[0]
-      value: 'ze nie mam '
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.data[1]
-      value: pojecia czy to
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.data[2]
-      value: aaaa
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.data[3]
-      value: vvvv
-      objectReference: {fileID: 0}
-    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
-      propertyPath: dialogue.Array.data[2].options.Array.data[1].response.answer.Array.data[4]
-      value: kkkk
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30543,7 +30245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2993355230827579956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029653306}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000347197}
   m_LocalPosition: {x: -36.89, y: 1, z: 48.532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37211,7 +36913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 6331543572236482490}
-  MaxDamagePainThreshold: 5
 --- !u!114 &6331543572236482490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37947,7 +37648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 6919972742967942544}
-  MaxDamagePainThreshold: 5
 --- !u!114 &6919972742967942544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39583,7 +39283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 8560046610611894119}
-  MaxDamagePainThreshold: 5
 --- !u!114 &8560046610611894119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39878,7 +39577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 13226207957769190}
   Health: {fileID: 8727352440924947913}
-  MaxDamagePainThreshold: 5
 --- !u!114 &8727352440924947913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39990,7 +39688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 13226207957769190}
   Health: {fileID: 8767380685761977357}
-  MaxDamagePainThreshold: 5
 --- !u!114 &8767380685761977357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40192,7 +39889,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 8847580972923159898}
-  MaxDamagePainThreshold: 5
 --- !u!114 &8847580972923159898
 MonoBehaviour:
   m_ObjectHideFlags: 0
