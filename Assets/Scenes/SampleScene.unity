@@ -13767,8 +13767,6 @@ MonoBehaviour:
   nameText: {fileID: 1171173774}
   textBox: {fileID: 885877823}
   typingSpeed: 0.02
-  isTalking: 0
-  isfullyDisplayedDialog: 0
 --- !u!1 &1220991372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 889941646764493695, guid: 776afac5276afbd4a9cc2f3944b44df7, type: 3}
@@ -26451,6 +26449,30 @@ PrefabInstance:
       propertyPath: talkToNPC_Panel
       value: 
       objectReference: {fileID: 5833580}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[0].Sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[1].Sentences.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[0].Sentences.Array.data[2]
+      value: "Ale moze to dzia\u0142a co?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[1].Sentences.Array.data[3]
+      value: "wieciej dialog\xF3w ale za szybko"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[1].Sentences.Array.data[4]
+      value: sie chyba wyswietlaja bo nie wiem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4282013718607897180, guid: 67996b1332fd40048bc349720dc4890c, type: 3}
+      propertyPath: dialogue.Array.data[1].Sentences.Array.data[5]
+      value: "a kt\xF3to?"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

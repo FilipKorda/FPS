@@ -1,6 +1,6 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -14,12 +14,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textBox;
     public float typingSpeed = 0.02f;
 
-    private int sentenceIndex;
-    private DialogueData[] currentDialogue;
-    public bool isTalking = false;
-    public bool isfullyDisplayedDialog = false;
+    private bool isTalking = false;
+    private bool waitForInput = false;
 
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -33,78 +31,79 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
-    }
-
-    void HandleInput()
-    {
-        if (isfullyDisplayedDialog && isTalking && Input.GetKeyUp(KeyCode.E))
+        if(Input.GetKeyUp(KeyCode.E))
         {
-            DisplayNextSentence();
+            OnPressE();
         }
     }
 
-    public void StartDialogue(DialogueData[] dialogue)
+    public void StartDialogue(DialogueData[] dialogueData)
     {
         isTalking = true;
         playerController.canMove = true;
         mouseLook.canLookAround = true;
-        currentDialogue = dialogue;
-        sentenceIndex = 0;
         dialogueView.SetActive(true);
-        DisplayNextSentence();
+        StartCoroutine(TypeDialogue(dialogueData));
     }
 
-    void DisplayNextSentence()
+    IEnumerator TypeDialogue(DialogueData[] dialogueData)
     {
-        if (sentenceIndex < currentDialogue.Length)
+        foreach (var dialogue in dialogueData)
         {
-            nameText.text = currentDialogue[sentenceIndex].Name;
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(currentDialogue[sentenceIndex].Sentences));
-            sentenceIndex++;
-        }
-        else
-        {
-            EndDialogue();
-        }
-    }
+            nameText.text = dialogue.Name;
 
-    IEnumerator TypeSentence(string[] sentences)
-    {
-
-        foreach (string sentanceLine in sentences)
-        {
-            textBox.text = "";
-            isfullyDisplayedDialog = false;
-
-            foreach (char letter in sentanceLine.ToCharArray())
+            foreach (var sentence in dialogue.Sentences)
             {
-                textBox.text += letter;
-
+                yield return TypeLetter(sentence);
                 yield return new WaitForSeconds(typingSpeed);
 
+                waitForInput = true;
+                while (waitForInput)
+                {
+                    yield return null;
+                }
             }
-
-            isfullyDisplayedDialog = true;
-            yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.E) && isfullyDisplayedDialog);
 
         }
 
+        EndDialogue();
+    }
 
-
-
+    IEnumerator TypeLetter(string sentence)
+    {
+        textBox.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            textBox.text += letter;
+            yield return null;
+        }
     }
 
     void EndDialogue()
     {
         dialogueView.SetActive(false);
+        isTalking = false;
         playerController.canMove = false;
         mouseLook.canLookAround = false;
-        isTalking = false;
+
     }
 
+    public void OnPressE()
+    {
+        if (isTalking && waitForInput)
+        {
+            waitForInput = false;
+        }
+    }
+
+    public bool IsTalking()
+    {
+        return isTalking;
+    }
+
+
 }
+
 
 [System.Serializable]
 public class DialogueData

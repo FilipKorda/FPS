@@ -76,7 +76,7 @@ public class InteractionManager : MonoBehaviour
             currentlyNpc?.DeactiveHint();
             if (hit.collider.TryGetComponent<INpc>(out var iNpc))
             {
-                if (!DialogueManager.Instance.isTalking)
+                if (!DialogueManager.Instance.IsTalking())
                 {
                     currentlyNpc = iNpc;
                     iNpc.ActiveHint();
@@ -147,7 +147,7 @@ public class InteractionManager : MonoBehaviour
                 bridgeController.ActivateBridge();
             }
 
-            if (!DialogueManager.Instance.isTalking)
+            if (!DialogueManager.Instance.IsTalking())
             {
                 if (hit.collider.TryGetComponent<INpc>(out var iNpc))
                 {
