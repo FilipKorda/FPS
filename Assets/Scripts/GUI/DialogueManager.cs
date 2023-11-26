@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(DialogueData[] dialogueData)
+    public void StartDialogue(ConversationData[] dialogueData)
     {
         isTalking = true;
         playerController.canMove = true;
@@ -46,7 +47,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeDialogue(dialogueData));
     }
 
-    IEnumerator TypeDialogue(DialogueData[] dialogueData)
+    IEnumerator TypeDialogue(ConversationData[] dialogueData)
     {
         foreach (var dialogue in dialogueData)
         {
@@ -102,12 +103,4 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-}
-
-
-[System.Serializable]
-public class DialogueData
-{
-    public string Name;
-    public string[] Sentences;
 }

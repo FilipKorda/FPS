@@ -8,11 +8,11 @@ public class Npc : MonoBehaviour, INpc
     [SerializeField] private TextMeshProUGUI hintText;
     private string HintString => $"Press [E] to Talk to {npcName}";
 
-    public DialogueData[] dialogue;
+    [SerializeField] private Conversation conversationData;
 
     public void TalkToNpc()
     {
-        DialogueManager.Instance.StartDialogue(dialogue);
+        DialogueManager.Instance.StartDialogue(conversationData.conversation);
     }
 
     public void ActiveHint()

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
+  m_Name: Conversation
+  m_EditorClassIdentifier: 
+  conversation:
+  - Name: Steve
+    Sentences:
+    - "Pierwszy dialog musi byc d\u0142ugi"
+    - zawsze bo wtedy sie cos buguje
+    - 'i jeszcze nie wiem co dokladnie '
+    - ale cos napewno xd xd xd
+  - Name: You
+    Sentences:
+    - to pewine jest izi fix
+    - 'ale jeszcze nie wiem jak bardzo izi '
+    - dlatego beda dlugie dialogi na poczatek rozmowy
+    - bo tak i tyle dziekuje dobranoc
+  - Name: Steve
+    Sentences:
+    - "To jest ko\u0144cowy dialog bo tak"
+    - Dowidzenia
