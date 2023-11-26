@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,7 +12,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialogueView;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textBox;
-    public float typingSpeed = 0.02f;
+    [SerializeField] private TextMeshProUGUI optionOne;
+    [SerializeField] private TextMeshProUGUI optionTwo;
+
+    private ConversationData currentDialogueData;
+
+    public float typingSpeed = 0.03f;
 
     private bool isTalking = false;
     private bool waitForInput = false;
@@ -32,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E))
         {
             OnPressE();
         }
@@ -51,6 +55,7 @@ public class DialogueManager : MonoBehaviour
     {
         foreach (var dialogue in dialogueData)
         {
+            currentDialogueData = dialogue;
             nameText.text = dialogue.Name;
 
             foreach (var sentence in dialogue.Sentences)
@@ -58,17 +63,72 @@ public class DialogueManager : MonoBehaviour
                 yield return TypeLetter(sentence);
                 yield return new WaitForSeconds(typingSpeed);
 
+
+
+                if (currentDialogueData.isAskingQuestion && dialogue.OptionOne != null && dialogue.OptionTwo != null)
+                {
+                    optionOne.gameObject.SetActive(true);
+                    optionTwo.gameObject.SetActive(true);
+                    optionOne.text = dialogue.OptionOne;
+                    optionTwo.text = dialogue.OptionTwo;
+
+                    yield return WaitForAnswer();
+
+                    // Reset the UI after receiving the answer
+                    optionOne.gameObject.SetActive(false);
+                    optionTwo.gameObject.SetActive(false);
+                    optionOne.text = "";
+                    optionTwo.text = "";
+                }
+
+
                 waitForInput = true;
                 while (waitForInput)
                 {
                     yield return null;
                 }
+
             }
 
         }
 
         EndDialogue();
     }
+
+
+    IEnumerator WaitForAnswer()
+    {
+        while (currentDialogueData.isAskingQuestion)
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                ChooseAnswer(0);
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ChooseAnswer(1);
+            }
+            yield return null;
+        }
+    }
+
+    public void ChooseAnswer(int answerIndex)
+    {
+        if (currentDialogueData.isAskingQuestion)
+        {
+            //currentDialogueData.isAskingQuestion = false;
+
+            if (answerIndex == 0 && currentDialogueData.answerOne != null)
+            {
+                StartDialogue(currentDialogueData.answerOne.conversation);
+            }
+            else if (answerIndex == 1 && currentDialogueData.answerTwo != null)
+            {
+                StartDialogue(currentDialogueData.answerTwo.conversation);
+            }
+        }
+    }
+
 
     IEnumerator TypeLetter(string sentence)
     {
@@ -80,8 +140,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+
     void EndDialogue()
     {
+        currentDialogueData = null;
         dialogueView.SetActive(false);
         isTalking = false;
         playerController.canMove = false;

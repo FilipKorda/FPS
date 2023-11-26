@@ -10,9 +10,22 @@ public class Npc : MonoBehaviour, INpc
 
     [SerializeField] private Conversation conversationData;
 
+    [SerializeField] private Conversation secondConversationData;
+
+    public bool wasOpen;
+
     public void TalkToNpc()
     {
-        DialogueManager.Instance.StartDialogue(conversationData.conversation);
+        if(!wasOpen)
+        {
+            wasOpen = true;
+            DialogueManager.Instance.StartDialogue(conversationData.conversation);
+        }
+        else
+        {
+            DialogueManager.Instance.StartDialogue(secondConversationData.conversation);
+        }
+       
     }
 
     public void ActiveHint()

@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2145030504181275605}
   - component: {fileID: 2430870806277526080}
+  - component: {fileID: 915622751062570248}
   m_Layer: 0
   m_Name: astronautA
   m_TagString: Untagged
@@ -273,8 +274,26 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35263634, y: 0.8132745, z: 0.2861004}
-  m_Center: {x: -0.006752968, y: 0.40704173, z: 0.009402275}
+  m_Size: {x: 0.35263634, y: 0.8132745, z: 0.29115757}
+  m_Center: {x: -0.006752968, y: 0.40704203, z: 0.011930889}
+--- !u!114 &915622751062570248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567739178821487019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e8d09d0783a6d489c02cf7685e6a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Oklahoma
+  talkToNPC_Panel: {fileID: 0}
+  hintText: {fileID: 0}
+  conversationData: {fileID: 11400000, guid: 65fa53d74b7cade468fcccd2ae4e501f, type: 2}
+  secondConversationData: {fileID: 11400000, guid: 159f9a1eecad6c346a235fc32ea2b561, type: 2}
+  wasOpen: 0
 --- !u!1 &5993416395545098474
 GameObject:
   m_ObjectHideFlags: 0

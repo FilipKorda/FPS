@@ -76,6 +76,8 @@ MonoBehaviour:
   talkToNPC_Panel: {fileID: 0}
   hintText: {fileID: 0}
   conversationData: {fileID: 11400000, guid: 65fa53d74b7cade468fcccd2ae4e501f, type: 2}
+  secondConversationData: {fileID: 11400000, guid: 159f9a1eecad6c346a235fc32ea2b561, type: 2}
+  wasOpen: 0
 --- !u!1 &2853734272485369914
 GameObject:
   m_ObjectHideFlags: 0

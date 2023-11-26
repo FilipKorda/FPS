@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
-  m_Name: Conversation
+  m_Name: Conversation 2
   m_EditorClassIdentifier: 
   conversation:
   - Name: You
     Sentences:
-    - "Pierwszy dialog musi byc d\u0142ugi"
-    - zawsze bo wtedy sie cos buguje
+    - aaaaaaaaaaaaaaaaaaaaa
+    - ccccccccccccccccc
+    - dddddddddddddd
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -24,9 +25,11 @@ MonoBehaviour:
     answerTwo: {fileID: 0}
   - Name: Steve
     Sentences:
-    - To jest pytanie?
-    isAskingQuestion: 1
-    OptionOne: "Odpowied\u017A jeden TAK"
-    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
-    OptionTwo: "Odpowied\u017A dwa NIE"
-    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    - ssssssssssssssss
+    - hggggggggggggg
+    - fffffffffffffffffff
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
