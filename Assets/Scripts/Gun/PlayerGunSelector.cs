@@ -61,7 +61,7 @@ namespace FPS.Guns.Demo
             UpdateZoom();
 
 
-            if (!PlayerAction.IsReloading)
+            if (!PlayerAction.IsReloading && !isZoomed)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1) && activeGunIndex != 0)
                 {
@@ -80,25 +80,29 @@ namespace FPS.Guns.Demo
 
         void UpdateZoom()
         {
-            float targetFOV = isZoomed ? zoomFOV : normalFOV;
-            Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
-
-            float lerpValue = isZoomed ? 1f : 0f;
-
-            if (ActiveGun.Type == GunType.Glock)
+            if (!DialogueManager.Instance.isTalking)
             {
-                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, glockZoomedPosition, lerpValue);
+                float targetFOV = isZoomed ? zoomFOV : normalFOV;
+                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+
+                float lerpValue = isZoomed ? 1f : 0f;
+
+                if (ActiveGun.Type == GunType.Glock)
+                {
+                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, glockZoomedPosition, lerpValue);
+                }
+
+                if (ActiveGun.Type == GunType.M4A1)
+                {
+                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, m4a1ZoomedPosition, lerpValue);
+                }
+
+                if (ActiveGun.Type == GunType.UziSilencer)
+                {
+                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, uziSilencerZoomedPosition, lerpValue);
+                }
             }
 
-            if (ActiveGun.Type == GunType.M4A1)
-            {
-                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, m4a1ZoomedPosition, lerpValue);
-            }
-
-            if (ActiveGun.Type == GunType.UziSilencer)
-            {
-                GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, uziSilencerZoomedPosition, lerpValue);
-            }
         }
 
 

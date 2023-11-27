@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
 
     public float typingSpeed = 0.03f;
 
-    private bool isTalking = false;
+    public bool isTalking = false;
     private bool waitForInput = false;
 
     private void Awake()

@@ -100,11 +100,11 @@ namespace FPS.Guns
         }
 
         public void StartReloading()
-        {          
+        {
             Debug.Log("Start Reloading");
             AudioConfig.PlayReloadClip(ShootingAudioSource);
         }
-     
+
         public void EndReload()
         {
             Debug.Log("Reloading complete");
@@ -118,59 +118,62 @@ namespace FPS.Guns
 
         private void TryToShoot()
         {
-
-            if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
+            if (!DialogueManager.Instance.isTalking)
             {
-                float lastDuration = Mathf.Clamp(
-                    0,
-                    StopShootingTime - InitialClickTime,
-                    ShootConfig.MaxSpreadTime
-                );
-                float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - StopShootingTime))
-                                 / ShootConfig.RecoilRecoverySpeed;
 
-                InitialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+
+                if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
+                {
+                    float lastDuration = Mathf.Clamp(
+                        0,
+                        StopShootingTime - InitialClickTime,
+                        ShootConfig.MaxSpreadTime
+                    );
+                    float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - StopShootingTime))
+                                     / ShootConfig.RecoilRecoverySpeed;
+
+                    InitialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+                }
+
+                if (Time.time > ShootConfig.FireRate + LastShootTime)
+                {
+                    LastShootTime = Time.time;
+                    if (AmmoConfig.CurrentClipAmmo == 0)
+                    {
+                        AudioConfig.PlayOutOfAmmoClip(ShootingAudioSource);
+                        return;
+                    }
+
+                    ShootSystem.Play();
+                    AudioConfig.PlayShootingClip(ShootingAudioSource, AmmoConfig.CurrentClipAmmo == 1);
+
+                    Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
+                    _ = Vector3.zero;
+                    Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
+                    Vector3 shootDirection;
+                    if (ShootConfig.ShootType == ShootType.FromGun)
+                    {
+                        shootDirection = ShootSystem.transform.forward;
+                    }
+                    else
+                    {
+                        shootDirection = ActiveCamera.transform.forward +
+                                         ActiveCamera.transform.TransformDirection(spreadAmount);
+                    }
+
+                    AmmoConfig.CurrentClipAmmo--;
+
+                    if (ShootConfig.IsHitscan)
+                    {
+                        DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
+                    }
+                    else
+                    {
+                        DoProjectileShoot(shootDirection);
+                    }
+                }
+
             }
-
-            if (Time.time > ShootConfig.FireRate + LastShootTime)
-            {
-                LastShootTime = Time.time;
-                if (AmmoConfig.CurrentClipAmmo == 0)
-                {
-                    AudioConfig.PlayOutOfAmmoClip(ShootingAudioSource);
-                    return;
-                }
-
-                ShootSystem.Play();
-                AudioConfig.PlayShootingClip(ShootingAudioSource, AmmoConfig.CurrentClipAmmo == 1);
-
-                Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - InitialClickTime);
-                _ = Vector3.zero;
-                Model.transform.forward += Model.transform.TransformDirection(spreadAmount);
-                Vector3 shootDirection;
-                if (ShootConfig.ShootType == ShootType.FromGun)
-                {
-                    shootDirection = ShootSystem.transform.forward;
-                }
-                else
-                {
-                    shootDirection = ActiveCamera.transform.forward +
-                                     ActiveCamera.transform.TransformDirection(spreadAmount);
-                }
-
-                AmmoConfig.CurrentClipAmmo--;
-
-                if (ShootConfig.IsHitscan)
-                {
-                    DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
-                }
-                else
-                {
-                    DoProjectileShoot(shootDirection);
-                }
-            }
-
-
         }
 
         private void DoProjectileShoot(Vector3 ShootDirection)
@@ -251,7 +254,7 @@ namespace FPS.Guns
                          );
             }
 
-            
+
             return origin;
         }
 
