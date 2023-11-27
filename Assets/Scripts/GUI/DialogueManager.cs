@@ -14,11 +14,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private TextMeshProUGUI optionOne;
     [SerializeField] private TextMeshProUGUI optionTwo;
+    [SerializeField] private TextMeshProUGUI W;
+    [SerializeField] private TextMeshProUGUI Q;
 
     private ConversationData currentDialogueData;
 
     public float typingSpeed = 0.03f;
-
     public bool isTalking = false;
     private bool waitForInput = false;
 
@@ -32,6 +33,14 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        optionOne.gameObject.SetActive(false);
+        optionTwo.gameObject.SetActive(false);
+        W.gameObject.SetActive(false);
+        Q.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -62,19 +71,22 @@ public class DialogueManager : MonoBehaviour
             {
                 yield return TypeLetter(sentence);
                 yield return new WaitForSeconds(typingSpeed);
-  
-                if ( dialogue.OptionOne != null && dialogue.OptionTwo != null)
+
+                if (currentDialogueData.isAskingQuestion && dialogue.OptionOne != null && dialogue.OptionTwo != null)
                 {
                     optionOne.gameObject.SetActive(true);
                     optionTwo.gameObject.SetActive(true);
+                    W.gameObject.SetActive(true);
+                    Q.gameObject.SetActive(true);
                     optionOne.text = dialogue.OptionOne;
                     optionTwo.text = dialogue.OptionTwo;
 
                     yield return WaitForAnswer();
 
-                    // Reset the UI after receiving the answer
                     optionOne.gameObject.SetActive(false);
                     optionTwo.gameObject.SetActive(false);
+                    W.gameObject.SetActive(false);
+                    Q.gameObject.SetActive(false);
                     optionOne.text = "";
                     optionTwo.text = "";
                 }
@@ -114,7 +126,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogueData.isAskingQuestion)
         {
-            //currentDialogueData.isAskingQuestion = false;
 
             if (answerIndex == 0 && currentDialogueData.answerOne != null)
             {
@@ -146,7 +157,6 @@ public class DialogueManager : MonoBehaviour
         isTalking = false;
         playerController.canMove = false;
         mouseLook.canLookAround = false;
-
     }
 
     public void OnPressE()

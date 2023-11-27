@@ -92,11 +92,17 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IDoorController>(out var iDoorController))
             {
                 currentlyDoorController = iDoorController;
-                iDoorController.ActiveHint();              
+                iDoorController.ActiveHint();
+
+
+                if (currentlyDoorController.IsIsOpen())
+                {
+                    iDoorController.DeactiveHint();
+                }
             }
             else
             {
-                currentlyNpc = null;
+                currentlyDoorController = null;
             }
 
 
@@ -175,7 +181,10 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<IDoorController>(out var iDoorController))
             {
-                iDoorController.OpenDoor();
+                if (!currentlyDoorController.IsIsOpen())
+                {
+                    iDoorController.OpenDoor();
+                }
             }
 
         }
