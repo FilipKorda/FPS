@@ -13,6 +13,7 @@ public class InteractionManager : MonoBehaviour
     private IGunPickupable currentlyGunPickupableHighlightedObject;
     private IBridgeController currentlyBridgeController;
     private INpc currentlyNpc;
+    private IDoorController currentlyDoorController;
 
 
     void Start()
@@ -87,6 +88,17 @@ public class InteractionManager : MonoBehaviour
                 currentlyNpc = null;
             }
 
+            currentlyDoorController?.DeactiveHint();
+            if (hit.collider.TryGetComponent<IDoorController>(out var iDoorController))
+            {
+                currentlyDoorController = iDoorController;
+                iDoorController.ActiveHint();              
+            }
+            else
+            {
+                currentlyNpc = null;
+            }
+
 
         }
         else
@@ -114,6 +126,12 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyNpc.DeactiveHint();
                 currentlyNpc = null;
+            }
+
+            if (currentlyDoorController != null)
+            {
+                currentlyDoorController.DeactiveHint();
+                currentlyDoorController = null;
             }
 
         }
@@ -153,6 +171,11 @@ public class InteractionManager : MonoBehaviour
                 {
                     iNpc.TalkToNpc();
                 }
+            }
+
+            if (hit.collider.TryGetComponent<IDoorController>(out var iDoorController))
+            {
+                iDoorController.OpenDoor();
             }
 
         }
