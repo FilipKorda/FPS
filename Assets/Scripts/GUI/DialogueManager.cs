@@ -62,10 +62,8 @@ public class DialogueManager : MonoBehaviour
             {
                 yield return TypeLetter(sentence);
                 yield return new WaitForSeconds(typingSpeed);
-
-
-
-                if (currentDialogueData.isAskingQuestion && dialogue.OptionOne != null && dialogue.OptionTwo != null)
+  
+                if ( dialogue.OptionOne != null && dialogue.OptionTwo != null)
                 {
                     optionOne.gameObject.SetActive(true);
                     optionTwo.gameObject.SetActive(true);
