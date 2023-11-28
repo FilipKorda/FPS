@@ -15,10 +15,6 @@ public class MainInventory : MonoBehaviour
 
     [SerializeField] private Color highlightButton;
 
-
-
-
-
     private bool isPanelActive = false;
     [SerializeField] private GameObject usebleItems;
     [SerializeField] private GameObject questItems;
@@ -262,14 +258,17 @@ public class MainInventory : MonoBehaviour
         if (isRedCard)
         {
             redCard--;
+            Destroy(instantiatedRedCardPrefab);
         }
         if (isGreenCard)
         {
             greenCard--;
+            Destroy(instantiatedGreenCardPrefab);
         }
         if (isBlueCard)
         {
             blueCard--;
+            Destroy(instantiatedBlueCardPrefab);
         }
     }
 

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class CardHolder : MonoBehaviour, ICardHolder
 
     public bool needRedCard, needGreenCard, needBlueCard;
 
+    [SerializeField] private GameObject gate;
+
     void Start()
     {
         originalColorRenderer = GetComponent<Renderer>();
@@ -26,6 +29,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             if (MainInventory.Instance.redCard > 0)
             {
                 MainInventory.Instance.RemoveCard(true, false, false);
+                OpenGate();
             }
             else
             {
@@ -37,6 +41,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             if (MainInventory.Instance.greenCard > 0)
             {
                 MainInventory.Instance.RemoveCard(false, true, false);
+                OpenGate();
             }
             else
             {
@@ -48,6 +53,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             if (MainInventory.Instance.blueCard > 0 && needBlueCard)
             {
                 MainInventory.Instance.RemoveCard(false, false, true);
+                OpenGate();
             }
             else
             {
@@ -68,5 +74,10 @@ public class CardHolder : MonoBehaviour, ICardHolder
         hint_Panel.SetActive(false);
         hint_Text.text = "";
         originalColorRenderer.material.color = originalColor;
+    }
+
+    public void OpenGate()
+    {
+        gate.transform.DOMoveY(gate.transform.position.y + 2.75f, 1f).SetEase(Ease.OutQuad);
     }
 }
