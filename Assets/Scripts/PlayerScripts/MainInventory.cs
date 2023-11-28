@@ -57,7 +57,7 @@ public class MainInventory : MonoBehaviour
     private Image redCardImage;
     public GameObject instantiatedRedCardPrefab;
     public int redCard = 0;
-    [SerializeField] private string redCardName = "Red Card";
+    public string redCardName = "Red Card";
     [Header("==== Green ====")]
     [Space(5)]
     [SerializeField] private Color greenCardColor;
@@ -68,7 +68,7 @@ public class MainInventory : MonoBehaviour
     private Image greenCardImage;
     public GameObject instantiatedGreenCardPrefab;
     public int greenCard = 0;
-    [SerializeField] private string greenCardName = "Green Card";
+    public string greenCardName = "Green Card";
     [Header("==== Blue ====")]
     [Space(5)]
     [SerializeField] private Color blueCardColor;
@@ -79,7 +79,7 @@ public class MainInventory : MonoBehaviour
     private Image blueCardImage;
     public GameObject instantiatedBlueCardPrefab;
     public int blueCard = 0;
-    [SerializeField] private string blueCardName = "Blue Card";
+    public string blueCardName = "Blue Card";
 
     private void Awake()
     {

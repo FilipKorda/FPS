@@ -7,7 +7,26 @@ public class CardHolder : MonoBehaviour, ICardHolder
 {
     [SerializeField] private GameObject hint_Panel;
     [SerializeField] private TextMeshProUGUI hint_Text;
-    private string HintString => "Press [E] to place the card";
+
+    private string HintString
+    {
+        get
+        {
+            if (needRedCard)
+            {
+                return $"Press [E] to place the {MainInventory.Instance.redCardName}!";
+            }
+            else if (needGreenCard)
+            {
+                return $"Press [E] to place the {MainInventory.Instance.greenCardName}!";
+            }
+            else
+            {
+                return $"Press [E] to place the {MainInventory.Instance.blueCardName}!";
+            }
+            
+        }
+    }
 
     private Color originalColor;
     private Renderer originalColorRenderer;
@@ -15,11 +34,15 @@ public class CardHolder : MonoBehaviour, ICardHolder
     public bool needRedCard, needGreenCard, needBlueCard;
 
     [SerializeField] private GameObject gate;
+    [SerializeField] private GameObject cardObject;
+    [SerializeField] private GameObject cardHolder;
 
     void Start()
     {
         originalColorRenderer = GetComponent<Renderer>();
         originalColor = originalColorRenderer.material.color;
+        cardObject.SetActive(false);
+        cardHolder.SetActive(true);
     }
 
     public void UseCard()
@@ -78,6 +101,8 @@ public class CardHolder : MonoBehaviour, ICardHolder
 
     public void OpenGate()
     {
+        cardObject.SetActive(true);
+        cardHolder.SetActive(false);
         gate.transform.DOMoveY(gate.transform.position.y + 2.75f, 1f).SetEase(Ease.OutQuad);
     }
 }
