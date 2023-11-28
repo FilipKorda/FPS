@@ -14,6 +14,7 @@ public class InteractionManager : MonoBehaviour
     private IBridgeController currentlyBridgeController;
     private INpc currentlyNpc;
     private IDoorController currentlyDoorController;
+    private ICardHolder currentlyCardHolder;
 
 
     void Start()
@@ -106,6 +107,19 @@ public class InteractionManager : MonoBehaviour
             }
 
 
+            currentlyCardHolder?.DeactiveHint();
+            if (hit.collider.TryGetComponent<ICardHolder>(out var iCardHolder))
+            {
+                currentlyCardHolder = iCardHolder;
+                iCardHolder.ActiveHint();
+
+            }
+            else
+            {
+                currentlyCardHolder = null;
+            }
+
+
         }
         else
         {
@@ -138,6 +152,13 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyDoorController.DeactiveHint();
                 currentlyDoorController = null;
+            }
+
+
+            if (currentlyCardHolder != null)
+            {
+                currentlyCardHolder.DeactiveHint();
+                currentlyCardHolder = null;
             }
 
         }
@@ -187,6 +208,10 @@ public class InteractionManager : MonoBehaviour
                 }
             }
 
+            if (hit.collider.TryGetComponent<ICardHolder>(out var iCardHolder))
+            {
+                iCardHolder.UseCard();            
+            }
         }
     }
 
