@@ -15,35 +15,11 @@ public class MouseLook : MonoBehaviour
 
     public bool canLookAround = true;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     void Update()
     {
-        LockAndUnlockCursor();
-
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             LookAround();
-        }
-    }
-
-    void LockAndUnlockCursor()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
         }
     }
 
