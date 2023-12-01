@@ -5,26 +5,34 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject panel;
     private bool isPaused = false;
 
+    [SerializeField] private Settings settings;
+    public bool isSettingsOpen = false;
+
     private void Start()
     {
         panel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        settings.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isSettingsOpen)
         {
-            if (isPaused)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (isPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
+
     }
 
     void PauseGame()
@@ -38,27 +46,40 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Time.timeScale = 1f;
-        panel.SetActive(false);
-        isPaused = false;
+        if (!isSettingsOpen)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Time.timeScale = 1f;
+            panel.SetActive(false);
+            isPaused = false;
+        }
     }
 
-
-    void LockAndUnlockCursor()
+    public void Settings()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!isSettingsOpen)
         {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            settings.gameObject.SetActive(true);
+            isSettingsOpen = true;
+            settings.escClose.SetActive(true);
+        }
+    }
+
+    public void ExitGame()
+    {
+        if (!isSettingsOpen)
+        {
+            Debug.Log("Wracasz do main Menu");
+        }
+    }
+
+    public void QuitGame()
+    {
+        if (!isSettingsOpen)
+        {
+            Debug.Log("wychodzisz z gry");
+            Application.Quit();
         }
     }
 }
