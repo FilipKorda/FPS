@@ -30,7 +30,6 @@ public class Settings : MonoBehaviour
         UpdateTabHighlight();
     }
 
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

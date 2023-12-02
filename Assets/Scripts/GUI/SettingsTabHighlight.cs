@@ -16,13 +16,11 @@ public class SettingsTabHighlight : MonoBehaviour
     {
         buttonImage = GetComponent<Image>();
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
-        buttonImage.enabled = false;
-        buttonText.color = normalTextColor;
     }
 
     void Update()
     {
-        if(!isSelected)
+        if (!isSelected)
         {
             if (IsMouseOver())
             {
@@ -34,7 +32,7 @@ public class SettingsTabHighlight : MonoBehaviour
                 buttonImage.enabled = false;
                 buttonText.color = normalTextColor;
             }
-        }   
+        }
     }
 
     bool IsMouseOver()
@@ -80,4 +78,5 @@ public class SettingsTabHighlight : MonoBehaviour
             buttonText.color = normalTextColor;
         }
     }
+
 }

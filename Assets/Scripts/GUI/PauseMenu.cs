@@ -3,7 +3,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
-    private bool isPaused = false;
+    public bool isGamePaused = false;
 
     [SerializeField] private Settings settings;
     public bool isSettingsOpen = false;
@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (isPaused)
+                if (isGamePaused)
                 {
                     ResumeGame();
                 }
@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0f;
         panel.SetActive(true);
-        isPaused = true;
+        isGamePaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -52,7 +52,7 @@ public class PauseMenu : MonoBehaviour
             Cursor.visible = false;
             Time.timeScale = 1f;
             panel.SetActive(false);
-            isPaused = false;
+            isGamePaused = false;
         }
     }
 

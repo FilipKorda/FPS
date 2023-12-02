@@ -30,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isInside = false;
 
+    [SerializeField] private PauseMenu pauseMenu;
+
     private void Awake()
     {
         Instance = this;
@@ -49,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.O))
         {
             TakeDamage(10);
@@ -86,6 +89,7 @@ public class PlayerHealth : MonoBehaviour
 
     void UpdateHealthSlider()
     {
+
         healthSlider.value = currentHealth / maxHealth;
 
         float healthPercentage = currentHealth / maxHealth;
@@ -121,47 +125,57 @@ public class PlayerHealth : MonoBehaviour
                 damageScreenImage.sprite = null;
             }
         }
+
     }
 
 
     void UpdateOxygenSlider()
     {
+
         oxygenSlider.value = currentOxygen / maxOxygen;
 
         if (currentOxygen == maxOxygen)
         {
             oxygenSlider.gameObject.SetActive(false);
         }
+
     }
 
     void DecreaseOxygen()
     {
-        if (currentOxygen <= 75)
+        if (!pauseMenu.isGamePaused)
         {
-            oxygenSlider.gameObject.SetActive(true);
+            if (currentOxygen <= 75)
+            {
+                oxygenSlider.gameObject.SetActive(true);
+            }
+
+            currentOxygen -= oxygenDecreaseRate;
+
+            currentOxygen = Mathf.Max(0f, currentOxygen);
+
+            UpdateOxygenSlider();
+
+            if (currentOxygen == 0f)
+            {
+                TakeDamage(0.025f);
+            }
         }
 
-        currentOxygen -= oxygenDecreaseRate;
-
-        currentOxygen = Mathf.Max(0f, currentOxygen);
-
-        UpdateOxygenSlider();
-
-        if (currentOxygen == 0f)
-        {
-            TakeDamage(0.025f);
-        }
     }
 
     void IncreaseOxygen()
     {
-        oxygenSlider.gameObject.SetActive(true);
+        if (!pauseMenu.isGamePaused)
+        {
+            oxygenSlider.gameObject.SetActive(true);
 
-        currentOxygen += oxygenIncreaseRate;
+            currentOxygen += oxygenIncreaseRate;
 
-        currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
+            currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
 
-        UpdateOxygenSlider();
+            UpdateOxygenSlider();
+        }
     }
 
     public void TakeDamage(float damageAmount)

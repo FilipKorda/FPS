@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034bb23047d7ad74080b53a3396d642c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedTextColor: {r: 1, g: 0.8352941, b: 0.16470589, a: 1}
+  highlightedTextColor: {r: 1, g: 0.8352941, b: 0, a: 1}
 --- !u!1 &7917049518664708460
 GameObject:
   m_ObjectHideFlags: 0
