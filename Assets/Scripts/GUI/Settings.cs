@@ -1,4 +1,7 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
@@ -14,14 +17,17 @@ public class Settings : MonoBehaviour
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject gameplayPanel;
     [SerializeField] private GameObject graphicsPanel;
+    private GameObject[] panels;
     [Header("Hints and MainPanel")]
     [Space(5)]
     [SerializeField] private GameObject settings_Up_Panel;
     [SerializeField] private PauseMenu pauseMenu;
     public GameObject escClose;
-
-    private GameObject[] panels;
     public int currentPanelIndex = 0;
+    [Header("Gameplay")]
+    [Space(5)]
+    [SerializeField] private FPSDisplay fPSDisplay;
+
 
     void Start()
     {
@@ -47,6 +53,7 @@ public class Settings : MonoBehaviour
         {
             SwitchPanel(1);
         }
+
     }
 
     private void SwitchPanel(int direction)
@@ -91,4 +98,5 @@ public class Settings : MonoBehaviour
         gameplayTab.UpdateHighlight();
         graphicsTab.UpdateHighlight();
     }
+
 }
