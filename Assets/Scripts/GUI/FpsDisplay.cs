@@ -13,6 +13,8 @@ public class FPSDisplay : MonoBehaviour
 
     void Start()
     {
+        SetTargetFPS(60);
+
         if (fpsToggle != null)
         {
             fpsToggle.onValueChanged.AddListener(OnToggleValueChanged);
@@ -84,6 +86,7 @@ public class FPSDisplay : MonoBehaviour
         if (index >= 0 && index < fpsOptions.Length)
         {
             SetTargetFPS(fpsOptions[index]);
+            UpdateFPSDisplay();
         }
     }
 
@@ -92,5 +95,24 @@ public class FPSDisplay : MonoBehaviour
         Application.targetFrameRate = targetFPS;
     }
 
+    void UpdateFPSDisplay()
+    {
+        float fps = 1.0f / deltaTime;
+        string fpsString = Mathf.Ceil(fps).ToString();
 
+        if (fpsToggle != null && fpsToggle.isOn)
+        {
+            if (fpsText != null)
+            {
+                fpsText.text = fpsString;
+            }
+        }
+        else
+        {
+            if (fpsText != null)
+            {
+                fpsText.text = "";
+            }
+        }
+    }
 }

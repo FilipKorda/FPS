@@ -21,6 +21,7 @@ namespace FPS.Guns.Demo
         [SerializeField] private bool InitializeOnStart = false;
         [SerializeField] private GunSelector GunSelector;
         [SerializeField] private PlayerAction PlayerAction;
+        [SerializeField] private CameraFovSettings cameraFovSettings;
 
         private readonly Dictionary<GunType, GunScriptableObject> gunCache = new();
 
@@ -37,7 +38,6 @@ namespace FPS.Guns.Demo
         {
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
             ActiveGun = GetCachedGun(ActiveBaseGun);
-
             ActiveGun.Spawn(GunParent, this, Camera);
         }
 
@@ -82,7 +82,7 @@ namespace FPS.Guns.Demo
         {
             if (!DialogueManager.Instance.isTalking)
             {
-                float targetFOV = isZoomed ? zoomFOV : normalFOV;
+                float targetFOV = isZoomed ? zoomFOV : cameraFovSettings.ClampedValue;
                 Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
 
                 float lerpValue = isZoomed ? 1f : 0f;
@@ -104,9 +104,6 @@ namespace FPS.Guns.Demo
             }
 
         }
-
-
-
 
         public void SetupNewGun(GunScriptableObject newGun)
         {

@@ -19,6 +19,7 @@ public class PlayerSprintAndCrouch : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     private float currentStamina;
     private bool isRecovering = false;
+    [SerializeField] private CameraFovSettings cameraFovSettings;
 
     void Awake()
     {
@@ -100,25 +101,25 @@ public class PlayerSprintAndCrouch : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching)
             {
-                
+
                 playerMovement.speed = sprint_Speed;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching)
         {
-            
+
             playerMovement.speed = move_Speed;
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && !is_Crouching)
         {
-            ChangeFOVSmoothly(64, 1f);
+            ChangeFOVSmoothly(cameraFovSettings.ClampedValue + 4, 1f);
             DecreaseStamina();
         }
         else
         {
-            ChangeFOVSmoothly(60, 1f);
+            ChangeFOVSmoothly(cameraFovSettings.ClampedValue, 1f);
             IncreaseStamina();
         }
     }
