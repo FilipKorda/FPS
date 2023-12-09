@@ -1,4 +1,3 @@
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ResetGameplaySettings : MonoBehaviour
@@ -20,7 +19,6 @@ public class ResetGameplaySettings : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("siema");
                 Reset();
             }
         }
@@ -29,7 +27,7 @@ public class ResetGameplaySettings : MonoBehaviour
 
     void Reset()
     {
-        cameraFovSettings.ClampedValue = cameraFovSettings.initialFOV;
+        Debug.Log("siema!");
         sensivitySettings.ResetSensivity();
     }
 

@@ -39,11 +39,7 @@ public class SensivitySettings : MonoBehaviour
 
     public void ResetSensivity()
     {
-        ClampedSensivityValue = initialSensivity;
-        if (sensivitySlider != null)
-        {
-            ClampedSensivityValue = initialSensivity;
-        }
+        sensivitySlider.value = initialSensivity;
 
         UpdateAmountText();
     }
