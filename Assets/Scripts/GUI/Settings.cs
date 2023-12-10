@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
-
 
 public class Settings : MonoBehaviour
 {
@@ -46,7 +46,16 @@ public class Settings : MonoBehaviour
         ShadowResolution.Medium,
         ShadowResolution.High,
     };
-
+    [Header("Sounds")]
+    [Space(5)]
+    [SerializeField] private AudioMixer audioMainMixer;
+    [SerializeField] private Slider masterSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Toggle soundToggle;
+    const string MIXER_MASTER = "MasterVolume";
+    const string MIXER_MUSIC = "MusicVolume";
+    const string MIXER_SFX = "SfxVolume";
 
     void Start()
     {
@@ -65,6 +74,8 @@ public class Settings : MonoBehaviour
 
         InitializeShadow();
         SetShadowResolution(availableShadowResolutions[0]);
+
+        SetSoundState(soundToggle.isOn);
     }
 
     void Update()
@@ -184,6 +195,47 @@ public class Settings : MonoBehaviour
     {
         ShadowResolution selectedResolution = availableShadowResolutions[index];
         SetShadowResolution(selectedResolution);
+    }
+
+    public void SetVolume(string parameterName, float volume)
+    {
+        audioMainMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
+    }
+
+    public void OnMasterVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_MASTER, volume);
+    }
+
+    public void OnMusicVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_MUSIC, volume);
+    }
+
+    public void OnSFXVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_SFX, volume);
+    }
+
+    public void OnSoundToggleChanged(bool isSoundOn)
+    {
+        SetSoundState(isSoundOn);
+    }
+
+    public void SetSoundState(bool isSoundOn)
+    {
+        if (!isSoundOn)
+        {
+            SetVolume(MIXER_MASTER, masterSlider.value);
+            SetVolume(MIXER_MUSIC, musicSlider.value);
+            SetVolume(MIXER_SFX, sfxSlider.value);
+        }
+        else
+        {
+            SetVolume(MIXER_MASTER, 0.0001f);
+            SetVolume(MIXER_MUSIC, 0.0001f);
+            SetVolume(MIXER_SFX, 0.0001f);
+        }
     }
 
     public void SetActivePanel(GameObject activePanel)
