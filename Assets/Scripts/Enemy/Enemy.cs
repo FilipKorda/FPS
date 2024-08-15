@@ -5,8 +5,9 @@ namespace FPS.Enemy
     [DisallowMultipleComponent]
     public class Enemy : MonoBehaviour
     {
-        public PartHealth Health;
-        public EnemyPainResponse PainResponse;
+        [SerializeField] private PartHealth Health;
+        [SerializeField] private EnemyPainResponse PainResponse;
+        [SerializeField] private EnemyMovement EnemyMovement;
 
         private void Start()
         {
@@ -17,17 +18,19 @@ namespace FPS.Enemy
 
         private void Die(Vector3 Position)
         {
-            if (EnemyMovementController.Instance.Movement != null)
-            {
-                EnemyMovementController.Instance.Movement.StopMoving();
-            }
-
             if (Health.Name == "Head" || Health.Name == "Body")
             {
                 PainResponse.HandleAllPartDeath();
             }
-
-            PainResponse.HandleDeath();
+            else if (Health.Name == "LegLeft" || Health.Name == "LegRight")
+            {
+                EnemyMovement.alienAnimator.SetTrigger("CRAWL");
+                PainResponse.HandleDeath();
+            }          
+            else
+            {
+                PainResponse.HandleDeath();
+            }
         }
     }
 }

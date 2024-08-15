@@ -6,10 +6,8 @@ namespace FPS.Enemy
     public class PartHealth : MonoBehaviour, IDamageable
     {
         public string Name;
-        [SerializeField]
-        private int _Health;
-        [SerializeField]
-        private int _MaxHealth = 100;
+        [SerializeField] private int _Health;
+        [SerializeField] private int _MaxHealth = 100;
         public int CurrentHealth { get => _Health; private set => _Health = value; }
         public int MaxHealth { get => _MaxHealth; private set => _MaxHealth = value; }
 
@@ -39,7 +37,7 @@ namespace FPS.Enemy
                 {
                     DropOnDeath?.Invoke(transform.position);
                     ParticleOnDeath?.Invoke(transform.position);
-                }
+                }                
                 else
                 {
                     ParticleOnDeath?.Invoke(transform.position);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace FPS.Enemy
 {
@@ -8,6 +9,7 @@ namespace FPS.Enemy
     {
         [SerializeField]
         private ParticleSystem DeathSystem;
+        [SerializeField] private GameObject bodyPart;
         public IDamageable Damageable;
 
         [SerializeField] private GameObject spawnObjectPrefab;
@@ -28,6 +30,7 @@ namespace FPS.Enemy
         private void Damageable_OnDeath_SpawnParticle(Vector3 Position)
         {
             SpawnDeathParticleSystem(Position);
+            SpawnBodyPart(Position);
             gameObject.SetActive(false);
         }
 
@@ -40,10 +43,6 @@ namespace FPS.Enemy
         {
             if (spawnObjectPrefab != null)
             {
-                //int numberOfObjectsToSpawn = Random.Range(1, 3);
-
-                //  for (int i = 0; i < numberOfObjectsToSpawn; i++)
-                //  {
                 GameObject spawnedObject = Instantiate(spawnObjectPrefab, transform.position, Quaternion.identity);
                 Rigidbody spawnedRigidbody = spawnedObject.GetComponent<Rigidbody>();
 
@@ -52,14 +51,17 @@ namespace FPS.Enemy
 
                 SphereCollider spawnedSphereCollider = spawnedObject.GetComponent<SphereCollider>();
                 spawnedSphereCollider.isTrigger = true;
-                //     }
-
             }
         }
 
         private void SpawnDeathParticleSystem(Vector3 position)
         {
             Instantiate(DeathSystem, position, Quaternion.identity);
+        }
+
+        public void SpawnBodyPart(Vector3 position)
+        {
+            Instantiate(bodyPart, position, Quaternion.identity);
         }
     }
 }

@@ -9,28 +9,52 @@ namespace FPS.Enemy
     public class EnemyMovement : MonoBehaviour
     {
         [SerializeField] private float stillDelay = 1f;
-        [SerializeField] private Animator alienAnimator;
-        private NavMeshAgent Agent;
-        public float baseSpeed;
+        [SerializeField] private float followDistance = 10f;
+        public Animator alienAnimator;
+        public float walkSpeed = 3.5f;
+        public float grawlSpeed = 3f;
+        public float grawlSpeedWithoutHands = 1f;
+        public float runSpeed = 4;
 
+        private Transform playerTransform;
+        public NavMeshAgent Agent;
         private static NavMeshTriangulation Triangulation;
+
+        [SerializeField] private PartHealth legLeft;
+        [SerializeField] private PartHealth legRight;
+        [SerializeField] private PartHealth armLeft;
+        [SerializeField] private PartHealth armRight;
+
 
         private void Awake()
         {
+            playerTransform = PlayerSingleton.Instance.transform;
+
             Agent = GetComponent<NavMeshAgent>();
+
             if (Triangulation.vertices == null || Triangulation.vertices.Length == 0)
             {
                 Triangulation = NavMesh.CalculateTriangulation();
             }
 
-            baseSpeed = Agent.speed;
+            Agent.speed = walkSpeed;
         }
 
         private void Start()
         {
             StartCoroutine(Roam());
-            baseSpeed = Agent.speed;
             alienAnimator.SetTrigger("IDLE");
+        }
+
+        private void Update()
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+            if (distanceToPlayer <= followDistance)
+            {
+                StopAllCoroutines();
+                StartCoroutine(FollowPlayer());
+            }
         }
 
         private IEnumerator Roam()
@@ -39,6 +63,7 @@ namespace FPS.Enemy
 
             while (enabled)
             {
+                Agent.speed = walkSpeed;
                 alienAnimator.ResetTrigger("IDLE");
                 alienAnimator.SetTrigger("WALK");
                 int index = Random.Range(0, Triangulation.vertices.Length);
@@ -60,15 +85,41 @@ namespace FPS.Enemy
             }
         }
 
+        private IEnumerator FollowPlayer()
+        {
+            alienAnimator.ResetTrigger("IDLE");
+            alienAnimator.ResetTrigger("WALK");
+            alienAnimator.SetTrigger("RUN");
+
+            if (legLeft.isActiveAndEnabled && legRight.isActiveAndEnabled)
+            {
+                Agent.speed = runSpeed;
+            }
+            else if (!legLeft.isActiveAndEnabled || !legRight.isActiveAndEnabled)
+            {
+                if (!armLeft.isActiveAndEnabled && !armRight.isActiveAndEnabled)
+                {
+                    Agent.speed = grawlSpeedWithoutHands;
+                }
+                else
+                {
+                    Agent.speed = grawlSpeed;
+                }
+            }
+
+            while (Vector3.Distance(transform.position, playerTransform.position) <= followDistance)
+            {
+                Agent.SetDestination(playerTransform.position);
+                yield return null;
+            }
+        }
+
         public void StopMoving()
         {
             StopAllCoroutines();
-            alienAnimator.SetTrigger("IDLE");
-            alienAnimator.ResetTrigger("WALK");
-            alienAnimator.ResetTrigger("RUN");
             Agent.isStopped = true;
             Agent.enabled = false;
         }
-      
+
     }
 }

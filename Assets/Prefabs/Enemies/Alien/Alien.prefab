@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7505556907827584769}
-  - component: {fileID: 3164140847000829056}
   - component: {fileID: 2594536093582951810}
-  - component: {fileID: 5166556704822252089}
+  - component: {fileID: 3164140847000829056}
   - component: {fileID: 1470813680365498286}
   m_Layer: 0
   m_Name: Alien
@@ -40,7 +39,31 @@ Transform:
   - {fileID: 4862540622880098605}
   - {fileID: 397632940685298364}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 163.027, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2594536093582951810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017286120208158660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec37bc3269c31aa40b398c4f32e7f969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stillDelay: 1
+  followDistance: 10
+  alienAnimator: {fileID: 1470813680365498286}
+  walkSpeed: 3.5
+  grawlSpeed: 3
+  grawlSpeedWithoutHands: 1
+  runSpeed: 4
+  Agent: {fileID: 3164140847000829056}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
 --- !u!195 &3164140847000829056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -63,34 +86,6 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2594536093582951810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017286120208158660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec37bc3269c31aa40b398c4f32e7f969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stillDelay: 1
-  alienAnimator: {fileID: 1470813680365498286}
-  baseSpeed: 0
---- !u!114 &5166556704822252089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017286120208158660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2286b30f6b4b3cf4399e92d9d2e05a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Movement: {fileID: 2594536093582951810}
 --- !u!95 &1470813680365498286
 Animator:
   serializedVersion: 5
@@ -253,6 +248,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 1017286120208158660}
   Health: {fileID: 9046014128118839541}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &2445593483280747787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 9046014128118839541}
   PainResponse: {fileID: 3875366873602488170}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &2757852100177831770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 2107875470109625614, guid: a1c23064f387b7047ae32cbcea782058, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -424,6 +433,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 2832818756087226362}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &8819327161233997994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 2832818756087226362}
   PainResponse: {fileID: 3620578713912958071}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &5673417648896349710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 496495141692321977, guid: 15d4225b83de70d42b401a0eb56e9596, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -595,6 +618,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 1430082668282710300}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &1442941925660004476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 1430082668282710300}
   PainResponse: {fileID: 3201924066188240004}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &2189766493893087946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 8529420944268396751, guid: 511dcb15abb6c2d469cd78b1d07f7306, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -766,6 +803,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 3990080474637414927}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &8637432436507048887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,6 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 3990080474637414927}
   PainResponse: {fileID: 6990103017351677541}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &6535659999829356601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 8660659626940579429, guid: aa670e68c951520468c8ab6e04dbcd6e, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -937,6 +988,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 1017286120208158660}
   Health: {fileID: 8986956919785849152}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &2563023521207762019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,6 +1014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 8986956919785849152}
   PainResponse: {fileID: 7234305721921700774}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &7741875680182935826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,6 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 5097382802123169078, guid: dded129d85c901347b7eca73805345fb, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -1108,6 +1173,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeEnemy: {fileID: 0}
   Health: {fileID: 8584414150584462089}
+  doAfterEnemyDeathArmLeft: {fileID: 2189766493893087946}
+  doAfterEnemyDeathArmRight: {fileID: 5673417648896349710}
+  doAfterEnemyDeathBodyPart: {fileID: 7741875680182935826}
+  doAfterEnemyDeathHeadPart: {fileID: 2757852100177831770}
+  doAfterEnemyDeathLegLeft: {fileID: 6535659999829356601}
+  doAfterEnemyDeathLegRight: {fileID: 7710797936924008748}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
+  bodyPart: {fileID: 8986956919785849152}
+  headPart: {fileID: 9046014128118839541}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
 --- !u!114 &8506151849035757025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,6 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 8584414150584462089}
   PainResponse: {fileID: 8647619655896863360}
+  EnemyMovement: {fileID: 2594536093582951810}
 --- !u!114 &7710797936924008748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,6 +1213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
+  bodyPart: {fileID: 2817088057394793102, guid: d3f6425f272b02847be7931130a3f106, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
