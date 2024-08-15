@@ -8,12 +8,10 @@ namespace FPS.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField]
-        private float StillDelay = 1f;
+        [SerializeField] private float stillDelay = 1f;
+        [SerializeField] private Animator alienAnimator;
         private NavMeshAgent Agent;
-
-        private Coroutine SlowCoroutine;
-        private float BaseSpeed;
+        public float baseSpeed;
 
         private static NavMeshTriangulation Triangulation;
 
@@ -25,31 +23,39 @@ namespace FPS.Enemy
                 Triangulation = NavMesh.CalculateTriangulation();
             }
 
-            BaseSpeed = Agent.speed;
+            baseSpeed = Agent.speed;
         }
 
         private void Start()
         {
             StartCoroutine(Roam());
-            BaseSpeed = Agent.speed;
+            baseSpeed = Agent.speed;
+            alienAnimator.SetTrigger("IDLE");
         }
-
 
         private IEnumerator Roam()
         {
-            WaitForSeconds wait = new(StillDelay);
+            WaitForSeconds wait = new(stillDelay);
 
             while (enabled)
             {
-                int index = Random.Range(1, Triangulation.vertices.Length);
+                alienAnimator.ResetTrigger("IDLE");
+                alienAnimator.SetTrigger("WALK");
+                int index = Random.Range(0, Triangulation.vertices.Length);
+
                 Agent.SetDestination(
                     Vector3.Lerp(
-                        Triangulation.vertices[index - 1],
-                        Triangulation.vertices[index],
-                        Random.value
-                    )
-                );
+                    Triangulation.vertices[index],
+                     Triangulation.vertices[(index + 1) % Triangulation.vertices.Length],
+                     Random.value
+                      )
+                     );
+
                 yield return new WaitUntil(() => Agent.remainingDistance <= Agent.stoppingDistance);
+
+                alienAnimator.ResetTrigger("WALK");
+                alienAnimator.SetTrigger("IDLE");
+
                 yield return wait;
             }
         }
@@ -57,31 +63,12 @@ namespace FPS.Enemy
         public void StopMoving()
         {
             StopAllCoroutines();
+            alienAnimator.SetTrigger("IDLE");
+            alienAnimator.ResetTrigger("WALK");
+            alienAnimator.ResetTrigger("RUN");
             Agent.isStopped = true;
             Agent.enabled = false;
         }
-
-        public void Slow(AnimationCurve SlowCurve)
-        {
-            if (SlowCoroutine != null)
-            {
-                StopCoroutine(SlowCoroutine);
-            }
-            SlowCoroutine = StartCoroutine(SlowDown(SlowCurve));
-        }
-
-        private IEnumerator SlowDown(AnimationCurve SlowCurve)
-        {
-            float time = 0;
-
-            while (time < SlowCurve.keys[^1].time)
-            {
-                Agent.speed = BaseSpeed * SlowCurve.Evaluate(time);
-                time += Time.deltaTime;
-                yield return null;
-            }
-
-            Agent.speed = BaseSpeed;
-        }
+      
     }
 }
