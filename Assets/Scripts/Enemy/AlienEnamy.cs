@@ -1,26 +1,46 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlienEnamy : MonoBehaviour
+namespace FPS.Enemy
 {
-    public List<BodyPart> bodyParts = new List<BodyPart>();
-
-    private void Start()
+    public class AlienEnamy : MonoBehaviour
     {
-        foreach (BodyPart bodyPart in bodyParts)
+        public bool isDead;
+        public List<PartHealth> partHealths = new();
+        public List<Enemy> enemys = new();
+        public List<DoAfterEnemyDeath> doAfterEnemyDeaths = new();
+        public List<MeshCollider> meshColliders = new();
+
+        public void DisablePartHealths()
         {
-            bodyPart.currentHealth = bodyPart.maxHealth;
+            foreach (var partHealth in partHealths)
+            {
+                partHealth.enabled = false;
+            }
         }
-    }
 
-    public void TakeDamage(string bodyPartName, int damage)
-    {
-        BodyPart targetBodyPart = bodyParts.Find(part => part.name == bodyPartName);
-
-        if (targetBodyPart != null)
+        public void DisableEnemys()
         {
-            targetBodyPart.TakeDamage(damage);
+            foreach (var enemy in enemys)
+            {
+                enemy.enabled = false;
+            }
+        }
+
+        public void DisableDoAfterEnemyDeaths()
+        {
+            foreach (var doAfterEnemyDeath in doAfterEnemyDeaths)
+            {
+                doAfterEnemyDeath.enabled = false;
+            }
+        }
+
+        public void DisableMeshColliders()
+        {
+            foreach (var meshCollider in meshColliders)
+            {
+                meshCollider.enabled = false;
+            }
         }
     }
 }

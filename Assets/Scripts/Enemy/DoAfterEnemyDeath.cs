@@ -1,15 +1,17 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace FPS.Enemy
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IDamageable))]
     public class DoAfterEnemyDeath : MonoBehaviour
-    {
-        [SerializeField]
-        private ParticleSystem DeathSystem;
-        [SerializeField] private GameObject bodyPart;
+    {    
+        [Header("= Only For Head And Body Component =")]
+        [SerializeField] private PartHealth bodyHealth;
+        [SerializeField] private PartHealth headHealth;
+        [Header("===========================")]
+        [SerializeField] private ParticleSystem DeathSystem;
+        [SerializeField] private GameObject droppedBodyPart;
         public IDamageable Damageable;
 
         [SerializeField] private GameObject spawnObjectPrefab;
@@ -30,8 +32,21 @@ namespace FPS.Enemy
         private void Damageable_OnDeath_SpawnParticle(Vector3 Position)
         {
             SpawnDeathParticleSystem(Position);
-            SpawnBodyPart(Position);
-            gameObject.SetActive(false);
+            if (droppedBodyPart != null)
+                SpawnBodyPart(Position);
+            if (bodyHealth != null && bodyHealth.Name == "Body")
+            {
+                gameObject.SetActive(true);
+            }
+            else if(headHealth != null && headHealth.Name == "Head")
+            {
+                gameObject.SetActive(true);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+
         }
 
         private void Damageable_OnDeath_DropObject(Vector3 Position)
@@ -61,7 +76,7 @@ namespace FPS.Enemy
 
         public void SpawnBodyPart(Vector3 position)
         {
-            Instantiate(bodyPart, position, Quaternion.identity);
+            Instantiate(droppedBodyPart, position, Quaternion.identity);
         }
     }
 }

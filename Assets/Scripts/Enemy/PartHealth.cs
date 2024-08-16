@@ -8,6 +8,7 @@ namespace FPS.Enemy
         public string Name;
         [SerializeField] private int _Health;
         [SerializeField] private int _MaxHealth = 100;
+        [SerializeField] private EnemyMovement enemyMovement;
         public int CurrentHealth { get => _Health; private set => _Health = value; }
         public int MaxHealth { get => _MaxHealth; private set => _MaxHealth = value; }
 
@@ -22,6 +23,11 @@ namespace FPS.Enemy
 
         public void TakeDamage(int Damage)
         {
+            if (enemyMovement != null)
+            {
+                enemyMovement.StartFollowPlayerAFterHit();
+            }
+
             int damageTaken = Mathf.Clamp(Damage, 0, CurrentHealth);
 
             CurrentHealth -= damageTaken;
@@ -37,7 +43,7 @@ namespace FPS.Enemy
                 {
                     DropOnDeath?.Invoke(transform.position);
                     ParticleOnDeath?.Invoke(transform.position);
-                }                
+                }
                 else
                 {
                     ParticleOnDeath?.Invoke(transform.position);

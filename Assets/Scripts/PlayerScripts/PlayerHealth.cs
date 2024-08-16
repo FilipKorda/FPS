@@ -1,7 +1,5 @@
 using DG.Tweening;
-using FPS.Guns.Demo;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour

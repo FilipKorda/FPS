@@ -10,11 +10,14 @@ namespace FPS.Enemy
     {
         [SerializeField] private float stillDelay = 1f;
         [SerializeField] private float followDistance = 10f;
+        [SerializeField] private AlienEnamy alienEnemy;
         public Animator alienAnimator;
         public float walkSpeed = 3.5f;
         public float grawlSpeed = 3f;
         public float grawlSpeedWithoutHands = 1f;
         public float runSpeed = 4;
+        public float dieSpeed = 0;
+        //public bool isFollowingPlayerAfterHit = false;
 
         private Transform playerTransform;
         public NavMeshAgent Agent;
@@ -28,14 +31,14 @@ namespace FPS.Enemy
 
         private void Awake()
         {
-            playerTransform = PlayerSingleton.Instance.transform;
-
             Agent = GetComponent<NavMeshAgent>();
 
             if (Triangulation.vertices == null || Triangulation.vertices.Length == 0)
             {
                 Triangulation = NavMesh.CalculateTriangulation();
             }
+
+            playerTransform = PlayerSingleton.Instance.transform;
 
             Agent.speed = walkSpeed;
         }
@@ -48,78 +51,127 @@ namespace FPS.Enemy
 
         private void Update()
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-
-            if (distanceToPlayer <= followDistance)
+            if (!alienEnemy.isDead)
             {
-                StopAllCoroutines();
-                StartCoroutine(FollowPlayer());
+                float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+                if (distanceToPlayer <= followDistance)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(FollowPlayer());
+                }
+
+                if (distanceToPlayer <= Agent.stoppingDistance)
+                {
+                    Debug.Log("Attakc");
+                    AttackPlayer();
+                }
             }
         }
 
         private IEnumerator Roam()
         {
-            WaitForSeconds wait = new(stillDelay);
-
-            while (enabled)
+            if (!alienEnemy.isDead)
             {
-                Agent.speed = walkSpeed;
-                alienAnimator.ResetTrigger("IDLE");
-                alienAnimator.SetTrigger("WALK");
-                int index = Random.Range(0, Triangulation.vertices.Length);
+                WaitForSeconds wait = new(stillDelay);
 
-                Agent.SetDestination(
-                    Vector3.Lerp(
-                    Triangulation.vertices[index],
-                     Triangulation.vertices[(index + 1) % Triangulation.vertices.Length],
-                     Random.value
-                      )
-                     );
+                while (enabled)
+                {
+                    Agent.speed = walkSpeed;
+                    alienAnimator.ResetTrigger("IDLE");
+                    alienAnimator.SetTrigger("WALK");
+                    int index = Random.Range(0, Triangulation.vertices.Length);
 
-                yield return new WaitUntil(() => Agent.remainingDistance <= Agent.stoppingDistance);
+                    Agent.SetDestination(
+                        Vector3.Lerp(
+                        Triangulation.vertices[index],
+                         Triangulation.vertices[(index + 1) % Triangulation.vertices.Length],
+                         Random.value
+                          )
+                         );
 
-                alienAnimator.ResetTrigger("WALK");
-                alienAnimator.SetTrigger("IDLE");
+                    yield return new WaitUntil(() => Agent.remainingDistance <= Agent.stoppingDistance);
 
-                yield return wait;
+                    alienAnimator.ResetTrigger("WALK");
+                    alienAnimator.SetTrigger("IDLE");
+
+                    yield return wait;
+                }
             }
         }
 
         private IEnumerator FollowPlayer()
         {
-            alienAnimator.ResetTrigger("IDLE");
-            alienAnimator.ResetTrigger("WALK");
-            alienAnimator.SetTrigger("RUN");
+            if (!alienEnemy.isDead)
+            {
+                alienAnimator.ResetTrigger("IDLE");
+                alienAnimator.ResetTrigger("WALK");
+                alienAnimator.SetTrigger("RUN");
 
-            if (legLeft.isActiveAndEnabled && legRight.isActiveAndEnabled)
-            {
-                Agent.speed = runSpeed;
+                if (legLeft.isActiveAndEnabled && legRight.isActiveAndEnabled)
+                {
+                    Agent.speed = runSpeed;
+                }
+                else if (!legLeft.isActiveAndEnabled || !legRight.isActiveAndEnabled)
+                {
+                    if (!armLeft.isActiveAndEnabled && !armRight.isActiveAndEnabled)
+                    {
+                        Agent.speed = grawlSpeedWithoutHands;
+                    }
+                    else
+                    {
+                        Agent.speed = grawlSpeed;
+                    }
+                }
+
+                while (Vector3.Distance(transform.position, playerTransform.position) <= followDistance)
+                {
+                    Agent.SetDestination(playerTransform.position);
+                    yield return null;
+                }
             }
-            else if (!legLeft.isActiveAndEnabled || !legRight.isActiveAndEnabled)
+        }
+
+        private void AttackPlayer()
+        {
+            int index = 0;
+            foreach (var partHealth in alienEnemy.partHealths)
             {
-                if (!armLeft.isActiveAndEnabled && !armRight.isActiveAndEnabled)
+                if (index == 0 || index == 1)
                 {
-                    Agent.speed = grawlSpeedWithoutHands;
+                    if (partHealth.isActiveAndEnabled)
+                    {
+                        alienAnimator.SetTrigger("ATTACK_LEFT_ARM");
+                    }
+                    else
+                    {
+                        alienAnimator.SetTrigger("ATTACK_HEAD");
+                    }
                 }
-                else
-                {
-                    Agent.speed = grawlSpeed;
-                }
+
+                index++;
             }
 
-            while (Vector3.Distance(transform.position, playerTransform.position) <= followDistance)
-            {
-                Agent.SetDestination(playerTransform.position);
-                yield return null;
-            }
+
+        }
+
+
+        public void StartFollowPlayerAFterHit()
+        {
+            followDistance = 100;
         }
 
         public void StopMoving()
         {
             StopAllCoroutines();
             Agent.isStopped = true;
-            Agent.enabled = false;
-        }
+            Agent.speed = dieSpeed;
+            alienEnemy.isDead = true;
 
+            alienEnemy.DisablePartHealths();
+            alienEnemy.DisableEnemys();
+            alienEnemy.DisableDoAfterEnemyDeaths();
+            alienEnemy.DisableMeshColliders();
+        }
     }
 }

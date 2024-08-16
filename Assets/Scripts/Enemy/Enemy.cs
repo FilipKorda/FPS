@@ -6,12 +6,10 @@ namespace FPS.Enemy
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private PartHealth Health;
-        [SerializeField] private EnemyPainResponse PainResponse;
         [SerializeField] private EnemyMovement EnemyMovement;
 
         private void Start()
         {
-            Health.OnTakeDamage += PainResponse.HandlePain;
             Health.ParticleOnDeath += Die;
             Health.DropOnDeath += Die;
         }
@@ -20,17 +18,14 @@ namespace FPS.Enemy
         {
             if (Health.Name == "Head" || Health.Name == "Body")
             {
-                PainResponse.HandleAllPartDeath();
+                EnemyMovement.alienAnimator.SetTrigger("DIE");
+                EnemyMovement.StopMoving();
             }
             else if (Health.Name == "LegLeft" || Health.Name == "LegRight")
             {
                 EnemyMovement.alienAnimator.SetTrigger("CRAWL");
-                PainResponse.HandleDeath();
             }          
-            else
-            {
-                PainResponse.HandleDeath();
-            }
+
         }
     }
 }
