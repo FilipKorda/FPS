@@ -33,7 +33,7 @@ namespace FPS.Guns.Demo
                     && PlayerGunSelector.Instance.ActiveGun != null
                 );
 
-                if (ShouldManualReload())
+                if (ShouldManualReload() && Time.timeScale == 1)
                 {
                     PlayerGunSelector.Instance.ActiveGun.StartReloading();
                     IsReloading = true;

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class ResetGameplaySettings : MonoBehaviour
+public class ResetSounds : MonoBehaviour
 {
-    [SerializeField] private CameraFovSettings cameraFovSettings;
-    [SerializeField] private SensivitySettings sensivitySettings;
-    [SerializeField] private FPSDisplay fPSDisplay;
-    [SerializeField] private FPSDisplay capFPS;
     [SerializeField] private GameObject hintToReset;
+    [SerializeField] private Settings masterVolume;
+    [SerializeField] private Settings musicVolume;
+    [SerializeField] private Settings sfxVolume;
+    [SerializeField] private Settings soundToggle;
     private bool canReset;
 
     private void OnEnable()
@@ -28,11 +28,11 @@ public class ResetGameplaySettings : MonoBehaviour
 
     void Reset()
     {
-        Debug.Log("Reset Settings!");
-        sensivitySettings.ResetSensivity();
-        cameraFovSettings.ResetCameraFov();
-        fPSDisplay.ResetToggleFps();
-        fPSDisplay.ResetDropDownFps();     
+        Debug.Log("Reset Sound Settings!");
+        masterVolume.ResetMaster();
+        musicVolume.ResetMusic();
+        sfxVolume.ResetSfx();
+        soundToggle.ResetMute();
     }
 
     private void OnDisable()

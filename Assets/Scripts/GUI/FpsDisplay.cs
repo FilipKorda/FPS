@@ -115,4 +115,29 @@ public class FPSDisplay : MonoBehaviour
             }
         }
     }
+
+    public void ResetToggleFps()
+    {
+        if (fpsToggle != null)
+        {
+            fpsToggle.isOn = false;
+        }
+        else
+        {
+            Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
+        }
+    }
+
+    public void ResetDropDownFps()
+    {
+        if (fpsDropdown != null)
+        {
+            fpsDropdown.value = 0;  // Indeks pierwszej opcji w dropdownie.
+            fpsDropdown.RefreshShownValue();  // Odœwie¿a wyœwietlan¹ wartoœæ.
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
 }

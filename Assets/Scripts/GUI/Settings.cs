@@ -29,7 +29,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private FPSDisplay fPSDisplay;
     [Header("Graphic")]
     [Space(5)]
-    [SerializeField] private int qualityLevel;
+    [SerializeField] private TMP_Dropdown qualityLevelDropdown;
+    [SerializeField] private int qualityLevel;    
+    private int resetQualityLevel = 2;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullscreenToggle;
     private Resolution[] customResolutions = new Resolution[]
@@ -49,9 +51,19 @@ public class Settings : MonoBehaviour
     [Header("Sounds")]
     [Space(5)]
     [SerializeField] private AudioMixer audioMainMixer;
+    //Master
     [SerializeField] private Slider masterSlider;
+    [SerializeField] private TextMeshProUGUI masterAmountText;
+    private float resetMasterVolume = 5f;
+    //music
     [SerializeField] private Slider musicSlider;
+    [SerializeField] private TextMeshProUGUI musicAmountText;
+    private float resetMusicVolume = 5f;
+    //sfx
     [SerializeField] private Slider sfxSlider;
+    [SerializeField] private TextMeshProUGUI sfxAmountText;
+    private float resetSfxVolume = 5f;
+    //Mute
     [SerializeField] private Toggle soundToggle;
     const string MIXER_MASTER = "MasterVolume";
     const string MIXER_MUSIC = "MusicVolume";
@@ -203,7 +215,6 @@ public class Settings : MonoBehaviour
         }
     }
 
-
     void InitializeShadow()
     {
         shadowResolutionDropdown.ClearOptions();
@@ -233,16 +244,19 @@ public class Settings : MonoBehaviour
     public void OnMasterVolumeChanged(float volume)
     {
         SetVolume(MIXER_MASTER, volume);
+        UpdateMasterAmountText(volume);
     }
 
     public void OnMusicVolumeChanged(float volume)
     {
         SetVolume(MIXER_MUSIC, volume);
+        UpdateMusicAmountText(volume);
     }
 
     public void OnSFXVolumeChanged(float volume)
     {
         SetVolume(MIXER_SFX, volume);
+        UpdateSfxAmountText(volume);
     }
 
     public void OnSoundToggleChanged(bool isSoundOn)
@@ -292,6 +306,127 @@ public class Settings : MonoBehaviour
         controlTab.UpdateHighlight();
         gameplayTab.UpdateHighlight();
         graphicsTab.UpdateHighlight();
+    }
+
+    public void ResetMaster()
+    {
+        masterSlider.value = resetMasterVolume;
+    }
+
+    public void ResetMusic()
+    {
+        musicSlider.value = resetMusicVolume;
+    }
+
+    public void ResetSfx()
+    {
+        sfxSlider.value = resetSfxVolume;
+    }
+
+    public void ResetMute()
+    {
+        if (soundToggle != null)
+        {
+            soundToggle.isOn = false;
+        }
+        else
+        {
+            Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
+        }
+    }
+
+    void UpdateMasterAmountText(float volume)
+    {
+        if (masterAmountText != null)
+        {
+            masterAmountText.text = volume.ToString("F0");
+        }
+    }
+
+    void UpdateMusicAmountText(float volume)
+    {
+        if (musicAmountText != null)
+        {
+            musicAmountText.text = volume.ToString("F0");
+        }
+    }
+
+    void UpdateSfxAmountText(float volume)
+    {
+        if (sfxAmountText != null)
+        {
+            sfxAmountText.text = volume.ToString("F0");
+        }
+    }
+
+
+    public void ResetQuality()
+    {
+        qualityLevel = resetQualityLevel; 
+        ApplySettings();
+
+        if (qualityLevelDropdown != null)
+        {
+            qualityLevelDropdown.value = 2;
+            qualityLevelDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+
+
+
+    public void ResetResolutionDropdown()
+    {
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.value = 0; 
+            resolutionDropdown.RefreshShownValue(); 
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+
+    public void ResetFullscreenToggle()
+    {
+        if (fullscreenToggle != null)
+        {
+            fullscreenToggle.isOn = false;
+        }
+        else
+        {
+            Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
+        }
+    }
+
+    public void ResetAntiAliasingDropdown()
+    {
+        if (antiAliasingDropdown != null)
+        {
+            antiAliasingDropdown.value = 0;
+            antiAliasingDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+
+    public void ResetShadowResolutionDropdown()
+    {
+        if (shadowResolutionDropdown != null)
+        {
+            shadowResolutionDropdown.value = 0;
+            shadowResolutionDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
     }
 
 }

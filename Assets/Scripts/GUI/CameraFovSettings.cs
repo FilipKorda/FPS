@@ -1,3 +1,4 @@
+using FPS.Guns.Demo;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,12 +6,12 @@ using UnityEngine.UI;
 public class CameraFovSettings : MonoBehaviour
 {
     [SerializeField] private Slider fovSlider;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI amountText;
 
     private readonly float minFOV = 50f;
     private readonly float maxFOV = 120f;
     public float initialFOV = 60f;
+    private float resetInitialFOV = 60f;
 
     public float ClampedValue { get; set; }
 
@@ -38,9 +39,9 @@ public class CameraFovSettings : MonoBehaviour
     public void OnFOVSliderValueChanged(float value)
     {
         ClampedValue = Mathf.Clamp(value, minFOV, maxFOV);
-        if (mainCamera != null)
+        if (PlayerGunSelector.Instance != null)
         {
-            mainCamera.fieldOfView = ClampedValue;
+            PlayerGunSelector.Instance.Camera.fieldOfView = ClampedValue;
         }
         UpdateAmountText();
     }
@@ -51,5 +52,12 @@ public class CameraFovSettings : MonoBehaviour
         {
             amountText.text = ClampedValue.ToString("F0");
         }
+    }
+
+    public void ResetCameraFov()
+    {
+        fovSlider.value = resetInitialFOV;
+
+        UpdateAmountText();
     }
 }

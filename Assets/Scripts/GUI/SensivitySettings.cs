@@ -8,6 +8,7 @@ public class SensivitySettings : MonoBehaviour
     private readonly float minSensivity = 0f;
     private readonly float maxSensivity = 10f;
     private float initialSensivity = 3f;
+    private float resetInitialSensivity = 3f;
     [SerializeField] private TextMeshProUGUI amountText;
     public float ClampedSensivityValue { get; private set; }
 
@@ -38,7 +39,7 @@ public class SensivitySettings : MonoBehaviour
 
     public void ResetSensivity()
     {
-        sensivitySlider.value = initialSensivity;
+        sensivitySlider.value = resetInitialSensivity;
 
         UpdateAmountText();
     }
