@@ -82,7 +82,6 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         isLoading = true;
-        Time.timeScale = 1f;
         LoadingSystem.Instance.LoadLevel(sceneName);
     }
 
