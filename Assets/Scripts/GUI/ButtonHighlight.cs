@@ -22,6 +22,12 @@ public class ButtonHighlight : MonoBehaviour
 
     void Update()
     {
+        if (pauseMenu.isSettingsOpen)
+        {
+            buttonImage.enabled = false;
+            buttonText.color = normalTextColor;
+
+        }
         if (!pauseMenu.isSettingsOpen)
         {
             if (IsMouseOver())

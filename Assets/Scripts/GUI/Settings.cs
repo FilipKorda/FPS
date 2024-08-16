@@ -56,11 +56,10 @@ public class Settings : MonoBehaviour
     const string MIXER_MASTER = "MasterVolume";
     const string MIXER_MUSIC = "MusicVolume";
     const string MIXER_SFX = "SfxVolume";
-
-    public bool settingsInMainMenu = false;
+    [SerializeField] private Button[] buttons;
 
     [Header("Main Menu Adjustmetns")]
-    [SerializeField] private Button[] buttons;
+    public bool settingsInMainMenu = false;
     [SerializeField] private MainMenu mainMenu;
 
     void Start()
@@ -101,6 +100,15 @@ public class Settings : MonoBehaviour
                 }
 
                 mainMenu.isSettingsOpen = false;
+            }
+            else
+            {
+                foreach (var button in buttons)
+                {
+                    button.interactable = true;
+                }
+
+                pauseMenu.isSettingsOpen = false;
             }
         }
 

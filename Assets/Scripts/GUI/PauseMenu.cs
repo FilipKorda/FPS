@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private Settings settings;
     public bool isSettingsOpen = false;
+
+    [SerializeField] private Button[] buttons;
 
     public string sceneName = "MainMenu";
     private bool isLoading = false;
@@ -65,6 +68,11 @@ public class PauseMenu : MonoBehaviour
     {
         if (!isSettingsOpen)
         {
+            foreach (var button in buttons)
+            {
+                button.interactable = false;
+            }
+
             settings.gameObject.SetActive(true);
             isSettingsOpen = true;
             settings.escClose.SetActive(true);
