@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Settings settings;
     public bool isSettingsOpen = false;
 
+    public string sceneName = "MainMenu";
+    private bool isLoading = false;
+
     private void Start()
     {
         panel.SetActive(false);
@@ -18,21 +21,23 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (!isSettingsOpen)
+        if (!isLoading)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!isSettingsOpen)
             {
-                if (isGamePaused)
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    ResumeGame();
-                }
-                else
-                {
-                    PauseGame();
+                    if (isGamePaused)
+                    {
+                        ResumeGame();
+                    }
+                    else
+                    {
+                        PauseGame();
+                    }
                 }
             }
         }
-
     }
 
     void PauseGame()
@@ -66,13 +71,13 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    public void ReturnToMainMenu()
     {
-        if (!isSettingsOpen)
-        {
-            Debug.Log("Wracasz do main Menu");
-        }
+        isLoading = true;
+        Time.timeScale = 1f;
+        LoadingSystem.Instance.LoadLevel(sceneName);
     }
+
 
     public void QuitGame()
     {
@@ -82,7 +87,5 @@ public class PauseMenu : MonoBehaviour
             Application.Quit();
         }
     }
-
-
 }
 

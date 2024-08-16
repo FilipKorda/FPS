@@ -10111,6 +10111,7 @@ MonoBehaviour:
   isGamePaused: 0
   settings: {fileID: 1124849654}
   isSettingsOpen: 0
+  sceneName: MainMenu
 --- !u!114 &427137953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23592,6 +23593,10 @@ PrefabInstance:
     - target: {fileID: 1017286120208158660, guid: d3df58e245ae3db4ab31cd66cc98a47b, type: 3}
       propertyPath: m_Name
       value: Alien
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017286120208158660, guid: d3df58e245ae3db4ab31cd66cc98a47b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7505556907827584769, guid: d3df58e245ae3db4ab31cd66cc98a47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42289,7 +42294,7 @@ PrefabInstance:
       objectReference: {fileID: 427137952}
     - target: {fileID: 1509689851617996522, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_Name
-      value: 'Exit_Panel '
+      value: 'ReturnToMainMenu_Panel '
       objectReference: {fileID: 0}
     - target: {fileID: 3251566979415378795, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -42297,15 +42302,15 @@ PrefabInstance:
       objectReference: {fileID: 427137952}
     - target: {fileID: 3251566979415378795, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
+      value: ReturnToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5454692009350720832, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_text
-      value: EXIT TO MAIN MENU
+      value: RETURN TO MAIN MENU
       objectReference: {fileID: 0}
     - target: {fileID: 5454692009350720832, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5454692009350720832, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
       propertyPath: m_fontColor32.rgba
