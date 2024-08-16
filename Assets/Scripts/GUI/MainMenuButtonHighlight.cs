@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenuButtonHighlight : MonoBehaviour
 {
+    public MainMenu mainMenu;
     private Image buttonImage;
     private TextMeshProUGUI buttonText;
 
@@ -21,15 +22,24 @@ public class MainMenuButtonHighlight : MonoBehaviour
 
     void Update()
     {
-        if (IsMouseOver())
-        {
-            buttonImage.enabled = true;
-            buttonText.color = highlightedTextColor;
-        }
-        else
+        if (mainMenu.isSettingsOpen)
         {
             buttonImage.enabled = false;
             buttonText.color = normalTextColor;
+
+        }
+        if (!mainMenu.isSettingsOpen)
+        {
+            if (IsMouseOver())
+            {
+                buttonImage.enabled = true;
+                buttonText.color = highlightedTextColor;
+            }
+            else
+            {
+                buttonImage.enabled = false;
+                buttonText.color = normalTextColor;
+            }
         }
     }
 

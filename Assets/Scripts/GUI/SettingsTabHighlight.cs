@@ -69,13 +69,20 @@ public class SettingsTabHighlight : MonoBehaviour
     {
         if (isSelected)
         {
-            buttonImage.enabled = true;
-            buttonText.color = highlightedTextColor;
+            if (buttonImage != null && buttonText != null)
+            {
+                buttonImage.enabled = true;
+                buttonText.color = highlightedTextColor;
+            }
         }
         else
         {
-            buttonImage.enabled = false;
-            buttonText.color = normalTextColor;
+            if (buttonImage != null && buttonText != null)
+            {
+                buttonImage.enabled = false;
+                buttonText.color = normalTextColor;
+            }
+
         }
     }
 

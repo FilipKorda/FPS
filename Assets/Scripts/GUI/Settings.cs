@@ -40,7 +40,7 @@ public class Settings : MonoBehaviour
     };
     [SerializeField] private TMP_Dropdown antiAliasingDropdown;
     [SerializeField] private int[] availableAntiAliasingLevels = { 0, 2, 4, 8 };
-    [SerializeField] private Dropdown shadowResolutionDropdown;
+    [SerializeField] private TMP_Dropdown shadowResolutionDropdown;
     private ShadowResolution[] availableShadowResolutions = {
         ShadowResolution.Low,
         ShadowResolution.Medium,
@@ -56,6 +56,12 @@ public class Settings : MonoBehaviour
     const string MIXER_MASTER = "MasterVolume";
     const string MIXER_MUSIC = "MusicVolume";
     const string MIXER_SFX = "SfxVolume";
+
+    public bool settingsInMainMenu = false;
+
+    [Header("Main Menu Adjustmetns")]
+    [SerializeField] private Button[] buttons;
+    [SerializeField] private MainMenu mainMenu;
 
     void Start()
     {
@@ -86,6 +92,16 @@ public class Settings : MonoBehaviour
             settings_Up_Panel.SetActive(false);
             if (pauseMenu != null)
                 pauseMenu.isSettingsOpen = false;
+
+            if (settingsInMainMenu)
+            {
+                foreach (var button in buttons)
+                {
+                    button.interactable = true;
+                }
+
+                mainMenu.isSettingsOpen = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -149,12 +165,15 @@ public class Settings : MonoBehaviour
 
     void InitializeAntiAliasing()
     {
-        antiAliasingDropdown.ClearOptions();
-        foreach (var level in availableAntiAliasingLevels)
+        if (antiAliasingDropdown != null)
         {
-            antiAliasingDropdown.options.Add(new TMP_Dropdown.OptionData(level.ToString()));
+            antiAliasingDropdown.ClearOptions();
+            foreach (var level in availableAntiAliasingLevels)
+            {
+                antiAliasingDropdown.options.Add(new TMP_Dropdown.OptionData(level.ToString()));
+            }
+            antiAliasingDropdown.RefreshShownValue();
         }
-        antiAliasingDropdown.RefreshShownValue();
     }
 
     void SetAntiAliasingLevel(int level)
@@ -182,7 +201,7 @@ public class Settings : MonoBehaviour
         shadowResolutionDropdown.ClearOptions();
         foreach (var resolution in availableShadowResolutions)
         {
-            shadowResolutionDropdown.options.Add(new Dropdown.OptionData(resolution.ToString()));
+            shadowResolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.ToString()));
         }
         shadowResolutionDropdown.RefreshShownValue();
     }
