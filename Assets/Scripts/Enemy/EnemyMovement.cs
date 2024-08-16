@@ -65,7 +65,7 @@ namespace FPS.Enemy
                 {
                     Debug.Log("Attakc");
                     AttackPlayer();
-                }
+                }              
             }
         }
 
