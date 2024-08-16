@@ -34,9 +34,9 @@ public class Settings : MonoBehaviour
     [SerializeField] private Toggle fullscreenToggle;
     private Resolution[] customResolutions = new Resolution[]
     {
-        new Resolution { width = 1280, height = 720, refreshRate = 60 }, 
-        new Resolution { width = 1920, height = 1080, refreshRate = 60 }, 
-        new Resolution { width = 2560, height = 1440, refreshRate = 60 }   
+        new Resolution { width = 1280, height = 720, refreshRate = 60 },
+        new Resolution { width = 1920, height = 1080, refreshRate = 60 },
+        new Resolution { width = 2560, height = 1440, refreshRate = 60 }
     };
     [SerializeField] private TMP_Dropdown antiAliasingDropdown;
     [SerializeField] private int[] availableAntiAliasingLevels = { 0, 2, 4, 8 };
@@ -84,7 +84,8 @@ public class Settings : MonoBehaviour
         {
             escClose.SetActive(false);
             settings_Up_Panel.SetActive(false);
-            pauseMenu.isSettingsOpen = false;
+            if (pauseMenu != null)
+                pauseMenu.isSettingsOpen = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

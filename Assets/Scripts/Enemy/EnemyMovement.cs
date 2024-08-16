@@ -63,7 +63,6 @@ namespace FPS.Enemy
 
                 if (distanceToPlayer <= Agent.stoppingDistance)
                 {
-                    Debug.Log("Attakc");
                     if (isGrowl)
                     {
                         AttackPlayerGrawl();
