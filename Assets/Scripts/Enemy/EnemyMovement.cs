@@ -17,7 +17,7 @@ namespace FPS.Enemy
         public float grawlSpeedWithoutHands = 1f;
         public float runSpeed = 4;
         public float dieSpeed = 0;
-        //public bool isFollowingPlayerAfterHit = false;
+        public bool isGrowl = false;
 
         private Transform playerTransform;
         public NavMeshAgent Agent;
@@ -64,8 +64,16 @@ namespace FPS.Enemy
                 if (distanceToPlayer <= Agent.stoppingDistance)
                 {
                     Debug.Log("Attakc");
-                    AttackPlayer();
-                }              
+                    if (isGrowl)
+                    {
+                        AttackPlayerGrawl();
+                    }
+                    else
+                    {
+                        AttackPlayer();
+                    }
+
+                }
             }
         }
 
@@ -147,13 +155,34 @@ namespace FPS.Enemy
                     {
                         alienAnimator.SetTrigger("ATTACK_HEAD");
                     }
-                }
 
+                    return;
+                }
                 index++;
             }
-
-
         }
+
+        private void AttackPlayerGrawl()
+        {
+            int index = 0;
+            foreach (var partHealth in alienEnemy.partHealths)
+            {
+                if (index == 0 || index == 1)
+                {
+                    if (partHealth.isActiveAndEnabled)
+                    {
+                        alienAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
+                    }
+                    else
+                    {
+                        alienAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
+                    }
+                    return;
+                }
+                index++;
+            }
+        }
+
 
 
         public void StartFollowPlayerAFterHit()

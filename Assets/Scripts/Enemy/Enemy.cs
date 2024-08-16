@@ -23,8 +23,10 @@ namespace FPS.Enemy
             }
             else if (Health.Name == "LegLeft" || Health.Name == "LegRight")
             {
-                EnemyMovement.alienAnimator.SetTrigger("CRAWL");
-            }          
+                EnemyMovement.alienAnimator.SetTrigger("FALL");
+                EnemyMovement.Agent.stoppingDistance = 3;
+                EnemyMovement.isGrowl = true;
+            }
 
         }
     }
