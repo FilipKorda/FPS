@@ -25045,14 +25045,17 @@ MonoBehaviour:
   qualityLevel: 0
   resolutionDropdown: {fileID: 66006800}
   fullscreenToggle: {fileID: 92706880}
-  antiAliasingDropdown: {fileID: 0}
+  antiAliasingDropdown: {fileID: 615730406}
   availableAntiAliasingLevels: 00000000020000000400000008000000
-  shadowResolutionDropdown: {fileID: 0}
+  shadowResolutionDropdown: {fileID: 322376742}
   audioMainMixer: {fileID: 24100000, guid: 7b1a9caf8bf06754b92aed0466a9f24a, type: 2}
   masterSlider: {fileID: 393978753}
   musicSlider: {fileID: 96749122}
   sfxSlider: {fileID: 732379860}
   soundToggle: {fileID: 1219528661}
+  settingsInMainMenu: 0
+  buttons: []
+  mainMenu: {fileID: 0}
 --- !u!1 &1129730847
 GameObject:
   m_ObjectHideFlags: 0
