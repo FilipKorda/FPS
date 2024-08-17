@@ -30,7 +30,7 @@ public class Settings : MonoBehaviour
     [Header("Graphic")]
     [Space(5)]
     [SerializeField] private TMP_Dropdown qualityLevelDropdown;
-    [SerializeField] private int qualityLevel;    
+    [SerializeField] private int qualityLevel;
     private int resetQualityLevel = 2;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private Toggle fullscreenToggle;
@@ -79,6 +79,7 @@ public class Settings : MonoBehaviour
         panels = new GameObject[] { soundPanel, controlsPanel, gameplayPanel, graphicsPanel };
 
         qualityLevel = PlayerPrefs.GetInt("QualityLevel", QualitySettings.GetQualityLevel());
+
         ApplySettings();
 
         ShowCurrentPanel();
@@ -93,6 +94,25 @@ public class Settings : MonoBehaviour
         SetShadowResolution(availableShadowResolutions[0]);
 
         SetSoundState(soundToggle.isOn);
+
+        ReadingSoundsSaveValues();
+        ReadingQualitySaveValues();
+        ReadingResolutionSaveValues();
+        ReadingAntiAliasingSaveValues();
+        ReadingShadowSaveValues();
+        ReadingToggleMuteSaveValue();
+        ReadingToggleFullscreenSaveValue();
+
+    }
+
+    void ReadingSoundsSaveValues()
+    {
+        float savedMasterVolume = PlayerPrefs.GetFloat("MasterVolume", resetMasterVolume);
+        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", resetMusicVolume);
+        float savedSfxVolume = PlayerPrefs.GetFloat("SfxVolume", resetSfxVolume);
+        masterSlider.value = savedMasterVolume;
+        musicSlider.value = savedMusicVolume;
+        sfxSlider.value = savedSfxVolume;
     }
 
     void Update()
@@ -142,141 +162,11 @@ public class Settings : MonoBehaviour
         UpdateTabHighlight();
     }
 
-    public void SetQualityLevel(int level)
-    {
-        qualityLevel = level;
-        ApplySettings();
-    }
-
-    void ApplySettings()
-    {
-        QualitySettings.SetQualityLevel(qualityLevel);
-        PlayerPrefs.SetInt("QualityLevel", qualityLevel);
-    }
-
-    void InitializeResolutionOptions()
-    {
-        resolutionDropdown.ClearOptions();
-
-        foreach (Resolution resolution in customResolutions)
-        {
-            resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.width + "x" + resolution.height));
-        }
-
-        resolutionDropdown.value = 0;
-        resolutionDropdown.RefreshShownValue();
-    }
-
-    public void SetResolution()
-    {
-        int resolutionIndex = resolutionDropdown.value;
-
-        if (resolutionIndex >= 0 && resolutionIndex < customResolutions.Length)
-        {
-            Resolution selectedResolution = customResolutions[resolutionIndex];
-            Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
-        }
-    }
-
-    public void ToggleFullscreen()
-    {
-        Screen.fullScreen = !Screen.fullScreen;
-    }
-
-    void InitializeAntiAliasing()
-    {
-        if (antiAliasingDropdown != null)
-        {
-            antiAliasingDropdown.ClearOptions();
-            foreach (var level in availableAntiAliasingLevels)
-            {
-                antiAliasingDropdown.options.Add(new TMP_Dropdown.OptionData(level.ToString()));
-            }
-            antiAliasingDropdown.RefreshShownValue();
-        }
-    }
-
-    void SetAntiAliasingLevel(int level)
-    {
-        QualitySettings.antiAliasing = level;
-    }
-
-    public void OnAntiAliasingDropdownValueChanged(int index)
-    {
-        int selectedLevel = availableAntiAliasingLevels[index];
-        SetAntiAliasingLevel(selectedLevel);
-    }
-
     private void ShowCurrentPanel()
     {
         for (int i = 0; i < panels.Length; i++)
         {
             panels[i].SetActive(i == currentPanelIndex);
-        }
-    }
-
-    void InitializeShadow()
-    {
-        shadowResolutionDropdown.ClearOptions();
-        foreach (var resolution in availableShadowResolutions)
-        {
-            shadowResolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.ToString()));
-        }
-        shadowResolutionDropdown.RefreshShownValue();
-    }
-
-    void SetShadowResolution(ShadowResolution resolution)
-    {
-        QualitySettings.shadowResolution = resolution;
-    }
-
-    public void OnShadowResolutionDropdownValueChanged(int index)
-    {
-        ShadowResolution selectedResolution = availableShadowResolutions[index];
-        SetShadowResolution(selectedResolution);
-    }
-
-    public void SetVolume(string parameterName, float volume)
-    {
-        audioMainMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
-    }
-
-    public void OnMasterVolumeChanged(float volume)
-    {
-        SetVolume(MIXER_MASTER, volume);
-        UpdateMasterAmountText(volume);
-    }
-
-    public void OnMusicVolumeChanged(float volume)
-    {
-        SetVolume(MIXER_MUSIC, volume);
-        UpdateMusicAmountText(volume);
-    }
-
-    public void OnSFXVolumeChanged(float volume)
-    {
-        SetVolume(MIXER_SFX, volume);
-        UpdateSfxAmountText(volume);
-    }
-
-    public void OnSoundToggleChanged(bool isSoundOn)
-    {
-        SetSoundState(isSoundOn);
-    }
-
-    public void SetSoundState(bool isSoundOn)
-    {
-        if (!isSoundOn)
-        {
-            SetVolume(MIXER_MASTER, masterSlider.value);
-            SetVolume(MIXER_MUSIC, musicSlider.value);
-            SetVolume(MIXER_SFX, sfxSlider.value);
-        }
-        else
-        {
-            SetVolume(MIXER_MASTER, 0.0001f);
-            SetVolume(MIXER_MUSIC, 0.0001f);
-            SetVolume(MIXER_SFX, 0.0001f);
         }
     }
 
@@ -308,31 +198,344 @@ public class Settings : MonoBehaviour
         graphicsTab.UpdateHighlight();
     }
 
-    public void ResetMaster()
+    // ============================= Quality ======================
+    public void SetQualityLevel(int level)
     {
-        masterSlider.value = resetMasterVolume;
+        qualityLevel = level;
+        ApplySettings();
+
+        PlayerPrefs.SetInt("QualityLevelDropdown", level);
     }
 
-    public void ResetMusic()
+    void ApplySettings()
     {
-        musicSlider.value = resetMusicVolume;
+        QualitySettings.SetQualityLevel(qualityLevel);
+        PlayerPrefs.SetInt("QualityLevel", qualityLevel);
     }
 
-    public void ResetSfx()
+    private void ReadingQualitySaveValues()
     {
-        sfxSlider.value = resetSfxVolume;
+        if (PlayerPrefs.HasKey("QualityLevelDropdown"))
+        {
+            int savedIndex = PlayerPrefs.GetInt("QualityLevelDropdown");
+            qualityLevelDropdown.value = savedIndex;
+        }
+        else
+        {
+            qualityLevelDropdown.value = 2;
+        }
+    }
+
+    public void ResetQuality()
+    {
+        qualityLevel = resetQualityLevel;
+
+        ApplySettings();
+
+        if (qualityLevelDropdown != null)
+        {
+            PlayerPrefs.DeleteKey("QualityLevelDropdown");
+            qualityLevelDropdown.value = 2;
+            qualityLevelDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+    // ===================================================
+
+
+    // ============================= Resolution ======================
+    void InitializeResolutionOptions()
+    {
+        resolutionDropdown.ClearOptions();
+
+        foreach (Resolution resolution in customResolutions)
+        {
+            resolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.width + "x" + resolution.height));
+        }
+
+        resolutionDropdown.value = 0;
+        resolutionDropdown.RefreshShownValue();
+    }
+
+    public void SetResolution()
+    {
+        int resolutionIndex = resolutionDropdown.value;
+
+        if (resolutionIndex >= 0 && resolutionIndex < customResolutions.Length)
+        {
+            Resolution selectedResolution = customResolutions[resolutionIndex];
+            Screen.SetResolution(selectedResolution.width, selectedResolution.height, Screen.fullScreen);
+        }
+        PlayerPrefs.SetInt("ResolutionDropdown", resolutionIndex);
+    }
+
+    private void ReadingResolutionSaveValues()
+    {
+        if (PlayerPrefs.HasKey("ResolutionDropdown"))
+        {
+            int savedIndex = PlayerPrefs.GetInt("ResolutionDropdown");
+            resolutionDropdown.value = savedIndex;
+        }
+    }
+
+    public void ResetResolutionDropdown()
+    {
+        if (resolutionDropdown != null)
+        {
+            PlayerPrefs.DeleteKey("ResolutionDropdown");
+            resolutionDropdown.value = 0;
+            resolutionDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+    // ===================================================
+
+    // ============================= Fullscreen ======================
+    public void OnFullscreenToggleValueChanged(bool isOn)
+    {
+        Screen.fullScreen = isOn;
+
+        PlayerPrefs.SetInt("ToggleFullscreen", isOn ? 1 : 0);
+    }
+
+    public void ResetFullscreenToggle()
+    {
+        if (fullscreenToggle != null)
+        {
+            Screen.fullScreen = false;
+            PlayerPrefs.DeleteKey("ToggleFullscreen");
+            fullscreenToggle.isOn = false;
+        }
+        else
+        {
+            Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
+        }
+    }
+
+    private void ReadingToggleFullscreenSaveValue()
+    {
+        if (PlayerPrefs.HasKey("ToggleFullscreen"))
+        {
+            int savedState = PlayerPrefs.GetInt("ToggleFullscreen");
+            bool isFullscreen = savedState == 1;
+            Screen.fullScreen = isFullscreen;
+
+            if (fullscreenToggle != null)
+            {
+                fullscreenToggle.isOn = isFullscreen;
+            }
+        }
+        else
+        {
+            Screen.fullScreen = false;
+            if (fullscreenToggle != null)
+            {
+                fullscreenToggle.isOn = false;
+            }
+        }
+    }
+    // ===================================================
+
+    // ============================= AntiAliasing ======================
+    void InitializeAntiAliasing()
+    {
+        if (antiAliasingDropdown != null)
+        {
+            antiAliasingDropdown.ClearOptions();
+            foreach (var level in availableAntiAliasingLevels)
+            {
+                antiAliasingDropdown.options.Add(new TMP_Dropdown.OptionData(level.ToString()));
+            }
+            antiAliasingDropdown.RefreshShownValue();
+        }
+    }
+
+    void SetAntiAliasingLevel(int level)
+    {
+        QualitySettings.antiAliasing = level;
+    }
+
+    public void OnAntiAliasingDropdownValueChanged(int index)
+    {
+        int selectedLevel = availableAntiAliasingLevels[index];
+        SetAntiAliasingLevel(selectedLevel);
+        PlayerPrefs.SetInt("AntiAliasingDropdown", index);
+    }
+
+    private void ReadingAntiAliasingSaveValues()
+    {
+        if (PlayerPrefs.HasKey("AntiAliasingDropdown"))
+        {
+            int savedIndex = PlayerPrefs.GetInt("AntiAliasingDropdown");
+            antiAliasingDropdown.value = savedIndex;
+        }
+    }
+
+    public void ResetAntiAliasingDropdown()
+    {
+        if (antiAliasingDropdown != null)
+        {
+            PlayerPrefs.DeleteKey("AntiAliasingDropdown");
+            antiAliasingDropdown.value = 0;
+            antiAliasingDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+    // ===================================================
+
+    // ============================= Shadow ======================
+    void InitializeShadow()
+    {
+        shadowResolutionDropdown.ClearOptions();
+        foreach (var resolution in availableShadowResolutions)
+        {
+            shadowResolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.ToString()));
+        }
+        shadowResolutionDropdown.RefreshShownValue();
+    }
+
+    void SetShadowResolution(ShadowResolution resolution)
+    {
+        QualitySettings.shadowResolution = resolution;
+    }
+
+    public void OnShadowResolutionDropdownValueChanged(int index)
+    {
+        ShadowResolution selectedResolution = availableShadowResolutions[index];
+        SetShadowResolution(selectedResolution);
+        PlayerPrefs.SetInt("ShadowResolutionDropdown", index);
+    }
+
+    private void ReadingShadowSaveValues()
+    {
+        if (PlayerPrefs.HasKey("ShadowResolutionDropdown"))
+        {
+            int savedIndex = PlayerPrefs.GetInt("ShadowResolutionDropdown");
+            shadowResolutionDropdown.value = savedIndex;
+        }
+    }
+
+    public void ResetShadowResolutionDropdown()
+    {
+        if (shadowResolutionDropdown != null)
+        {
+            PlayerPrefs.DeleteKey("ShadowResolutionDropdown");
+            shadowResolutionDropdown.value = 0;
+            shadowResolutionDropdown.RefreshShownValue();
+        }
+        else
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+        }
+    }
+    // ===================================================
+
+    // ============================= Sounds ======================
+    public void SetVolume(string parameterName, float volume)
+    {
+        audioMainMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
+    }
+
+    public void OnMasterVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_MASTER, volume);
+        UpdateMasterAmountText(volume);
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+    }
+
+    public void OnMusicVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_MUSIC, volume);
+        UpdateMusicAmountText(volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+    public void OnSFXVolumeChanged(float volume)
+    {
+        SetVolume(MIXER_SFX, volume);
+        UpdateSfxAmountText(volume);
+        PlayerPrefs.SetFloat("SfxVolume", volume);
+    }
+
+    //Mute
+    public void OnSoundToggleChanged(bool isSoundOn)
+    {
+        SetSoundState(isSoundOn);
+        PlayerPrefs.SetInt("ToggleMute", isSoundOn ? 1 : 0);
+    }
+
+    private void ReadingToggleMuteSaveValue()
+    {
+        if (PlayerPrefs.HasKey("ToggleMute"))
+        {
+            int savedState = PlayerPrefs.GetInt("ToggleMute");
+            soundToggle.isOn = savedState == 1;
+        }
     }
 
     public void ResetMute()
     {
         if (soundToggle != null)
         {
+            PlayerPrefs.DeleteKey("ToggleMute");
             soundToggle.isOn = false;
         }
         else
         {
             Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
         }
+    }
+    //==
+    public void SetSoundState(bool isSoundOn)
+    {
+        if (!isSoundOn)
+        {
+            SetVolume(MIXER_MASTER, masterSlider.value);
+            SetVolume(MIXER_MUSIC, musicSlider.value);
+            SetVolume(MIXER_SFX, sfxSlider.value);
+        }
+        else
+        {
+            SetVolume(MIXER_MASTER, 0f);
+            SetVolume(MIXER_MUSIC, 0f);
+            SetVolume(MIXER_SFX, 0f);
+        }
+    }
+
+    public void ResetMaster()
+    {
+        masterSlider.value = resetMasterVolume;
+        PlayerPrefs.DeleteKey("MasterVolume");
+        masterSlider.value = resetMasterVolume;
+        SetVolume(MIXER_MASTER, resetMasterVolume);
+        UpdateMasterAmountText(resetMasterVolume);
+    }
+
+    public void ResetMusic()
+    {
+        musicSlider.value = resetMusicVolume;
+        PlayerPrefs.DeleteKey("MusicVolume");
+        musicSlider.value = resetMusicVolume;
+        SetVolume(MIXER_MUSIC, resetMusicVolume);
+        UpdateMusicAmountText(resetMusicVolume);
+    }
+
+    public void ResetSfx()
+    {
+        sfxSlider.value = resetSfxVolume;
+        PlayerPrefs.DeleteKey("SfxVolume");
+        sfxSlider.value = resetSfxVolume;
+        SetVolume(MIXER_SFX, resetSfxVolume);
+        UpdateSfxAmountText(resetSfxVolume);
     }
 
     void UpdateMasterAmountText(float volume)
@@ -359,74 +562,19 @@ public class Settings : MonoBehaviour
         }
     }
 
-
-    public void ResetQuality()
-    {
-        qualityLevel = resetQualityLevel; 
-        ApplySettings();
-
-        if (qualityLevelDropdown != null)
-        {
-            qualityLevelDropdown.value = 2;
-            qualityLevelDropdown.RefreshShownValue();
-        }
-        else
-        {
-            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
-        }
-    }
+    // ===================================================
 
 
 
-    public void ResetResolutionDropdown()
-    {
-        if (resolutionDropdown != null)
-        {
-            resolutionDropdown.value = 0; 
-            resolutionDropdown.RefreshShownValue(); 
-        }
-        else
-        {
-            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
-        }
-    }
 
-    public void ResetFullscreenToggle()
-    {
-        if (fullscreenToggle != null)
-        {
-            fullscreenToggle.isOn = false;
-        }
-        else
-        {
-            Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
-        }
-    }
 
-    public void ResetAntiAliasingDropdown()
-    {
-        if (antiAliasingDropdown != null)
-        {
-            antiAliasingDropdown.value = 0;
-            antiAliasingDropdown.RefreshShownValue();
-        }
-        else
-        {
-            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
-        }
-    }
 
-    public void ResetShadowResolutionDropdown()
-    {
-        if (shadowResolutionDropdown != null)
-        {
-            shadowResolutionDropdown.value = 0;
-            shadowResolutionDropdown.RefreshShownValue();
-        }
-        else
-        {
-            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
-        }
-    }
+
+
+
+
+
+
+
 
 }

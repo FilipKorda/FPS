@@ -32,6 +32,8 @@ public class FPSDisplay : MonoBehaviour
         {
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
+
+        ReadingToggleSavesValues();
     }
 
     void Update()
@@ -64,6 +66,8 @@ public class FPSDisplay : MonoBehaviour
 
     public void OnToggleValueChanged(bool isOn)
     {
+        PlayerPrefs.SetInt("ToggleFpsState", isOn ? 1 : 0);
+
         if (isOn)
         {
             if (fpsText != null)
@@ -82,7 +86,7 @@ public class FPSDisplay : MonoBehaviour
 
     public void OnDropdownValueChanged(int index)
     {
-        int[] fpsOptions = { 30, 60, 120, 144 }; 
+        int[] fpsOptions = { 30, 60, 120, 144 };
         if (index >= 0 && index < fpsOptions.Length)
         {
             SetTargetFPS(fpsOptions[index]);
@@ -120,6 +124,7 @@ public class FPSDisplay : MonoBehaviour
     {
         if (fpsToggle != null)
         {
+            PlayerPrefs.DeleteKey("ToggleFpsState");
             fpsToggle.isOn = false;
         }
         else
@@ -132,12 +137,22 @@ public class FPSDisplay : MonoBehaviour
     {
         if (fpsDropdown != null)
         {
-            fpsDropdown.value = 0;  // Indeks pierwszej opcji w dropdownie.
-            fpsDropdown.RefreshShownValue();  // Odœwie¿a wyœwietlan¹ wartoœæ.
+            fpsDropdown.value = 0; 
+            fpsDropdown.RefreshShownValue();
         }
         else
         {
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
+    }
+
+    void ReadingToggleSavesValues()
+    {
+        if (PlayerPrefs.HasKey("ToggleFpsState"))
+        {
+            int savedState = PlayerPrefs.GetInt("ToggleFpsState");
+            fpsToggle.isOn = savedState == 1;
+        }
+
     }
 }

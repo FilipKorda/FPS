@@ -17,6 +17,11 @@ public class SensivitySettings : MonoBehaviour
         ClampedSensivityValue = initialSensivity;
     }
 
+    private void Start()
+    {
+        ReadingSensivitySavesValues();
+    }
+
     public void OnSensivitySliderValueChanged(float value)
     {
         ClampedSensivityValue = Mathf.Clamp(value, minSensivity, maxSensivity);
@@ -24,8 +29,9 @@ public class SensivitySettings : MonoBehaviour
         {
             initialSensivity = ClampedSensivityValue;
         }
-
         UpdateAmountText();
+
+        PlayerPrefs.SetFloat("SensivityValue", value);
     }
 
 
@@ -42,5 +48,12 @@ public class SensivitySettings : MonoBehaviour
         sensivitySlider.value = resetInitialSensivity;
 
         UpdateAmountText();
+    }
+
+    void ReadingSensivitySavesValues()
+    {
+        float savedMasterVolume = PlayerPrefs.GetFloat("SensivityValue", ClampedSensivityValue);
+        sensivitySlider.value = savedMasterVolume;
+
     }
 }

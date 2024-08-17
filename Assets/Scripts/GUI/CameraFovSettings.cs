@@ -29,11 +29,14 @@ public class CameraFovSettings : MonoBehaviour
             fovSlider.maxValue = maxFOV;
             fovSlider.value = initialFOV;
             fovSlider.onValueChanged.AddListener(OnFOVSliderValueChanged);
+            ReadingFOVSavesValues();
         }
         else
         {
             Debug.LogError("Slider nie jest przypisany. Przypisz Slider w inspektorze.");
         }
+
+
     }
 
     public void OnFOVSliderValueChanged(float value)
@@ -44,6 +47,9 @@ public class CameraFovSettings : MonoBehaviour
             PlayerGunSelector.Instance.Camera.fieldOfView = ClampedValue;
         }
         UpdateAmountText();
+
+
+        PlayerPrefs.SetFloat("FOVValue", value);
     }
 
     void UpdateAmountText()
@@ -59,5 +65,12 @@ public class CameraFovSettings : MonoBehaviour
         fovSlider.value = resetInitialFOV;
 
         UpdateAmountText();
+    }
+
+    void ReadingFOVSavesValues()
+    {
+        float savedMasterVolume = PlayerPrefs.GetFloat("FOVValue", ClampedValue);
+        fovSlider.value = savedMasterVolume;
+
     }
 }

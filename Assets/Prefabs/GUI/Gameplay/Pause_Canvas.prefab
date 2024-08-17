@@ -5397,8 +5397,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7426106608067554704}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: ToggleFullscreen
-        m_Mode: 1
+        m_MethodName: OnFullscreenToggleValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
