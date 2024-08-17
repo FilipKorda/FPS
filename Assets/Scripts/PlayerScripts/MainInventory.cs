@@ -17,7 +17,7 @@ public class MainInventory : MonoBehaviour
 
     private bool isPanelActive = false;
     [SerializeField] private GameObject usebleItems;
-    [SerializeField] private GameObject questItems;
+    [SerializeField] private GameObject items;
 
     [Header("======= Oxygen Container =======")]
     [Space(5)]
@@ -235,7 +235,7 @@ public class MainInventory : MonoBehaviour
     }
 
     public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
-    {
+    {      
         if (isRedCard)
         {
             RedCardQuestPrefabItemsGUI();
@@ -274,7 +274,7 @@ public class MainInventory : MonoBehaviour
 
     private void RedCardQuestPrefabItemsGUI()
     {
-        instantiatedRedCardPrefab = Instantiate(redCardPrefab, questItems.transform);
+        instantiatedRedCardPrefab = Instantiate(redCardPrefab, items.transform);
         redCardMainImage = instantiatedRedCardPrefab.GetComponent<Image>();
         redCardNameText = instantiatedRedCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
         redCardImage = instantiatedRedCardPrefab.transform.GetChild(1).GetComponent<Image>();
@@ -285,7 +285,7 @@ public class MainInventory : MonoBehaviour
     }
     private void GreenCardQuestPrefabItemsGUI()
     {
-        instantiatedGreenCardPrefab = Instantiate(greenCardPrefab, questItems.transform);
+        instantiatedGreenCardPrefab = Instantiate(greenCardPrefab, items.transform);
         greenCardMainImage = instantiatedGreenCardPrefab.GetComponent<Image>();
         greenCardNameText = instantiatedGreenCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
         greenCardImage = instantiatedGreenCardPrefab.transform.GetChild(1).GetComponent<Image>();
@@ -296,7 +296,7 @@ public class MainInventory : MonoBehaviour
     }
     private void BlueCardQuestPrefabItemsGUI()
     {
-        instantiatedBlueCardPrefab = Instantiate(blueCardPrefab, questItems.transform);
+        instantiatedBlueCardPrefab = Instantiate(blueCardPrefab, items.transform);
         blueCardMainImage = instantiatedBlueCardPrefab.GetComponent<Image>();
         blueCardNameText = instantiatedBlueCardPrefab.GetComponentInChildren<TextMeshProUGUI>();
         blueCardImage = instantiatedBlueCardPrefab.transform.GetChild(1).GetComponent<Image>();

@@ -129,10 +129,12 @@ public class DialogueManager : MonoBehaviour
 
             if (answerIndex == 0 && currentDialogueData.answerOne != null)
             {
+
                 StartDialogue(currentDialogueData.answerOne.conversation);
             }
             else if (answerIndex == 1 && currentDialogueData.answerTwo != null)
             {
+
                 StartDialogue(currentDialogueData.answerTwo.conversation);
             }
         }
@@ -161,6 +163,8 @@ public class DialogueManager : MonoBehaviour
 
     public void OnPressE()
     {
+        GiveQuestToPlayer();
+
         if (isTalking && waitForInput)
         {
             waitForInput = false;
@@ -172,5 +176,9 @@ public class DialogueManager : MonoBehaviour
         return isTalking;
     }
 
-
+    private void GiveQuestToPlayer()
+    {
+        if (QuestManager.Instance != null && currentDialogueData.questToGive != null)
+            QuestManager.Instance.GetQuest(currentDialogueData.questToGive);
+    }
 }

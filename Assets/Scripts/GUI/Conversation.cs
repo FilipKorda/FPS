@@ -25,6 +25,8 @@ public class ConversationData
     [Space(8)]
     [HideInInspector] public string OptionTwo;  
     [HideInInspector] public Conversation answerTwo;
+
+    [SerializeField] public Quest questToGive;
 }
 
 #if UNITY_EDITOR

@@ -20,6 +20,7 @@ public class Npc : MonoBehaviour, INpc
         {
             wasOpen = true;
             DialogueManager.Instance.StartDialogue(conversationData.conversation);
+           
         }
         else
         {
@@ -39,4 +40,6 @@ public class Npc : MonoBehaviour, INpc
         talkToNPC_Panel.SetActive(false);
         hintText.text = "";
     }
+
+    
 }
