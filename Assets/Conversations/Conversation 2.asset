@@ -16,20 +16,18 @@ MonoBehaviour:
   - Name: You
     Sentences:
     - aaaaaaaaaaaaaaaaaaaaa
-    - ccccccccccccccccc
-    - dddddddddddddd
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
   - Name: Steve
     Sentences:
     - ssssssssssssssss
-    - hggggggggggggg
-    - fffffffffffffffffff
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}

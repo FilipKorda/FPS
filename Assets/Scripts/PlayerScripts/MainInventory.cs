@@ -15,7 +15,7 @@ public class MainInventory : MonoBehaviour
 
     [SerializeField] private Color highlightButton;
 
-    private bool isPanelActive = false;
+    public bool isPanelActive = false;
     [SerializeField] private GameObject usebleItems;
     [SerializeField] private GameObject items;
 
@@ -90,7 +90,7 @@ public class MainInventory : MonoBehaviour
     {
         ButtonTabPanel.SetActive(false);
         inventory.SetActive(true);
-
+      
         buttonInventory.GetComponentInChildren<TextMeshProUGUI>().color = highlightButton;
     }
 
@@ -102,6 +102,17 @@ public class MainInventory : MonoBehaviour
         {
             isPanelActive = !isPanelActive;
             ButtonTabPanel.SetActive(isPanelActive);
+
+            if (isPanelActive)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
     }

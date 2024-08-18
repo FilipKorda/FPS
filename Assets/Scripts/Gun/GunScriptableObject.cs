@@ -118,10 +118,8 @@ namespace FPS.Guns
 
         private void TryToShoot()
         {
-            if (!DialogueManager.Instance.isTalking)
+            if (!DialogueManager.Instance.isTalking && !MainInventory.Instance.isPanelActive)
             {
-
-
                 if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
                 {
                     float lastDuration = Mathf.Clamp(

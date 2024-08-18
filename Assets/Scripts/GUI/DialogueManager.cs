@@ -45,11 +45,15 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
+        if (isTalking)
         {
-            OnPressE();
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                OnPressE();
+            }
         }
     }
+
 
     public void StartDialogue(ConversationData[] dialogueData)
     {
@@ -72,7 +76,7 @@ public class DialogueManager : MonoBehaviour
                 yield return TypeLetter(sentence);
                 yield return new WaitForSeconds(typingSpeed);
 
-                if (currentDialogueData.isAskingQuestion && dialogue.OptionOne != null && dialogue.OptionTwo != null)
+                if (currentDialogueData != null && dialogue.OptionOne != null && dialogue.OptionTwo != null && currentDialogueData.isAskingQuestion)
                 {
                     optionOne.gameObject.SetActive(true);
                     optionTwo.gameObject.SetActive(true);

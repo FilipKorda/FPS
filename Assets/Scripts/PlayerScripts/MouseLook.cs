@@ -17,7 +17,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        if (Cursor.lockState == CursorLockMode.Locked)
+        if (!MainInventory.Instance.isPanelActive && Cursor.lockState == CursorLockMode.Locked)
         {
             LookAround();
         }

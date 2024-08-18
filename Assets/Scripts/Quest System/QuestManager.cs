@@ -6,11 +6,11 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
 
-    [SerializeField] private TextMeshProUGUI questName;
-    [SerializeField] private TextMeshProUGUI questDescription;
+    [SerializeField] private GameObject scrollViewContext;
+    [SerializeField] private GameObject questHolderPrefab;
+
     [SerializeField] private List<Quest> questsConditions;
     [SerializeField] private List<Quest> questHolder;
-
 
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         UpdateUI();
-        
     }
 
     private void Update()
@@ -38,13 +37,16 @@ public class QuestManager : MonoBehaviour
 
     private void UpdateUI()
     {
+        foreach (Transform child in scrollViewContext.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach (var quest in questsConditions)
         {
             if (!quest.isCompleted)
             {
-                questName.text = quest.questName;
-                questDescription.text = quest.questDescription;
-                break;
+                AddQuestHolderPrefab(quest.questName, quest.questDescription);
             }
         }
     }
@@ -68,4 +70,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    private void AddQuestHolderPrefab(string questName, string questDescription)
+    {
+        GameObject instantiatedQuestHolderPrefab = Instantiate(questHolderPrefab, scrollViewContext.transform);
+
+        TextMeshProUGUI questHolderQuestName = instantiatedQuestHolderPrefab.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI questHolderQuestDescription = instantiatedQuestHolderPrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        questHolderQuestName.text = questName;
+        questHolderQuestDescription.text = questDescription;
+    }
 }
