@@ -22,3 +22,12 @@ MonoBehaviour:
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 11400000, guid: 52f1c5da69b4f07479596f97aec5d998, type: 2}
+  - Name: Steve
+    Sentences:
+    - green card nice
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: 605ffe7103459654c8e29f0c240928e3, type: 2}

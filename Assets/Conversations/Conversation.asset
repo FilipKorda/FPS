@@ -55,4 +55,4 @@ MonoBehaviour:
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
-    questToGive: {fileID: 11400000, guid: 605ffe7103459654c8e29f0c240928e3, type: 2}
+    questToGive: {fileID: 0}

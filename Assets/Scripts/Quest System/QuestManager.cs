@@ -12,6 +12,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private List<Quest> questsConditions;
     [SerializeField] private List<Quest> questHolder;
 
+    private Dictionary<Quest, GameObject> questToPrefabMap = new Dictionary<Quest, GameObject>();
+
     private void Awake()
     {
         Instance = this;
@@ -30,6 +32,9 @@ public class QuestManager : MonoBehaviour
             {
                 quest.isCompleted = true;
                 Debug.Log($"{quest.questName} completed!");
+
+                RemoveCompletedQuest(quest);
+
                 UpdateUI();
             }
         }
@@ -42,11 +47,13 @@ public class QuestManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+        questToPrefabMap.Clear();
+
         foreach (var quest in questsConditions)
         {
             if (!quest.isCompleted)
             {
-                AddQuestHolderPrefab(quest.questName, quest.questDescription);
+                AddQuestHolderPrefab(quest);
             }
         }
     }
@@ -57,7 +64,10 @@ public class QuestManager : MonoBehaviour
         foreach (var quest in questHolder)
         {
             quest.isCompleted = false;
+            questToPrefabMap.Clear();
         }
+
+        UpdateUI();
     }
 
     public void GetQuest(Quest newQuest)
@@ -70,14 +80,26 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private void AddQuestHolderPrefab(string questName, string questDescription)
+    private void AddQuestHolderPrefab(Quest quest)
     {
         GameObject instantiatedQuestHolderPrefab = Instantiate(questHolderPrefab, scrollViewContext.transform);
 
         TextMeshProUGUI questHolderQuestName = instantiatedQuestHolderPrefab.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI questHolderQuestDescription = instantiatedQuestHolderPrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        questHolderQuestName.text = questName;
-        questHolderQuestDescription.text = questDescription;
+        questHolderQuestName.text = quest.questName;
+        questHolderQuestDescription.text = quest.questDescription;
+
+        // Dodaj do s³ownika
+        questToPrefabMap.Add(quest, instantiatedQuestHolderPrefab);
+    }
+
+    private void RemoveCompletedQuest(Quest quest)
+    {
+        if (questToPrefabMap.ContainsKey(quest))
+        {
+            Destroy(questToPrefabMap[quest]);
+            questToPrefabMap.Remove(quest);
+        }
     }
 }
