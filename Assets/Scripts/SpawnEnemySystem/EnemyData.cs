@@ -4,5 +4,4 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public GameObject enemyPrefab;
-    public float spawnRate;
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EnemySpawnerSystem : MonoBehaviour
 {
-    [SerializeField] private EnemyData[] enemies;
+    [SerializeField] private EnemyData enemy;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private float firstSpawnDelay = 5f; // OpóŸnienie przed pierwszym spawnowaniem
-
+    [SerializeField] private float firstSpawnDelay = 5f;
+    [SerializeField] private ParticleSystem spawnParticles;
 
     private void Start()
     {
@@ -18,21 +18,15 @@ public class EnemySpawnerSystem : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
-
     private IEnumerator SpawnEnemies()
     {
         yield return new WaitForSeconds(firstSpawnDelay);
 
-        while (true)
+        foreach (var spawnPoint in spawnPoints)
         {
-            foreach (var enemy in enemies)
-            {
-                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-                Instantiate(enemy.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-
-                yield return new WaitForSeconds(enemy.spawnRate);
-            }
+            ParticleSystem particles = Instantiate(spawnParticles, spawnPoint.position, spawnPoint.rotation);
+            particles.Play();
+            Instantiate(enemy.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
-
 }

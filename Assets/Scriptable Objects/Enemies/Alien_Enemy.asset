@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Alien_Enemy
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1017286120208158660, guid: d3df58e245ae3db4ab31cd66cc98a47b, type: 3}
-  spawnRate: 5
+  spawnRate: 1

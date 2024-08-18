@@ -35319,10 +35319,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawnSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 1074311236003213419, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1247905479949821242, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -35362,18 +35358,6 @@ PrefabInstance:
     - target: {fileID: 1247905479949821242, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6254573370789394957, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
-      propertyPath: spawnPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7419716706252684104, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -19.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7419716706252684104, guid: 7cb542954d9fc53479cf123f3f60bae9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

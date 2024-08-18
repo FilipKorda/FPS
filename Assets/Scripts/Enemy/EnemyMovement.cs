@@ -18,6 +18,7 @@ namespace FPS.Enemy
         public float runSpeed = 4;
         public float dieSpeed = 0;
         public bool isGrowl = false;
+        public bool spawnAnimIsOff = false;
 
         private Transform playerTransform;
         public NavMeshAgent Agent;
@@ -45,13 +46,14 @@ namespace FPS.Enemy
 
         private void Start()
         {
+            StartCoroutine(DealySpawnAnimIsOff());
             StartCoroutine(Roam());
             alienAnimator.SetTrigger("IDLE");
         }
 
         private void Update()
         {
-            if (!alienEnemy.isDead)
+            if (!alienEnemy.isDead && spawnAnimIsOff)
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
@@ -76,9 +78,15 @@ namespace FPS.Enemy
             }
         }
 
+        private IEnumerator DealySpawnAnimIsOff()
+        {
+            yield return new WaitForSeconds(1);
+            spawnAnimIsOff = true;
+        }
+
         private IEnumerator Roam()
         {
-            if (!alienEnemy.isDead)
+            if (!alienEnemy.isDead && spawnAnimIsOff)
             {
                 WaitForSeconds wait = new(stillDelay);
 
@@ -109,7 +117,7 @@ namespace FPS.Enemy
 
         private IEnumerator FollowPlayer()
         {
-            if (!alienEnemy.isDead)
+            if (!alienEnemy.isDead && spawnAnimIsOff)
             {
                 alienAnimator.ResetTrigger("IDLE");
                 alienAnimator.ResetTrigger("WALK");
