@@ -11,6 +11,8 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     [SerializeField] private GameObject mainLine;
     [SerializeField] private float mainLineMoveSpeed = 1f;
     [SerializeField] private RectTransform linePuzzleRectTransform;
+    [SerializeField] private GameObject correctNumerPanel;
+    [SerializeField] private TextMeshProUGUI correctNumerText;
 
     private Vector2 startPos;
     private Vector2 endPos;
@@ -22,6 +24,11 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     [SerializeField] private PlayerController playerController;
 
     private bool isInLinePuzzle = false;
+
+    public int correctNumerOne = 0;
+    public int correctNumerTwo = 6;
+    public int correctNumerThree = 7;
+    public int correctNumerFour = 4;
 
     private void Start()
     {
@@ -44,12 +51,14 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         if (isMoving)
         {
             MoveMainLine();
-            CheckLinePuzzleOverlap();
+            CheckLinePuzzleOverlap();          
         }
     }
 
     public void ActiveLinePuzzle()
-    {     
+    {
+        UpdateNumberUI();
+        correctNumerPanel.SetActive(true);
         linePuzzle.SetActive(true);
         mainLine.SetActive(true);
         isInLinePuzzle = true;
@@ -60,6 +69,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
     public void DeactivateLinePuzzle()
     {
+        correctNumerPanel.SetActive(false);
         linePuzzle.SetActive(false);
         mainLine.SetActive(false);
         isInLinePuzzle = false;
@@ -84,6 +94,10 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         return isInLinePuzzle;
     }
 
+    void UpdateNumberUI()
+    {
+        correctNumerText.text = correctNumerOne.ToString();
+    }
     void DisablePlayer()
     {
         mouseLook.canLookAround = true;
@@ -111,7 +125,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
                 if (textComponent != null)
                 {
-                    textComponent.text = (i + 1).ToString();
+                    textComponent.text = i.ToString();
                 }
                 else
                 {
@@ -133,7 +147,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         // zakoñczenie ca³ego procesu Line Puzzle bo nie uda³o ci siê wykonaæ line puzzle
         if (mainLineRectTransform.anchoredPosition.x >= endPos.x)
         {
-            DeactivateLinePuzzle();         
+            DeactivateLinePuzzle();
         }
     }
 
@@ -141,7 +155,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     {
         RectTransform mainLineRectTransform = mainLine.GetComponent<RectTransform>();
 
-        // Górna i dolna po³owa mainLine
         Vector2 topPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y + mainLineRectTransform.rect.height / 8);
         Vector2 bottomPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y - mainLineRectTransform.rect.height / 8);
 
@@ -149,13 +162,28 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         {
             RectTransform puzzleImageRectTransform = puzzleImage.GetComponent<RectTransform>();
 
-            // Sprawdzanie, czy górna lub dolna czêœæ mainLine nachodzi na puzzleImage
+            NumerLinePuzzle numerLinePuzzle = puzzleImage.GetComponent<NumerLinePuzzle>();
+
             if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, topPoint, null) ||
                 RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, bottomPoint, null))
             {
-                Debug.Log($"MainLine overlaps with {puzzleImage.name}");
+                Debug.Log($"MainLine overlaps with {numerLinePuzzle.number}");
+
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (numerLinePuzzle.number == correctNumerOne)
+                    {
+                        Debug.Log("You win");
+                        DeactivateLinePuzzle();
+                    }
+                    else
+                    {
+                        Debug.Log("You lose");
+                        DeactivateLinePuzzle();
+                    }
+                }
             }
-        }
+        }     
     }
 
     private void OnDrawGizmos()
@@ -166,7 +194,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
             Vector2 topPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y + mainLineRectTransform.rect.height / 8);
             Vector2 bottomPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y - mainLineRectTransform.rect.height / 8);
 
-            // Draw top and bottom points
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(topPoint, 5f);
             Gizmos.DrawSphere(bottomPoint, 5f);
