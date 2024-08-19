@@ -1,4 +1,3 @@
-using FPS.Guns.Demo;
 using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
@@ -15,6 +14,7 @@ public class InteractionManager : MonoBehaviour
     private INpc currentlyNpc;
     private IDoorController currentlyDoorController;
     private ICardHolder currentlyCardHolder;
+    private ILinePuzzle currentLinePuzzle;
 
 
     void Start()
@@ -106,7 +106,6 @@ public class InteractionManager : MonoBehaviour
                 currentlyDoorController = null;
             }
 
-
             currentlyCardHolder?.DeactiveHint();
             if (hit.collider.TryGetComponent<ICardHolder>(out var iCardHolder))
             {
@@ -117,6 +116,25 @@ public class InteractionManager : MonoBehaviour
             else
             {
                 currentlyCardHolder = null;
+            }
+
+
+            currentLinePuzzle?.ResetHighlight();
+            if (hit.collider.TryGetComponent<ILinePuzzle>(out var iLinePuzzle))
+            {
+                currentLinePuzzle = iLinePuzzle;
+                if (currentLinePuzzle.IsInLinePuzzle())
+                {                  
+                    iLinePuzzle.ResetHighlight();
+                }
+                else
+                {
+                    iLinePuzzle.Highlight();
+                }
+            }
+            else
+            {
+                currentLinePuzzle = null;
             }
 
 
@@ -154,11 +172,16 @@ public class InteractionManager : MonoBehaviour
                 currentlyDoorController = null;
             }
 
-
             if (currentlyCardHolder != null)
             {
                 currentlyCardHolder.DeactiveHint();
                 currentlyCardHolder = null;
+            }
+
+            if (currentLinePuzzle != null)
+            {
+                currentLinePuzzle.ResetHighlight();
+                currentLinePuzzle = null;
             }
 
         }
@@ -210,7 +233,12 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<ICardHolder>(out var iCardHolder))
             {
-                iCardHolder.UseCard();            
+                iCardHolder.UseCard();
+            }
+
+            if (hit.collider.TryGetComponent<ILinePuzzle>(out var iLinePuzzle))
+            {
+                iLinePuzzle.ActiveLinePuzzle();
             }
         }
     }

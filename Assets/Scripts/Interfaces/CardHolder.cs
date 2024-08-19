@@ -7,6 +7,8 @@ public class CardHolder : MonoBehaviour, ICardHolder
 {
     [SerializeField] private GameObject hint_Panel;
     [SerializeField] private TextMeshProUGUI hint_Text;
+    [SerializeField] private float timeUntilGateOpen = 1f;
+    [SerializeField] private float heightToGateOpen = 2.75f;
 
     private string HintString
     {
@@ -103,6 +105,6 @@ public class CardHolder : MonoBehaviour, ICardHolder
     {
         cardObject.SetActive(true);
         cardHolder.SetActive(false);
-        gate.transform.DOMoveY(gate.transform.position.y + 2.75f, 1f).SetEase(Ease.OutQuad);
+        gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen).SetEase(Ease.OutQuad);
     }
 }
