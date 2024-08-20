@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,15 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     public int correctNumerThree = 7;
     public int correctNumerFour = 4;
 
+    private readonly float shakeDuration = 0.2f;
+    private readonly float shakeMagnitude = 2f;
+    private Vector3 originalPosition;
+
+    private bool correctNumberOneWasPreesed;
+    private bool correctNumberTwoWasPreesed;
+    private bool correctNumberThreeWasPreesed;
+    private bool correctNumberFourWasPreesed;
+
     private void Start()
     {
         originalColorRenderer = GetComponent<Renderer>();
@@ -39,6 +49,11 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         endPos = new Vector2(linePuzzleRectTransform.rect.width / 2, mainLine.GetComponent<RectTransform>().anchoredPosition.y);
 
         AssignNumbersToText();
+
+        if (linePuzzle != null)
+        {
+            originalPosition = linePuzzle.transform.localPosition;
+        }
     }
 
     void StartToMoveMainLine()
@@ -51,13 +66,17 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         if (isMoving)
         {
             MoveMainLine();
-            CheckLinePuzzleOverlap();          
+            CheckLinePuzzleOverlap();
         }
     }
 
     public void ActiveLinePuzzle()
     {
-        UpdateNumberUI();
+        PlayerSingleton.Instance.canShoot = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        UpdateNumberOneUI();
         correctNumerPanel.SetActive(true);
         linePuzzle.SetActive(true);
         mainLine.SetActive(true);
@@ -65,16 +84,74 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         DisablePlayer();
         StartToMoveMainLine();
         MainLineAtStartPosition();
+        EnableButtons();
     }
 
     public void DeactivateLinePuzzle()
     {
+        PlayerSingleton.Instance.canShoot = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         correctNumerPanel.SetActive(false);
         linePuzzle.SetActive(false);
         mainLine.SetActive(false);
         isInLinePuzzle = false;
         EnablePlayer();
         isMoving = false;
+    }
+
+    public void ShakeAfterLosePuzzle()
+    {
+        isMoving = false;
+        if (linePuzzle != null)
+        {
+            StartCoroutine(Shake());
+        }
+    }
+
+    void DisableButtons()
+    {
+        foreach (GameObject puzzleImage in linePuzzleNumberImage)
+        {
+            Button button = puzzleImage.GetComponent<Button>();
+
+            button.interactable = false;
+        }
+    }
+
+    void EnableButtons()
+    {
+        foreach (GameObject puzzleImage in linePuzzleNumberImage)
+        {
+            Button button = puzzleImage.GetComponent<Button>();
+
+            button.interactable = true;
+        }
+    }
+
+    private IEnumerator Shake()
+    {
+        DisableButtons();
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
+            float offsetY = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            linePuzzle.transform.localPosition = originalPosition + new Vector3(offsetX, offsetY, 0f);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        linePuzzle.transform.localPosition = originalPosition;
+
+        yield return new WaitForSeconds(1);
+        DeactivateLinePuzzle();
     }
 
     public void Highlight()
@@ -94,10 +171,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         return isInLinePuzzle;
     }
 
-    void UpdateNumberUI()
-    {
-        correctNumerText.text = correctNumerOne.ToString();
-    }
     void DisablePlayer()
     {
         mouseLook.canLookAround = true;
@@ -144,10 +217,18 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         RectTransform mainLineRectTransform = mainLine.GetComponent<RectTransform>();
         mainLineRectTransform.anchoredPosition = Vector2.MoveTowards(mainLineRectTransform.anchoredPosition, endPos, mainLineMoveSpeed * Time.deltaTime);
 
-        // zakoñczenie ca³ego procesu Line Puzzle bo nie uda³o ci siê wykonaæ line puzzle
         if (mainLineRectTransform.anchoredPosition.x >= endPos.x)
         {
-            DeactivateLinePuzzle();
+            if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && correctNumberThreeWasPreesed && correctNumberFourWasPreesed)
+            {
+                Debug.Log("Win");
+                DeactivateLinePuzzle();
+            }
+            else
+            {
+                ShakeAfterLosePuzzle();
+            }
+
         }
     }
 
@@ -164,26 +245,85 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
             NumerLinePuzzle numerLinePuzzle = puzzleImage.GetComponent<NumerLinePuzzle>();
 
+            Button button = puzzleImage.GetComponent<Button>();
+
             if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, topPoint, null) ||
                 RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, bottomPoint, null))
             {
                 Debug.Log($"MainLine overlaps with {numerLinePuzzle.number}");
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (numerLinePuzzle.number == correctNumerOne)
                 {
-                    if (numerLinePuzzle.number == correctNumerOne)
+                    // Sprawdzamy, czy u¿ytkownik klikn¹³ na przycisk i czy mainLine nachodzi na przycisk
+                    if (button != null && Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("You win");
-                        DeactivateLinePuzzle();
+                        // Sprawdzamy, czy punkt klikniêcia mieœci siê w obszarze przycisku
+                        if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
+                        {
+                            Debug.Log("Button clicked !" + button);
+                            UpdateNumberTwoUI();
+                        }
+                       
                     }
-                    else
+                }
+                if (correctNumberOneWasPreesed && numerLinePuzzle.number == correctNumerTwo)
+                {
+                    if (button != null && Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("You lose");
-                        DeactivateLinePuzzle();
+                        if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
+                        {
+                            Debug.Log("Button clicked !" + button);
+                            UpdateNumberThreeUI();
+                        }
+                        
+                    }
+                }
+                if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && numerLinePuzzle.number == correctNumerThree)
+                {
+                    if (button != null && Input.GetMouseButtonDown(0))
+                    {
+                        if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
+                        {
+                            Debug.Log("Button clicked !" + button);
+                            UpdateNumberFourUI();
+                        }
+                       
+                    }
+                }
+                if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && correctNumberThreeWasPreesed && numerLinePuzzle.number == correctNumerFour)
+                {
+                    if (button != null && Input.GetMouseButtonDown(0))
+                    {
+                        if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
+                        {
+                            correctNumberFourWasPreesed = true;
+                            correctNumerPanel.SetActive(false);
+                        }
+                       
                     }
                 }
             }
-        }     
+        }
+    }
+
+    void UpdateNumberOneUI()
+    {
+        correctNumerText.text = correctNumerOne.ToString();
+    }
+    void UpdateNumberTwoUI()
+    {
+        correctNumerText.text = correctNumerTwo.ToString();
+        correctNumberOneWasPreesed = true;
+    }
+    void UpdateNumberThreeUI()
+    {
+        correctNumerText.text = correctNumerThree.ToString();
+        correctNumberTwoWasPreesed = true;
+    }
+    void UpdateNumberFourUI()
+    {
+        correctNumerText.text = correctNumerFour.ToString();
+        correctNumberThreeWasPreesed = true;
     }
 
     private void OnDrawGizmos()

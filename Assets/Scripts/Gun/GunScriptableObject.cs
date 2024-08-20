@@ -78,7 +78,6 @@ namespace FPS.Guns
 
         public void Tick(bool WantsToShoot)
         {
-
             Model.transform.localRotation = Quaternion.Lerp(
             Model.transform.localRotation,
             Quaternion.Euler(SpawnRotation),
@@ -118,7 +117,7 @@ namespace FPS.Guns
 
         private void TryToShoot()
         {
-            if (!DialogueManager.Instance.isTalking && !MainInventory.Instance.isPanelActive)
+            if (PlayerSingleton.Instance.canShoot && !DialogueManager.Instance.isTalking && !MainInventory.Instance.isPanelActive)
             {
                 if (Time.time - LastShootTime - ShootConfig.FireRate > Time.deltaTime)
                 {

@@ -3047,6 +3047,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickNumberFour
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 4
@@ -10035,6 +10079,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickNumberThree
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 7
@@ -15459,6 +15535,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 587897120}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShakeAfterLosePuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NumerLinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 2
@@ -15478,6 +15598,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
   m_PrefabInstance: {fileID: 587897117}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &587897120 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+  m_PrefabInstance: {fileID: 587897117}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587897119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8883f22024b91147aefc4983049758a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &588575431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1603305201957261305, guid: 7b6b98026a58f2d4ba0743ebe3cf066c, type: 3}
@@ -23304,6 +23435,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShakeAfterLosePuzzle
+      objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 5
@@ -25126,6 +25265,38 @@ PrefabInstance:
     - target: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickNumberTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
@@ -30283,6 +30454,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1218543479}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShakeAfterLosePuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NumerLinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 3
@@ -30302,6 +30517,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
   m_PrefabInstance: {fileID: 1218543476}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1218543479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+  m_PrefabInstance: {fileID: 1218543476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218543478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8883f22024b91147aefc4983049758a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1220235875
 GameObject:
   m_ObjectHideFlags: 0
@@ -39264,6 +39490,14 @@ PrefabInstance:
     - target: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShakeAfterLosePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
@@ -51701,6 +51935,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickNumberTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
       value: 1
@@ -52030,6 +52296,14 @@ PrefabInstance:
     - target: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: m_Name
       value: LinePuzzle_Number_Image (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ShakeAfterLosePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
@@ -57911,6 +58185,42 @@ PrefabInstance:
     - target: {fileID: 2674412244708183003, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: m_Name
       value: LinePuzzle_Number_Image
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 201607585}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickNumberOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LinePuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6046965801550676995, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786015037388031313, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6859113593014838482, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7947684938716254762, guid: 686dfb55b6851db4a95ea7eb26fb053a, type: 3}
       propertyPath: number
