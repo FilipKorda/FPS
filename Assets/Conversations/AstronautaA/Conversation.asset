@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
+  m_Name: Conversation
+  m_EditorClassIdentifier: 
+  conversation:
+  - Name: You
+    Sentences:
+    - Siema
+    - "Co tutaj sie sta\u0142o?!?!?1"
+    - czy cos ci jest xd
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Oklahoma
+    Sentences:
+    - "Nie nic sie nie sta\u0142o xd"
+    - .....
+    - "oczywiscie ze sie sta\u0142o ja tu umieram"
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - "ale co sie sta\u0142o, pomoge ci"
+    - ale powiedz jak
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: Oklahoma
+    Sentences:
+    - 'mi sie juz nie da pomoc '
+    - 'ale ja ci moge pomoc '
+    - posluchaj mnie
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - "okej dobra m\xF3w szybko"
+    - "nie wiem ile ci czasu zosta\u0142o"
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: Oklahoma
+    Sentences:
+    - 'Dobra '
+    - to miejsce jest bardzo dziwne, pewlno tu zombie a jestesmy na marsie xd
+    - 'szybko uciekaj stad '
+    - "masz tu pare zada\u0107 one ppmoga ci uciec"
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}

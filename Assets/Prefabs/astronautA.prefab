@@ -274,8 +274,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35263634, y: 0.8132745, z: 0.29115757}
-  m_Center: {x: -0.006752968, y: 0.40704203, z: 0.011930889}
+  m_Size: {x: 0.4, y: 0.4, z: 0.3}
+  m_Center: {x: 0, y: 0.4, z: 0.25}
 --- !u!114 &915622751062570248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,8 +291,8 @@ MonoBehaviour:
   npcName: Oklahoma
   talkToNPC_Panel: {fileID: 0}
   hintText: {fileID: 0}
-  conversationData: {fileID: 11400000, guid: 65fa53d74b7cade468fcccd2ae4e501f, type: 2}
-  secondConversationData: {fileID: 11400000, guid: 159f9a1eecad6c346a235fc32ea2b561, type: 2}
+  conversationData: {fileID: 11400000, guid: e39f260cbdd6a144e914bcf793adcc87, type: 2}
+  secondConversationData: {fileID: 11400000, guid: e9c6218375fd749428e93b0f22a9203c, type: 2}
   wasOpen: 0
 --- !u!1 &5993416395545098474
 GameObject:
