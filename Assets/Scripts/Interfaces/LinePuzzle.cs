@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class LinePuzzle : MonoBehaviour, ILinePuzzle
 {
+    [Header("Puzzle Mechanics")]
     private Color originalColor;
     private Renderer originalColorRenderer;
 
@@ -40,8 +41,21 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     private bool correctNumberThreeWasPreesed;
     private bool correctNumberFourWasPreesed;
 
+    private bool youPassedThePuzzle;
+
+
+    [Header("Platform Moving")]
+    public Transform platformObject;
+    public Transform pointA;
+    public Transform pointB;
+    public float moveSpeed = 0.45f;
+    private bool isPlatformMoving = false;
+    private float t = 0.0f;
+
     private void Start()
     {
+        youPassedThePuzzle = false;
+
         originalColorRenderer = GetComponent<Renderer>();
         originalColor = originalColorRenderer.material.color;
 
@@ -67,6 +81,11 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         {
             MoveMainLine();
             CheckLinePuzzleOverlap();
+        }
+
+        if (isPlatformMoving && platformObject != null)
+        {
+            MovePlatformToNextPoint();
         }
     }
 
@@ -221,8 +240,10 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         {
             if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && correctNumberThreeWasPreesed && correctNumberFourWasPreesed)
             {
-                Debug.Log("Win");
+                Debug.Log("Platform Move and u win the puzzle!");
+                youPassedThePuzzle = true;
                 DeactivateLinePuzzle();
+                ActivatePlatform();
             }
             else
             {
@@ -263,7 +284,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                             Debug.Log("Button clicked !" + button);
                             UpdateNumberTwoUI();
                         }
-                       
+
                     }
                 }
                 if (correctNumberOneWasPreesed && numerLinePuzzle.number == correctNumerTwo)
@@ -275,7 +296,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                             Debug.Log("Button clicked !" + button);
                             UpdateNumberThreeUI();
                         }
-                        
+
                     }
                 }
                 if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && numerLinePuzzle.number == correctNumerThree)
@@ -287,7 +308,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                             Debug.Log("Button clicked !" + button);
                             UpdateNumberFourUI();
                         }
-                       
+
                     }
                 }
                 if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && correctNumberThreeWasPreesed && numerLinePuzzle.number == correctNumerFour)
@@ -299,7 +320,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                             correctNumberFourWasPreesed = true;
                             correctNumerPanel.SetActive(false);
                         }
-                       
+
                     }
                 }
             }
@@ -337,6 +358,27 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(topPoint, 5f);
             Gizmos.DrawSphere(bottomPoint, 5f);
+        }
+    }
+
+
+    //Platform Moving 
+    public void ActivatePlatform()
+    {
+        if (!isPlatformMoving && youPassedThePuzzle)
+        {
+            isPlatformMoving = true;
+            t = 0.0f;
+        }
+    }
+
+    void MovePlatformToNextPoint()
+    {
+        t += Time.deltaTime * moveSpeed;
+        platformObject.position = Vector3.Lerp(pointA.position, pointB.position, t);
+        if (t >= 1.0f)
+        {
+            isMoving = false;
         }
     }
 }
