@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ClipPrevention : MonoBehaviour
@@ -7,6 +5,7 @@ public class ClipPrevention : MonoBehaviour
     public GameObject clipProjector;
     public float checkDistance;
     public Vector3 newDirection;
+    public LayerMask layerToClipGun; //Default
 
     float lerpPos;
     RaycastHit hit;
@@ -14,7 +13,7 @@ public class ClipPrevention : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance))
+        if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance, layerToClipGun))
         {
             lerpPos = 1 - (hit.distance / checkDistance);
         }

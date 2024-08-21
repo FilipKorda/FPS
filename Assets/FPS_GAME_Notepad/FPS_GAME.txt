@@ -1,0 +1,21 @@
+Introduction:
+The first segment is only a guide, 
+
+- It involves movement and getting bandages, oxygen tanks.
+- Talking to NPCs.
+- Talking to an NPC usually gives you the quests that are under the "CAPS LOCK" key, they direct you to what you need to do at a given moment.
+- Checking how to shoot.
+- Seeing that you have a helmet that automatically opens when you are outside because the whole action takes place on Mars.
+- When you are outside your oxygen decreases, when the oxygen reaches the critical level = 0 you start to slowly lose health points.
+- When you are indoors you are in a place where there is oxygen and you do not need a helmet to provide you with oxygen outside.
+- Checking how the ammo pack works.
+- Beware of zombies.
+- You can exchange weapons for other better/worse ones.
+- You can check how grenades work, there are 2 types, smoke and explosive, each of them has an individual feature.
+- Card system to open doors.
+- By pressing the "T" button you have a vision of an eagle that highlights interesting places, such as grenades, ammo packs, bandages, quests etc.
+
+===================== THE GOAL ==================
+To get to the next segment you need to go up the stairs, 
+open the bridge and cross the bridge to pick up the green card which you need to open the main hangar.
+=================================================

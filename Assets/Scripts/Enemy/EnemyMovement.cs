@@ -118,7 +118,7 @@ namespace FPS.Enemy
         private IEnumerator FollowPlayer()
         {
             if (!alienEnemy.isDead && spawnAnimIsOff)
-            {
+            {               
                 alienAnimator.ResetTrigger("IDLE");
                 alienAnimator.ResetTrigger("WALK");
                 alienAnimator.SetTrigger("RUN");

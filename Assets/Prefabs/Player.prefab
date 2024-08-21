@@ -621,6 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d49b772f35c54ca5f42b15108b150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraShakeDuration: 0.75
+  cameraShakeMagnitude: 0.1
 --- !u!1 &4295839087730352274
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,3 +934,6 @@ MonoBehaviour:
   clipProjector: {fileID: 717366398393510208}
   checkDistance: 1
   newDirection: {x: 35, y: -90, z: 0}
+  layerToClipGun:
+    serializedVersion: 2
+    m_Bits: 1

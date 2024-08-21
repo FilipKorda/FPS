@@ -7,11 +7,11 @@ public class AvalancheMeteorites : MonoBehaviour
     public Transform pointB;
     public float speed = 1.0f;
 
-    private bool shouldMove = false;
-    private bool playerColideWithCollider = false;
+    public bool shouldMove = false;
+    public bool playerColideWithCollider = false;
     private float lerpTime = 0;
 
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
         if (!playerColideWithCollider && other.CompareTag("Player"))
         {
@@ -19,7 +19,7 @@ public class AvalancheMeteorites : MonoBehaviour
             playerColideWithCollider = true;
             CameraShake.Instance.AlarmPlayer();
         }
-    }
+    }*/
 
     void Update()
     {
@@ -31,7 +31,7 @@ public class AvalancheMeteorites : MonoBehaviour
             if (lerpTime >= 1)
             {
                 shouldMove = false;
-                lerpTime = 0;
+                lerpTime = 0;               
             }
         }
     }
