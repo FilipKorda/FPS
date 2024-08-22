@@ -67,6 +67,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         if (isInside)
         {
+            if (PlayerSingleton.Instance.marsHurricaneController.isHurricaneActive)
+            {
+                PlayerSingleton.Instance.marsHurricaneController.DeactivePs_MarsHurricane();
+            }
+
             if (filterMaks != null)
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
@@ -75,6 +80,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         }
         else
         {
+            if (PlayerSingleton.Instance.marsHurricaneController.isHurricaneActive)
+            {
+                PlayerSingleton.Instance.marsHurricaneController.ActivePs_MarsHurricane();
+            }
+
             if (filterMaks != null)
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);

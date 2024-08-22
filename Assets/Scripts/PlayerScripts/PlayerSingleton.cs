@@ -4,6 +4,8 @@ public class PlayerSingleton : MonoBehaviour
 {
     public static PlayerSingleton Instance { get; private set; }
 
+    public MarsHurricaneController marsHurricaneController;
+
     public bool canShoot = true;
 
     private void Awake()
@@ -12,5 +14,10 @@ public class PlayerSingleton : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        marsHurricaneController.GetComponent<MarsHurricaneController>();
     }
 }

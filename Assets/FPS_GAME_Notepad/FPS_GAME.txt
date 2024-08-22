@@ -14,6 +14,7 @@ The first segment is only a guide,
 - You can check how grenades work, there are 2 types, smoke and explosive, each of them has an individual feature.
 - Card system to open doors.
 - By pressing the "T" button you have a vision of an eagle that highlights interesting places, such as grenades, ammo packs, bandages, quests etc.
+- MarsHurricane system for fog and much more.
 
 ===================== THE GOAL ==================
 To get to the next segment you need to go up the stairs, 
