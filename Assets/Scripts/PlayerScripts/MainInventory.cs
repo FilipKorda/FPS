@@ -81,6 +81,19 @@ public class MainInventory : MonoBehaviour
     public int blueCard = 0;
     public string blueCardName = "Blue Card";
 
+
+    [Header("========= Fuel Can ==========")]
+    [Space(5)]
+    [SerializeField] private Color fuelCanColor;
+    [SerializeField] private GameObject fuelCanPrefab;
+    [SerializeField] private Sprite fuelCanIcon;
+    private Image fuelCanMainImage;
+    private TextMeshProUGUI fuelCanNameText;
+    private Image fuelCanImage;
+    private GameObject instantiatedFuelCanPrefab;
+    public int fuelCan = 0;
+    public string fuelCanName = "Fuel Can";
+
     private void Awake()
     {
         Instance = this;
@@ -90,7 +103,7 @@ public class MainInventory : MonoBehaviour
     {
         ButtonTabPanel.SetActive(false);
         inventory.SetActive(true);
-      
+
         buttonInventory.GetComponentInChildren<TextMeshProUGUI>().color = highlightButton;
     }
 
@@ -245,8 +258,20 @@ public class MainInventory : MonoBehaviour
         UpdateAmountOfHealthBandageNumber();
     }
 
+
+    public void AddFuelCan()
+    {
+        FuelCanQuestPrefabItemsGUI();
+        fuelCan++;
+    }
+    public void RemoveFuelCan()
+    {
+        Destroy(instantiatedFuelCanPrefab);
+        fuelCan--;
+    }
+
     public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
-    {      
+    {
         if (isRedCard)
         {
             RedCardQuestPrefabItemsGUI();
@@ -315,5 +340,17 @@ public class MainInventory : MonoBehaviour
         blueCardMainImage.color = blueCardColor;
         blueCardImage.sprite = blueCardIcon;
         blueCardNameText.text = blueCardName;
+    }
+
+    private void FuelCanQuestPrefabItemsGUI()
+    {
+        instantiatedFuelCanPrefab = Instantiate(fuelCanPrefab, items.transform);
+        fuelCanMainImage = instantiatedFuelCanPrefab.GetComponent<Image>();
+        fuelCanNameText = instantiatedFuelCanPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        fuelCanImage = instantiatedFuelCanPrefab.transform.GetChild(1).GetComponent<Image>();
+
+        fuelCanMainImage.color = fuelCanColor;
+        fuelCanImage.sprite = fuelCanIcon;
+        fuelCanNameText.text = fuelCanName;
     }
 }

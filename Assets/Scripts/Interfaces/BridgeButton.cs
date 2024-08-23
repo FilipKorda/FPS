@@ -32,8 +32,6 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         if (points.Length == 0)
             return;
 
-
-
         Vector3 direction = points[currentPoint].position - platform.transform.position;
 
         direction.Normalize();
@@ -67,10 +65,8 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 
     public void Highlight()
     {
-
         NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Activate Bridge!");
         originalColorRenderer.material.color = Color.yellow;
-
     }
 
     public void ResetHighlight()

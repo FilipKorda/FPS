@@ -436,6 +436,10 @@ MonoBehaviour:
   instantiatedBlueCardPrefab: {fileID: 0}
   blueCard: 0
   blueCardName: Blue Card
+  fuelCanColor: {r: 1, g: 0, b: 0, a: 0.39215687}
+  fuelCanPrefab: {fileID: 2906487599698792156, guid: 401a06334cd1db74a9c6b67af9c026e8, type: 3}
+  fuelCanIcon: {fileID: 21300000, guid: 1914ca5666a225145acdc2b3faa6f9bd, type: 3}
+  fuelCanName: Fuel Can
 --- !u!114 &7030066217234686974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +457,7 @@ MonoBehaviour:
   transitionDuration: 4
   hurricaneDuration: 30
   ps_MarsHurricane: {fileID: 8990859417681823291}
+  isHurricaneActive: 0
 --- !u!1 &3137869256399922481
 GameObject:
   m_ObjectHideFlags: 0

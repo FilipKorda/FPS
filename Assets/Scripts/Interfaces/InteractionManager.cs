@@ -15,6 +15,7 @@ public class InteractionManager : MonoBehaviour
     private IDoorController currentlyDoorController;
     private ICardHolder currentlyCardHolder;
     private ILinePuzzle currentLinePuzzle;
+    private IFuelCan currentFuelCan;
 
 
     void Start()
@@ -67,13 +68,11 @@ public class InteractionManager : MonoBehaviour
                 {
                     iBridgeController.ResetHighlight();
                 }
-
             }
             else
             {
                 currentlyBridgeController = null;
             }
-
 
             currentlyNpc?.DeactiveHint();
             if (hit.collider.TryGetComponent<INpc>(out var iNpc))
@@ -111,7 +110,6 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyCardHolder = iCardHolder;
                 iCardHolder.ActiveHint();
-
             }
             else
             {
@@ -124,7 +122,7 @@ public class InteractionManager : MonoBehaviour
             {
                 currentLinePuzzle = iLinePuzzle;
                 if (currentLinePuzzle.IsInLinePuzzle())
-                {                  
+                {
                     iLinePuzzle.ResetHighlight();
                 }
                 else
@@ -135,6 +133,17 @@ public class InteractionManager : MonoBehaviour
             else
             {
                 currentLinePuzzle = null;
+            }
+
+            currentFuelCan?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IFuelCan>(out var iFuelCan))
+            {
+                currentFuelCan = iFuelCan;
+                iFuelCan.Highlight();
+            }
+            else
+            {
+                currentFuelCan = null;
             }
 
 
@@ -182,6 +191,12 @@ public class InteractionManager : MonoBehaviour
             {
                 currentLinePuzzle.ResetHighlight();
                 currentLinePuzzle = null;
+            }
+
+            if (currentFuelCan != null)
+            {
+                currentFuelCan.ResetHighlight();
+                currentFuelCan = null;
             }
 
         }
@@ -239,6 +254,11 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<ILinePuzzle>(out var iLinePuzzle))
             {
                 iLinePuzzle.ActiveLinePuzzle();
+            }
+
+            if (hit.collider.TryGetComponent<IFuelCan>(out var iFuelCan))
+            {
+                iFuelCan.StartLoadFuelCan();
             }
         }
     }

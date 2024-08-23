@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 {
-    public Transform targetObject; // Obiekt, który chcemy poruszaæ
-    public Transform pointA; // Punkt A
-    public Transform pointB; // Punkt B
-    public float moveSpeed = 1.0f; // Prêdkoœæ ruchu
+    public Transform targetObject; 
+    public Transform pointA; 
+    public Transform pointB; 
+    public float moveSpeed = 1.0f;
 
     private Color originalColor;
     private Renderer originalColorRenderer;
-    private bool isMoving = false; // Flaga, czy obiekt siê porusza
-    private float t = 0.0f; // Czas do Lerp
+    private bool isMoving = false; 
+    private float t = 0.0f; 
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
         if (!isMoving)
         {
             isMoving = true;
-            t = 0.0f; // Resetowanie czasu
+            t = 0.0f;
         }
     }
 
@@ -37,13 +37,10 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     void MovePlatformToNextPoint()
     {
-        // Zwiêkszamy czas t w zale¿noœci od prêdkoœci
         t += Time.deltaTime * moveSpeed;
 
-        // Przesuwamy targetObject miêdzy punktami A i B
         targetObject.position = Vector3.Lerp(pointA.position, pointB.position, t);
 
-        // Zatrzymanie ruchu, gdy osi¹gniemy punkt B
         if (t >= 1.0f)
         {
             isMoving = false;
