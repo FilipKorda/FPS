@@ -11,6 +11,7 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
     private Color[] originalColors;
 
     public bool isFuelFull = false;
+    private bool isFuelCan = false;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
 
     public void StartLoadFuelCan()
     {
-        if (MainInventory.Instance.fuelCan > 0)
+        if (MainInventory.Instance.currentfuelCans > 0)
         {
             meshRenderer.enabled = false;
             fuelCanAnimation.SetActive(true);
@@ -34,6 +35,7 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
             fuelPs.Play();
             MainInventory.Instance.RemoveFuelCan();
             isFuelFull = true;
+            isFuelCan = true;
         }
         else
         {
@@ -61,6 +63,11 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
         {
             materials[i].color = originalColors[i];
         }
+    }
+
+    public bool IsFuelCan()
+    {
+        return isFuelCan;
     }
 
 }

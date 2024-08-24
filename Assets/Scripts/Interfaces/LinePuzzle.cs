@@ -19,6 +19,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     private Vector2 startPos;
     private Vector2 endPos;
     private bool isMoving = false;
+    private bool isPuzzleFinish = false;
 
     [SerializeField] private GameObject[] linePuzzleNumberImage;
 
@@ -188,6 +189,11 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     public bool IsInLinePuzzle()
     {
         return isInLinePuzzle;
+    }
+
+    public bool IsInLinePuzzleFinish()
+    {
+        return isPuzzleFinish;
     }
 
     void DisablePlayer()
@@ -365,6 +371,8 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     //Platform Moving 
     public void ActivatePlatform()
     {
+        isPuzzleFinish = true;
+
         if (!isPlatformMoving && youPassedThePuzzle)
         {
             isPlatformMoving = true;

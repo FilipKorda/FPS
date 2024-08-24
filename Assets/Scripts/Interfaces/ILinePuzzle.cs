@@ -5,4 +5,5 @@ public interface ILinePuzzle
     public void ResetHighlight();
 
     public bool IsInLinePuzzle();
+    public bool IsInLinePuzzleFinish();
 }

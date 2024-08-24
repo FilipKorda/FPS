@@ -16,6 +16,7 @@ public class InteractionManager : MonoBehaviour
     private ICardHolder currentlyCardHolder;
     private ILinePuzzle currentLinePuzzle;
     private IFuelCan currentFuelCan;
+    private IOpenHangar currentOpenHangar;
 
 
     void Start()
@@ -27,7 +28,6 @@ public class InteractionManager : MonoBehaviour
     {
         Vector3 playerPosition = transformPosition.position;
         Vector3 playerDirection = transformPosition.forward;
-
 
         if (Physics.Raycast(playerPosition, playerDirection, out RaycastHit hit, maxRaycastDistance))
         {
@@ -127,7 +127,15 @@ public class InteractionManager : MonoBehaviour
                 }
                 else
                 {
-                    iLinePuzzle.Highlight();
+                    if (currentLinePuzzle.IsInLinePuzzleFinish())
+                    {
+                        iLinePuzzle.ResetHighlight();
+                    }
+                    else
+                    {
+                        iLinePuzzle.Highlight();
+                    }
+
                 }
             }
             else
@@ -139,11 +147,40 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IFuelCan>(out var iFuelCan))
             {
                 currentFuelCan = iFuelCan;
-                iFuelCan.Highlight();
+                if (iFuelCan.IsFuelCan())
+                {
+                    iFuelCan.ResetHighlight();
+                }
+                else
+                {
+                    iFuelCan.Highlight();
+                }
+
             }
             else
             {
                 currentFuelCan = null;
+            }
+
+            currentOpenHangar?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IOpenHangar>(out var iOpenHangar))
+            {
+                currentOpenHangar = iOpenHangar;
+
+                if (currentOpenHangar.IsOpenGate())
+                {
+                    iOpenHangar.ResetHighlight();
+                }
+                else
+                {
+                    iOpenHangar.Highlight();
+                }
+
+
+            }
+            else
+            {
+                currentOpenHangar = null;
             }
 
 
@@ -198,6 +235,11 @@ public class InteractionManager : MonoBehaviour
                 currentFuelCan.ResetHighlight();
                 currentFuelCan = null;
             }
+            if (currentOpenHangar != null)
+            {
+                currentOpenHangar.ResetHighlight();
+                currentOpenHangar = null;
+            }
 
         }
 
@@ -240,7 +282,7 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<IDoorController>(out var iDoorController))
             {
-                if (!currentlyDoorController.IsIsOpen())
+                if (!iDoorController.IsIsOpen())
                 {
                     iDoorController.OpenDoor();
                 }
@@ -253,12 +295,24 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<ILinePuzzle>(out var iLinePuzzle))
             {
-                iLinePuzzle.ActiveLinePuzzle();
+                if(!iLinePuzzle.IsInLinePuzzleFinish())
+                {
+                    iLinePuzzle.ActiveLinePuzzle();
+                }
+              
             }
 
             if (hit.collider.TryGetComponent<IFuelCan>(out var iFuelCan))
             {
                 iFuelCan.StartLoadFuelCan();
+            }
+
+            if (hit.collider.TryGetComponent<IOpenHangar>(out var iOpenHangar))
+            {
+                if (iOpenHangar.CanOpenGate())
+                {
+                    iOpenHangar.OpenGateHangar();
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AnswerTwo
   m_EditorClassIdentifier: 
   conversation:
-  - Name: Steve
+  - Name: Oklahoma
     Sentences:
     - "Odpowied\u017A dwa"
     isAskingQuestion: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
-    questToGive: {fileID: 11400000, guid: 52f1c5da69b4f07479596f97aec5d998, type: 2}
+    questToGive: {fileID: 0}
   - Name: You
     Sentences:
     - green card nice
@@ -30,4 +30,4 @@ MonoBehaviour:
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
-    questToGive: {fileID: 11400000, guid: 605ffe7103459654c8e29f0c240928e3, type: 2}
+    questToGive: {fileID: 0}

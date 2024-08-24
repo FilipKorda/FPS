@@ -4,4 +4,5 @@ public interface IFuelCan
     public void ResetHighlight();
 
     public void StartLoadFuelCan();
+    public bool IsFuelCan();
 }

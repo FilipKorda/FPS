@@ -91,7 +91,8 @@ public class MainInventory : MonoBehaviour
     private TextMeshProUGUI fuelCanNameText;
     private Image fuelCanImage;
     private GameObject instantiatedFuelCanPrefab;
-    public int fuelCan = 0;
+    public int currentfuelCans;
+    public int fuelCanForQuest;
     public string fuelCanName = "Fuel Can";
 
     private void Awake()
@@ -262,12 +263,13 @@ public class MainInventory : MonoBehaviour
     public void AddFuelCan()
     {
         FuelCanQuestPrefabItemsGUI();
-        fuelCan++;
+        currentfuelCans++;
+        fuelCanForQuest++;
     }
     public void RemoveFuelCan()
     {
         Destroy(instantiatedFuelCanPrefab);
-        fuelCan--;
+        currentfuelCans--;
     }
 
     public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)

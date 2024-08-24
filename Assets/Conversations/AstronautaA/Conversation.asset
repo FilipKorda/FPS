@@ -29,6 +29,7 @@ MonoBehaviour:
     - "Nie nic sie nie sta\u0142o xd"
     - .....
     - "oczywiscie ze sie sta\u0142o ja tu umieram"
+    - "Ale musisz sie st\u0105d wydosta\u0107!"
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -37,8 +38,7 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: You
     Sentences:
-    - "ale co sie sta\u0142o, pomoge ci"
-    - ale powiedz jak
+    - "Jak to zrobi\u0107?"
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -47,31 +47,34 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: Oklahoma
     Sentences:
-    - 'mi sie juz nie da pomoc '
-    - 'ale ja ci moge pomoc '
-    - posluchaj mnie
+    - Uruchom generatory!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
-    questToGive: {fileID: 0}
-  - Name: You
-    Sentences:
-    - "okej dobra m\xF3w szybko"
-    - "nie wiem ile ci czasu zosta\u0142o"
-    isAskingQuestion: 0
-    OptionOne: "Odpowied\u017A jeden TAK"
-    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
-    OptionTwo: "Odpowied\u017A dwa NIE"
-    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
-    questToGive: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: b2791f2793fe8ca4181a00335e3de34f, type: 2}
   - Name: Oklahoma
     Sentences:
-    - 'Dobra '
-    - to miejsce jest bardzo dziwne, pewlno tu zombie a jestesmy na marsie xd
-    - 'szybko uciekaj stad '
-    - "masz tu pare zada\u0107 one ppmoga ci uciec"
+    - "Znaj\u017A benzyne!"
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 11400000, guid: 8d14bdefcd0d3d94dbea9d618d220127, type: 2}
+  - Name: Oklahoma
+    Sentences:
+    - "Otw\xF3rz brame!"
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 11400000, guid: 0b6db99cac7ce18439b1a134099ba75f, type: 2}
+  - Name: Oklahoma
+    Sentences:
+    - ........ ahhhh...agggh
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
