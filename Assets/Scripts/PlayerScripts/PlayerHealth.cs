@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private float maxOxygen = 100f;
-    private float currentOxygen;
+    public float currentOxygen;
     private readonly float oxygenDecreaseRate = 0.02f;
     private readonly float oxygenIncreaseRate = 0.1f;
 
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private Vector3 filterMaksTransformWhenOutsisde = new(0f, 0f, 0f);
     private readonly float timeWhenOutInsde = 0.2f;
 
-    private bool isInside = false;
+    public bool isInside = false;
 
     [SerializeField] private PauseMenu pauseMenu;
 
@@ -49,7 +49,6 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.O))
         {
             TakeDamage(10);
@@ -65,8 +64,14 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             UseOxygenContainer(100);
         }
 
-        if (isInside)
+        if (OxygenHugeContainer.Instance.isRefillingOxygen)
         {
+            IncreaseOxygen();
+        }
+        else if (!OxygenHugeContainer.Instance.isRefillingOxygen && isInside)
+        {
+            IncreaseOxygen();
+
             if (PlayerSingleton.Instance.marsHurricaneController.isHurricaneActive)
             {
                 PlayerSingleton.Instance.marsHurricaneController.DeactivePs_MarsHurricane();
@@ -76,7 +81,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
             }
-            IncreaseOxygen();
+
         }
         else
         {
@@ -91,13 +96,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             }
             DecreaseOxygen();
         }
-
-
     }
 
     void UpdateHealthSlider()
     {
-
         healthSlider.value = currentHealth / maxHealth;
 
         float healthPercentage = currentHealth / maxHealth;
@@ -136,17 +138,14 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     }
 
-
     void UpdateOxygenSlider()
     {
-
         oxygenSlider.value = currentOxygen / maxOxygen;
 
         if (currentOxygen == maxOxygen)
         {
             oxygenSlider.gameObject.SetActive(false);
         }
-
     }
 
     void DecreaseOxygen()
@@ -172,7 +171,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     }
 
-    void IncreaseOxygen()
+    public void IncreaseOxygen()
     {
         if (!pauseMenu.isGamePaused)
         {

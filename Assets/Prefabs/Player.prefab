@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3245085939705525823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &837001831357716284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7177864482020411730}
+  m_Layer: 0
+  m_Name: OxygenPipeLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7177864482020411730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837001831357716284}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3800016, y: -0.35000002, z: 0.5500001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3245085939705525823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334916435324183928
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marsHurricaneController: {fileID: 7030066217234686974}
+  oxygenPipeLink: {fileID: 7177864482020411730}
   canShoot: 1
 --- !u!114 &5283495462586899811
 MonoBehaviour:
@@ -383,7 +415,9 @@ MonoBehaviour:
   maxHealth: 100
   oxygenSlider: {fileID: 0}
   maxOxygen: 100
+  currentOxygen: 0
   filterMaks: {fileID: 0}
+  isInside: 0
   pauseMenu: {fileID: 0}
 --- !u!114 &4807746633708868834
 MonoBehaviour:
@@ -439,6 +473,8 @@ MonoBehaviour:
   fuelCanColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   fuelCanPrefab: {fileID: 2906487599698792156, guid: 401a06334cd1db74a9c6b67af9c026e8, type: 3}
   fuelCanIcon: {fileID: 21300000, guid: 1914ca5666a225145acdc2b3faa6f9bd, type: 3}
+  currentfuelCans: 0
+  fuelCanForQuest: 0
   fuelCanName: Fuel Can
 --- !u!114 &7030066217234686974
 MonoBehaviour:
@@ -496,6 +532,7 @@ Transform:
   - {fileID: 1272156904261371278}
   - {fileID: 8769258083088248910}
   - {fileID: 3375173884314228510}
+  - {fileID: 7177864482020411730}
   m_Father: {fileID: 7864397323582606732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8766085917040621850

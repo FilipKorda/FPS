@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7505556907827584769}
-  - component: {fileID: 2594536093582951810}
   - component: {fileID: 3164140847000829056}
   - component: {fileID: 1470813680365498286}
   - component: {fileID: 4738663390368786823}
@@ -44,33 +43,6 @@ Transform:
   - {fileID: 397632940685298364}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2594536093582951810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017286120208158660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec37bc3269c31aa40b398c4f32e7f969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stillDelay: 1
-  followDistance: 10
-  alienEnemy: {fileID: 4738663390368786823}
-  alienAnimator: {fileID: 1470813680365498286}
-  walkSpeed: 3.5
-  grawlSpeed: 3
-  grawlSpeedWithoutHands: 1
-  runSpeed: 4
-  dieSpeed: 0
-  isGrowl: 0
-  Agent: {fileID: 3164140847000829056}
-  legLeft: {fileID: 3990080474637414927}
-  legRight: {fileID: 8584414150584462089}
-  armLeft: {fileID: 1430082668282710300}
-  armRight: {fileID: 2832818756087226362}
 --- !u!195 &3164140847000829056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -126,6 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f730ee94defa4de428263848b48938f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stillDelay: 1
+  followDistance: 10
+  alienEnemy: {fileID: 4738663390368786823}
+  alienAnimator: {fileID: 1470813680365498286}
+  walkSpeed: 3.5
+  grawlSpeed: 3
+  grawlSpeedWithoutHands: 1
+  runSpeed: 4
+  dieSpeed: 0
+  isGrowl: 0
+  spawnAnimIsOff: 0
+  Agent: {fileID: 3164140847000829056}
+  legLeft: {fileID: 3990080474637414927}
+  legRight: {fileID: 8584414150584462089}
+  armLeft: {fileID: 1430082668282710300}
+  armRight: {fileID: 2832818756087226362}
   isDead: 0
   partHealths:
   - {fileID: 1430082668282710300}
@@ -295,7 +283,7 @@ MonoBehaviour:
   Name: Head
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &2445593483280747787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 9046014128118839541}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &2757852100177831770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +443,7 @@ MonoBehaviour:
   Name: ArmRight
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &8819327161233997994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 2832818756087226362}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &5673417648896349710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +603,7 @@ MonoBehaviour:
   Name: ArmLeft
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &1442941925660004476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 1430082668282710300}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &2189766493893087946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +763,7 @@ MonoBehaviour:
   Name: LegLeft
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &8637432436507048887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 3990080474637414927}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &6535659999829356601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,7 +923,7 @@ MonoBehaviour:
   Name: Body
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &2563023521207762019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,7 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 8986956919785849152}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &7741875680182935826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,7 +1235,7 @@ MonoBehaviour:
   Name: LegRight
   _Health: 0
   _MaxHealth: 20
-  enemyMovement: {fileID: 2594536093582951810}
+  enemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &8506151849035757025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 8584414150584462089}
-  EnemyMovement: {fileID: 2594536093582951810}
+  EnemyMovement: {fileID: 4738663390368786823}
 --- !u!114 &7710797936924008748
 MonoBehaviour:
   m_ObjectHideFlags: 0

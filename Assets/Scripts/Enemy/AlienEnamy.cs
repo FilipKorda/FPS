@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FPS.Enemy
 {
-    public class AlienEnamy : MonoBehaviour
+    public class AlienEnamy : EnemyMovement
     {
         public bool isDead;
         public List<PartHealth> partHealths = new();

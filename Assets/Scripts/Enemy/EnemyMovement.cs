@@ -46,8 +46,8 @@ namespace FPS.Enemy
 
         private void Start()
         {
-            StartCoroutine(DealySpawnAnimIsOff());
-            StartCoroutine(Roam());
+            StartCoroutine(DealySpawnAnimIsOff(1f));
+            StartCoroutine(Roam(1.1f));
             alienAnimator.SetTrigger("IDLE");
         }
 
@@ -78,14 +78,15 @@ namespace FPS.Enemy
             }
         }
 
-        private IEnumerator DealySpawnAnimIsOff()
+        private IEnumerator DealySpawnAnimIsOff(float delay)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(delay);
             spawnAnimIsOff = true;
         }
 
-        private IEnumerator Roam()
+        private IEnumerator Roam(float delay)
         {
+            yield return new WaitForSeconds(delay);
             if (!alienEnemy.isDead && spawnAnimIsOff)
             {
                 WaitForSeconds wait = new(stillDelay);

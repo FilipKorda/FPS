@@ -17,6 +17,7 @@ public class InteractionManager : MonoBehaviour
     private ILinePuzzle currentLinePuzzle;
     private IFuelCan currentFuelCan;
     private IOpenHangar currentOpenHangar;
+    private IOxygenHugeContainer currentOxygenHugeContainer;
 
 
     void Start()
@@ -183,6 +184,27 @@ public class InteractionManager : MonoBehaviour
                 currentOpenHangar = null;
             }
 
+            currentOxygenHugeContainer?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IOxygenHugeContainer>(out var iOxygenHugeContainer))
+            {
+                currentOxygenHugeContainer = iOxygenHugeContainer;
+
+                if (iOxygenHugeContainer.IsRefillingOxygen())
+                {
+                    iOxygenHugeContainer.ResetHighlight();
+                }
+                else
+                {
+                    iOxygenHugeContainer.Highlight();
+                }
+
+
+            }
+            else
+            {
+                currentOxygenHugeContainer = null;
+            }
+
 
         }
         else
@@ -240,9 +262,13 @@ public class InteractionManager : MonoBehaviour
                 currentOpenHangar.ResetHighlight();
                 currentOpenHangar = null;
             }
+            if (currentOxygenHugeContainer != null)
+            {
+                currentOxygenHugeContainer.ResetHighlight();
+                currentOxygenHugeContainer = null;
+            }
 
         }
-
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -295,11 +321,11 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<ILinePuzzle>(out var iLinePuzzle))
             {
-                if(!iLinePuzzle.IsInLinePuzzleFinish())
+                if (!iLinePuzzle.IsInLinePuzzleFinish())
                 {
                     iLinePuzzle.ActiveLinePuzzle();
                 }
-              
+
             }
 
             if (hit.collider.TryGetComponent<IFuelCan>(out var iFuelCan))
@@ -313,6 +339,14 @@ public class InteractionManager : MonoBehaviour
                 {
                     iOpenHangar.OpenGateHangar();
                 }
+            }
+
+            if (hit.collider.TryGetComponent<IOxygenHugeContainer>(out var iOxygenHugeContainer))
+            {
+                if (!iOxygenHugeContainer.IsRefillingOxygen())
+                {
+                    iOxygenHugeContainer.StartToRefillOxygen();
+                }                            
             }
         }
     }

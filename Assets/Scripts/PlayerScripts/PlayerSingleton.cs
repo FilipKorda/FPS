@@ -6,6 +6,8 @@ public class PlayerSingleton : MonoBehaviour
 
     public MarsHurricaneController marsHurricaneController;
 
+    public Transform oxygenPipeLink;
+
     public bool canShoot = true;
 
     private void Awake()
