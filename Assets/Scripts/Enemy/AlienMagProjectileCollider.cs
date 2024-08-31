@@ -3,6 +3,7 @@ using UnityEngine;
 public class AlienMagProjectileCollider : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 10;
+    [SerializeField] private ParticleSystem collisonEffectPS;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,14 @@ public class AlienMagProjectileCollider : MonoBehaviour
         else if (!(other.gameObject.layer == LayerMask.NameToLayer("Enemy")))
         {
             Destroy(gameObject);
-        }      
+        }
+
+        PlayCOllisionEffetct();
+    }
+
+
+    private void PlayCOllisionEffetct()
+    {
+        collisonEffectPS.Play();
     }
 }

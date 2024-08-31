@@ -29,7 +29,6 @@ namespace FPS.Enemy
         [SerializeField] private PartHealth armLeft;
         [SerializeField] private PartHealth armRight;
 
-
         private void Awake()
         {
             Agent = GetComponent<NavMeshAgent>();

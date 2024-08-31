@@ -49,14 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7253815fc065ed48bb0ce0705b8cb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11400000, guid: 8edce7268cfc62045a506aab60af9d4b, type: 2}
+  enemys:
+  - {fileID: 11400000, guid: 8edce7268cfc62045a506aab60af9d4b, type: 2}
   spawnPoints:
   - {fileID: 7419716706252684104}
   - {fileID: 832359813136736456}
   - {fileID: 7949080941192132317}
   - {fileID: 8910370233497656435}
-  - {fileID: 5633464538822920320}
-  firstSpawnDelay: 10
+  firstSpawnDelay: 5
   spawnParticles: {fileID: 7753712160950754937, guid: f69dbd0e075244e478c5e4711dd2dd84, type: 3}
 --- !u!1 &2978063539889852647
 GameObject:

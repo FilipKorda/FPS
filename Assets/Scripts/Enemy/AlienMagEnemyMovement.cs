@@ -11,34 +11,42 @@ namespace FPS.Enemy
         [SerializeField] private float stillDelay = 1f;
         [SerializeField] private float followDistance = 10f;
         [SerializeField] private AlienMagEnemy alienMagEnemy;
+        private Collider thisCollider;
+        private SphereCollider thisSphereCollider;
         public Animator alienAnimator;
-        public float walkSpeed = 3.5f;
-        public float runSpeed = 5f;
-        public float dieSpeed = 0f;
+        [SerializeField] private float walkSpeed = 3.5f;
+        [SerializeField] private float runSpeed = 5f;
+        [SerializeField] private float dieSpeed = 0f;
 
         public bool spawnAnimIsOff = false;
 
-        public Transform playerTransform;
-        public NavMeshAgent Agent;
+        private Transform playerTransform;
+        public NavMeshAgent agent;
         private static NavMeshTriangulation Triangulation;
 
 
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private Transform shootPoint;
-        [SerializeField] private float projectileSpeed = 10f; 
+        [SerializeField] private float projectileSpeed = 10f;
+        [SerializeField] private bool canShoot;
+        [SerializeField] private ParticleSystem projectilePS;
+        [SerializeField] private GameObject floatingPS;
 
         private void Awake()
         {
-            Agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<NavMeshAgent>();
+            thisCollider = GetComponent<Collider>();
+            thisSphereCollider = GetComponent<SphereCollider>();
+
+            playerTransform = PlayerSingleton.Instance.transform;
+
+            agent.speed = walkSpeed;
 
             if (Triangulation.vertices == null || Triangulation.vertices.Length == 0)
             {
                 Triangulation = NavMesh.CalculateTriangulation();
             }
 
-            playerTransform = PlayerSingleton.Instance.transform;
-
-            Agent.speed = walkSpeed;
         }
 
         private void Start()
@@ -60,7 +68,7 @@ namespace FPS.Enemy
                     StartCoroutine(FollowPlayer());
                 }
 
-                if (distanceToPlayer <= Agent.stoppingDistance)
+                if (distanceToPlayer <= agent.stoppingDistance)
                 {
                     AttackPlayer();
                 }
@@ -77,11 +85,11 @@ namespace FPS.Enemy
 
                 while (enabled)
                 {
-                    Agent.speed = walkSpeed;
+                    agent.speed = walkSpeed;
                     alienAnimator.SetTrigger("IDLE");
                     int index = Random.Range(0, Triangulation.vertices.Length);
 
-                    Agent.SetDestination(
+                    agent.SetDestination(
                         Vector3.Lerp(
                         Triangulation.vertices[index],
                          Triangulation.vertices[(index + 1) % Triangulation.vertices.Length],
@@ -89,7 +97,7 @@ namespace FPS.Enemy
                           )
                          );
 
-                    yield return new WaitUntil(() => Agent.remainingDistance <= Agent.stoppingDistance);
+                    yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance);
 
                     yield return wait;
                 }
@@ -103,7 +111,7 @@ namespace FPS.Enemy
                 alienAnimator.SetTrigger("IDLE");
                 while (Vector3.Distance(transform.position, playerTransform.position) <= followDistance)
                 {
-                    Agent.SetDestination(playerTransform.position);
+                    agent.SetDestination(playerTransform.position);
                     yield return null;
                 }
             }
@@ -111,12 +119,27 @@ namespace FPS.Enemy
 
         private void AttackPlayer()
         {
-            alienAnimator.SetTrigger("ATTACK");
+            if (!canShoot)
+            {
+                alienAnimator.SetTrigger("ATTACK");
+                canShoot = true;
+            }
+
+        }
+
+        public void ActiveProjectile()
+        {
+            projectilePS.gameObject.SetActive(true);
+            projectilePS.Play();
         }
 
         public void ShootProjectile()
         {
             Debug.Log("Shoot Projectile at player position");
+
+            canShoot = false;
+            projectilePS.gameObject.SetActive(false);
+            projectilePS.Stop();
 
             GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
 
@@ -136,12 +159,22 @@ namespace FPS.Enemy
             spawnAnimIsOff = true;
         }
 
+
+        public void StartFollowPlayerAFterHit()
+        {
+            followDistance = 100;
+        }
+
         public void StopMoving()
         {
             StopAllCoroutines();
-            Agent.isStopped = true;
-            Agent.speed = dieSpeed;
+            agent.isStopped = true;
+            agent.speed = dieSpeed;
             alienMagEnemy.isDead = true;
+            projectilePS.gameObject.SetActive(false);
+            floatingPS.SetActive(false);
+            thisCollider.enabled = false;
+            thisSphereCollider.enabled = false;
         }
     }
 }

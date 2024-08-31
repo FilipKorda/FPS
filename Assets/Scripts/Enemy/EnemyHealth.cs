@@ -2,20 +2,16 @@ using UnityEngine;
 
 namespace FPS.Enemy
 {
-    [DisallowMultipleComponent]
-    public class PartHealth : MonoBehaviour, IDamageable
+    public class EnemyHealth : AlienMagEnemyMovement, IDamageable
     {
-        public string Name;
         [SerializeField] private int _Health;
         [SerializeField] private int _MaxHealth = 100;
-        [SerializeField] private EnemyMovement enemyMovement;
         public int CurrentHealth { get => _Health; private set => _Health = value; }
         public int MaxHealth { get => _MaxHealth; private set => _MaxHealth = value; }
 
         public event IDamageable.TakeDamageEvent OnTakeDamage;
         public event IDamageable.ParticleDeathEvent ParticleOnDeath;
         public event IDamageable.DropDeathEvent DropOnDeath;
-
 
         private void OnEnable()
         {
@@ -24,10 +20,7 @@ namespace FPS.Enemy
 
         public void TakeDamage(int Damage)
         {
-            if (enemyMovement != null)
-            {
-                enemyMovement.StartFollowPlayerAFterHit();
-            }          
+            StartFollowPlayerAFterHit();
 
             int damageTaken = Mathf.Clamp(Damage, 0, CurrentHealth);
 
@@ -40,16 +33,10 @@ namespace FPS.Enemy
 
             if (CurrentHealth == 0 && damageTaken != 0)
             {
-                if (Name == "Head" || Name == "Body")
-                {
-                    DropOnDeath?.Invoke(transform.position);
-                    ParticleOnDeath?.Invoke(transform.position);
-                }
-                else
-                {
-                    ParticleOnDeath?.Invoke(transform.position);
-                }
-
+                DropOnDeath?.Invoke(transform.position);
+                ParticleOnDeath?.Invoke(transform.position);
+                alienAnimator.SetTrigger("DIE");
+                StopMoving();
             }
         }
     }

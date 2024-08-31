@@ -1,7 +1,7 @@
 namespace FPS.Enemy
 {
-    public class AlienMagEnemy : AlienMagEnemyMovement
+    public class AlienMagEnemy : EnemyHealth
     {
-        public bool isDead;
+        public bool isDead;   
     }
 }

@@ -1,14 +1,13 @@
-using FPS.Guns.Demo;
 using System.Collections;
 using UnityEngine;
 
 public class EnemySpawnerSystem : MonoBehaviour
 {
-    [SerializeField] private EnemyData enemy;
+    [SerializeField] private EnemyData[] enemys;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private float firstSpawnDelay = 5f;
     [SerializeField] private ParticleSystem spawnParticles;
-    
+
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
@@ -27,8 +26,10 @@ public class EnemySpawnerSystem : MonoBehaviour
         {
             ParticleSystem particles = Instantiate(spawnParticles, spawnPoint.position, spawnPoint.rotation);
             particles.Play();
-            Instantiate(enemy.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            var randomEnemy = enemys[Random.Range(0, enemys.Length)];
+
+            Instantiate(randomEnemy.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         }
     }
-
 }
