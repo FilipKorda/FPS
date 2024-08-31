@@ -172,7 +172,8 @@ namespace FPS.Enemy
             agent.speed = dieSpeed;
             alienMagEnemy.isDead = true;
             projectilePS.gameObject.SetActive(false);
-            floatingPS.SetActive(false);
+            projectilePS.Stop();
+            floatingPS.SetActive(false);    
             thisCollider.enabled = false;
             thisSphereCollider.enabled = false;
         }

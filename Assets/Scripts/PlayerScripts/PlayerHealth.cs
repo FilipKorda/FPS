@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,28 +7,36 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 {
     public static PlayerHealth Instance { get; private set; }
 
+    [Header("========== Damage Screen ==========")]
     [SerializeField] private Sprite[] damageScreens;
     [SerializeField] private Image damageScreenImage;
     [SerializeField] private float fadeDuration = 1f;
+
+    [Header("============ Health ============")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
+    [SerializeField] private Animator bandageAnimator;
+    [SerializeField] private GameObject bandageObject;
 
+    [Header("============ Oxygen ============")]
     [SerializeField] private Slider oxygenSlider;
     [SerializeField] private float maxOxygen = 100f;
     public float currentOxygen;
     private readonly float oxygenDecreaseRate = 0.02f;
     private readonly float oxygenIncreaseRate = 0.1f;
+    [SerializeField] private Animator oxygenAnimator;
+    [SerializeField] private GameObject oxygenObject;
 
+    [Header("=========== Mars Mask ===========")]
     [SerializeField] private GameObject filterMaks;
     private Vector3 filterMaksTransformWhenInside = new(0f, 1100f, 0f);
     private readonly float timeWhenInsde = 1f;
-
     private Vector3 filterMaksTransformWhenOutsisde = new(0f, 0f, 0f);
     private readonly float timeWhenOutInsde = 0.2f;
-
     public bool isInside = false;
 
+    [Header("=========== Pause Menu ===========")]
     [SerializeField] private PauseMenu pauseMenu;
 
     private void Awake()
@@ -54,14 +63,14 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             TakeDamage(10);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            Heal(10);
+            StartCoroutine(Heal(10));
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            UseOxygenContainer(100);
+            StartCoroutine(UseOxygenContainer(100));
         }
 
         if (OxygenHugeContainer.Instance.isRefillingOxygen)
@@ -204,12 +213,15 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         }
     }
 
-    public void Heal(float healAmount)
+    private IEnumerator Heal(float healAmount)
     {
         if (currentHealth < maxHealth)
         {
             if (MainInventory.Instance.currentHealthBandage > 0)
             {
+                bandageObject.SetActive(true);
+                bandageAnimator.SetTrigger("HEAL");
+                yield return new WaitForSeconds(1.2f);
                 currentHealth += healAmount;
                 currentHealth = Mathf.Min(maxHealth, currentHealth);
                 UpdateHealthSlider();
@@ -220,6 +232,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                     MainInventory.Instance.isHealthBandageCreateAnPrefab = false;
                     Destroy(MainInventory.Instance.instantiatedHealthBandagePrefab);
                 }
+
+                yield return new WaitForSeconds(1);
+                bandageAnimator.ResetTrigger("HEAL");
+                bandageObject.SetActive(false);
             }
             else
             {
@@ -232,12 +248,16 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         }
     }
 
-    public void UseOxygenContainer(float oxygenAmount)
+    private IEnumerator UseOxygenContainer(float oxygenAmount)
     {
         if (currentOxygen < maxOxygen)
         {
             if (MainInventory.Instance.currentOxygenContainer > 0)
             {
+                oxygenObject.SetActive(true);
+                oxygenAnimator.SetTrigger("REFIL");
+                yield return new WaitForSeconds(1);
+
                 currentOxygen += oxygenAmount;
                 currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
                 UpdateOxygenSlider();
@@ -248,6 +268,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                     MainInventory.Instance.isOxygenCreateAnPrefab = false;
                     Destroy(MainInventory.Instance.instantiatedOxygenContainerPrefab);
                 }
+
+                yield return new WaitForSeconds(1);
+                oxygenAnimator.ResetTrigger("REFIL");
+                oxygenObject.SetActive(false);
             }
             else
             {

@@ -24,6 +24,6 @@ public class AlienMagProjectileCollider : MonoBehaviour
 
     private void PlayCOllisionEffetct()
     {
-        collisonEffectPS.Play();
+        Instantiate(collisonEffectPS.gameObject, transform.position, transform.rotation);
     }
 }

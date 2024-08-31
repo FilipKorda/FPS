@@ -112,7 +112,7 @@ public class MainInventory : MonoBehaviour
     {
         InputHandler();
 
-        if (Input.GetKeyDown(KeyCode.CapsLock))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             isPanelActive = !isPanelActive;
             ButtonTabPanel.SetActive(isPanelActive);
