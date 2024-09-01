@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace FPS.Enemy
 {
-    public class AlienEnamy : EnemyMovement
+    public class MainEnemyBehaviour : EnemyMovement
     {
         public bool isDead;
         public List<PartHealth> partHealths = new();
-        public List<Enemy> enemys = new();
+        public List<EnemyDieConnect> enemyDiesConnects = new();
         public List<DoAfterEnemyDeath> doAfterEnemyDeaths = new();
         public List<MeshCollider> meshColliders = new();
 
@@ -21,7 +21,7 @@ namespace FPS.Enemy
 
         public void DisableEnemys()
         {
-            foreach (var enemy in enemys)
+            foreach (var enemy in enemyDiesConnects)
             {
                 enemy.enabled = false;
             }

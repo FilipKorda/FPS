@@ -10,8 +10,8 @@ namespace FPS.Enemy
     {
         [SerializeField] private float stillDelay = 1f;
         [SerializeField] private float followDistance = 10f;
-        [SerializeField] private AlienEnamy alienEnemy;
-        public Animator alienAnimator;
+        [SerializeField] private MainEnemyBehaviour mainEnemyBehaviour;
+        public Animator thisEnemyAnimator;
         public float walkSpeed = 3.5f;
         public float grawlSpeed = 3f;
         public float grawlSpeedWithoutHands = 1f;
@@ -20,7 +20,7 @@ namespace FPS.Enemy
         public bool isGrowl = false;
         public bool spawnAnimIsOff = false;
 
-        private Transform playerTransform;
+        [SerializeField] private Transform playerTransform;
         public NavMeshAgent Agent;
         private static NavMeshTriangulation Triangulation;
 
@@ -38,7 +38,10 @@ namespace FPS.Enemy
                 Triangulation = NavMesh.CalculateTriangulation();
             }
 
-            playerTransform = PlayerSingleton.Instance.transform;
+            if (playerTransform != null)
+            {
+                //playerTransform = PlayerSingleton.Instance.transform;
+            }
 
             Agent.speed = walkSpeed;
         }
@@ -47,12 +50,12 @@ namespace FPS.Enemy
         {
             StartCoroutine(DealySpawnAnimIsOff(1f));
             StartCoroutine(Roam(1.1f));
-            alienAnimator.SetTrigger("IDLE");
+            thisEnemyAnimator.SetTrigger("IDLE");
         }
 
         private void Update()
         {
-            if (!alienEnemy.isDead && spawnAnimIsOff)
+            if (!mainEnemyBehaviour.isDead && spawnAnimIsOff)
             {
                 float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
@@ -86,15 +89,15 @@ namespace FPS.Enemy
         private IEnumerator Roam(float delay)
         {
             yield return new WaitForSeconds(delay);
-            if (!alienEnemy.isDead && spawnAnimIsOff)
+            if (!mainEnemyBehaviour.isDead && spawnAnimIsOff)
             {
                 WaitForSeconds wait = new(stillDelay);
 
                 while (enabled)
                 {
                     Agent.speed = walkSpeed;
-                    alienAnimator.ResetTrigger("IDLE");
-                    alienAnimator.SetTrigger("WALK");
+                    thisEnemyAnimator.ResetTrigger("IDLE");
+                    thisEnemyAnimator.SetTrigger("WALK");
                     int index = Random.Range(0, Triangulation.vertices.Length);
 
                     Agent.SetDestination(
@@ -107,8 +110,8 @@ namespace FPS.Enemy
 
                     yield return new WaitUntil(() => Agent.remainingDistance <= Agent.stoppingDistance);
 
-                    alienAnimator.ResetTrigger("WALK");
-                    alienAnimator.SetTrigger("IDLE");
+                    thisEnemyAnimator.ResetTrigger("WALK");
+                    thisEnemyAnimator.SetTrigger("IDLE");
 
                     yield return wait;
                 }
@@ -117,11 +120,11 @@ namespace FPS.Enemy
 
         private IEnumerator FollowPlayer()
         {
-            if (!alienEnemy.isDead && spawnAnimIsOff)
-            {               
-                alienAnimator.ResetTrigger("IDLE");
-                alienAnimator.ResetTrigger("WALK");
-                alienAnimator.SetTrigger("RUN");
+            if (!mainEnemyBehaviour.isDead && spawnAnimIsOff)
+            {
+                thisEnemyAnimator.ResetTrigger("IDLE");
+                thisEnemyAnimator.ResetTrigger("WALK");
+                thisEnemyAnimator.SetTrigger("RUN");
 
                 if (legLeft.isActiveAndEnabled && legRight.isActiveAndEnabled)
                 {
@@ -150,17 +153,17 @@ namespace FPS.Enemy
         private void AttackPlayer()
         {
             int index = 0;
-            foreach (var partHealth in alienEnemy.partHealths)
+            foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
                     if (partHealth.isActiveAndEnabled)
                     {
-                        alienAnimator.SetTrigger("ATTACK_LEFT_ARM");
+                        thisEnemyAnimator.SetTrigger("ATTACK_LEFT_ARM");
                     }
                     else
                     {
-                        alienAnimator.SetTrigger("ATTACK_HEAD");
+                        thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
                     }
 
                     return;
@@ -172,17 +175,17 @@ namespace FPS.Enemy
         private void AttackPlayerGrawl()
         {
             int index = 0;
-            foreach (var partHealth in alienEnemy.partHealths)
+            foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
                     if (partHealth.isActiveAndEnabled)
                     {
-                        alienAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
+                        thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
                     }
                     else
                     {
-                        alienAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
+                        thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
                     }
                     return;
                 }
@@ -202,12 +205,12 @@ namespace FPS.Enemy
             StopAllCoroutines();
             Agent.isStopped = true;
             Agent.speed = dieSpeed;
-            alienEnemy.isDead = true;
+            mainEnemyBehaviour.isDead = true;
 
-            alienEnemy.DisablePartHealths();
-            alienEnemy.DisableEnemys();
-            alienEnemy.DisableDoAfterEnemyDeaths();
-            alienEnemy.DisableMeshColliders();
+            mainEnemyBehaviour.DisablePartHealths();
+            mainEnemyBehaviour.DisableEnemys();
+            mainEnemyBehaviour.DisableDoAfterEnemyDeaths();
+            mainEnemyBehaviour.DisableMeshColliders();
         }
     }
 }

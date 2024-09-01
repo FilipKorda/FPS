@@ -15,8 +15,8 @@ namespace FPS.Enemy
         public IDamageable Damageable;
 
         [SerializeField] private GameObject spawnObjectPrefab;
-        [SerializeField] private float minForce = 0.1f;
-        [SerializeField] private float maxForce = 0.2f;
+        [SerializeField] private float minForce = 1f;
+        [SerializeField] private float maxForce = 1.2f;
 
         private void Awake()
         {
