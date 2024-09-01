@@ -19,8 +19,11 @@ namespace FPS.Enemy
         public float dieSpeed = 0;
         public bool isGrowl = false;
         public bool spawnAnimIsOff = false;
+        [SerializeField] private bool canAttack;
+        public float dealySpawnTiameAnimToOff = 1;
+        public float dealyTimeToRoam = 1.1f;
 
-        [SerializeField] private Transform playerTransform;
+        private Transform playerTransform;
         public NavMeshAgent Agent;
         private static NavMeshTriangulation Triangulation;
 
@@ -38,18 +41,15 @@ namespace FPS.Enemy
                 Triangulation = NavMesh.CalculateTriangulation();
             }
 
-            if (playerTransform != null)
-            {
-                //playerTransform = PlayerSingleton.Instance.transform;
-            }
+            playerTransform = PlayerSingleton.Instance.transform;
 
             Agent.speed = walkSpeed;
         }
 
         private void Start()
         {
-            StartCoroutine(DealySpawnAnimIsOff(1f));
-            StartCoroutine(Roam(1.1f));
+            StartCoroutine(DealySpawnAnimIsOff(dealySpawnTiameAnimToOff));
+            StartCoroutine(Roam(dealyTimeToRoam));
             thisEnemyAnimator.SetTrigger("IDLE");
         }
 
@@ -85,6 +85,14 @@ namespace FPS.Enemy
             yield return new WaitForSeconds(delay);
             spawnAnimIsOff = true;
         }
+
+        private IEnumerator ResetAttack(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            canAttack = false;
+        }
+
+
 
         private IEnumerator Roam(float delay)
         {
@@ -152,18 +160,32 @@ namespace FPS.Enemy
 
         private void AttackPlayer()
         {
+
             int index = 0;
             foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
-                    if (partHealth.isActiveAndEnabled)
+                    if (!canAttack && partHealth.isActiveAndEnabled)
                     {
-                        thisEnemyAnimator.SetTrigger("ATTACK_LEFT_ARM");
+                        if(mainEnemyBehaviour.enemyAlien)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_LEFT_ARM");
+                        }
+                        else if(mainEnemyBehaviour.enemyOrc)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK");
+                        }
+
+                        canAttack = true;
+
+
                     }
-                    else
+                    else if(!canAttack)
                     {
                         thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
+                        canAttack = true;
+
                     }
 
                     return;
@@ -174,18 +196,21 @@ namespace FPS.Enemy
 
         private void AttackPlayerGrawl()
         {
+
             int index = 0;
             foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
-                    if (partHealth.isActiveAndEnabled)
+                    if (!canAttack && partHealth.isActiveAndEnabled)
                     {
                         thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
+                        canAttack = true;
                     }
-                    else
+                    else  if (!canAttack)
                     {
                         thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
+                        canAttack = true;
                     }
                     return;
                 }

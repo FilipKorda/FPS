@@ -5,6 +5,8 @@ namespace FPS.Enemy
 {
     public class MainEnemyBehaviour : EnemyMovement
     {
+        public bool enemyAlien;
+        public bool enemyOrc;
         public bool isDead;
         public List<PartHealth> partHealths = new();
         public List<EnemyDieConnect> enemyDiesConnects = new();

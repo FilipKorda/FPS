@@ -109,11 +109,16 @@ MonoBehaviour:
   dieSpeed: 0
   isGrowl: 0
   spawnAnimIsOff: 0
+  dealySpawnTiameAnimToOff: 1
+  dealyTimeToRoam: 1.1
   Agent: {fileID: 3164140847000829056}
   legLeft: {fileID: 3990080474637414927}
   legRight: {fileID: 8584414150584462089}
   armLeft: {fileID: 1430082668282710300}
   armRight: {fileID: 2832818756087226362}
+  enemyAlien: 1
+  enemyAlienMag: 0
+  enemyOrc: 0
   isDead: 0
   partHealths:
   - {fileID: 1430082668282710300}
