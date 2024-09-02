@@ -5,7 +5,7 @@ namespace FPS.Enemy
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IDamageable))]
     public class DoAfterEnemyDeath : MonoBehaviour
-    {    
+    {
         [Header("= Only For Head And Body Component =")]
         [SerializeField] private PartHealth bodyHealth;
         [SerializeField] private PartHealth headHealth;
@@ -17,6 +17,10 @@ namespace FPS.Enemy
         [SerializeField] private GameObject spawnObjectPrefab;
         [SerializeField] private float minForce = 1f;
         [SerializeField] private float maxForce = 1.2f;
+
+        [SerializeField]
+        private Transform parentObject;
+
 
         private void Awake()
         {
@@ -31,14 +35,15 @@ namespace FPS.Enemy
 
         private void Damageable_OnDeath_SpawnParticle(Vector3 Position)
         {
+
             SpawnDeathParticleSystem(Position);
             if (droppedBodyPart != null)
-                SpawnBodyPart(Position);
+                SpawnBodyPart(Position, parentObject.rotation);
             if (bodyHealth != null && bodyHealth.Name == "Body")
             {
                 gameObject.SetActive(true);
             }
-            else if(headHealth != null && headHealth.Name == "Head")
+            else if (headHealth != null && headHealth.Name == "Head")
             {
                 gameObject.SetActive(true);
             }
@@ -74,9 +79,9 @@ namespace FPS.Enemy
             Instantiate(DeathSystem, position, Quaternion.identity);
         }
 
-        public void SpawnBodyPart(Vector3 position)
+        public void SpawnBodyPart(Vector3 position, Quaternion rotation)
         {
-            Instantiate(droppedBodyPart, position, Quaternion.identity);
+            Instantiate(droppedBodyPart, position, rotation);
         }
     }
 }

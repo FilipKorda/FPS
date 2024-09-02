@@ -19,7 +19,7 @@ namespace FPS.Enemy
         public float dieSpeed = 0;
         public bool isGrowl = false;
         public bool spawnAnimIsOff = false;
-        [SerializeField] private bool canAttack;
+        [SerializeField] private bool canAttack = true;
         public float dealySpawnTiameAnimToOff = 1;
         public float dealyTimeToRoam = 1.1f;
 
@@ -86,10 +86,9 @@ namespace FPS.Enemy
             spawnAnimIsOff = true;
         }
 
-        private IEnumerator ResetAttack(float delay)
+        public void ResetAttackBool()
         {
-            yield return new WaitForSeconds(delay);
-            canAttack = false;
+            canAttack = true;
         }
 
 
@@ -160,32 +159,36 @@ namespace FPS.Enemy
 
         private void AttackPlayer()
         {
-
             int index = 0;
             foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
-                    if (!canAttack && partHealth.isActiveAndEnabled)
+                    if (partHealth.isActiveAndEnabled)
                     {
-                        if(mainEnemyBehaviour.enemyAlien)
+                        if (canAttack && mainEnemyBehaviour.enemyAlien)
                         {
                             thisEnemyAnimator.SetTrigger("ATTACK_LEFT_ARM");
+                            canAttack = false;
                         }
-                        else if(mainEnemyBehaviour.enemyOrc)
+                        else if (canAttack && mainEnemyBehaviour.enemyOrc)
                         {
                             thisEnemyAnimator.SetTrigger("ATTACK");
+                            canAttack = false;
                         }
-
-                        canAttack = true;
-
-
                     }
-                    else if(!canAttack)
+                    else if (canAttack)
                     {
-                        thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
-                        canAttack = true;
-
+                        if (mainEnemyBehaviour.enemyAlien)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
+                            canAttack = false;
+                        }
+                        else if (mainEnemyBehaviour.enemyOrc)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
+                            canAttack = false;
+                        }
                     }
 
                     return;
@@ -196,21 +199,36 @@ namespace FPS.Enemy
 
         private void AttackPlayerGrawl()
         {
-
             int index = 0;
             foreach (var partHealth in mainEnemyBehaviour.partHealths)
             {
                 if (index == 0 || index == 1)
                 {
-                    if (!canAttack && partHealth.isActiveAndEnabled)
+                    if (partHealth.isActiveAndEnabled)
                     {
-                        thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
-                        canAttack = true;
+                        if (canAttack && mainEnemyBehaviour.enemyAlien)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
+                            canAttack = false;
+                        }
+                        else if (canAttack && mainEnemyBehaviour.enemyOrc)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
+                            canAttack = false;
+                        }
                     }
-                    else  if (!canAttack)
+                    else if (canAttack)
                     {
-                        thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
-                        canAttack = true;
+                        if (mainEnemyBehaviour.enemyAlien)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
+                            canAttack = false;
+                        }
+                        else if (mainEnemyBehaviour.enemyOrc)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
+                            canAttack = false;
+                        }
                     }
                     return;
                 }

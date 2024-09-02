@@ -27,13 +27,16 @@ namespace FPS.Enemy
                 enemyMovement.thisEnemyAnimator.SetTrigger("DIE");
                 enemyMovement.StopMoving();
             }
-            else if (partHealth.Name == "LegLeft" || partHealth.Name == "LegRight")
+            else if (!enemyMovement.isGrowl)
             {
-                enemyMovement.thisEnemyAnimator.SetTrigger("FALL");
-                enemyMovement.Agent.stoppingDistance = 3;
-                enemyMovement.isGrowl = true;
-            }
+                if (partHealth.Name == "LegLeft" || partHealth.Name == "LegRight")
+                {
+                    enemyMovement.thisEnemyAnimator.SetTrigger("FALL");
+                    enemyMovement.Agent.stoppingDistance = 3;
+                    enemyMovement.isGrowl = true;
+                }
 
+            }
         }
     }
 }

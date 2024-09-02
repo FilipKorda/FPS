@@ -156,6 +156,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 0}
 --- !u!1 &1181660900743008007
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +345,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 0}
 --- !u!1 &2233504776487999916
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +503,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 907219706071422002}
 --- !u!1 &2440540010765508457
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +660,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 6545657037532304750}
 --- !u!1 &2672223538906349772
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,6 +957,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 8606193028374882498}
 --- !u!1 &4475553937447502102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1066,7 @@ MonoBehaviour:
   dieSpeed: 0
   isGrowl: 0
   spawnAnimIsOff: 0
+  canAttack: 1
   dealySpawnTiameAnimToOff: 3.45
   dealyTimeToRoam: 3.55
   Agent: {fileID: 7631569636754528409}
@@ -1111,8 +1117,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68577fe0f3b804848b22d55dcc54c151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standAttackCollider: {fileID: 9200535856628405535}
+  standAttackCollider: {fileID: 4100002393673134168}
   crawlAttackCollider: {fileID: 3074233075484286709}
+  swordAttackCollider: {fileID: 9200535856628405535}
+--- !u!1 &4829291063507528863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3615195508401397061}
+  - component: {fileID: 5512950317394203457}
+  - component: {fileID: 4100002393673134168}
+  - component: {fileID: 1016054130193139648}
+  m_Layer: 0
+  m_Name: 'StandAttackCollider '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3615195508401397061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829291063507528863}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.231, z: 0.309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3973193979275577639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5512950317394203457
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829291063507528863}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &4100002393673134168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829291063507528863}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1016054130193139648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4829291063507528863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743877da54213694d95f5197723ebf37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 5
 --- !u!1 &5292114107139066595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1241,7 @@ GameObject:
   - component: {fileID: 9200535856628405535}
   - component: {fileID: 8298340825543380056}
   m_Layer: 0
-  m_Name: StandAttackCollider
+  m_Name: SwordAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743877da54213694d95f5197723ebf37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 7
+  damageAmount: 10
 --- !u!1 &7033463431395944109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1460,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 8951581479559883984}
 --- !u!1 &7849341152014479081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1491,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1331047039113907478}
+  - {fileID: 3615195508401397061}
   m_Father: {fileID: 6761390944013687273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8603361129830242240

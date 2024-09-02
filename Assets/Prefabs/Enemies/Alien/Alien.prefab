@@ -109,6 +109,7 @@ MonoBehaviour:
   dieSpeed: 0
   isGrowl: 0
   spawnAnimIsOff: 0
+  canAttack: 1
   dealySpawnTiameAnimToOff: 1
   dealyTimeToRoam: 1.1
   Agent: {fileID: 3164140847000829056}
@@ -117,7 +118,6 @@ MonoBehaviour:
   armLeft: {fileID: 1430082668282710300}
   armRight: {fileID: 2832818756087226362}
   enemyAlien: 1
-  enemyAlienMag: 0
   enemyOrc: 0
   isDead: 0
   partHealths:
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standAttackCollider: {fileID: 6289897778976514268}
   crawlAttackCollider: {fileID: 4128056639347378559}
+  swordAttackCollider: {fileID: 0}
 --- !u!1 &1925030334261776370
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +321,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 0}
 --- !u!1 &2255221384569859075
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +480,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 1130292510840197809}
 --- !u!1 &2871590339413163103
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +639,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 6060440310820717818}
 --- !u!1 &3750030855450957678
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +798,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 4862540622880098605}
 --- !u!1 &3892841064921480168
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +957,7 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 0}
 --- !u!1 &5157010203078085850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,3 +1268,4 @@ MonoBehaviour:
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
+  parentObject: {fileID: 397632940685298364}
