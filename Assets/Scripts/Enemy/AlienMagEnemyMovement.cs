@@ -13,7 +13,7 @@ namespace FPS.Enemy
         [SerializeField] private AlienMagEnemy alienMagEnemy;
         private Collider thisCollider;
         private SphereCollider thisSphereCollider;
-        public Animator alienAnimator;
+        public Animator alienMagAnimator;
         [SerializeField] private float walkSpeed = 3.5f;
         [SerializeField] private float runSpeed = 5f;
         [SerializeField] private float dieSpeed = 0f;
@@ -53,7 +53,7 @@ namespace FPS.Enemy
         {
             StartCoroutine(DealySpawnAnimIsOff(1f));
             StartCoroutine(Roam(1.1f));
-            alienAnimator.SetTrigger("IDLE");
+            alienMagAnimator.SetTrigger("IDLE");
         }
 
         private void Update()
@@ -86,7 +86,7 @@ namespace FPS.Enemy
                 while (enabled)
                 {
                     agent.speed = walkSpeed;
-                    alienAnimator.SetTrigger("IDLE");
+                    alienMagAnimator.SetTrigger("IDLE");
                     int index = Random.Range(0, Triangulation.vertices.Length);
 
                     agent.SetDestination(
@@ -108,7 +108,7 @@ namespace FPS.Enemy
         {
             if (!alienMagEnemy.isDead && spawnAnimIsOff)
             {
-                alienAnimator.SetTrigger("IDLE");
+                alienMagAnimator.SetTrigger("IDLE");
                 while (Vector3.Distance(transform.position, playerTransform.position) <= followDistance)
                 {
                     agent.SetDestination(playerTransform.position);
@@ -121,7 +121,7 @@ namespace FPS.Enemy
         {
             if (!canShoot)
             {
-                alienAnimator.SetTrigger("ATTACK");
+                alienMagAnimator.SetTrigger("ATTACK");
                 canShoot = true;
             }
 

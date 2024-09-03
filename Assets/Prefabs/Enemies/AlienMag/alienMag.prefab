@@ -411,7 +411,7 @@ MonoBehaviour:
   stillDelay: 1
   followDistance: 20
   alienMagEnemy: {fileID: 8022986611625104820}
-  alienAnimator: {fileID: 3699348040155557660}
+  alienMagAnimator: {fileID: 3699348040155557660}
   walkSpeed: 3.5
   runSpeed: 5
   dieSpeed: 0

@@ -35,7 +35,7 @@ namespace FPS.Enemy
             {
                 DropOnDeath?.Invoke(transform.position);
                 ParticleOnDeath?.Invoke(transform.position);
-                alienAnimator.SetTrigger("DIE");
+                alienMagAnimator.SetTrigger("DIE");
                 StopMoving();
             }
         }

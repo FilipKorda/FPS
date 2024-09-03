@@ -32,6 +32,13 @@ namespace FPS.Enemy
         [SerializeField] private PartHealth armLeft;
         [SerializeField] private PartHealth armRight;
 
+        //Shooting
+        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private Transform shootPoint;
+        [SerializeField] private float projectileSpeed = 10f;
+        [SerializeField] private bool canShoot;
+        [SerializeField] private ParticleSystem projectilePS;
+
         private void Awake()
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -176,8 +183,14 @@ namespace FPS.Enemy
                             thisEnemyAnimator.SetTrigger("ATTACK");
                             canAttack = false;
                         }
+                        else if (canShoot && mainEnemyBehaviour.enemyRobot)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK");
+                            canShoot = false;
+                        }
+
                     }
-                    else if (canAttack)
+                    else if (canAttack || canShoot)
                     {
                         if (mainEnemyBehaviour.enemyAlien)
                         {
@@ -188,6 +201,11 @@ namespace FPS.Enemy
                         {
                             thisEnemyAnimator.SetTrigger("ATTACK_HEAD");
                             canAttack = false;
+                        }
+                        else if (mainEnemyBehaviour.enemyRobot)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK");
+                            canShoot = false;
                         }
                     }
 
@@ -216,6 +234,11 @@ namespace FPS.Enemy
                             thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_RIGHTARM");
                             canAttack = false;
                         }
+                        else if (canAttack && mainEnemyBehaviour.enemyRobot)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_ARMS");
+                            canAttack = false;
+                        }
                     }
                     else if (canAttack)
                     {
@@ -229,6 +252,11 @@ namespace FPS.Enemy
                             thisEnemyAnimator.SetTrigger("ATTACK_CRAWL_HEAD");
                             canAttack = false;
                         }
+                        else if (mainEnemyBehaviour.enemyRobot)
+                        {
+                            thisEnemyAnimator.SetTrigger("ATTACK_ARMS");
+                            canAttack = false;
+                        }
                     }
                     return;
                 }
@@ -236,6 +264,26 @@ namespace FPS.Enemy
             }
         }
 
+
+        public void ShootProjectile()
+        {
+            Debug.Log("Shoot Projectile at player position");
+
+            canShoot = false;
+            projectilePS.gameObject.SetActive(false);
+            projectilePS.Stop();
+
+            GameObject projectile = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
+
+            Vector3 direction = (playerTransform.position - shootPoint.position).normalized;
+
+            projectile.transform.forward = direction;
+
+            if (projectile.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.velocity = direction * projectileSpeed;
+            }
+        }
 
 
         public void StartFollowPlayerAFterHit()

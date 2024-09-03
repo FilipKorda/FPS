@@ -7,6 +7,7 @@ namespace FPS.Enemy
     {
         public bool enemyAlien;
         public bool enemyOrc;
+        public bool enemyRobot;
         public bool isDead;
         public List<PartHealth> partHealths = new();
         public List<EnemyDieConnect> enemyDiesConnects = new();
