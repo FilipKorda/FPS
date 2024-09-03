@@ -124,7 +124,6 @@ namespace FPS.Enemy
                 alienMagAnimator.SetTrigger("ATTACK");
                 canShoot = true;
             }
-
         }
 
         public void ActiveProjectile()

@@ -269,7 +269,7 @@ namespace FPS.Enemy
         {
             Debug.Log("Shoot Projectile at player position");
 
-            canShoot = false;
+            canShoot = true;
             projectilePS.gameObject.SetActive(false);
             projectilePS.Stop();
 
@@ -285,6 +285,11 @@ namespace FPS.Enemy
             }
         }
 
+        public void ActiveProjectile()
+        {
+            projectilePS.gameObject.SetActive(true);
+            projectilePS.Play();
+        }
 
         public void StartFollowPlayerAFterHit()
         {

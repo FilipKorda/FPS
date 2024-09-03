@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AlienMagProjectileCollider : MonoBehaviour
+public class ProjectileCollider : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 10;
     [SerializeField] private ParticleSystem collisonEffectPS;
@@ -18,11 +18,11 @@ public class AlienMagProjectileCollider : MonoBehaviour
             Destroy(gameObject);
         }
 
-        PlayCOllisionEffetct();
+        PlayCollisionEffetct();
     }
 
 
-    private void PlayCOllisionEffetct()
+    private void PlayCollisionEffetct()
     {
         Instantiate(collisonEffectPS.gameObject, transform.position, transform.rotation);
     }
