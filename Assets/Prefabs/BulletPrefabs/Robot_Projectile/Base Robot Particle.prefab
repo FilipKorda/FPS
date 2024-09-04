@@ -26,15 +26,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2655615299712508246}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4347826, y: 0.5, z: 0.4347826}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3994578463315370123}
   - {fileID: 6757616931225754663}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2038606378378246461
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 6127692931475075397}
   - component: {fileID: 4259564194392142129}
   m_Layer: 0
-  m_Name: Red Particle System
+  m_Name: Yellow Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5117,7 +5117,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.35
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9728,7 +9728,7 @@ GameObject:
   - component: {fileID: 40923079768510533}
   - component: {fileID: 5452812030416712864}
   m_Layer: 0
-  m_Name: Purple Particle System
+  m_Name: Red Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10003,7 +10003,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.35
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2

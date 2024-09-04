@@ -35,7 +35,6 @@ namespace FPS.Enemy
 
         private void Damageable_OnDeath_SpawnParticle(Vector3 Position)
         {
-
             SpawnDeathParticleSystem(Position);
             if (droppedBodyPart != null)
                 SpawnBodyPart(Position, parentObject.rotation);
@@ -51,7 +50,6 @@ namespace FPS.Enemy
             {
                 gameObject.SetActive(false);
             }
-
         }
 
         private void Damageable_OnDeath_DropObject(Vector3 Position)

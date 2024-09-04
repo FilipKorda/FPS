@@ -11,16 +11,16 @@ public class ProjectileCollider : MonoBehaviour
         {
             damageable.TakeDamage(damageAmount);
             Destroy(gameObject);
+            PlayCollisionEffetct();
             Debug.Log("Deal damage: " + damageAmount);
         }
         else if (!(other.gameObject.layer == LayerMask.NameToLayer("Enemy")))
         {
+            PlayCollisionEffetct();
             Destroy(gameObject);
         }
-
-        PlayCollisionEffetct();
+       
     }
-
 
     private void PlayCollisionEffetct()
     {

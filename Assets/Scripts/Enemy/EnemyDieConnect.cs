@@ -8,6 +8,9 @@ namespace FPS.Enemy
         private PartHealth partHealth;
         private EnemyMovement enemyMovement;
 
+
+        [SerializeField] private float stopingDistanceAfterFall = 3;
+
         private void Awake()
         {
             enemyMovement = GetComponentInParent<EnemyMovement>();
@@ -32,7 +35,7 @@ namespace FPS.Enemy
                 if (partHealth.Name == "LegLeft" || partHealth.Name == "LegRight")
                 {
                     enemyMovement.thisEnemyAnimator.SetTrigger("FALL");
-                    enemyMovement.Agent.stoppingDistance = 3;
+                    enemyMovement.Agent.stoppingDistance = stopingDistanceAfterFall;
                     enemyMovement.isGrowl = true;
                 }
 

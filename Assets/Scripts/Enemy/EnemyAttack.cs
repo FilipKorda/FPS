@@ -8,32 +8,40 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        standAttackCollider.enabled = false;
-        crawlAttackCollider.enabled = false;
+        if (standAttackCollider != null)
+            standAttackCollider.enabled = false;
+        if (crawlAttackCollider != null)
+            crawlAttackCollider.enabled = false;
         if (swordAttackCollider != null)
             swordAttackCollider.enabled = false;
     }
 
     public void SetStandAttackCollider()
     {
-        standAttackCollider.enabled = true;
-        crawlAttackCollider.enabled = false;
+        if (standAttackCollider != null)
+            standAttackCollider.enabled = true;
+        if (crawlAttackCollider != null)
+            crawlAttackCollider.enabled = false;
         if (swordAttackCollider != null)
             swordAttackCollider.enabled = false;
     }
 
     public void SetCrawlAttackCollider()
     {
-        crawlAttackCollider.enabled = true;
-        standAttackCollider.enabled = false;
+        if (crawlAttackCollider != null)
+            crawlAttackCollider.enabled = true;
+        if (standAttackCollider != null)
+            standAttackCollider.enabled = false;
         if (swordAttackCollider != null)
             swordAttackCollider.enabled = false;
     }
 
     public void SetSwordAttackCollider()
     {
-        crawlAttackCollider.enabled = false;
-        standAttackCollider.enabled = false;
+        if (crawlAttackCollider != null)
+            crawlAttackCollider.enabled = false;
+        if (standAttackCollider != null)
+            standAttackCollider.enabled = false;
         if (swordAttackCollider != null)
             swordAttackCollider.enabled = true;
     }
@@ -41,8 +49,10 @@ public class EnemyAttack : MonoBehaviour
 
     public void DisableAttackColliders()
     {
-        standAttackCollider.enabled = false;
-        crawlAttackCollider.enabled = false;
+        if (standAttackCollider != null)
+            standAttackCollider.enabled = false;
+        if (crawlAttackCollider != null)
+            crawlAttackCollider.enabled = false;
         if (swordAttackCollider != null)
             swordAttackCollider.enabled = false;
     }

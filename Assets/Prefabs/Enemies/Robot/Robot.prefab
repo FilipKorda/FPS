@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &9000722698723779181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   bodyHealth: {fileID: 0}
   headHealth: {fileID: 0}
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
-  droppedBodyPart: {fileID: 0}
+  droppedBodyPart: {fileID: 3673575722956554109, guid: a908da46b218b104dad41bc55677a696, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -376,7 +377,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -397,8 +398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standAttackCollider: {fileID: 2172257391191255404}
-  crawlAttackCollider: {fileID: 2172257391191255404}
-  swordAttackCollider: {fileID: 2172257391191255404}
+  crawlAttackCollider: {fileID: 0}
+  swordAttackCollider: {fileID: 0}
 --- !u!114 &3726310530620746867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stillDelay: 1
-  followDistance: 10
+  followDistance: 15
   mainEnemyBehaviour: {fileID: 3726310530620746867}
   thisEnemyAnimator: {fileID: 7071867066660096306}
   walkSpeed: 3.5
@@ -430,9 +431,9 @@ MonoBehaviour:
   legRight: {fileID: 3218719224841047715}
   armLeft: {fileID: 7825438116172430355}
   armRight: {fileID: 4935454331089002472}
-  projectilePrefab: {fileID: 6126206058293985882}
+  projectilePrefab: {fileID: 8353744495664938990, guid: 1d94604f7d106fb44aead67c64877ddc, type: 3}
   shootPoint: {fileID: 5599549296267474713}
-  projectileSpeed: 10
+  projectileSpeed: 14
   canShoot: 1
   projectilePS: {fileID: 7896101295790348849}
   enemyAlien: 0
@@ -640,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &4292389728408261873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,7 +657,7 @@ MonoBehaviour:
   bodyHealth: {fileID: 0}
   headHealth: {fileID: 0}
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
-  droppedBodyPart: {fileID: 0}
+  droppedBodyPart: {fileID: 4628820141594505600, guid: 8abfcb2afd8ef0d4c8a8cb180298e944, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -797,6 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &5315504958369095239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +815,7 @@ MonoBehaviour:
   bodyHealth: {fileID: 0}
   headHealth: {fileID: 0}
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
-  droppedBodyPart: {fileID: 0}
+  droppedBodyPart: {fileID: 2264915008153522010, guid: 628ea4f49fa9aad4e9b71f66ee260312, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -954,6 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &2704370960728944740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +973,7 @@ MonoBehaviour:
   bodyHealth: {fileID: 0}
   headHealth: {fileID: 0}
   DeathSystem: {fileID: 7899902658370759092, guid: 3b5010672a7c9914c9e6bb40446b9291, type: 3}
-  droppedBodyPart: {fileID: 0}
+  droppedBodyPart: {fileID: 5963379153739586771, guid: aae63b19b8a5f0243b3dfaa9bcc014a2, type: 3}
   spawnObjectPrefab: {fileID: 2432383458816039340, guid: 378b972de5c77304d8445232acd56cec, type: 3}
   minForce: 1
   maxForce: 1.2
@@ -1111,6 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &8707393704011374237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,6 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &4241864644740448797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,11 +1655,6 @@ PrefabInstance:
 --- !u!4 &4698907844357975520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3525153240339549932, guid: b0e2876a71a547447932c8a8ee174f64, type: 3}
-  m_PrefabInstance: {fileID: 8204999935641346828}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6126206058293985882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2655615299712508246, guid: b0e2876a71a547447932c8a8ee174f64, type: 3}
   m_PrefabInstance: {fileID: 8204999935641346828}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &7896101295790348849 stripped
