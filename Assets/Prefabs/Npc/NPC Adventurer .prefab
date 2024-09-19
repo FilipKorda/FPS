@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3982802a47692cc47a7fb7543ff14373, type: 2}
+    - target: {fileID: 1723622091712049643, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: thisNpcAnimator
+      value: 
+      objectReference: {fileID: 2395554174292343397}
     - target: {fileID: 3678761829058906277, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -100,6 +104,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: basicCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: npcName
+      value: Adventurer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: conversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 89f6f146ad673df43bba169cb4da9f34, type: 2}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: secondConversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 77cc40ba5125fc34c80569d11ea15c61, type: 2}
     - target: {fileID: 7233603079203967249, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

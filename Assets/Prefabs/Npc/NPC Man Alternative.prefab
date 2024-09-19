@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a3a07b318828dff47a224d30d9c9b837, type: 2}
+    - target: {fileID: 1723622091712049643, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: thisNpcAnimator
+      value: 
+      objectReference: {fileID: 8567987437034877062}
     - target: {fileID: 3678761829058906277, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -100,6 +104,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: basicCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: npcName
+      value: Man Alternative
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: conversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 977822d977c38144f938e4418f6dba4e, type: 2}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: secondConversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 24369d2318885ed4daf0154e6ff9f469, type: 2}
     - target: {fileID: 7233603079203967249, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

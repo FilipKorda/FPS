@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4bb46be909c1e4a4cb6eb43ea40b51f4, type: 2}
+    - target: {fileID: 1723622091712049643, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: thisNpcAnimator
+      value: 
+      objectReference: {fileID: 8725754865221426313}
     - target: {fileID: 1867544838478462355, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 3.261531
@@ -104,6 +108,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: basicCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: npcName
+      value: Women Alternative
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: conversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: 39e669bb6dcdd3844bddd25bafae8560, type: 2}
+    - target: {fileID: 6940260257099364973, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
+      propertyPath: secondConversationData
+      value: 
+      objectReference: {fileID: 11400000, guid: a1a7b8b42ce4d444980aa911fc73904a, type: 2}
     - target: {fileID: 7014030734617307569, guid: 3cc231e7013bad34496e1db4c7b5a09b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 3.2484846
