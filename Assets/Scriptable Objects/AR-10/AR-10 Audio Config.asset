@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a730c6e706911641bf3eefa3858131c, type: 3}
   m_Name: AR-10 Audio Config
   m_EditorClassIdentifier: 
-  Volume: 0.05
+  Volume: 0.01
   FireClips:
   - {fileID: 8300000, guid: 0617d9bc7e0563c48b2a60316b0df1f9, type: 3}
   EmptyClip: {fileID: 8300000, guid: 0617d9bc7e0563c48b2a60316b0df1f9, type: 3}
