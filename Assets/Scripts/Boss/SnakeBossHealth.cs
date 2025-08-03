@@ -1,57 +1,99 @@
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FPS.Enemy
 {
-    public class SnakeBossHealth : MonoBehaviour, IDamageable
+    public class SnakeBossHealth : MonoBehaviour
     {
         public SnakeBoss boss;
-        [SerializeField] private int _Health;
-        [SerializeField] private int _MaxHealth = 100;
+        private List<SnakeSegment> _segments = new List<SnakeSegment>();
 
-        public event IDamageable.TakeDamageEvent OnTakeDamage;
-        public event IDamageable.ParticleDeathEvent ParticleOnDeath;
-        public event IDamageable.DropDeathEvent DropOnDeath;
+        [SerializeField] private GameObject[] destroyedSnakeSegment;
 
+        public int CurrentHealth { get; private set; }
+        public int MaxHealth { get; private set; }
 
-        public int CurrentHealth
+        private int _nextDetachThreshold;
+        private int _detachedCount = 0;
+
+        private void Awake()
         {
-            get => _Health;
-            private set => _Health = value;
-        }
+            _segments = GetComponentsInChildren<SnakeSegment>().ToList();
 
-        public int MaxHealth
-        {
-            get => _MaxHealth;
-            private set => _MaxHealth = value;
-        }
+            MaxHealth = _segments.Sum(s => s.MaxHealth);
+            CurrentHealth = MaxHealth;
 
-        private void OnEnable()
-        {
-            _Health = MaxHealth;
-        }
+            _nextDetachThreshold = CurrentHealth - 200;
 
-        public void TakeDamage(int Damage)
-        {
-            int damageTaken = Mathf.Clamp(Damage, 0, CurrentHealth);
-
-            CurrentHealth -= damageTaken;
-
-            if (damageTaken != 0)
+            foreach (var seg in _segments)
             {
-                OnTakeDamage?.Invoke(damageTaken);
-            }
-
-            if (CurrentHealth == 0 && damageTaken != 0)
-            {
-                DropOnDeath?.Invoke(transform.position);
-                ParticleOnDeath?.Invoke(transform.position);
+                seg.OnTakeDamage += HandleSegmentDamage;
             }
         }
 
-        void Die()
+        public void TakeDamage(int damage)
+        {
+            if (_segments.Count == 0) return;
+
+            SnakeSegment lastSegment = _segments[_segments.Count - 1];
+            lastSegment.ApplyDamage(damage);
+
+            HandleSegmentDamage(damage);
+        }
+
+
+        private void HandleSegmentDamage(int damage)
+        {
+            CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+
+            while (CurrentHealth <= _nextDetachThreshold && _segments.Count > 0)
+            {
+                DetachLastSegment();
+                _nextDetachThreshold -= 200;
+            }
+
+            if (CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void DetachLastSegment()
+        {
+            var segment = _segments[_segments.Count - 1];
+            _segments.RemoveAt(_segments.Count - 1);
+
+            segment.gameObject.SetActive(false);
+
+            if (_detachedCount < destroyedSnakeSegment.Length)
+            {
+                GameObject destroyedSeg = destroyedSnakeSegment[_detachedCount];
+                _detachedCount++;
+
+                destroyedSeg.transform.position = segment.transform.position;
+                destroyedSeg.transform.rotation = segment.transform.rotation;
+                destroyedSeg.SetActive(true);
+
+                Rigidbody rb = destroyedSeg.GetComponent<Rigidbody>();
+                if (rb == null)
+                {
+                    rb = destroyedSeg.AddComponent<Rigidbody>();
+                }
+
+                rb.useGravity = true;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+
+                rb.AddForce(Random.insideUnitSphere * 5f, ForceMode.Impulse);
+
+               // Destroy(destroyedSeg, 5f);
+            }
+        }
+
+        public void Die()
         {
             Debug.Log("SnakeBoss zginął!");
-            // Tutaj możesz dodać animację śmierci / zniszczenie
             Destroy(gameObject);
         }
     }

@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - PlatformSecond
   - Inside
+  - EnemyBoss
   layers:
   - Default
   - TransparentFX
