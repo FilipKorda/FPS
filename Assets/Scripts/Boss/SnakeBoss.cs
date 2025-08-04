@@ -39,10 +39,9 @@ public class SnakeBoss : MonoBehaviour
     private bool waitingForNextAttack = false;
     private float waitTimer = 0f;
 
-
     [SerializeField] private Transform playerPosition;
-
     [SerializeField] private Transform[] allAttackPathMainTransform;
+    private Transform currentAttackRoot;
 
     void Start()
     {
@@ -84,10 +83,18 @@ public class SnakeBoss : MonoBehaviour
                 if (waitingForNextAttack)
                 {
                     waitTimer -= Time.deltaTime;
+
+                    // POD¥¯ANIE ŒCIE¯KI ZA GRACZEM (X i Z)
+                    if (currentAttackRoot != null && playerPosition != null)
+                    {
+                        Vector3 targetXZ = new Vector3(playerPosition.position.x, currentAttackRoot.position.y, playerPosition.position.z);
+                        currentAttackRoot.position = targetXZ;
+                    }
+
                     if (waitTimer <= 0f)
                     {
                         waitingForNextAttack = false;
-                        PickRandomAttackPath();
+                        attackIndex = 0;
                     }
                 }
                 else
@@ -124,8 +131,7 @@ public class SnakeBoss : MonoBehaviour
             }
             else if (index >= path.Length)
             {
-                waitingForNextAttack = true;
-                waitTimer = attackPathWaitTime;
+                PickRandomAttackPath();
             }
         }
 
@@ -167,8 +173,11 @@ public class SnakeBoss : MonoBehaviour
             return;
         }
 
-        currentAttackPath = validPaths[Random.Range(0, validPaths.Count)];
+        int randomIndex = Random.Range(0, validPaths.Count);
+        currentAttackPath = validPaths[randomIndex];
         attackIndex = 0;
+
+        currentAttackRoot = allAttackPathMainTransform[randomIndex];
 
         Vector3 startPos = currentAttackPath[0].position;
         segments[0].position = startPos;
@@ -179,7 +188,11 @@ public class SnakeBoss : MonoBehaviour
         {
             segments[i].position = startPos;
         }
+
+        waitingForNextAttack = true;
+        waitTimer = attackPathWaitTime;
     }
+
 
     public void SetMove(bool value) => canMove = value;
 
