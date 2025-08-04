@@ -9,9 +9,13 @@ public class BossRaycastHit : MonoBehaviour
     [SerializeField] private float resetTime = 0.5f;
     [SerializeField] private ParticleSystem hitEffectPrefab;
     private bool hasHit = false;
+    public bool shouldUseRaycast = false;
 
     void Update()
     {
+
+        if (shouldUseRaycast) return;
+
         if (!hasHit && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, rayLength, layerMask))
         {
             if (hitEffectPrefab != null)

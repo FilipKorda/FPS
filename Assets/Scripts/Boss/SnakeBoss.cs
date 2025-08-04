@@ -7,6 +7,7 @@ public class SnakeBoss : MonoBehaviour
 {
     [SerializeField] private enum BossState { Idle, Patrol, Attack }
     [SerializeField] private BossState currentState = BossState.Idle;
+    [SerializeField] private BossRaycastHit bossRaycastHit;
 
     [SerializeField] private Transform[] segments;
     [SerializeField] private Transform[] wallWaypoints;
@@ -71,14 +72,18 @@ public class SnakeBoss : MonoBehaviour
         switch (currentState)
         {
             case BossState.Idle:
+                bossRaycastHit.shouldUseRaycast = false;
                 break;
 
             case BossState.Patrol:
+                bossRaycastHit.shouldUseRaycast = false;
                 MoveHeadToWaypoint(wallWaypoints, ref patrolIndex, moveSpeed, followDistance, rotationSpeed, loop: true);
                 MoveSegments(moveSpeed, followDistance, rotationSpeed);
                 break;
 
             case BossState.Attack:
+                bossRaycastHit.shouldUseRaycast = true;
+
                 if (currentAttackPath == null)
                 {
                     PickRandomAttackPath();
@@ -88,7 +93,6 @@ public class SnakeBoss : MonoBehaviour
                 {
                     waitTimer -= Time.deltaTime;
 
-                    // POD¥¯ANIE ŒCIE¯KI ZA GRACZEM (X i Z)
                     if (currentAttackRoot != null && playerPosition != null)
                     {
                         Vector3 targetXZ = new Vector3(playerPosition.position.x, currentAttackRoot.position.y, playerPosition.position.z);
