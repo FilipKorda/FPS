@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -43,6 +44,9 @@ public class SnakeBoss : MonoBehaviour
     [SerializeField] private Transform[] allAttackPathMainTransform;
     private Transform currentAttackRoot;
 
+
+  
+
     void Start()
     {
         positions.Add(segments[0].position);
@@ -61,7 +65,7 @@ public class SnakeBoss : MonoBehaviour
     }
 
     void Update()
-    {
+    {     
         if (!canMove) return;
 
         switch (currentState)
@@ -193,7 +197,6 @@ public class SnakeBoss : MonoBehaviour
         waitTimer = attackPathWaitTime;
     }
 
-
     public void SetMove(bool value) => canMove = value;
 
     void OnDrawGizmos()
@@ -242,4 +245,5 @@ public class SnakeBoss : MonoBehaviour
                 Gizmos.DrawSphere(path[path.Length - 1].position, 0.2f);
         }
     }
+
 }

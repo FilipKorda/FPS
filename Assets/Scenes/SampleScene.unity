@@ -7161,7 +7161,7 @@ Transform:
   m_GameObject: {fileID: 45289055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: -131.78, y: 12.11, z: 75.08}
+  m_LocalPosition: {x: -131.77997, y: 12.11, z: 228.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7519,6 +7519,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16699,6 +16703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain_roadStraight (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8662364343077405203, guid: cf58da6e9de0aad40b821a5ed88ce7a0, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22341,6 +22349,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_IsActive
@@ -48466,6 +48478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -137.5
@@ -57496,6 +57512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain_roadEnd (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8580671491293534902, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -112.49995
@@ -64654,7 +64674,7 @@ Transform:
   m_GameObject: {fileID: 392343766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66487,7 +66507,7 @@ Transform:
   m_GameObject: {fileID: 403541416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -69890,6 +69910,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -90599,6 +90623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.5
@@ -96473,6 +96501,10 @@ PrefabInstance:
     - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_Name
       value: terrain_roadEnd (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8580671491293534902, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118992,6 +119024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalScale.z
       value: 28.25
@@ -129010,7 +129046,7 @@ Transform:
   m_GameObject: {fileID: 799631370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133539,6 +133575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -112.5
@@ -137462,7 +137502,7 @@ Transform:
   m_GameObject: {fileID: 847081974}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180944,6 +180984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -87.5
@@ -197772,6 +197816,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -214701,6 +214749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -137.5
@@ -217395,6 +217447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain_roadCorner 3 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6140478580784466743, guid: 0c959adeef213904483c7507aa8bd215, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -217416,6 +217472,10 @@ PrefabInstance:
     - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_Name
       value: terrain_roadEnd (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8580671491293534902, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_LocalPosition.x
@@ -226561,7 +226621,7 @@ Transform:
   m_GameObject: {fileID: 1408984402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244213,7 +244273,7 @@ Transform:
   m_GameObject: {fileID: 1517886683}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249115,6 +249175,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -272078,6 +272142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -137.5
@@ -273434,6 +273502,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -278429,6 +278501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -137.5
@@ -279338,7 +279414,7 @@ Transform:
   m_GameObject: {fileID: 1712145862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -293275,6 +293351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -62.5
@@ -297873,6 +297953,10 @@ PrefabInstance:
     - target: {fileID: 8662364343077405203, guid: cf58da6e9de0aad40b821a5ed88ce7a0, type: 3}
       propertyPath: m_Name
       value: terrain_roadStraight (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662364343077405203, guid: cf58da6e9de0aad40b821a5ed88ce7a0, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -315497,6 +315581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -62.5
@@ -324101,6 +324189,7 @@ GameObject:
   - component: {fileID: 1991805179}
   - component: {fileID: 1991805178}
   - component: {fileID: 1991805181}
+  - component: {fileID: 1991805182}
   m_Layer: 6
   m_Name: Head
   m_TagString: EnemyBoss
@@ -324211,6 +324300,24 @@ MonoBehaviour:
   _Health: 0
   _MaxHealth: 200
   bossHealth: {fileID: 45289058}
+--- !u!114 &1991805182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991805176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6271b055900198d4db38791bf91f1fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayLength: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  resetTime: 0.5
+  hitEffectPrefab: {fileID: 7386592739698964408, guid: 942af565eae94e94aaa0f01030f0020c, type: 3}
 --- !u!64 &1992136342
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -333436,6 +333543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain_roadEnd (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2303227806533339797, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8580671491293534902, guid: eebac799baa21b04f8299e51aa52b116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.5
@@ -337347,7 +337458,7 @@ Transform:
   m_GameObject: {fileID: 2058685656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -345926,6 +346037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: terrain (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -87.5
@@ -348760,6 +348875,10 @@ PrefabInstance:
     - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_Name
       value: terrain (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259863016597498859, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6904472518292244547, guid: 8323efe10796afa4b82bdd757f2f2cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -370612,7 +370731,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2063497223150557858, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2271631685031114797, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
