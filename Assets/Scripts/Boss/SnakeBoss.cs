@@ -1,89 +1,154 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SnakeBoss : MonoBehaviour
 {
-    public Transform[] segments;
-    public Transform[] waypoints;
-    public float moveSpeed = 8f;
-    public float followDistance = 0.5f;
-    public float rotationSpeed = 5f;
+    [SerializeField] private enum BossState { Idle, Patrol, Attack }
+    [SerializeField] private BossState currentState = BossState.Idle;
+
+    [SerializeField] private Transform[] segments;
+    [SerializeField] private Transform[] wallWaypoints;
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float followDistance = 0.5f;
+    [SerializeField] private float rotationSpeed = 5f;
 
     private List<Vector3> positions = new List<Vector3>();
-    private int currentWaypointIndex = 0;
+
+    [Header("Attack Paths")]
+    [SerializeField] private Transform[] attackWaypointsPath;
+    [SerializeField] private Transform[] secondAttackWaypointsPath;
+    [SerializeField] private Transform[] thirdAttackWaypointsPath;
+    [SerializeField] private Transform[] fourthAttackWaypointsPath;
+    [SerializeField] private Transform[] fifthAttackWaypointsPath;
+    [SerializeField] private Transform[] sixthAttackWaypointsPath;
+    [SerializeField] private Transform[] seventhAttackWaypointsPath;
+    [SerializeField] private Transform[] eighthAttackWaypointsPath;
+
+    private Transform[][] attackPaths;
+    private Transform[] currentAttackPath;
+    private int patrolIndex = 0;
+    private int attackIndex = 0;
+
+    [SerializeField] private float moveAttackSpeed = 27f;
+    [SerializeField] private float followAttackDistance = 1f;
+    [SerializeField] private float rotationAttackSpeed = 8f;
+    [SerializeField] private float attackPathWaitTime = 2f;
 
     public bool canMove = false;
+    private bool waitingForNextAttack = false;
+    private float waitTimer = 0f;
+
+
+    [SerializeField] private Transform playerPosition;
+
+    [SerializeField] private Transform[] allAttackPathMainTransform;
 
     void Start()
     {
         positions.Add(segments[0].position);
+
+        attackPaths = new Transform[][]
+        {
+            attackWaypointsPath,
+            secondAttackWaypointsPath,
+            thirdAttackWaypointsPath,
+            fourthAttackWaypointsPath,
+            fifthAttackWaypointsPath,
+            sixthAttackWaypointsPath,
+            seventhAttackWaypointsPath,
+            eighthAttackWaypointsPath
+        };
     }
 
     void Update()
     {
-        if (canMove)
+        if (!canMove) return;
+
+        switch (currentState)
         {
-            MoveHeadToWaypoint();
-            MoveSegments();
+            case BossState.Idle:
+                break;
+
+            case BossState.Patrol:
+                MoveHeadToWaypoint(wallWaypoints, ref patrolIndex, moveSpeed, followDistance, rotationSpeed, loop: true);
+                MoveSegments(moveSpeed, followDistance, rotationSpeed);
+                break;
+
+            case BossState.Attack:
+                if (currentAttackPath == null)
+                {
+                    PickRandomAttackPath();
+                }
+
+                if (waitingForNextAttack)
+                {
+                    waitTimer -= Time.deltaTime;
+                    if (waitTimer <= 0f)
+                    {
+                        waitingForNextAttack = false;
+                        PickRandomAttackPath();
+                    }
+                }
+                else
+                {
+                    MoveHeadToWaypoint(currentAttackPath, ref attackIndex, moveAttackSpeed, followAttackDistance, rotationAttackSpeed, loop: false);
+                    MoveSegments(moveAttackSpeed, followAttackDistance, rotationAttackSpeed);
+                }
+                break;
         }
     }
 
-    void MoveHeadToWaypoint()
+    void MoveHeadToWaypoint(Transform[] path, ref int index, float speed, float followDist, float rotSpeed, bool loop)
     {
-        if (waypoints.Length == 0) return;
+        if (path == null || path.Length == 0) return;
 
-        Vector3 target = waypoints[currentWaypointIndex].position;
+        Vector3 target = path[index].position;
         Vector3 direction = (target - segments[0].position).normalized;
 
-        segments[0].position = Vector3.MoveTowards(
-            segments[0].position,
-            target,
-            moveSpeed * Time.deltaTime
-        );
+        segments[0].position = Vector3.MoveTowards(segments[0].position, target, speed * Time.deltaTime);
 
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-            segments[0].rotation = Quaternion.Slerp(
-                segments[0].rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            segments[0].rotation = Quaternion.Slerp(segments[0].rotation, targetRotation, rotSpeed * Time.deltaTime);
         }
 
         if (Vector3.Distance(segments[0].position, target) < 0.2f)
         {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            index++;
+
+            if (loop)
+            {
+                index %= path.Length;
+            }
+            else if (index >= path.Length)
+            {
+                waitingForNextAttack = true;
+                waitTimer = attackPathWaitTime;
+            }
         }
 
-        if (Vector3.Distance(positions[0], segments[0].position) > followDistance)
+        if (Vector3.Distance(positions[0], segments[0].position) > followDist)
         {
             positions.Insert(0, segments[0].position);
         }
     }
 
-    void MoveSegments()
+    void MoveSegments(float speed, float followDist, float rotSpeed)
     {
         for (int i = 1; i < segments.Length; i++)
         {
-            int index = Mathf.Min(i * 2, positions.Count - 1);
-            Vector3 targetPos = positions[index];
+            int posIndex = Mathf.Min(i * 2, positions.Count - 1);
+            Vector3 targetPos = positions[posIndex];
             Vector3 direction = targetPos - segments[i].position;
 
-            segments[i].position = Vector3.MoveTowards(
-                segments[i].position,
-                targetPos,
-                moveSpeed * Time.deltaTime
-            );
+            segments[i].position = Vector3.MoveTowards(segments[i].position, targetPos, speed * Time.deltaTime);
 
             if (direction != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
-                segments[i].rotation = Quaternion.Slerp(
-                    segments[i].rotation,
-                    targetRotation,
-                    rotationSpeed * Time.deltaTime
-                );
+                segments[i].rotation = Quaternion.Slerp(segments[i].rotation, targetRotation, rotSpeed * Time.deltaTime);
             }
         }
 
@@ -93,33 +158,75 @@ public class SnakeBoss : MonoBehaviour
         }
     }
 
+    private void PickRandomAttackPath()
+    {
+        List<Transform[]> validPaths = attackPaths.Where(path => path != null && path.Length > 0).ToList();
+        if (validPaths.Count == 0)
+        {
+            Debug.LogWarning("Brak dostêpnych œcie¿ek ataku!");
+            return;
+        }
+
+        currentAttackPath = validPaths[Random.Range(0, validPaths.Count)];
+        attackIndex = 0;
+
+        Vector3 startPos = currentAttackPath[0].position;
+        segments[0].position = startPos;
+        positions.Clear();
+        positions.Add(startPos);
+
+        for (int i = 1; i < segments.Length; i++)
+        {
+            segments[i].position = startPos;
+        }
+    }
+
+    public void SetMove(bool value) => canMove = value;
+
     void OnDrawGizmos()
     {
-        if (waypoints == null || waypoints.Length < 2) return;
-
-        Gizmos.color = Color.green;
-
-        for (int i = 0; i < waypoints.Length - 1; i++)
+        if (wallWaypoints != null && wallWaypoints.Length > 1)
         {
-            if (waypoints[i] != null && waypoints[i + 1] != null)
+            Gizmos.color = Color.green;
+            for (int i = 0; i < wallWaypoints.Length - 1; i++)
             {
-                Gizmos.DrawLine(waypoints[i].position, waypoints[i + 1].position);
+                if (wallWaypoints[i] != null && wallWaypoints[i + 1] != null)
+                {
+                    Gizmos.DrawLine(wallWaypoints[i].position, wallWaypoints[i + 1].position);
+                }
             }
         }
 
-        if (waypoints[0] != null && waypoints[waypoints.Length - 1] != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(waypoints[waypoints.Length - 1].position, waypoints[0].position);
-        }
+        Color[] attackColors = { Color.red, Color.magenta, Color.cyan, Color.yellow, Color.blue, Color.gray, Color.white, new Color(1f, 0.5f, 0f) };
 
-        if (positions != null && positions.Count > 1)
+        Transform[][] paths = {
+            attackWaypointsPath,
+            secondAttackWaypointsPath,
+            thirdAttackWaypointsPath,
+            fourthAttackWaypointsPath,
+            fifthAttackWaypointsPath,
+            sixthAttackWaypointsPath,
+            seventhAttackWaypointsPath,
+            eighthAttackWaypointsPath
+        };
+
+        for (int p = 0; p < paths.Length; p++)
         {
-            Gizmos.color = Color.cyan;
-            for (int i = 0; i < positions.Count - 1; i++)
+            Transform[] path = paths[p];
+            if (path == null || path.Length < 2) continue;
+
+            Gizmos.color = attackColors[p % attackColors.Length];
+            for (int i = 0; i < path.Length - 1; i++)
             {
-                Gizmos.DrawLine(positions[i], positions[i + 1]);
+                if (path[i] != null && path[i + 1] != null)
+                {
+                    Gizmos.DrawLine(path[i].position, path[i + 1].position);
+                    Gizmos.DrawSphere(path[i].position, 0.2f);
+                }
             }
+
+            if (path[path.Length - 1] != null)
+                Gizmos.DrawSphere(path[path.Length - 1].position, 0.2f);
         }
     }
 }
