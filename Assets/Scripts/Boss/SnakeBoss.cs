@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class SnakeBoss : MonoBehaviour
 {
-    [SerializeField] private enum BossState { Idle, Patrol, Attack }
+    [HideInInspector][SerializeField] public enum BossState { Idle, Patrol, Attack }
     [SerializeField] private BossState currentState = BossState.Idle;
+    private Coroutine _stateChangeRoutine;
     [SerializeField] private BossRaycastHit bossRaycastHit;
 
     [SerializeField] private Transform[] segments;
@@ -26,6 +27,9 @@ public class SnakeBoss : MonoBehaviour
     [SerializeField] private Transform[] sixthAttackWaypointsPath;
     [SerializeField] private Transform[] seventhAttackWaypointsPath;
     [SerializeField] private Transform[] eighthAttackWaypointsPath;
+    [SerializeField] private Transform[] nineAttackWaypointsPath;
+    [SerializeField] private Transform[] tenAttackWaypointsPath;
+    [SerializeField] private Transform[] eleventhAttackWaypointsPath;
 
     private Transform[][] attackPaths;
     private Transform[] currentAttackPath;
@@ -37,7 +41,7 @@ public class SnakeBoss : MonoBehaviour
     [SerializeField] private float rotationAttackSpeed = 8f;
     [SerializeField] private float attackPathWaitTime = 2f;
 
-    public bool canMove = false;
+    private bool canMove = false;
     private bool waitingForNextAttack = false;
     private float waitTimer = 0f;
 
@@ -46,7 +50,7 @@ public class SnakeBoss : MonoBehaviour
     private Transform currentAttackRoot;
 
 
-  
+
 
     void Start()
     {
@@ -61,28 +65,31 @@ public class SnakeBoss : MonoBehaviour
             fifthAttackWaypointsPath,
             sixthAttackWaypointsPath,
             seventhAttackWaypointsPath,
-            eighthAttackWaypointsPath
+            eighthAttackWaypointsPath,
+            nineAttackWaypointsPath,
+            tenAttackWaypointsPath,
+            eleventhAttackWaypointsPath
         };
     }
 
     void Update()
-    {     
+    {
         if (!canMove) return;
 
         switch (currentState)
         {
             case BossState.Idle:
-                bossRaycastHit.shouldUseRaycast = false;
+                bossRaycastHit.SetUseRaycast(false);
                 break;
 
             case BossState.Patrol:
-                bossRaycastHit.shouldUseRaycast = false;
+                bossRaycastHit.SetUseRaycast(false);
                 MoveHeadToWaypoint(wallWaypoints, ref patrolIndex, moveSpeed, followDistance, rotationSpeed, loop: true);
                 MoveSegments(moveSpeed, followDistance, rotationSpeed);
                 break;
 
             case BossState.Attack:
-                bossRaycastHit.shouldUseRaycast = true;
+                bossRaycastHit.SetUseRaycast(true);
 
                 if (currentAttackPath == null)
                 {
@@ -203,6 +210,23 @@ public class SnakeBoss : MonoBehaviour
 
     public void SetMove(bool value) => canMove = value;
 
+    public void ChangeBossState(BossState newState, float transitionTime = 0f)
+    {
+        if (_stateChangeRoutine != null)
+            StopCoroutine(_stateChangeRoutine);
+
+        _stateChangeRoutine = StartCoroutine(SmoothStateChange(newState, transitionTime));
+    }
+
+    private IEnumerator SmoothStateChange(BossState newState, float transitionTime)
+    {
+        if (transitionTime > 0f)
+            yield return new WaitForSeconds(transitionTime);
+
+        currentState = newState;
+        _stateChangeRoutine = null;
+    }
+
     void OnDrawGizmos()
     {
         if (wallWaypoints != null && wallWaypoints.Length > 1)
@@ -217,7 +241,7 @@ public class SnakeBoss : MonoBehaviour
             }
         }
 
-        Color[] attackColors = { Color.red, Color.magenta, Color.cyan, Color.yellow, Color.blue, Color.gray, Color.white, new Color(1f, 0.5f, 0f) };
+        Color[] attackColors = { Color.red, Color.magenta, Color.cyan, Color.yellow, Color.blue, Color.gray, Color.white, new Color(1f, 0.5f, 0f), new Color(1f, 0.5f, 1f), new Color(1f, 1f, 1f), new Color(0.5f, 1f, 0.5f) };
 
         Transform[][] paths = {
             attackWaypointsPath,
@@ -227,7 +251,10 @@ public class SnakeBoss : MonoBehaviour
             fifthAttackWaypointsPath,
             sixthAttackWaypointsPath,
             seventhAttackWaypointsPath,
-            eighthAttackWaypointsPath
+            eighthAttackWaypointsPath,
+            nineAttackWaypointsPath,
+            tenAttackWaypointsPath,
+            eleventhAttackWaypointsPath
         };
 
         for (int p = 0; p < paths.Length; p++)

@@ -23,14 +23,12 @@ namespace FPS.Enemy
 
         public void TakeDamage(int damage)
         {
-            // Przekazanie obra¿eñ do g³ównej logiki bossa
             if (bossHealth != null)
             {
                 bossHealth.TakeDamage(damage);
             }
         }
 
-        // Wywo³ywane tylko przez SnakeBossHealth, gdy segment faktycznie traci HP
         public void ApplyDamage(int damage)
         {
             int damageTaken = Mathf.Clamp(damage, 0, CurrentHealth);

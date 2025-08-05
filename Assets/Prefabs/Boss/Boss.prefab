@@ -458,11 +458,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  nineAttackWaypointsPath: []
+  tenAttackWaypointsPath: []
+  eleventhAttackWaypointsPath: []
   moveAttackSpeed: 27
   followAttackDistance: 1
   rotationAttackSpeed: 8
   attackPathWaitTime: 2
-  canMove: 0
   playerPosition: {fileID: 0}
   allAttackPathMainTransform:
   - {fileID: 0}
@@ -486,6 +488,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 5043218759082235985}
+  bossHealthSlider: {fileID: 0}
+  bossHeealthHolder: {fileID: 0}
+  skullImage: {fileID: 0}
+  leftLines: []
+  rightLines: []
   destroyedSnakeSegment:
   - {fileID: 3913036300894465948}
   - {fileID: 3342410908683209110}
@@ -2631,13 +2638,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6271b055900198d4db38791bf91f1fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayLength: 3
+  rayLength: 4
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
   resetTime: 0.5
   hitEffectPrefab: {fileID: 7386592739698964408, guid: 942af565eae94e94aaa0f01030f0020c, type: 3}
-  shouldUseRaycast: 0
 --- !u!1 &8325992570863583496
 GameObject:
   m_ObjectHideFlags: 0
