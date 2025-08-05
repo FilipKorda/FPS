@@ -15,16 +15,16 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - 'Pa '
+    - ' How are your plants?'
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Girl
     Sentences:
-    - Narazie
+    - ' Very good'
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

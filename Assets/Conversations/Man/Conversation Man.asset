@@ -15,7 +15,8 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Czescs
+    - Hi!
+    - What do you do?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -24,7 +25,25 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: Man
     Sentences:
-    - Hej
+    - "Hey there. I\u2019m just a worker here, fixing pipes and hauling supplies."
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Hard job?
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Man
+    Sentences:
+    - Yeah, but it keeps the station running.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

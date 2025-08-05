@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace FPS.Enemy
@@ -26,6 +27,8 @@ namespace FPS.Enemy
         private int _detachedCount = 0;
 
         private Coroutine _healthBarRoutine;
+
+        [SerializeField] private UnityEvent bossDie;
 
         private void Awake()
         {
@@ -70,7 +73,7 @@ namespace FPS.Enemy
 
         private IEnumerator ScaleBossHealthBar(RectTransform rect)
         {
-            float duration = 2f;
+            float duration = 3f;
             float elapsed = 0f;
 
             Vector3 startScale = new Vector3(0f, rect.localScale.y, rect.localScale.z);
@@ -88,6 +91,36 @@ namespace FPS.Enemy
 
             EnabledBossImages();
         }
+
+        public void HideBossHealthSlider()
+        {
+            RectTransform rect = bossHeealthHolder.GetComponent<RectTransform>();
+            rect.localScale = new Vector3(1f, rect.localScale.y, rect.localScale.z);
+
+            StartCoroutine(ScaleDeadBossHealthBar(rect));
+        }
+
+        private IEnumerator ScaleDeadBossHealthBar(RectTransform rect)
+        {
+            float duration = 2f;
+            float elapsed = 0f;
+
+            Vector3 startScale = new Vector3(1f, rect.localScale.y, rect.localScale.z);
+            Vector3 endScale = new Vector3(0f, rect.localScale.y, rect.localScale.z);
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                rect.localScale = Vector3.Lerp(startScale, endScale, t);
+                yield return null;
+            }
+
+            rect.localScale = endScale;
+
+            DisableBossImages();
+        }
+
 
         private void EnabledBossImages()
         {
@@ -166,7 +199,7 @@ namespace FPS.Enemy
 
             if (CurrentHealth <= 0)
             {
-                Die();
+                BossDie();
             }
         }
 
@@ -198,7 +231,6 @@ namespace FPS.Enemy
 
                 rb.AddForce(Random.insideUnitSphere * 5f, ForceMode.Impulse);
 
-                // Destroy(destroyedSeg, 5f);
             }
         }
 
@@ -219,10 +251,16 @@ namespace FPS.Enemy
             bossHealthSlider.value = endValue;
         }
 
-        public void Die()
+        public void BossDie()
         {
-            Debug.Log("SnakeBoss zginął!");
-            Destroy(gameObject);
+            bossDie.Invoke();
         }
+
+        [ContextMenu(" -= Set Boss HP to One =-")]
+        public void SetHealthToOne()
+        {
+            CurrentHealth = 1;
+        }
+
     }
 }

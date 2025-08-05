@@ -15,16 +15,35 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Czescs
+    - Hello
+    - What are you doing here?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Girl
     Sentences:
-    - Hej
+    - "Hi! I\u2019m ten, and I help feed the little greenhouse plants on the station."
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - That sounds fun.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Girl
+    Sentences:
+    - Yeah! If they grow big, everyone gets fresh veggies.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

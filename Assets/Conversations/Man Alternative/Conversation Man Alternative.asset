@@ -15,16 +15,35 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Czescs
+    - Hi
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Boy
     Sentences:
-    - Hej
+    - Hello
+    - "Welcome to the Martian station! I\u2019m in charge of the life support systems."
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Sounds serious.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Boy
+    Sentences:
+    - Yeah, without my work, no one would last long here.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

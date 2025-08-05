@@ -15,16 +15,34 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Czescs
+    - Hello!
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Adventurer
     Sentences:
-    - Hej
+    - Hey there, stranger! I roam this dusty station looking for trouble and adventure.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Sounds risky.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Adventurer
+    Sentences:
+    - Risk is the only thing that keeps life exciting out here.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

@@ -15,16 +15,36 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Czescs
+    - Hi!
+    - How are you?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Women
     Sentences:
-    - Hej
+    - Hello! I`m fine, thanks!
+    - I run the communications hub here on the Martian station.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Must be busy work.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: Women
+    Sentences:
+    - It is, but without me, no one could call for help out here.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

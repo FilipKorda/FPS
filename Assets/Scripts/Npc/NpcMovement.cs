@@ -29,6 +29,34 @@ public class NpcMovement : MonoBehaviour
         StartCoroutine(Roam(dealyTimeToRoam));
     }
 
+
+    public void HideNpcWhenBossEntrance()
+    {
+        StopAllCoroutines();
+        Agent.isStopped = true;
+
+        thisNpcAnimator.ResetTrigger("IDLE");
+        thisNpcAnimator.ResetTrigger("WALK");
+        thisNpcAnimator.ResetTrigger("HIDE");
+        thisNpcAnimator.ResetTrigger("STANDUP");
+
+        thisNpcAnimator.SetTrigger("HIDE");
+    }
+
+    public void StandUpNpcAfterBossDead()
+    {
+        StopAllCoroutines();
+        Agent.isStopped = false;
+
+        thisNpcAnimator.ResetTrigger("IDLE");
+        thisNpcAnimator.ResetTrigger("WALK");
+        thisNpcAnimator.ResetTrigger("HIDE");
+        thisNpcAnimator.ResetTrigger("STANDUP");
+
+        thisNpcAnimator.SetTrigger("STANDUP");
+    }
+
+
     private IEnumerator Roam(float delay)
     {
         yield return new WaitForSeconds(delay);
