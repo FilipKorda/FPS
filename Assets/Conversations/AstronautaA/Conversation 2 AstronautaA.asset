@@ -15,7 +15,7 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - ej ty zyjesz?!?!?1
+    - hey, you're alive?!?!?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: Oklahoma
     Sentences:
-    - ............
+    - . . . . . . .. . . . .
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

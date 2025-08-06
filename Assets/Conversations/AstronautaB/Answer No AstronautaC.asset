@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
-  m_Name: AnswerTwo AstronautaB
+  m_Name: Answer No AstronautaC
   m_EditorClassIdentifier: 
   conversation:
-  - Name: Steve
-    Sentences:
-    - "Odpowied\u017A dwa"
-    isAskingQuestion: 0
-    OptionOne: 
-    answerOne: {fileID: 0}
-    OptionTwo: 
-    answerTwo: {fileID: 0}
-    questToGive: {fileID: 11400000, guid: 52f1c5da69b4f07479596f97aec5d998, type: 2}
   - Name: You
     Sentences:
-    - green card nice
+    - ' I didn''t find it'
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
-    questToGive: {fileID: 11400000, guid: 605ffe7103459654c8e29f0c240928e3, type: 2}
+    questToGive: {fileID: 0}
+  - Name: Ben
+    Sentences:
+    - That's not good, they might be useful to you!
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}

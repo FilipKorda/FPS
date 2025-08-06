@@ -10,26 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
-  m_Name: Conversation 2 AstronautaB
+  m_Name: Conversation 2 AstronautaC
   m_EditorClassIdentifier: 
   conversation:
   - Name: You
     Sentences:
     - Hi
-    - Do you have more tasks like this?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Steve
+  - Name: Ben
     Sentences:
-    - I don't have any more tasks for you.
-    - Bye.
-    isAskingQuestion: 0
-    OptionOne: 
-    answerOne: {fileID: 0}
-    OptionTwo: 
-    answerTwo: {fileID: 0}
+    - Did you find those grenades and ammo?
+    isAskingQuestion: 1
+    OptionOne: Yes
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: No
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
     questToGive: {fileID: 0}

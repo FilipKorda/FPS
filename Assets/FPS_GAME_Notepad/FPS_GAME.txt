@@ -20,3 +20,19 @@ The first segment is only a guide,
 To get to the next segment you need to go up the stairs, 
 open the bridge and cross the bridge to pick up the green card which you need to open the main hangar.
 =================================================
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+The second segment,
+
+- There is an NPC who will tell you what to do.
+- There are air generators the - OxygenHugeContainer -
+- There is 1 weapon, on a platform
+- A small puzzle game where you have to click the right buttons to move the bridge to the right place so you can move further.
+- Still Beware of zombies.
+- MarsHurricane system still works.
+
+===================== THE GOAL ==================
+You need to refill the generators with gasoline.
+They cause the hangar to open and power the entire station.
+Which will allow you to move on to the next segment.
+=================================================

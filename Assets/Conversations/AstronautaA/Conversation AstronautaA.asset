@@ -15,9 +15,8 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Siema
-    - "Co tutaj sie sta\u0142o?!?!?1"
-    - czy cos ci jest xd
+    - What happened here?!?!?
+    - Is something wrong with you?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -26,10 +25,10 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: Oklahoma
     Sentences:
-    - "Nie nic sie nie sta\u0142o xd"
-    - .....
-    - "oczywiscie ze sie sta\u0142o ja tu umieram"
-    - "Ale musisz sie st\u0105d wydosta\u0107!"
+    - No, nothing happened.
+    - '. . . . . '
+    - Of course it happened, I'm dying here.
+    - But you have to get out of here!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -38,7 +37,7 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: You
     Sentences:
-    - "Jak to zrobi\u0107?"
+    - How do I get out of here?
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -47,7 +46,7 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: Oklahoma
     Sentences:
-    - Uruchom generatory!
+    - You have to turn on the generators!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -56,7 +55,7 @@ MonoBehaviour:
     questToGive: {fileID: 11400000, guid: b2791f2793fe8ca4181a00335e3de34f, type: 2}
   - Name: Oklahoma
     Sentences:
-    - "Znaj\u017A benzyne!"
+    - You have to find gasoline!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -65,16 +64,27 @@ MonoBehaviour:
     questToGive: {fileID: 11400000, guid: 8d14bdefcd0d3d94dbea9d618d220127, type: 2}
   - Name: Oklahoma
     Sentences:
-    - "Otw\xF3rz brame!"
+    - And at the very end, you have to open the gate!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
     questToGive: {fileID: 11400000, guid: 0b6db99cac7ce18439b1a134099ba75f, type: 2}
+  - Name: You
+    Sentences:
+    - ' Okay, but what happened to you?'
+    - ' Why are you hurt?'
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
   - Name: Oklahoma
     Sentences:
-    - ........ ahhhh...agggh
+    - ' Because. . . . '
+    - ' .. . . . .. . ahhgh ...  agggh'
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}

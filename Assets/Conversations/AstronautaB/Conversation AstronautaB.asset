@@ -15,19 +15,19 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - Zadanie dotyczace bandazy
-    - zbierz je wszystkie takie zadanie ale w sumie wystrczy tylko 4!
+    - Hi!
+    - What can I do for you?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
-    questToGive: {fileID: 11400000, guid: d3665c924a70ca641b7839ecb86c44c1, type: 2}
+    questToGive: {fileID: 0}
   - Name: Steve
     Sentences:
-    - o a tutaj jest z tlenem zadanie
-    - wez zbierz tylko 4.
-    - dzieki powodzenia
+    - Hello.
+    - I have a task for you.
+    - Collect 4 oxygen canisters!
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -36,21 +36,67 @@ MonoBehaviour:
     questToGive: {fileID: 11400000, guid: f4c5aee0f14562e42a04e154f8605cf2, type: 2}
   - Name: You
     Sentences:
-    - niebiska karta do zadania
-    - jest ci potrzebna zeby to zrobic xd
-    - i w sumie tylko 1 karte musisz znalezc
-    - powodzenia
+    - ' No problem, I''ll find 4 oxygen canisters.'
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
-    questToGive: {fileID: 11400000, guid: 984fd1f5bac29ed419e4e759fc21921f, type: 2}
+    questToGive: {fileID: 0}
   - Name: Steve
     Sentences:
-    - a tutaj xd masz zielona karte
-    - super zadanie xd
-    isAskingQuestion: 1
+    - Wait, that's not all.
+    - Now I'm asking you to collect 4 bandages.
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 11400000, guid: d3665c924a70ca641b7839ecb86c44c1, type: 2}
+  - Name: You
+    Sentences:
+    - Is that all you have to tell me?
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: Steve
+    Sentences:
+    - No.
+    - You need to find the green  access card.
+    - It will definitely be useful to you in the future.
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 11400000, guid: 605ffe7103459654c8e29f0c240928e3, type: 2}
+  - Name: You
+    Sentences:
+    - I'll take good care of this green access card.
+    - ' Is that all?'
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: Steve
+    Sentences:
+    - Yes,  Good luck.
+    - Good Bye.
+    isAskingQuestion: 0
+    OptionOne: "Odpowied\u017A jeden TAK"
+    answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
+    OptionTwo: "Odpowied\u017A dwa NIE"
+    answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Bye.
+    isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
