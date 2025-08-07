@@ -381982,21 +381982,25 @@ PrefabInstance:
       propertyPath: cameraFovSettings
       value: 
       objectReference: {fileID: 427137954}
+    - target: {fileID: 7185137250040002895, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
+      propertyPath: <Guns>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b2dec8a34475254093f8939ea55dc50, type: 2}
     - target: {fileID: 7422813973076370532, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
       propertyPath: eagleVision
       value: 
       objectReference: {fileID: 1971346065}
     - target: {fileID: 7864397323582606732, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.13
+      value: -35.74
       objectReference: {fileID: 0}
     - target: {fileID: 7864397323582606732, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.983
       objectReference: {fileID: 0}
     - target: {fileID: 7864397323582606732, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.896
+      value: 48.189
       objectReference: {fileID: 0}
     - target: {fileID: 7864397323582606732, guid: b00497ea24a02e44a969328c1b985e6c, type: 3}
       propertyPath: m_LocalRotation.w

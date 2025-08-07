@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: M4A1 Ammo Config
   m_EditorClassIdentifier: 
   MaxAmmo: 300
-  ClipSize: 300
+  ClipSize: 30
   CurrentAmmo: 300
-  CurrentClipAmmo: 300
-  reloadTime: 300
+  CurrentClipAmmo: 30
+  reloadTime: 2.8

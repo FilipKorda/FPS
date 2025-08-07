@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f5cccb0d5a6cb4c9fdfdf57d6b0925, type: 3}
   m_Name: Glock Ammo Config
   m_EditorClassIdentifier: 
-  MaxAmmo: 1
-  ClipSize: 1
-  CurrentAmmo: 1
-  CurrentClipAmmo: 1
-  reloadTime: 1
+  MaxAmmo: 60
+  ClipSize: 10
+  CurrentAmmo: 60
+  CurrentClipAmmo: 10
+  reloadTime: 2

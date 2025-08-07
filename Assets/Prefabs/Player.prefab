@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 8766085917040621850}
-  <Gun>k__BackingField: 1
+  <Gun>k__BackingField: 3
   GunParent: {fileID: 2938502792820871762}
   <Guns>k__BackingField:
   - {fileID: 11400000, guid: eb36478a2ccf4ab4cb76c43377aca1df, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a730c6e706911641bf3eefa3858131c, type: 3}
   m_Name: AR-10 Audio Config
   m_EditorClassIdentifier: 
-  Volume: 0.01
+  Volume: 0.02
   FireClips:
-  - {fileID: 8300000, guid: 0617d9bc7e0563c48b2a60316b0df1f9, type: 3}
-  EmptyClip: {fileID: 8300000, guid: 0617d9bc7e0563c48b2a60316b0df1f9, type: 3}
-  ReloadClip: {fileID: 8300000, guid: e382e34857732bb4b9c366c80f442e99, type: 3}
-  LastBulletClip: {fileID: 8300000, guid: 0617d9bc7e0563c48b2a60316b0df1f9, type: 3}
+  - {fileID: 8300000, guid: edea31f42e0dcf34582ab06c532e3a81, type: 3}
+  EmptyClip: {fileID: 8300000, guid: 490fbf9daa8e3ae4c9d658465944a09b, type: 3}
+  ReloadClip: {fileID: 8300000, guid: ce97f4f6bfd1cca4cab7ac4bd1e6075c, type: 3}
+  LastBulletClip: {fileID: 8300000, guid: edea31f42e0dcf34582ab06c532e3a81, type: 3}
