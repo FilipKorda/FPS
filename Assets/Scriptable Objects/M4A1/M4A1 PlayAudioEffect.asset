@@ -15,4 +15,4 @@ MonoBehaviour:
   AudioSourcePrefab: {fileID: 6757067463185957641, guid: 87bc616acc8a9674a82863ec1acdd6e3, type: 3}
   AudioClips:
   - {fileID: 8300000, guid: c221bf36f0b3fd74382e8f5064c15d63, type: 3}
-  VolumeRange: {x: 0.03, y: 0.04}
+  VolumeRange: {x: 0.4, y: 0.5}

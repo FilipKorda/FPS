@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4212e81f7d99a554e81a2b2a2a8b0e0c, type: 3}
   m_Name: UziSilencer SpawnObjectEffect
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1519951637510139104, guid: 5fff8e806825a854289989eafa921607, type: 3}
+  Prefab: {fileID: 3929207429979831174, guid: 8afb66cffc1dea14e902f74abe557d0e, type: 3}
   Probability: 1
   RandomizeRotation: 0
   RandomizedRotationMultiplier: {x: 0, y: 0, z: 0}

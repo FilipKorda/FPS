@@ -40,6 +40,7 @@ namespace FPS.ImpactSystem
         [SerializeField]
         private Surface DefaultSurface;
         private Dictionary<GameObject, ObjectPool<GameObject>> ObjectPools = new();
+        [SerializeField] private Transform sfxParentAudioSources;
 
         public void HandleImpact(GameObject HitObject, Vector3 HitPoint, Vector3 HitNormal, ImpactType Impact, int TriangleIndex)
         {
@@ -186,8 +187,7 @@ namespace FPS.ImpactSystem
         {
             foreach (SpawnObjectEffect spawnObjectEffect in SurfaceEffect.SpawnObjectEffects)
             {
-                if (spawnObjectEffect.Probability > Random.value)
-                {
+                
                     if (!ObjectPools.ContainsKey(spawnObjectEffect.Prefab))
                     {
                         ObjectPools.Add(spawnObjectEffect.Prefab, new ObjectPool<GameObject>(() => Instantiate(spawnObjectEffect.Prefab)));
@@ -199,38 +199,49 @@ namespace FPS.ImpactSystem
                     {
                         poolable.Parent = ObjectPools[spawnObjectEffect.Prefab];
                     }
+
                     instance.SetActive(true);
-                    instance.transform.position = HitPoint + HitNormal * 0.001f;
-                    instance.transform.forward = HitNormal;
+                    instance.transform.position = HitPoint + HitNormal * 0.005f;
 
-                    if (spawnObjectEffect.RandomizeRotation)
+                    Vector3 normal = HitNormal;
+                    Vector3 up = Vector3.up;
+
+                    if (Mathf.Abs(Vector3.Dot(normal, Vector3.up)) > 0.9f)
                     {
-                        Vector3 offset = new Vector3(
-                            Random.Range(0, 180 * spawnObjectEffect.RandomizedRotationMultiplier.x),
-                            Random.Range(0, 180 * spawnObjectEffect.RandomizedRotationMultiplier.y),
-                            Random.Range(0, 180 * spawnObjectEffect.RandomizedRotationMultiplier.z)
-                        );
-
-                        instance.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + offset);
+                        up = Vector3.forward;
                     }
-                }
+
+                    Quaternion rotation = Quaternion.LookRotation(-normal, up);
+                    instance.transform.rotation = rotation;
+
+
+
+                
             }
 
             foreach (PlayAudioEffect playAudioEffect in SurfaceEffect.PlayAudioEffects)
             {
                 if (!ObjectPools.ContainsKey(playAudioEffect.AudioSourcePrefab.gameObject))
                 {
-                    ObjectPools.Add(playAudioEffect.AudioSourcePrefab.gameObject, new ObjectPool<GameObject>(() => Instantiate(playAudioEffect.AudioSourcePrefab.gameObject)));
+                    ObjectPools.Add(
+                        playAudioEffect.AudioSourcePrefab.gameObject,
+                        new ObjectPool<GameObject>(() =>
+                        {
+                            return Instantiate(playAudioEffect.AudioSourcePrefab.gameObject, sfxParentAudioSources);
+                        })
+                    );
                 }
 
                 AudioClip clip = playAudioEffect.AudioClips[Random.Range(0, playAudioEffect.AudioClips.Count)];
                 GameObject instance = ObjectPools[playAudioEffect.AudioSourcePrefab.gameObject].Get();
+                instance.transform.SetParent(sfxParentAudioSources);
                 instance.SetActive(true);
-                AudioSource audioSource = instance.GetComponent<AudioSource>();
 
+                AudioSource audioSource = instance.GetComponent<AudioSource>();
                 audioSource.transform.position = HitPoint;
                 audioSource.PlayOneShot(clip, SoundOffset * Random.Range(playAudioEffect.VolumeRange.x, playAudioEffect.VolumeRange.y));
                 StartCoroutine(DisableAudioSource(ObjectPools[playAudioEffect.AudioSourcePrefab.gameObject], audioSource, clip.length));
+
             }
         }
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96b2585496041d94299e5584f365c59a, type: 3}
-  m_Name: Glock SurfaceEffect
+  m_Name: Glock SurfaceEffect Metal
   m_EditorClassIdentifier: 
   SpawnObjectEffects:
   - {fileID: 11400000, guid: 8be465fb57efd4f4ea2026387e1fadd3, type: 2}
