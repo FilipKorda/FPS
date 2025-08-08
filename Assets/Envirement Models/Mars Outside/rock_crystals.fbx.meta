@@ -3,7 +3,22 @@ guid: 1ea37d5db278105408caaeda56a926fe
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crystal
+    second: {fileID: 2100000, guid: a421244a0f4f7bd4cab60f99351c97a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock
+    second: {fileID: 2100000, guid: cdc489e49bb468947aaabcb8cffa98d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rockTrack
+    second: {fileID: 2100000, guid: fb833dc879d5fe240852e20cdd2367d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

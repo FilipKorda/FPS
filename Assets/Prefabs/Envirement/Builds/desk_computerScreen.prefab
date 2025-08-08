@@ -124,11 +124,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  platform: {fileID: 0}
   speed: 5
-  isPlatformActive: 0
-  direction: {x: 0, y: 0, z: 0}
-  stopIndexes: 01000000
+  platform: {fileID: 0}
 --- !u!1 &2973347653135770875
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,9 +189,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8896051167825165466, guid: a619e52d12f0d5741b913c858cc1259d, type: 3}
-  - {fileID: -4660651839558579860, guid: a619e52d12f0d5741b913c858cc1259d, type: 3}
-  - {fileID: -6867524174320841699, guid: a619e52d12f0d5741b913c858cc1259d, type: 3}
+  - {fileID: 2100000, guid: fee406c14f2401b4dbfc5375d7e80c32, type: 2}
+  - {fileID: 2100000, guid: 879d00b493823ef4bb458970533c6837, type: 2}
+  - {fileID: 2100000, guid: d97285e6072f5bd4d83744c50b293b1a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: M4A1 SurfaceEffect Ground
   m_EditorClassIdentifier: 
   SpawnObjectEffects:
-  - {fileID: 11400000, guid: 41f64344c6246ee4ea824b5c181054f4, type: 2}
+  - {fileID: 11400000, guid: bf6c8887e0091354683b7f32702fa689, type: 2}
   PlayAudioEffects:
   - {fileID: 11400000, guid: 2b14830e4472ca740a01f06875ea61f5, type: 2}

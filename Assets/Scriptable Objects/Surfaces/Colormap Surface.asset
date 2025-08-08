@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ac98eaf6f7d77468e2b009bcec8272, type: 3}
+  m_Name: Colormap Surface
+  m_EditorClassIdentifier: 
+  ImpactTypeEffects:
+  - ImpactType: {fileID: 11400000, guid: 26f8d26982556c443a610610b1c48691, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: 5c0059c7763436440b65ecbe28a96a80, type: 2}
+  - ImpactType: {fileID: 11400000, guid: 96209649004732849abd5eb7b856a671, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: dbbad0f23fdb26948ba45b77630f1c9c, type: 2}
+  - ImpactType: {fileID: 11400000, guid: f20b4fa4e6815e44483c36aa438e3ceb, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: 2e409b906fe10714a93d69bb1a61dbb2, type: 2}
+  - ImpactType: {fileID: 11400000, guid: 6b275760953f8ac4683c2e771fa0e5bd, type: 2}
+    SurfaceEffect: {fileID: 11400000, guid: 60be5ea7eeacbb044addf186d5055856, type: 2}
