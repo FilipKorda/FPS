@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb4429d841a838498ef3ddce91bfd65, type: 3}
+  m_Name: AR-10 PlayAudioEffect Metal hit
+  m_EditorClassIdentifier: 
+  AudioSourcePrefab: {fileID: 6757067463185957641, guid: 87bc616acc8a9674a82863ec1acdd6e3, type: 3}
+  AudioClips:
+  - {fileID: 8300000, guid: 8a414f8a0255eb84d915f3c9901ed7b7, type: 3}
+  - {fileID: 8300000, guid: f579f51eb6a86f543badcea161615758, type: 3}
+  - {fileID: 8300000, guid: 1a081ebc89d17ba4fa8921dde59bfabb, type: 3}
+  - {fileID: 8300000, guid: 0602dcc435109f746b2324308244ed76, type: 3}
+  - {fileID: 8300000, guid: eddb8fc70cbcbfa4aa8238586d0372fa, type: 3}
+  VolumeRange: {x: 0.1, y: 0.2}

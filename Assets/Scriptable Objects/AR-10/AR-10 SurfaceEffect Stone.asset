@@ -15,4 +15,4 @@ MonoBehaviour:
   SpawnObjectEffects:
   - {fileID: 11400000, guid: 0967cde0ae6d5d14f8435cbf88b13473, type: 2}
   PlayAudioEffects:
-  - {fileID: 11400000, guid: ff096ae8ba3ee964882e8ede2b65ce2b, type: 2}
+  - {fileID: 11400000, guid: e75922c5874642242bf1df21c3be00eb, type: 2}
