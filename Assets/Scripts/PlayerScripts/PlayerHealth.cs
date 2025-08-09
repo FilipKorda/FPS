@@ -1,4 +1,5 @@
 using DG.Tweening;
+using FPS.Guns.Demo;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,9 +40,49 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     [Header("=========== Pause Menu ===========")]
     [SerializeField] private PauseMenu pauseMenu;
 
+    [Header("=========== Player Death ===========")]
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private float fallDuration = 1.5f;
+    [SerializeField] private GameObject gunSelectorPanel;
+    [SerializeField] private GameObject statisticGunPanel;
+    [SerializeField] private GameObject compasBarPanel;
+    [SerializeField] private GameObject grenadeSelectorPanel;
+    [SerializeField] private GameObject playerHealthGUI;
+    [SerializeField] private GameObject gunParent;
+    private MeshRenderer playerMesh;
+    private CapsuleCollider playerCapsule;
+    private CharacterController playerCharacterController;
+    private PlayerSingleton playerSingleton;
+    private PlayerController playerController;
+    private MouseLook mouseLook;
+    private PlayerSprintAndCrouch playerSprintAndCrouch;
+    private PlayerGunSelector playerGunSelector;
+    private PlayerAction playerAction;
+    private GrenadeHandler grenadeHandler;
+    private EagleVisionManager eagleVisionManager;
+    private InteractionManager interactionManager;
+    private MainInventory mainInventory;
+    private MarsHurricaneController marsHurricaneController;
+
+
     private void Awake()
     {
         Instance = this;
+
+        playerMesh = GetComponent<MeshRenderer>();
+        playerCapsule = GetComponent<CapsuleCollider>();
+        playerCharacterController = GetComponent<CharacterController>();
+        playerSingleton = GetComponent<PlayerSingleton>();
+        playerController = GetComponent<PlayerController>();
+        mouseLook = GetComponent<MouseLook>();
+        playerSprintAndCrouch = GetComponent<PlayerSprintAndCrouch>();
+        playerGunSelector = GetComponent<PlayerGunSelector>();
+        playerAction = GetComponent<PlayerAction>();
+        grenadeHandler = GetComponent<GrenadeHandler>();
+        eagleVisionManager = GetComponent<EagleVisionManager>();
+        interactionManager = GetComponent<InteractionManager>();
+        mainInventory = GetComponent<MainInventory>();
+        marsHurricaneController = GetComponent<MarsHurricaneController>();
     }
 
     void Start()
@@ -209,9 +250,94 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         if (currentHealth == 0f)
         {
-            Debug.Log("Gracz zgin¹³!");
+            PlayerDie();
         }
     }
+
+    private void PlayerDie()
+    {
+        DisablePlayer();
+        DetacedGunFromPlayer();
+
+        StartCoroutine(CameraFallEffect());
+    }
+
+    private void DisablePlayer()
+    {
+        currentOxygen = 0;
+
+        gunSelectorPanel.SetActive(false);
+        statisticGunPanel.SetActive(false);
+        compasBarPanel.SetActive(false);
+        grenadeSelectorPanel.SetActive(false);
+        playerHealthGUI.SetActive(false);
+
+        playerMesh.enabled = false;
+        playerCapsule.enabled = false;
+        playerCharacterController.enabled = false;
+
+        playerSingleton.enabled = false;
+        playerController.enabled = false;
+        mouseLook.enabled = false;
+        playerSprintAndCrouch.enabled = false;
+        playerGunSelector.enabled = false;
+        playerAction.enabled = false;
+        grenadeHandler.enabled = false;
+        eagleVisionManager.enabled = false;
+        interactionManager.enabled = false;
+        mainInventory.enabled = false;
+        marsHurricaneController.enabled = false;
+    }
+
+    private void DetacedGunFromPlayer()
+    {
+        Transform child = gunParent.transform.GetChild(0);
+        child.gameObject.AddComponent<Rigidbody>();
+    }
+
+    private IEnumerator CameraFallEffect()
+    {
+        Quaternion startRotation = playerCamera.transform.localRotation;
+        Vector3 startPosition = playerCamera.transform.localPosition;
+
+        Quaternion targetRotation = startRotation * Quaternion.Euler(85f, Random.Range(-20f, 20f), Random.Range(-30f, 30f));
+        Vector3 targetPosition = startPosition + new Vector3(0f, -0.7f, 0.2f);
+
+        float elapsed = 0f;
+        float duration = 1.2f;
+
+        Quaternion finalRotation = startRotation;
+        Vector3 finalPosition = startPosition;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            float curveT = Mathf.SmoothStep(0f, 1f, t);
+            float shake = Mathf.Sin(t * 25f) * (1f - curveT) * 0.02f;
+
+            Quaternion currentRotation = Quaternion.Slerp(startRotation, targetRotation, curveT);
+            currentRotation *= Quaternion.Euler(shake * 200f, shake * 100f, 0);
+
+            Vector3 currentPosition = Vector3.Lerp(startPosition, targetPosition, curveT);
+
+            playerCamera.transform.localRotation = currentRotation;
+            playerCamera.transform.localPosition = currentPosition;
+
+            finalRotation = currentRotation;
+            finalPosition = currentPosition;
+
+            yield return null;
+        }
+
+        // Zatrzymanie kamery w ostatniej pozycji
+        playerCamera.transform.localRotation = finalRotation;
+        playerCamera.transform.localPosition = finalPosition;
+    }
+
+
+
 
     private IEnumerator Heal(float healAmount)
     {

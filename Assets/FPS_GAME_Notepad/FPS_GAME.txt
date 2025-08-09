@@ -15,6 +15,8 @@ The first segment is only a guide,
 - Card system to open doors.
 - By pressing the "T" button you have a vision of an eagle that highlights interesting places, such as grenades, ammo packs, bandages, quests etc.
 - MarsHurricane system for fog and much more.
+- Surface system with diffrent sounds and effect depend what you hit
+- Quest (collect 4 badages and oxygen, find green card)
 
 ===================== THE GOAL ==================
 To get to the next segment you need to go up the stairs, 
@@ -30,9 +32,19 @@ The second segment,
 - A small puzzle game where you have to click the right buttons to move the bridge to the right place so you can move further.
 - Still Beware of zombies.
 - MarsHurricane system still works.
+= Quests
 
 ===================== THE GOAL ==================
 You need to refill the generators with gasoline.
 They cause the hangar to open and power the entire station.
 Which will allow you to move on to the next segment.
 =================================================
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- Quests (fix turret and find barrel)
+
+===================== THE GOAL ==================
+Kill boss.
+=================================================
+

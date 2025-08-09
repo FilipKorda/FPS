@@ -424,6 +424,14 @@ MonoBehaviour:
   filterMaks: {fileID: 0}
   isInside: 0
   pauseMenu: {fileID: 0}
+  playerCamera: {fileID: 8766085917040621850}
+  fallDuration: 1.5
+  gunSelectorPanel: {fileID: 0}
+  statisticGunPanel: {fileID: 0}
+  compasBarPanel: {fileID: 0}
+  grenadeSelectorPanel: {fileID: 0}
+  playerHealthGUI: {fileID: 0}
+  gunParent: {fileID: 8358622834479348657}
 --- !u!114 &4807746633708868834
 MonoBehaviour:
   m_ObjectHideFlags: 0
