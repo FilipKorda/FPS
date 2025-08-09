@@ -14,6 +14,8 @@ public class QuestManager : MonoBehaviour
 
     private Dictionary<Quest, GameObject> questToPrefabMap = new Dictionary<Quest, GameObject>();
 
+    [SerializeField] private GetFixTurretQuest getFixTurretQuest;
+
     private void Awake()
     {
         Instance = this;
@@ -64,9 +66,10 @@ public class QuestManager : MonoBehaviour
         foreach (var quest in questHolder)
         {
             quest.isCompleted = false;
+
             questToPrefabMap.Clear();
         }
-
+        getFixTurretQuest.isBarrelSet = false;
         UpdateUI();
     }
 

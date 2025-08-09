@@ -211,7 +211,7 @@ public class InteractionManager : MonoBehaviour
             if (hit.collider.TryGetComponent<IBarrelForTurretQuest>(out var iBarrelForTurretQuest))
             {
                 currentBarrelForTurretQuest = iBarrelForTurretQuest;
-                if (iBarrelForTurretQuest.IsBarrel())
+                if (iBarrelForTurretQuest.IsBarrelSet())
                 {
                     iBarrelForTurretQuest.ResetHighlight();
                 }
@@ -390,7 +390,14 @@ public class InteractionManager : MonoBehaviour
 
             if (hit.collider.TryGetComponent<IButtonTurretQuest>(out var iButtonTurretQuest))
             {
-                iButtonTurretQuest.ActivateTurret();
+                if (iButtonTurretQuest.IsBarrelSet())
+                {
+                    iButtonTurretQuest.ActivateTurret();
+                }
+                else
+                {
+                    NotificationSystem.Instance.ShowNotification("Can`t do this, Turret is broken!", 2f);
+                }
             }
         }
     }

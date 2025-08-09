@@ -389,6 +389,8 @@ MonoBehaviour:
   turretAnimator: {fileID: 8684209246503393451}
   hugeExplosion: {fileID: 1102255773258783551}
   hugeExplosion1: {fileID: 6787401680057783576}
+  hangarGateDoor: {fileID: 0}
+  loadBarrelForTurret: {fileID: 3430378772485344309}
   hint_Panel: {fileID: 0}
   hint_Text: {fileID: 0}
 --- !u!1 &5462569833139765150
@@ -788,6 +790,7 @@ MonoBehaviour:
   barrelAnimtor: {fileID: 6854519722372317867}
   meshRenderer: {fileID: 1259243751773062681}
   barrelPs: {fileID: 1201591875465243681}
+  getFixTurretQuest: {fileID: 11400000, guid: 9b51f85fc754b1040813e4fc78aa7087, type: 2}
   isBarrelSet: 0
 --- !u!1001 &961281833644564530
 PrefabInstance:

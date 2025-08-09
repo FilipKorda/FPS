@@ -9,10 +9,17 @@ public class BossFightManager : MonoBehaviour
     [SerializeField] private BossRaycastHit bossRaycastHit;
     [SerializeField] private NpcMovement[] npcMovements;
 
+    [ContextMenu(" -= Set Boss To Patrol =-")]
+    public void SetBossToPatrol()
+    {
+        snakeBoss.SetMove(true);
+        bossRaycastHit.SetUseRaycast(false);
+        snakeBoss.ChangeBossState(BossState.Patrol, 1);
+    }
+
     [ContextMenu(" -= Start Boss Fight =-")]
     public void StartBossFight()
     {
-        snakeBoss.SetMove(true);
         bossRaycastHit.SetUseRaycast(true);
         snakeBoss.ChangeBossState(BossState.Attack, 1);
         snakeBossHealth.ShowAndSetupBossHealthSlider();

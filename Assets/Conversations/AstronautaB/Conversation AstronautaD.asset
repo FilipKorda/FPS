@@ -43,17 +43,33 @@ MonoBehaviour:
     questToGive: {fileID: 0}
   - Name: John
     Sentences:
-    - ' Ohh okay but listen.'
+    - Ohh okay but listen.
     - I created a missile system at this station.
-    - But one of the barrels of this turret was lost.
-    - Please find it and install it
-    - To test the turret  you need to press this button.
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
+  - Name: John
+    Sentences:
+    - But one of the barrels of this turret was lost.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: eb02c58701773494089ae63d072ab440, type: 2}
+  - Name: John
+    Sentences:
+    - Please find it and install it.
+    - To test the turret you need to press this button.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: 9b51f85fc754b1040813e4fc78aa7087, type: 2}
   - Name: You
     Sentences:
     - Okay, I'll find that barrel and fix the turret.

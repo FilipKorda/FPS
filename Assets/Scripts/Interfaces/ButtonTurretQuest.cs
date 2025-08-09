@@ -9,6 +9,8 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
     [SerializeField] private ParticleSystem hugeExplosion;
     [SerializeField] private ParticleSystem hugeExplosion1;
     [SerializeField] private Animator hangarGateDoor;
+    [SerializeField] private LoadBarrelForTurret loadBarrelForTurret;
+    [SerializeField] private BossFightManager bossFightManager;
     [Header("-= UI =-")]
     [SerializeField] private GameObject hint_Panel;
     [SerializeField] private TextMeshProUGUI hint_Text;
@@ -33,9 +35,12 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
     {
         yield return new WaitForSeconds(6.6f);
         hugeExplosion.Play();
+        CameraShake.Instance.AlarmPlayer();
         yield return new WaitForSeconds(0.7f);
         hugeExplosion1.Play();
         hangarGateDoor.SetTrigger("Play");
+        CameraShake.Instance.AlarmPlayer();
+        bossFightManager.SetBossToPatrol();
     }
 
     public void ActiveHint()
@@ -52,4 +57,8 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
         originalColorRenderer.material.color = originalColor;
     }
 
+    public bool IsBarrelSet()
+    {
+        return loadBarrelForTurret.isBarrelSet;
+    }
 }

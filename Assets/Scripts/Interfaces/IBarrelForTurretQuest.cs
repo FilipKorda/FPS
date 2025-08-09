@@ -4,5 +4,5 @@ public interface IBarrelForTurretQuest
     public void ResetHighlight();
 
     public void StartInstalBarrel();
-    public bool IsBarrel();
+    public bool IsBarrelSet();
 }

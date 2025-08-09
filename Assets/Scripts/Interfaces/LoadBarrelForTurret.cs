@@ -7,10 +7,10 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
     [SerializeField] private Animator barrelAnimtor;
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private ParticleSystem barrelPs;
+    [SerializeField] private GetFixTurretQuest getFixTurretQuest;
     private Color[] originalColors;
 
     public bool isBarrelSet = false;
-    private bool isBarrel = false;
 
 
     private void Start()
@@ -29,6 +29,7 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
     {
         if (MainInventory.Instance.currentBarrels > 0)
         {
+            getFixTurretQuest.isBarrelSet = true;
             meshRenderer.enabled = false;
             barrelObject.SetActive(true);
             barrelAnimtor.SetTrigger("Play");
@@ -36,7 +37,6 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
             StartCoroutine(PsStop());
             MainInventory.Instance.RemoveBarrel();
             isBarrelSet = true;
-            isBarrel = true;
         }
         else
         {
@@ -71,8 +71,8 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
         }
     }
 
-    public bool IsBarrel()
+    public bool IsBarrelSet()
     {
-        return isBarrel;
+        return isBarrelSet;
     }
 }
