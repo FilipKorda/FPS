@@ -481,6 +481,12 @@ MonoBehaviour:
   currentfuelCans: 0
   fuelCanForQuest: 0
   fuelCanName: Fuel Can
+  barrelColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0.39215687}
+  barrelPrefab: {fileID: 2906487599698792156, guid: e6b28c84c293ef54d9e528b1cf29ac79, type: 3}
+  barrelIcon: {fileID: 21300000, guid: 3c433f7b1905d9b48b824c68cd9ef467, type: 3}
+  currentBarrels: 0
+  barrelForQuest: 0
+  barrelName: Barrel
 --- !u!114 &7030066217234686974
 MonoBehaviour:
   m_ObjectHideFlags: 0

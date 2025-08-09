@@ -18,6 +18,8 @@ public class InteractionManager : MonoBehaviour
     private IFuelCan currentFuelCan;
     private IOpenHangar currentOpenHangar;
     private IOxygenHugeContainer currentOxygenHugeContainer;
+    private IBarrelForTurretQuest currentBarrelForTurretQuest;
+    private IButtonTurretQuest currentButtonTurretQuest;
 
 
     void Start()
@@ -205,7 +207,35 @@ public class InteractionManager : MonoBehaviour
                 currentOxygenHugeContainer = null;
             }
 
+            currentBarrelForTurretQuest?.ResetHighlight();
+            if (hit.collider.TryGetComponent<IBarrelForTurretQuest>(out var iBarrelForTurretQuest))
+            {
+                currentBarrelForTurretQuest = iBarrelForTurretQuest;
+                if (iBarrelForTurretQuest.IsBarrel())
+                {
+                    iBarrelForTurretQuest.ResetHighlight();
+                }
+                else
+                {
+                    iBarrelForTurretQuest.Highlight();
+                }
 
+            }
+            else
+            {
+                currentBarrelForTurretQuest = null;
+            }
+
+            currentButtonTurretQuest?.DeactiveHint();
+            if (hit.collider.TryGetComponent<IButtonTurretQuest>(out var iButtonTurretQuest))
+            {
+                currentButtonTurretQuest = iButtonTurretQuest;
+                iButtonTurretQuest.ActiveHint();
+            }
+            else
+            {
+                currentButtonTurretQuest = null;
+            }
         }
         else
         {
@@ -267,7 +297,11 @@ public class InteractionManager : MonoBehaviour
                 currentOxygenHugeContainer.ResetHighlight();
                 currentOxygenHugeContainer = null;
             }
-
+            if (currentBarrelForTurretQuest != null)
+            {
+                currentBarrelForTurretQuest.ResetHighlight();
+                currentBarrelForTurretQuest = null;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -346,7 +380,17 @@ public class InteractionManager : MonoBehaviour
                 if (!iOxygenHugeContainer.IsRefillingOxygen())
                 {
                     iOxygenHugeContainer.StartToRefillOxygen();
-                }                            
+                }
+            }
+
+            if (hit.collider.TryGetComponent<IBarrelForTurretQuest>(out var iBarrelForTurretQuest))
+            {
+                iBarrelForTurretQuest.StartInstalBarrel();
+            }
+
+            if (hit.collider.TryGetComponent<IButtonTurretQuest>(out var iButtonTurretQuest))
+            {
+                iButtonTurretQuest.ActivateTurret();
             }
         }
     }

@@ -95,6 +95,19 @@ public class MainInventory : MonoBehaviour
     public int fuelCanForQuest;
     public string fuelCanName = "Fuel Can";
 
+    [Header("========= Barrel ==========")]
+    [SerializeField] private Color barrelColor;
+    [SerializeField] private GameObject barrelPrefab;
+    [SerializeField] private Sprite barrelIcon;
+    private Image barrelMainImage;
+    private TextMeshProUGUI barrelNameText;
+    private Image barrelImage;
+    private GameObject instantiatedBarrelPrefab;
+    public int currentBarrels;
+    public int barrelForQuest;
+    public string barrelName = "Barrel";
+
+
     private void Awake()
     {
         Instance = this;
@@ -272,6 +285,19 @@ public class MainInventory : MonoBehaviour
         currentfuelCans--;
     }
 
+    public void AddBarrel()
+    {
+        BarrelQuestPrefabItemsGUI();
+        currentBarrels++;
+        barrelForQuest++;
+    }
+
+    public void RemoveBarrel()
+    {
+        Destroy(instantiatedBarrelPrefab);
+        currentBarrels--;
+    }
+
     public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
     {
         if (isRedCard)
@@ -354,5 +380,17 @@ public class MainInventory : MonoBehaviour
         fuelCanMainImage.color = fuelCanColor;
         fuelCanImage.sprite = fuelCanIcon;
         fuelCanNameText.text = fuelCanName;
+    }
+
+    private void BarrelQuestPrefabItemsGUI()
+    {
+        instantiatedBarrelPrefab = Instantiate(barrelPrefab, items.transform);
+        barrelMainImage = instantiatedBarrelPrefab.GetComponent<Image>();
+        barrelNameText = instantiatedBarrelPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        barrelImage = instantiatedBarrelPrefab.transform.GetChild(1).GetComponent<Image>();
+
+        barrelMainImage.color = barrelColor;
+        barrelImage.sprite = barrelIcon;
+        barrelNameText.text = barrelName;
     }
 }
