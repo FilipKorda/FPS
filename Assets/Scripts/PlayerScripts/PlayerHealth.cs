@@ -324,7 +324,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
             playerCamera.transform.localRotation = currentRotation;
             playerCamera.transform.localPosition = currentPosition;
-
+            
             finalRotation = currentRotation;
             finalPosition = currentPosition;
 
