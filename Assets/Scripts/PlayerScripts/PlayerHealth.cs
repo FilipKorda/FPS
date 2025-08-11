@@ -49,6 +49,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     [SerializeField] private GameObject grenadeSelectorPanel;
     [SerializeField] private GameObject playerHealthGUI;
     [SerializeField] private GameObject gunParent;
+    [SerializeField] private GameObject gameOverScreenPanel;
+    [SerializeField] private GameObject damageScreenPanel;
+    [SerializeField] private GameObject marsMaskPanel;
+    [SerializeField] private GameObject croshair;
+    [SerializeField] private GameObject ammoPackPanel;
     private MeshRenderer playerMesh;
     private CapsuleCollider playerCapsule;
     private CharacterController playerCharacterController;
@@ -64,6 +69,9 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private MainInventory mainInventory;
     private MarsHurricaneController marsHurricaneController;
 
+    private Coroutine cameraFallCoroutine;
+    private bool isCameraFallActive;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -95,10 +103,14 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         healthSlider.gameObject.SetActive(false);
         oxygenSlider.gameObject.SetActive(false);
+
+        gameOverScreenPanel.SetActive(false);
     }
 
     private void Update()
     {
+        if (isDead) return;
+
         if (Input.GetKeyDown(KeyCode.O))
         {
             TakeDamage(10);
@@ -259,7 +271,15 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         DisablePlayer();
         DetacedGunFromPlayer();
 
-        StartCoroutine(CameraFallEffect());
+        if (cameraFallCoroutine != null)
+        {
+            StopCoroutine(cameraFallCoroutine);
+            cameraFallCoroutine = null;
+        }
+
+        isDead = true;
+        isCameraFallActive = true;
+        cameraFallCoroutine = StartCoroutine(CameraFallEffect());
     }
 
     private void DisablePlayer()
@@ -271,6 +291,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         compasBarPanel.SetActive(false);
         grenadeSelectorPanel.SetActive(false);
         playerHealthGUI.SetActive(false);
+        croshair.SetActive(false);
+        ammoPackPanel.SetActive(false);
 
         playerMesh.enabled = false;
         playerCapsule.enabled = false;
@@ -292,6 +314,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private void DetacedGunFromPlayer()
     {
         Transform child = gunParent.transform.GetChild(0);
+        child.gameObject.AddComponent<BoxCollider>();
         child.gameObject.AddComponent<Rigidbody>();
     }
 
@@ -304,15 +327,17 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         Vector3 targetPosition = startPosition + new Vector3(0f, -0.7f, 0.2f);
 
         float elapsed = 0f;
-        float duration = 1.2f;
+        float duration = fallDuration;
 
         Quaternion finalRotation = startRotation;
         Vector3 finalPosition = startPosition;
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / duration;
+            if (!isCameraFallActive) yield break;
+
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
 
             float curveT = Mathf.SmoothStep(0f, 1f, t);
             float shake = Mathf.Sin(t * 25f) * (1f - curveT) * 0.02f;
@@ -324,20 +349,40 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
             playerCamera.transform.localRotation = currentRotation;
             playerCamera.transform.localPosition = currentPosition;
-            
+
             finalRotation = currentRotation;
             finalPosition = currentPosition;
 
             yield return null;
         }
 
-        // Zatrzymanie kamery w ostatniej pozycji
         playerCamera.transform.localRotation = finalRotation;
         playerCamera.transform.localPosition = finalPosition;
+
+        isCameraFallActive = false;
+        cameraFallCoroutine = null;
+
+        yield return new WaitForSeconds(2);
+
+        ActiveGameOverScreen();
     }
 
+    private void ActiveGameOverScreen()
+    {
+        gameOverScreenPanel.SetActive(true);
+        damageScreenPanel.SetActive(false);
+        marsMaskPanel.SetActive(false);
+    }
 
-
+    public void StopCameraFall()
+    {
+        isCameraFallActive = false;
+        if (cameraFallCoroutine != null)
+        {
+            StopCoroutine(cameraFallCoroutine);
+            cameraFallCoroutine = null;
+        }
+    }
 
     private IEnumerator Heal(float healAmount)
     {

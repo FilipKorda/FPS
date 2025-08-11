@@ -24,6 +24,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if(PlayerHealth.Instance.isDead) return;
+
         if (!isLoading)
         {
             if (!isSettingsOpen)
