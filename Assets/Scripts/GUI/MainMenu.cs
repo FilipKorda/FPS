@@ -5,11 +5,14 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Settings settings;
     [SerializeField] private Button[] buttons;
+    [SerializeField] private GameObject mainPausePanel;
     public bool isSettingsOpen = false;
     public string sceneName = "SampleScene";
 
     public void PlayGame()
     {
+        LoadGame();
+        mainPausePanel.SetActive(false);
         Debug.Log("Play Game");
     }
 
@@ -32,7 +35,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void LoadGame()
+    private void LoadGame()
     {
         LoadingSystem.Instance.LoadLevel(sceneName);
     }

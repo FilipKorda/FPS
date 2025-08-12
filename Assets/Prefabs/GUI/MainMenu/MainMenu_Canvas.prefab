@@ -2453,6 +2453,7 @@ MonoBehaviour:
   - {fileID: 6236400126647873954}
   - {fileID: 989943105505786274}
   - {fileID: 1453984516218859696}
+  mainPausePanel: {fileID: 7686337827996523171}
   isSettingsOpen: 0
   sceneName: SampleScene
 --- !u!114 &7531148918654371830
@@ -18369,7 +18370,7 @@ PrefabInstance:
       objectReference: {fileID: 1941273424695120519}
     - target: {fileID: 3251566979415378795, guid: 10bc9abeafc217b46bea48df1094d7db, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGame
+      value: PlayGame
       objectReference: {fileID: 0}
     - target: {fileID: 3251566979415378795, guid: 10bc9abeafc217b46bea48df1094d7db, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

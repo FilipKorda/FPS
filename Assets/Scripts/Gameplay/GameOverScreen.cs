@@ -11,6 +11,7 @@ public class GameOverScreen : MonoBehaviour
     private void Start()
     {
         StartAnimYouAreDeadText();
+        ActiveMouse();
     }
 
     private void StartAnimYouAreDeadText()
@@ -32,12 +33,29 @@ public class GameOverScreen : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        DeactiveThisGameObjects();
         LoadingSystem.Instance.LoadLevel(sceneName);
     }
 
     public void QuitGame()
     {
         Debug.Log("wychodzisz z gry");
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+    Application.Quit();
+#endif
+    }
+
+    private void ActiveMouse()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void DeactiveThisGameObjects()
+    {
+        textMeshProPanel.SetActive(false);
+        buttonHolder.SetActive(false);
     }
 }
