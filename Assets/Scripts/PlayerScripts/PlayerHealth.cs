@@ -156,6 +156,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             {
                 filterMaks.transform.DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);
             }
+
             DecreaseOxygen();
         }
     }
@@ -469,5 +470,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         {
             isInside = false;
         }
+    }
+
+    public void SetIsInside(bool inside)
+    {
+        isInside = inside;
     }
 }
