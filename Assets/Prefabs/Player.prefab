@@ -129,7 +129,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334916435324183928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -432,6 +432,12 @@ MonoBehaviour:
   grenadeSelectorPanel: {fileID: 0}
   playerHealthGUI: {fileID: 0}
   gunParent: {fileID: 8358622834479348657}
+  gameOverScreenPanel: {fileID: 0}
+  damageScreenPanel: {fileID: 0}
+  marsMaskPanel: {fileID: 0}
+  croshair: {fileID: 0}
+  ammoPackPanel: {fileID: 0}
+  isDead: 0
 --- !u!114 &4807746633708868834
 MonoBehaviour:
   m_ObjectHideFlags: 0
