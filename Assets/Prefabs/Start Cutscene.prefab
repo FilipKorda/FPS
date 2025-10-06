@@ -255,8 +255,11 @@ MonoBehaviour:
   playerMeshRenderer: {fileID: 0}
   mouseLook: {fileID: 0}
   playerController: {fileID: 0}
+  playerSingleton: {fileID: 0}
+  crosshair: {fileID: 0}
   fadeCanvas: {fileID: 8358777920450444486}
   blinkDuration: 2.5
+  blinkHoldTime: 3
   blinkCurve:
     serializedVersion: 2
     m_Curve:
@@ -300,7 +303,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   audioSource: {fileID: 0}
-  dialogueManager: {fileID: 0}
+  conversationData: {fileID: 11400000, guid: c815332e2dce07f44a14dc0fe7f28add, type: 2}
 --- !u!1 &6399185854122301466
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,8 @@ using UnityEngine;
 public class HurricainActivator : MonoBehaviour
 {
     [SerializeField] private Collider thisCollider;
-   
+    [SerializeField] private EnemySpawnerSystem enemySpawnerSystem;
+
 
     private void Start()
     {
@@ -16,6 +17,8 @@ public class HurricainActivator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            enemySpawnerSystem.StartSpawning();
+
             PlayerSingleton.Instance.marsHurricaneController.ActiveHurricaneFog();
             thisCollider.enabled = false;
             StartCoroutine(DeactivateHurricaneAfterTime(PlayerSingleton.Instance.marsHurricaneController.hurricaneDuration));

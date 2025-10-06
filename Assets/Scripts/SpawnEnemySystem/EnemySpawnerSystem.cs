@@ -8,10 +8,6 @@ public class EnemySpawnerSystem : MonoBehaviour
     [SerializeField] private float firstSpawnDelay = 5f;
     [SerializeField] private ParticleSystem spawnParticles;
 
-    private void Start()
-    {
-        StartCoroutine(SpawnEnemies());
-    }
 
     public void StartSpawning()
     {

@@ -48,3 +48,25 @@ Which will allow you to move on to the next segment.
 Kill boss.
 =================================================
 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Enemy system:
+Triggery - aktywuja falê przeciwników, po wejœciu w nie.
+
+--- 1 Stage ---
+Na starcie gry enemy system odrazu jest aktywny i s¹ 4 ¿ród³a aktywacji fali przeciwników. 
+3 trigery zwyk³e rozmieszczone w ró¿nych miejscach i 1 trigger aktywuj¹cy hurraan z przeciwnikami.
+
+
+--- 2 Stage ---
+System jest aktywny kiedy wejdziesz przez wielki hangar który jest drog¹ do nastêponej sekcji i s¹ 5 ¿ród³a aktywacji fali przeciwników. 
+4 trigery zwyk³e rozmieszczone w ró¿nych miejscach i 1 trigger aktywuj¹cy hurraan z przeciwnikami.
+
+--- 3 Stage ---
+NPC s¹ aktywowane po 1 sekundzie od wejdzie w 3 stage po wyjsciu z hangaru.
+Po wejsciu przez hangar aktywuje sie sekcja 3 z meshem i dobrym systemem enemy.
+
+System jest aktywny kiedy naprawisz wie¿e i wystrzeli ona w brame. on aktywuje colidery które beda aktywowaæ fale enemy. S¹ 6 ¿ród³a aktywacji fali przeciwników.
+Równie¿ tam sie znaujde walka z bossem które jest aktywowana wystrzeleniem tego samego turreta.

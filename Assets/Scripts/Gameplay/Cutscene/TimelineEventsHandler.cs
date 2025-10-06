@@ -11,6 +11,7 @@ public class TimelineEventsHandler : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerSingleton playerSingleton;
+    [SerializeField] private GameObject crosshair;
 
     [Header("Blink Settings")]
     [SerializeField] private CanvasGroup fadeCanvas;
@@ -21,7 +22,7 @@ public class TimelineEventsHandler : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [Header("Dialogues")]
-    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private Conversation conversationData;
 
 
     public void Blink()
@@ -30,17 +31,32 @@ public class TimelineEventsHandler : MonoBehaviour
             StartCoroutine(BlinkCoroutine());
     }
 
+    public void BlinkOnce()
+    {
+        if (fadeCanvas != null)
+            StartCoroutine(SingleBlinkCoroutine());
+    }
+
     public void PlaySound(AudioClip clip)
     {
         if (clip != null && audioSource != null)
             audioSource.PlayOneShot(clip);
     }
 
-    public void StartDialogue(string dialogueId)
+    public void ActiveIntroDialgue()
     {
-
+        DialogueManager.Instance.StartAutomaticDialgue(conversationData);
     }
 
+    public void DeactiveCtosshair()
+    {
+        crosshair.SetActive(false);
+    }
+
+    public void ActiveCtosshair()
+    {
+        crosshair.SetActive(true);
+    }
 
     public void StartCutscene()
     {
@@ -56,22 +72,32 @@ public class TimelineEventsHandler : MonoBehaviour
         {
             playerTransform.position = new Vector3(-35.5f, 1f, 68.932f);
             playerTransform.rotation = Quaternion.Euler(0f, -135f, 0f);
+
+            if (mouseLook != null)
+                mouseLook.SyncAnglesToTransforms();
         }
     }
 
     public void EndCutscene()
     {
+        if (mouseLook != null)
+            mouseLook.SyncAnglesToTransforms();
+
         playerController.canMove = false;
         mouseLook.canLookAround = false;
-        playerSingleton.canShoot = true;
         playerMeshRenderer.enabled = true;
         playerCamera.gameObject.SetActive(true);
         cutsceneCamera.gameObject.SetActive(false);
+        StartCoroutine(DisableCanvasAfterSeconds());
+    }
+
+    private IEnumerator DisableCanvasAfterSeconds()
+    {
+        yield return new WaitForSeconds(1f);
 
         if (fadeCanvas != null)
             fadeCanvas.gameObject.SetActive(false);
     }
-
 
     private IEnumerator BlinkCoroutine()
     {
@@ -102,5 +128,25 @@ public class TimelineEventsHandler : MonoBehaviour
         }
 
         fadeCanvas.alpha = 0f;
+    }
+
+    private IEnumerator SingleBlinkCoroutine()
+    {
+        if (fadeCanvas == null)
+            yield break;
+
+        fadeCanvas.gameObject.SetActive(true);
+        fadeCanvas.alpha = 0f;
+
+        float halfDuration = blinkDuration / 2f;
+        float timer = 0f;
+
+        while (timer < halfDuration)
+        {
+            timer += Time.deltaTime;
+            float t = Mathf.Clamp01(timer / halfDuration);
+            fadeCanvas.alpha = blinkCurve.Evaluate(t);
+            yield return null;
+        }
     }
 }

@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour
     private Dictionary<Quest, GameObject> questToPrefabMap = new Dictionary<Quest, GameObject>();
 
     [SerializeField] private GetFixTurretQuest getFixTurretQuest;
+    [SerializeField] private GetBackpackQuest getBackpackQuest;
 
     private void Awake()
     {
@@ -70,6 +71,7 @@ public class QuestManager : MonoBehaviour
             questToPrefabMap.Clear();
         }
         getFixTurretQuest.isBarrelSet = false;
+        getBackpackQuest.isBackpackSet = false;
         UpdateUI();
     }
 
@@ -94,7 +96,6 @@ public class QuestManager : MonoBehaviour
         questHolderQuestName.text = quest.questName;
         questHolderQuestDescription.text = quest.questDescription;
 
-        // Dodaj do s³ownika
         questToPrefabMap.Add(quest, instantiatedQuestHolderPrefab);
     }
 

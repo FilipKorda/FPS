@@ -27,8 +27,7 @@ public class MouseLook : MonoBehaviour
     {
         if (!canLookAround)
         {
-            current_Mouse_Look = new Vector2(
-            Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
+            current_Mouse_Look = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
 
             look_Angles.x += current_Mouse_Look.x * sensivitySettings.ClampedSensivityValue * (invert ? 1f : -1f);
             look_Angles.y += current_Mouse_Look.y * sensivitySettings.ClampedSensivityValue;
@@ -38,7 +37,16 @@ public class MouseLook : MonoBehaviour
             lookRoot.localRotation = Quaternion.Euler(look_Angles.x, 0f, 0f);
             playerRoot.localRotation = Quaternion.Euler(0f, look_Angles.y, 0f);
         }
-
     }
 
+    public void SyncAnglesToTransforms()
+    {
+        float pitch = lookRoot.localEulerAngles.x;
+        if (pitch > 180f) pitch -= 360f;
+
+        float yaw = playerRoot.localEulerAngles.y;
+        if (yaw > 180f) yaw -= 360f;
+
+        look_Angles = new Vector2(pitch, yaw);
+    }
 }

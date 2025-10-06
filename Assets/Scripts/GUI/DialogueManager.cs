@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
 
     [SerializeField] private GameObject dialogueView;
+    [SerializeField] private GameObject pressEPanel;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private TextMeshProUGUI optionOne;
@@ -37,6 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        pressEPanel.SetActive(false);
         optionOne.gameObject.SetActive(false);
         optionTwo.gameObject.SetActive(false);
         W.gameObject.SetActive(false);
@@ -54,6 +56,20 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void StartAutomaticDialgue(Conversation conversationData)
+    {
+        if (conversationData == null || conversationData.conversation == null || conversationData.conversation.Length == 0)
+            return;
+
+        StopAllCoroutines();
+
+        isTalking = true;
+        playerController.canMove = true;
+        mouseLook.canLookAround = true;
+        dialogueView.SetActive(true);
+
+        StartCoroutine(AutoTypeDialogue(conversationData.conversation));
+    }
 
     public void StartDialogue(ConversationData[] dialogueData)
     {
@@ -95,20 +111,38 @@ public class DialogueManager : MonoBehaviour
                     optionTwo.text = "";
                 }
 
-
                 waitForInput = true;
                 while (waitForInput)
                 {
                     yield return null;
                 }
-
             }
-
         }
 
         EndDialogue();
     }
 
+    IEnumerator AutoTypeDialogue(ConversationData[] dialogueData)
+    {
+        foreach (var dialogue in dialogueData)
+        {
+            currentDialogueData = dialogue;
+            nameText.text = dialogue.Name;
+
+            foreach (var sentence in dialogue.Sentences)
+            {
+                yield return TypeLetter(sentence);
+
+                yield return new WaitForSeconds(typingSpeed);
+
+                yield return new WaitForSeconds(1.5f);
+            }
+
+        }
+
+        GiveQuestToPlayer();
+        EndDialogue();
+    }
 
     IEnumerator WaitForAnswer()
     {
@@ -144,7 +178,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
     IEnumerator TypeLetter(string sentence)
     {
         textBox.text = "";
@@ -155,9 +188,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
     void EndDialogue()
     {
+        pressEPanel.SetActive(true);
         currentDialogueData = null;
         dialogueView.SetActive(false);
         isTalking = false;

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5224143320725ea46bdca1d576ca37d8, type: 3}
+  m_Name: Intro Conversation
+  m_EditorClassIdentifier: 
+  conversation:
+  - Name: You
+    Sentences:
+    - It was a rough night.
+    - I'm so sleepy.
+    - I don't remember anything.
+    - I need to figure out what's going on.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 0}
+  - Name: You
+    Sentences:
+    - Oh, I see a backpack, I should take it.
+    isAskingQuestion: 0
+    OptionOne: 
+    answerOne: {fileID: 0}
+    OptionTwo: 
+    answerTwo: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: 76546dc35ff5f944ba0758255da4ec75, type: 2}

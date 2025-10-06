@@ -20,6 +20,7 @@ public class InteractionManager : MonoBehaviour
     private IOxygenHugeContainer currentOxygenHugeContainer;
     private IBarrelForTurretQuest currentBarrelForTurretQuest;
     private IButtonTurretQuest currentButtonTurretQuest;
+    private IBackpackPickupable currentBackpackPickupable;
 
 
     void Start()
@@ -59,6 +60,20 @@ public class InteractionManager : MonoBehaviour
             {
                 currentlyGunPickupableHighlightedObject = null;
             }
+
+            currentBackpackPickupable?.ResetHighlight();
+            currentBackpackPickupable?.HideHint();
+            if (hit.collider.TryGetComponent<IBackpackPickupable>(out var backpackPickupable))
+            {
+                currentBackpackPickupable = backpackPickupable;
+                currentBackpackPickupable.Highlight();
+                currentBackpackPickupable.ShowHint();
+            }
+            else
+            {
+                currentBackpackPickupable = null;
+            }
+           
 
 
             currentlyBridgeController?.ResetHighlight();
@@ -252,6 +267,14 @@ public class InteractionManager : MonoBehaviour
                 currentlyGunPickupableHighlightedObject = null;
             }
 
+            if (currentBackpackPickupable != null)
+            {
+                currentBackpackPickupable.HideHint();
+                currentBackpackPickupable.ResetHighlight();
+                currentBackpackPickupable = null;
+            }
+          
+
             if (currentlyBridgeController != null)
             {
                 currentlyBridgeController.ResetHighlight();
@@ -326,6 +349,12 @@ public class InteractionManager : MonoBehaviour
             {
                 gunPickupable.PickupGun();
             }
+
+            if (hit.collider.TryGetComponent<IBackpackPickupable>(out var backpackPickupable))
+            {
+                backpackPickupable.PickupBackpack();
+            }
+          
 
             if (hit.collider.TryGetComponent<IBridgeController>(out var bridgeController))
             {

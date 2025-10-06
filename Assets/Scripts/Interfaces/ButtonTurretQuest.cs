@@ -11,6 +11,8 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
     [SerializeField] private Animator hangarGateDoor;
     [SerializeField] private LoadBarrelForTurret loadBarrelForTurret;
     [SerializeField] private BossFightManager bossFightManager;
+    [SerializeField] private EnemyAreaSpawner enemyAreaSpawner;
+    [SerializeField] private GameObject[] triggerEnemyToSpawn;
     [Header("-= UI =-")]
     [SerializeField] private GameObject hint_Panel;
     [SerializeField] private TextMeshProUGUI hint_Text;
@@ -41,6 +43,12 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
         hangarGateDoor.SetTrigger("Play");
         CameraShake.Instance.AlarmPlayer();
         bossFightManager.SetBossToPatrol();
+        enemyAreaSpawner.ActivateThirdArea();
+
+        foreach (var item in triggerEnemyToSpawn)
+        {
+            item.SetActive(true);
+        }
     }
 
     public void ActiveHint()

@@ -34,11 +34,21 @@ namespace FPS.Guns.Demo
         public Vector3 m4a1ZoomedPosition = new(0f, -0.1f, 0.3f);
         public Vector3 uziSilencerZoomedPosition = new(0f, -0.155f, 0.4f);
 
+        [Header("Weapon Draw")]
+        [SerializeField] private float drawDuration = 0.15f;
+        [SerializeField] private float drawStartYOffset = -0.5f;
+        private Coroutine drawCoroutine;
+
+        private readonly Dictionary<Transform, Coroutine> childDrawCoroutines = new();
+        private readonly HashSet<Transform> seenChildren = new();
+
         private void Start()
         {
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
             ActiveGun = GetCachedGun(ActiveBaseGun);
             ActiveGun.Spawn(GunParent, this, Camera);
+
+            PlayDrawAnimation();
         }
 
         private void Awake()
@@ -60,6 +70,7 @@ namespace FPS.Guns.Demo
 
             UpdateZoom();
 
+            CheckAndAnimateNewChildren();
 
             if (!PlayerAction.IsReloading && !isZoomed)
             {
@@ -75,6 +86,11 @@ namespace FPS.Guns.Demo
                     SwitchGunModel(1);
                     GunSelector.SwitchGunOnUI(1);
                 }
+            }
+
+            if (PlayerSingleton.Instance != null && !PlayerSingleton.Instance.canShoot)
+            {
+                return;
             }
         }
 
@@ -114,6 +130,8 @@ namespace FPS.Guns.Demo
                 ActiveGun = GetCachedGun(ActiveBaseGun);
                 ActiveGun.Spawn(GunParent, this, Camera);
 
+                PlayDrawAnimation();
+
                 if (Guns.Count > 1)
                 {
                     Guns.RemoveAt(Guns.Count - 1);
@@ -137,6 +155,8 @@ namespace FPS.Guns.Demo
             ActiveBaseGun = newGun;
             ActiveGun = GetCachedGun(ActiveBaseGun);
             ActiveGun.Spawn(GunParent, this, Camera);
+
+            PlayDrawAnimation();
         }
 
         public void DespawnActiveGun()
@@ -163,5 +183,87 @@ namespace FPS.Guns.Demo
             return gunCache[gun.Type];
         }
 
+
+        public void PlayDrawAnimationInIntro()
+        {
+            PlayDrawAnimation();
+        }
+
+        private void PlayDrawAnimation()
+        {
+            if (GunParent == null) return;
+
+            CheckAndAnimateNewChildren(forceAnimateExisting: true);
+        }
+
+        private void CheckAndAnimateNewChildren(bool forceAnimateExisting = false)
+        {
+            if (GunParent == null) return;
+
+            for (int i = 0; i < GunParent.childCount; i++)
+            {
+                var child = GunParent.GetChild(i);
+
+                if (forceAnimateExisting || !seenChildren.Contains(child))
+                {
+                    seenChildren.Add(child);
+                    StartChildDrawAnimation(child);
+                }
+            }
+
+            var toRemove = new List<Transform>();
+            foreach (var tr in seenChildren)
+            {
+                if (tr == null || tr.parent != GunParent)
+                {
+                    toRemove.Add(tr);
+                }
+            }
+            foreach (var tr in toRemove)
+            {
+                seenChildren.Remove(tr);
+                if (childDrawCoroutines.TryGetValue(tr, out var co) && co != null)
+                {
+                    StopCoroutine(co);
+                }
+                childDrawCoroutines.Remove(tr);
+            }
+        }
+
+        private void StartChildDrawAnimation(Transform child)
+        {
+            if (child == null) return;
+
+            if (childDrawCoroutines.TryGetValue(child, out var running) && running != null)
+            {
+                StopCoroutine(running);
+            }
+
+            var co = StartCoroutine(DrawRoutine(child));
+            childDrawCoroutines[child] = co;
+        }
+
+        private System.Collections.IEnumerator DrawRoutine(Transform weapon)
+        {
+            Vector3 end = weapon.localPosition;
+            float startY = drawStartYOffset;
+            float endY = 0f;
+
+            weapon.localPosition = new Vector3(end.x, startY, end.z);
+
+            float t = 0f;
+            float duration = Mathf.Max(0.0001f, drawDuration);
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime / duration;
+                float eased = 1f - Mathf.Pow(1f - Mathf.Clamp01(t), 3f);
+                float y = Mathf.LerpUnclamped(startY, endY, eased);
+                weapon.localPosition = new Vector3(end.x, y, end.z);
+                yield return null;
+            }
+
+            weapon.localPosition = new Vector3(end.x, endY, end.z);
+        }
     }
 }
