@@ -10,6 +10,7 @@ namespace FPS.Enemy
     public class SnakeBossHealth : MonoBehaviour
     {
         [SerializeField] private SnakeBoss boss;
+        [SerializeField] private BossFightManager bossFightManager;
         [SerializeField] private Slider bossHealthSlider;
         [SerializeField] private GameObject bossHeealthHolder;
         [SerializeField] private GameObject skullImage;
@@ -19,6 +20,8 @@ namespace FPS.Enemy
         private List<SnakeSegment> _segments = new List<SnakeSegment>();
 
         [SerializeField] private GameObject[] destroyedSnakeSegment;
+
+        private bool _attackTriggered = false;
 
         public int CurrentHealth { get; private set; }
         public int MaxHealth { get; private set; }
@@ -185,6 +188,12 @@ namespace FPS.Enemy
         private void HandleSegmentDamage(int damage)
         {
             CurrentHealth = Mathf.Max(CurrentHealth - damage, 0);
+
+            if (!_attackTriggered && boss != null && CurrentHealth > 0)
+            {
+                _attackTriggered = true;
+                bossFightManager.StartBossFight();
+            }
 
             if (_healthBarRoutine != null)
                 StopCoroutine(_healthBarRoutine);

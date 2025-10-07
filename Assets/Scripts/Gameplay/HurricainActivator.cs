@@ -17,7 +17,7 @@ public class HurricainActivator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            enemySpawnerSystem.StartSpawning();
+            //enemySpawnerSystem.StartSpawning();
 
             PlayerSingleton.Instance.marsHurricaneController.ActiveHurricaneFog();
             thisCollider.enabled = false;

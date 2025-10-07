@@ -311,8 +311,8 @@ GameObject:
   - component: {fileID: 7429661528540323141}
   - component: {fileID: 7071867066660096306}
   - component: {fileID: 9026649838642921915}
-  - component: {fileID: 7081697852529102983}
   - component: {fileID: 3726310530620746867}
+  - component: {fileID: 7081697852529102983}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -385,21 +385,6 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7081697852529102983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2491838920751388362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68577fe0f3b804848b22d55dcc54c151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  standAttackCollider: {fileID: 2172257391191255404}
-  crawlAttackCollider: {fileID: 0}
-  swordAttackCollider: {fileID: 0}
 --- !u!114 &3726310530620746867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +457,21 @@ MonoBehaviour:
   armRightPS: {fileID: 8031254087609907300}
   legLeftPS: {fileID: 7991667112468809036}
   legRightPS: {fileID: 817317737995530010}
+--- !u!114 &7081697852529102983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491838920751388362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68577fe0f3b804848b22d55dcc54c151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standAttackCollider: {fileID: 2172257391191255404}
+  crawlAttackCollider: {fileID: 0}
+  swordAttackCollider: {fileID: 0}
 --- !u!1 &4749341967003862591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85680e10a916272468ddb51eb3c86361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Head
   _Health: 0
   _MaxHealth: 100
   enemyMovement: {fileID: 3726310530620746867}
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85680e10a916272468ddb51eb3c86361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Body
   _Health: 0
   _MaxHealth: 100
   enemyMovement: {fileID: 3726310530620746867}
