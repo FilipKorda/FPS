@@ -1,9 +1,10 @@
+using DG.Tweening;
 using FPS.Guns;
 using FPS.Guns.Demo;
+using System;
 using TMPro;
 using UnityEngine;
-using DG.Tweening;
-using System;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class GunPickup : MonoBehaviour, IGunPickupable
@@ -48,6 +49,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
     [SerializeField] private Sprite triangleDown;
     [SerializeField] private Sprite dot;
 
+    public LocalizedString localizeStringEvent;
 
     public enum ShapeType
     {
@@ -173,7 +175,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
 
         imageToActivate.SetActive(true);
         isImageActivate = true;
-       // NotificationSystem.Instance.ShowInfiniteNotification($"Press [E] to pick up {Gun.Name}");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent, $"Press [E] to pick up {Gun.Name}", Gun.Name);
 
     }
 

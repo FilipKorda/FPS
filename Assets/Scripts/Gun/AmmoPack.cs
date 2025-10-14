@@ -3,6 +3,7 @@ using FPS.Guns.Demo;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class AmmoPack : MonoBehaviour, IPickupable
 {
@@ -11,9 +12,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     [SerializeField] private GameObject AmmoPackPanel;
     [SerializeField] private TextMeshProUGUI headerText;
-    [SerializeField] private string headerString = "Ammo Pack";
     [SerializeField] private TextMeshProUGUI mainFirstText;
-    [SerializeField] private string mainFirstString = "Available amount of Ammo";
     [SerializeField] private TextMeshProUGUI totalAmmoText;
     [SerializeField] private int totalAmmo = 100;
 
@@ -25,7 +24,22 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     [SerializeField] private GameObject ammoPackModel;
 
+    public LocalizedString localizeStringEventAmmoPack;
+    public LocalizedString localizeStringEventAvailableamountofAmmo;
+
     public LocalizedString localizeStringEventPress;
+    public LocalizedString localizeStringEventThisGunHaveFullAmmo;
+    public LocalizedString localizeStringEventAddedAmmoTo;
+
+    private void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
 
     private void Start()
     {
@@ -33,6 +47,14 @@ public class AmmoPack : MonoBehaviour, IPickupable
         originalColor = originalColorRenderer.material.color;
         originalTotalAmmoTextScale = totalAmmoText.transform.localScale;
         originalAmmoColor = totalAmmoText.material.color;
+    }
+
+    private void OnLocaleChanged(Locale _)
+    {
+        if (AmmoPackPanel != null)
+        {
+            UpdateLocalizedPanelTexts();
+        }
     }
 
     public void PickupAmmo()
@@ -52,7 +74,12 @@ public class AmmoPack : MonoBehaviour, IPickupable
         }
         else
         {
-            //NotificationSystem.Instance.ShowNotification($"This {PlayerGunSelector.Instance.ActiveGun.Name} have full ammo", 1f);
+            NotificationSystem.Instance.ShowNotification(
+                localizeStringEventThisGunHaveFullAmmo,
+                $"This {PlayerGunSelector.Instance.ActiveGun.Name} have full ammo",
+                1f,
+                PlayerGunSelector.Instance.ActiveGun.Name
+            );
         }
     }
 
@@ -64,7 +91,13 @@ public class AmmoPack : MonoBehaviour, IPickupable
         PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo += AmountToAdd;
         totalAmmo -= AmountToAdd;
 
-       // NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1f);
+        NotificationSystem.Instance.ShowNotification(
+            localizeStringEventAddedAmmoTo,
+            $"Added {AmountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}",
+            1f,
+            AmountToAdd,
+            PlayerGunSelector.Instance.ActiveGun.Name
+        );
 
         totalAmmoText.DOColor(Color.red, 0.05f)
            .OnComplete(() =>
@@ -101,10 +134,38 @@ public class AmmoPack : MonoBehaviour, IPickupable
     public void ShowAmmoPackPanel()
     {
         AmmoPackPanel.transform.DOLocalMove(show, 0.2f);
-        headerText.text = headerString;
-        mainFirstText.text = mainFirstString;
+        UpdateLocalizedPanelTexts();
         totalAmmoText.text = totalAmmo.ToString();
-        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventPress, "Press [E] to restore Ammo!");
+
+        NotificationSystem.Instance.ShowInfiniteNotification(
+            localizeStringEventPress,
+            "Press [E] to restore Ammo!"
+        );
+    }
+
+    private void UpdateLocalizedPanelTexts()
+    {
+        string localizedHeader = null;
+        if (localizeStringEventAmmoPack != null)
+        {
+            try
+            {
+                localizedHeader = localizeStringEventAmmoPack.GetLocalizedString();
+            }
+            catch { }
+        }
+        headerText.text = localizedHeader;
+
+        string localizedMain = null;
+        if (localizeStringEventAvailableamountofAmmo != null)
+        {
+            try
+            {
+                localizedMain = localizeStringEventAvailableamountofAmmo.GetLocalizedString();
+            }
+            catch { }
+        }
+        mainFirstText.text = localizedMain;
     }
 
     public void HideAmmoPackPanel()

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Localization;
 
 public class QuestManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] private GetFixTurretQuest getFixTurretQuest;
     [SerializeField] private GetBackpackQuest getBackpackQuest;
+
+    public LocalizedString localizeStringEvent;
 
     private void Awake()
     {
@@ -79,7 +82,7 @@ public class QuestManager : MonoBehaviour
     {
         if (!questsConditions.Contains(newQuest))
         {
-          //  NotificationSystem.Instance.ShowNotification("<color=orange>Get Quest </color>" + newQuest.questName, 2f);
+            NotificationSystem.Instance.ShowNotification(localizeStringEvent, "<color=orange>Get Quest </color>" + newQuest.questName, 2f, newQuest.questName);
             questsConditions.Add(newQuest);
             Debug.Log($"New quest received: {newQuest.questName}");
             UpdateUI();

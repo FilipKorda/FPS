@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en-US
   m_SharedData: {fileID: 11400000, guid: 9dc320dddbb8fdd4695ca26f8e7fcebd, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 4284506868755726393
   m_TableData:
   - m_Id: 5241065472
     m_Localized: You collect Barrel
@@ -42,10 +43,6 @@ MonoBehaviour:
     m_Localized: Press [E] to Activate Line Puzzle!
     m_Metadata:
       m_Items: []
-  - m_Id: 3692650844160
-    m_Localized: Press [E] to Activate Bridge
-    m_Metadata:
-      m_Items: []
   - m_Id: 3941154967552
     m_Localized: You dont have Barrel!
     m_Metadata:
@@ -59,7 +56,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4403820253184
-    m_Localized: Press [E] to Load Fuel
+    m_Localized: Press [E] to Load Fuel!
     m_Metadata:
       m_Items: []
   - m_Id: 4836341075968
@@ -67,7 +64,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5353985298432
-    m_Localized: Press [E] to OpenGate
+    m_Localized: Press [E] to Open Gate.
     m_Metadata:
       m_Items: []
   - m_Id: 5443684683776
@@ -98,6 +95,69 @@ MonoBehaviour:
     m_Localized: You collect Fuel Can
     m_Metadata:
       m_Items: []
+  - m_Id: 7947256352768
+    m_Localized: Press [E] to restore Ammo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9645504876544
+    m_Localized: This {0} have full ammo.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 10923270230016
+    m_Localized: Added {0} ammo to {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 42289244426240
+    m_Localized: Press [E] to pick up {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 43026804396032
+    m_Localized: Pick up 1 {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 43887723040768
+    m_Localized: Add {0} ammo do {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 44473684086784
+    m_Localized: Get Quest {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 46582148124672
+    m_Localized: Ammo Pack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46675836293120
+    m_Localized: Available amount of Ammo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48805284433920
+    m_Localized: Press [E] to place the {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 49406797959168
+    m_Localized: You dont have Green Card!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49437370241024
+    m_Localized: You dont have Blue Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49460787040256
+    m_Localized: You dont have Red Card
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4284506868755726393
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0050e4c4c50800000050a445ef0900000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000

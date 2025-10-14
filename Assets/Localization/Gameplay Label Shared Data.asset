@@ -41,10 +41,6 @@ MonoBehaviour:
 '
     m_Metadata:
       m_Items: []
-  - m_Id: 3692650844160
-    m_Key: Gameplay_PresstoActivateBridge
-    m_Metadata:
-      m_Items: []
   - m_Id: 3941154967552
     m_Key: Gameplay_YoudonthaveBarrel
     m_Metadata:
@@ -62,9 +58,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4836341075968
-    m_Key: 'Gameplay_
-
-      PresstoActivateBridge'
+    m_Key: Gameplay_PresstoActivateBridge
     m_Metadata:
       m_Items: []
   - m_Id: 5353985298432
@@ -99,6 +93,60 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7344690057216
     m_Key: Gameplay_YoucollectFuelCan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7947256352768
+    m_Key: Gameplay_PresstorestoreAmmo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9645504876544
+    m_Key: Gameplay_ThisGunHaveFullAmmo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10923270230016
+    m_Key: 'Gameplay_AddedAmmoTo
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42289244426240
+    m_Key: Gameplay_PresstopickupGun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43026804396032
+    m_Key: Gameplay_PickUpGranade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43887723040768
+    m_Key: Gameplay_PickUpAmmo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44473684086784
+    m_Key: Gameplay_GetQuest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46582148124672
+    m_Key: Gameplay_AmmoPack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46675836293120
+    m_Key: Gameplay_AvailableamountofAmmo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48805284433920
+    m_Key: Gameplay_Presstoplacethe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49406797959168
+    m_Key: Gameplay_YoudonthaveGreenCard!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49437370241024
+    m_Key: Gameplay_YoudonthaveBlueCard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49460787040256
+    m_Key: Gameplay_YoudonthaveRedCard
     m_Metadata:
       m_Items: []
   m_Metadata:

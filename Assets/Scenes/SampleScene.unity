@@ -191344,27 +191344,54 @@ MonoBehaviour:
   heightToGateOpen: 5
   localizeStringEventRedCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49460787040256
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventGreenCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49406797959168
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventBlueCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49437370241024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressERedCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEGreenCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEBlueCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -194270,7 +194297,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 3692650844160
+      m_KeyId: 4836341075968
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -202862,27 +202889,54 @@ MonoBehaviour:
   heightToGateOpen: 2.75
   localizeStringEventRedCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49460787040256
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventGreenCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49406797959168
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventBlueCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49437370241024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressERedCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEGreenCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEBlueCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -213868,27 +213922,54 @@ MonoBehaviour:
   heightToGateOpen: 2.75
   localizeStringEventRedCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49460787040256
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventGreenCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49406797959168
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   localizeStringEventBlueCard:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 49437370241024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressERedCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEGreenCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPressEBlueCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 48805284433920
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -221229,6 +221310,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76546dc35ff5f944ba0758255da4ec75, type: 2}
   getFixTurretQuest: {fileID: 11400000, guid: 9b51f85fc754b1040813e4fc78aa7087, type: 2}
   getBackpackQuest: {fileID: 11400000, guid: 76546dc35ff5f944ba0758255da4ec75, type: 2}
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 44473684086784
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &1210833352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405201,6 +405294,18 @@ MonoBehaviour:
   triangleUp: {fileID: 21300000, guid: 0f7f673c4792b89418f553a0780defa9, type: 3}
   triangleDown: {fileID: 21300000, guid: bb22961486ab77e4da50aed229d954d3, type: 3}
   dot: {fileID: 21300000, guid: 6661c9b0d73d6d34f8b4869cebe5bcfb, type: 3}
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 42289244426240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!33 &4015287454361044418
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -406273,6 +406378,18 @@ MonoBehaviour:
   triangleUp: {fileID: 21300000, guid: 0f7f673c4792b89418f553a0780defa9, type: 3}
   triangleDown: {fileID: 21300000, guid: bb22961486ab77e4da50aed229d954d3, type: 3}
   dot: {fileID: 21300000, guid: 6661c9b0d73d6d34f8b4869cebe5bcfb, type: 3}
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 42289244426240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!65 &4739341001388126750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -416035,7 +416152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5709209285125861236, guid: f89a9a7f17598004a8924b540a8ef3f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.09
+      value: -35.385
       objectReference: {fileID: 0}
     - target: {fileID: 5709209285125861236, guid: f89a9a7f17598004a8924b540a8ef3f2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -416043,7 +416160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5709209285125861236, guid: f89a9a7f17598004a8924b540a8ef3f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.275
+      value: 64.02
       objectReference: {fileID: 0}
     - target: {fileID: 5709209285125861236, guid: f89a9a7f17598004a8924b540a8ef3f2, type: 3}
       propertyPath: m_LocalRotation.w

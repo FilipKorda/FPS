@@ -16,8 +16,149 @@ MonoBehaviour:
     m_Code: pl
   m_SharedData: {fileID: 11400000, guid: 9dc320dddbb8fdd4695ca26f8e7fcebd, type: 2}
   m_Metadata:
-    m_Items: []
-  m_TableData: []
+    m_Items:
+    - rid: 4284506868755726394
+  m_TableData:
+  - m_Id: 10923270230016
+    m_Localized: Dodano {0} ammo do {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 9645504876544
+    m_Localized: "{0} ma pe\u0142n\u0105 amunicje."
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 7947256352768
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby nabra\u0107 amunicje"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7344690057216
+    m_Localized: "Zebra\u0142e\u015B kanister benzyny!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6674880679936
+    m_Localized: "Zebra\u0142e\u015B niebiesk\u0105 kart\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6608560345088
+    m_Localized: "Zebra\u0142e\u015B zielon\u0105 kart\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6455082373120
+    m_Localized: "Zebra\u0142e\u015B czerwon\u0105 kart!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312148881408
+    m_Localized: "Zebra\u0142e\u015B kanister z tlenem!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6133588971520
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby pdnowi\u0107 tlen!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5443684683776
+    m_Localized: "Znajd\u017A kanistry z benzyn\u0105 i czerwon\u0105 karte \u017Ceby
+      Aktywowa\u0107 ten przycisk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5353985298432
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby otworzy\u0107 bram\u0119."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4836341075968
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby aktywowa\u0107 most!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4403820253184
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby na\u0142adowa\u0107 benzyn\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4330919055360
+    m_Localized: Nie posiadasz benzyny!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4020058214400
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby zainstalowa\u0107 luf\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3941154967552
+    m_Localized: Nie posiadasz lufy!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3292300333056
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby aktywowa\u0107 liniow\u0105 zagadk\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3052482613248
+    m_Localized: "Nie mo\u017Cesz tego zrobi\u0107, wie\u017Cyczka jest zepsuta!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2726534860800
+    m_Localized: "Mo\u017Cesz zmieni\u0107 tylko drug\u0105 bro\u0144."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2080985337856
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby zebra\u0107 plecak."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379062603776
+    m_Localized: "Zebra\u0142e\u015B banda\u017C."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5241065472
+    m_Localized: "Zebra\u0142e\u015B lufe."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42289244426240
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby zebra\u0107 {0}."
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 43026804396032
+    m_Localized: Zbierz 1 {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 43887723040768
+    m_Localized: Dodano {0} ammo do {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 44473684086784
+    m_Localized: Zebrano zadanie {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 46582148124672
+    m_Localized: Paczka Amunicji
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46675836293120
+    m_Localized: "Dost\u0119pna ilo\u015B\u0107 amunicji"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48805284433920
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby wsun\u0105\u0107 {0}."
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 49460787040256
+    m_Localized: Nie masz czerwonej karty.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49437370241024
+    m_Localized: Nie masz niebieskiej karty.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49406797959168
+    m_Localized: Nie masz zielonej karty.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4284506868755726394
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0050a445ef0900000050e4c4c50800000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000

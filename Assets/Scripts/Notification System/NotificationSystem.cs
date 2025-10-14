@@ -18,14 +18,14 @@ public class NotificationSystem : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowNotification(LocalizedString localizeString, string message, float duration)
+    public void ShowNotification(LocalizedString localizeString, string message, float duration, params object[] args)
     {
         GameObject notificationObject = Instantiate(notificationPrefab, notificationParentTransform);
 
         TextMeshProUGUI textMesh = notificationObject.GetComponentInChildren<TextMeshProUGUI>();
         if (textMesh != null)
         {
-            SetTextPreferLocalized(textMesh, localizeString, message);
+            SetTextPreferLocalized(textMesh, localizeString, message, args);
         }
 
         AnimateNotification(notificationObject.transform, duration);
@@ -44,7 +44,7 @@ public class NotificationSystem : MonoBehaviour
             });
     }
 
-    public void ShowInfiniteNotification(LocalizedString localizeString, string message)
+    public void ShowInfiniteNotification(LocalizedString localizeString, string message, params object[] args)
     {
         if (activeGunNotification != null)
         {
@@ -55,7 +55,7 @@ public class NotificationSystem : MonoBehaviour
         TextMeshProUGUI textMesh = activeGunNotification.GetComponentInChildren<TextMeshProUGUI>();
         if (textMesh != null)
         {
-            SetTextPreferLocalized(textMesh, localizeString, message);
+            SetTextPreferLocalized(textMesh, localizeString, message, args);
         }
     }
 
@@ -68,7 +68,7 @@ public class NotificationSystem : MonoBehaviour
         }
     }
 
-    private void SetTextPreferLocalized(TextMeshProUGUI textMesh, LocalizedString localizedString, string fallbackMessage)
+    private void SetTextPreferLocalized(TextMeshProUGUI textMesh, LocalizedString localizedString, string fallbackMessage, params object[] args)
     {
         if (textMesh == null) return;
 
@@ -76,7 +76,9 @@ public class NotificationSystem : MonoBehaviour
 
         if (localizedString == null) return;
 
-        var handle = localizedString.GetLocalizedStringAsync();
+        var handle = (args != null && args.Length > 0)
+            ? localizedString.GetLocalizedStringAsync(args)
+            : localizedString.GetLocalizedStringAsync();
 
         if (handle.IsDone)
         {

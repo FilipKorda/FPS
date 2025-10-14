@@ -121,14 +121,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmmoPackPanel: {fileID: 0}
   headerText: {fileID: 0}
-  headerString: Ammo Pack
   mainFirstText: {fileID: 0}
-  mainFirstString: Available amount of Ammo
   totalAmmoText: {fileID: 0}
   totalAmmo: 100
   hide: {x: 1100, y: 0, z: 0}
   show: {x: 680, y: 0, z: 0}
   ammoPackModel: {fileID: 5548325247958030898}
+  localizeStringEventAmmoPack:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 46582148124672
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventAvailableamountofAmmo:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 46675836293120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPress:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 7947256352768
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventThisGunHaveFullAmmo:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 9645504876544
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventAddedAmmoTo:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 10923270230016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4307532046444192196
 MonoBehaviour:
   m_ObjectHideFlags: 0

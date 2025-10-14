@@ -101,6 +101,18 @@ MonoBehaviour:
   isSmoke: 1
   grenadeHandler: {fileID: 0}
   grenadeDisplayer: {fileID: 0}
+  localizeStringEventPress:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 43026804396032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &749531126781772395
 GameObject:
   m_ObjectHideFlags: 0

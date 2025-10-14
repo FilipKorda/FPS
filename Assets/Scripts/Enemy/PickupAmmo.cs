@@ -1,10 +1,13 @@
 using FPS.Guns.Demo;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class PickupAmmo : MonoBehaviour
 {
     [SerializeField]
     private int amountOfAmmo = 10;
+
+    public LocalizedString localizeStringEvent;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +31,7 @@ public class PickupAmmo : MonoBehaviour
 
         PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo += amountToAdd;
 
-        //NotificationSystem.Instance.ShowNotification($"Add {amountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1.0f);
+        NotificationSystem.Instance.ShowNotification(localizeStringEvent, $"Add {amountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1.0f, amountToAdd, PlayerGunSelector.Instance.ActiveGun.Name);
 
 
         AmmoDisplayer.Instance.AmmoChanged();

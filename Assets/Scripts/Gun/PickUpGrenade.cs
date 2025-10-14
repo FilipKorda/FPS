@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class PickUpGrenade : MonoBehaviour
 {
     [SerializeField] private bool isSmoke;
     [SerializeField] private GrenadeHandler grenadeHandler;
     [SerializeField] private GrenadeDisplayer grenadeDisplayer;
+
+    public LocalizedString localizeStringEventPress;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,12 +17,12 @@ public class PickUpGrenade : MonoBehaviour
 
             if (isSmoke)
             {
-               // NotificationSystem.Instance.ShowNotification($"Pick up 1 {grenadeHandler.smokeGranatPrefab.Name}", 1.0f);
+                NotificationSystem.Instance.ShowNotification(localizeStringEventPress, $"Pick up 1 {grenadeHandler.smokeGranatPrefab.Name}", 1.0f, grenadeHandler.smokeGranatPrefab.Name);
                 Inventory.Instance.AddSmokeGrenade();
             }
             else
             {
-               // NotificationSystem.Instance.ShowNotification($"Pick up 1 {grenadeHandler.granatPrefab.Name}", 1.0f);
+                NotificationSystem.Instance.ShowNotification(localizeStringEventPress, $"Pick up 1 {grenadeHandler.granatPrefab.Name}", 1.0f, grenadeHandler.smokeGranatPrefab.Name);
                 Inventory.Instance.AddGrenade();
             }
             if (grenadeDisplayer != null)
