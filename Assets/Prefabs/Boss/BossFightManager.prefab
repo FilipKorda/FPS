@@ -1986,27 +1986,51 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6481307205772625423, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7479920100450119529}
+    - targetCorrespondingSourceObject: {fileID: 6481307205772625423, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3532462806603238206}
     - targetCorrespondingSourceObject: {fileID: 2426894953588343590, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1420273334996902306}
+    - targetCorrespondingSourceObject: {fileID: 2426894953588343590, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3028563786703203942}
     - targetCorrespondingSourceObject: {fileID: 4389489341728995347, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6320645416757548412}
+    - targetCorrespondingSourceObject: {fileID: 4389489341728995347, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5887796701861528212}
     - targetCorrespondingSourceObject: {fileID: 3567710788927601244, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 871636798525141788}
+    - targetCorrespondingSourceObject: {fileID: 3567710788927601244, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6505607445539760113}
     - targetCorrespondingSourceObject: {fileID: 5286486021314261956, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4136700767521997322}
+    - targetCorrespondingSourceObject: {fileID: 5286486021314261956, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981212717413328737}
     - targetCorrespondingSourceObject: {fileID: 2891272456121158959, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 506010696568799971}
+    - targetCorrespondingSourceObject: {fileID: 2891272456121158959, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3153323291198310261}
     - targetCorrespondingSourceObject: {fileID: 5790089654020651824, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5766445698145117079}
+    - targetCorrespondingSourceObject: {fileID: 5790089654020651824, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7472656340516705697}
     - targetCorrespondingSourceObject: {fileID: 4275845422776121394, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6060595629001343207}
+    - targetCorrespondingSourceObject: {fileID: 4275845422776121394, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3186526614287009551}
   m_SourcePrefab: {fileID: 100100000, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
 --- !u!65 &669557015949225666 stripped
 BoxCollider:
@@ -2051,6 +2075,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 7004765826731751165}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &1981212717413328737
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698420245435901978}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &2934269359358887988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4942550516334498794, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2096,6 +2154,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 669557015949225666}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &3532462806603238206
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881490991532547537}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4356509372910428398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5790089654020651824, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2114,6 +2206,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 1663907085253020768}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &7472656340516705697
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356509372910428398}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4913485568418371313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2891272456121158959, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2132,6 +2258,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 3252676763830608624}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &3153323291198310261
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913485568418371313}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &5166726653341067604 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3142403587175559818, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2160,6 +2320,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 8891736942003290845}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &3028563786703203942
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585019854496110840}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5820181930950419405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4389489341728995347, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2178,6 +2372,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 5917065405223523117}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &5887796701861528212
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820181930950419405}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &5917065405223523117 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 4481726283464902899, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2201,6 +2429,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 1892928492882963944}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &3186526614287009551
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303125419270874092}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6750024902829891970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3567710788927601244, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2219,6 +2481,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 5166726653341067604}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
+--- !u!54 &6505607445539760113
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750024902829891970}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &7004765826731751165 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 944072043316964643, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}
@@ -2242,6 +2538,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCollider: {fileID: 1586591927675700866}
+  minUpForce: 8
+  maxUpForce: 12
+  minHorizontalForce: 2
+  maxHorizontalForce: 6
+  airTime: 0.6
+  horizontalDrag: 2
+  gravity: 25
 --- !u!114 &8599014147932436518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1979961108537992184, guid: c2da6677d072f2e4a936d8b6c148568d, type: 3}

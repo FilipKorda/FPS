@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     public List<GunPickup> gunPickupList;
     public bool canMove = true;
 
+    public float ExternalSpeedMultiplier { get; private set; } = 1f;
+    public void SetExternalSpeedMultiplier(float multiplier)
+    {
+        ExternalSpeedMultiplier = Mathf.Clamp(multiplier, 0f, 1f);
+    }
+
     void Awake()
     {
         character_Controller = GetComponent<CharacterController>();      
@@ -62,19 +68,38 @@ public class PlayerController : MonoBehaviour
             move_Direction = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f,
                                   Input.GetAxis(Axis.VERTICAL));
             move_Direction = transform.TransformDirection(move_Direction);
-            move_Direction *= speed * Time.deltaTime;
+            // U¿yj mno¿nika prêdkoœci
+            move_Direction *= (speed * ExternalSpeedMultiplier) * Time.deltaTime;
+
             ApplyGravity();
-            character_Controller.Move(move_Direction);
+
+            var flags = character_Controller.Move(move_Direction);
+
+            if ((flags & CollisionFlags.Above) != 0 && vertical_Velocity > 0f)
+            {
+                vertical_Velocity = 0f; 
+            }
         }
     }
 
     void ApplyGravity()
     {
-        vertical_Velocity -= gravity * Time.deltaTime;
+        if (character_Controller.isGrounded)
+        {
+            if (vertical_Velocity < 0f)
+            {
+                vertical_Velocity = -2f; 
+            }
+        }
+        else
+        {
+            vertical_Velocity -= gravity * Time.deltaTime;
+        }
+
         PlayerJump();
+
         move_Direction.y = vertical_Velocity * Time.deltaTime;
     }
-
 
     void PlayerJump()
     {
@@ -83,8 +108,4 @@ public class PlayerController : MonoBehaviour
             vertical_Velocity = jump_Force;
         }
     }
-
-
-
-
 }

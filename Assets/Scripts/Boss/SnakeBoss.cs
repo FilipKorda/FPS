@@ -49,8 +49,7 @@ public class SnakeBoss : MonoBehaviour
     [SerializeField] private Transform[] allAttackPathMainTransform;
     private Transform currentAttackRoot;
 
-
-
+    private bool skipTeleportOnNextAttackPick = false;
 
     void Start()
     {
@@ -192,8 +191,19 @@ public class SnakeBoss : MonoBehaviour
         currentAttackPath = validPaths[randomIndex];
         attackIndex = 0;
 
-        currentAttackRoot = allAttackPathMainTransform[randomIndex];
+        currentAttackRoot = (allAttackPathMainTransform != null && randomIndex < allAttackPathMainTransform.Length)
+            ? allAttackPathMainTransform[randomIndex]
+            : null;
 
+        // Jednorazowo (po StartBossFight) pod¹¿aj do 0. punktu bez teleportu
+        if (skipTeleportOnNextAttackPick)
+        {
+            waitingForNextAttack = false;   // od razu ruszaj do punktu 0
+            skipTeleportOnNextAttackPick = false;
+            return;
+        }
+
+        // Standardowy teleport jak dotychczas
         Vector3 startPos = currentAttackPath[0].position;
         segments[0].position = startPos;
         positions.Clear();
@@ -224,6 +234,16 @@ public class SnakeBoss : MonoBehaviour
             yield return new WaitForSeconds(transitionTime);
 
         currentState = newState;
+
+        if (currentState == BossState.Attack)
+        {
+            // Przy pierwszym wejœciu w Attack – bez teleportu do punktu 0
+            skipTeleportOnNextAttackPick = true;
+            currentAttackPath = null;   // wymuœ wybór œcie¿ki w Update
+            attackIndex = 0;
+            waitingForNextAttack = false;
+        }
+
         _stateChangeRoutine = null;
     }
 

@@ -111,6 +111,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     {
         if (isDead) return;
 
+        //cheat
         if (Input.GetKeyDown(KeyCode.O))
         {
             TakeDamage(10);
@@ -118,12 +119,12 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            StartCoroutine(Heal(10));
+            StartCoroutine(Heal(20));
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(UseOxygenContainer(100));
+            StartCoroutine(UseOxygenContainer(75));
         }
 
         if (OxygenHugeContainer.Instance.isRefillingOxygen)

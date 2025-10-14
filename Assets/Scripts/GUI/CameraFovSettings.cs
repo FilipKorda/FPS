@@ -1,4 +1,3 @@
-using FPS.Guns.Demo;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,21 +34,13 @@ public class CameraFovSettings : MonoBehaviour
         {
             Debug.LogError("Slider nie jest przypisany. Przypisz Slider w inspektorze.");
         }
-
-
     }
 
     public void OnFOVSliderValueChanged(float value)
     {
         ClampedValue = Mathf.Clamp(value, minFOV, maxFOV);
-        if (PlayerGunSelector.Instance != null)
-        {
-            PlayerGunSelector.Instance.Camera.fieldOfView = ClampedValue;
-        }
         UpdateAmountText();
-
-
-        PlayerPrefs.SetFloat("FOVValue", value);
+        PlayerPrefs.SetFloat("FOVValue", ClampedValue);
     }
 
     void UpdateAmountText()
@@ -62,15 +53,22 @@ public class CameraFovSettings : MonoBehaviour
 
     public void ResetCameraFov()
     {
-        fovSlider.value = resetInitialFOV;
-
+        if (fovSlider != null)
+        {
+            fovSlider.value = resetInitialFOV;
+        }
+        ClampedValue = Mathf.Clamp(resetInitialFOV, minFOV, maxFOV);
+        PlayerPrefs.SetFloat("FOVValue", ClampedValue);
         UpdateAmountText();
     }
 
     void ReadingFOVSavesValues()
     {
-        float savedMasterVolume = PlayerPrefs.GetFloat("FOVValue", ClampedValue);
-        fovSlider.value = savedMasterVolume;
-
+        float saved = PlayerPrefs.GetFloat("FOVValue", ClampedValue);
+        if (fovSlider != null)
+        {
+            fovSlider.value = saved;
+        }
+        ClampedValue = Mathf.Clamp(saved, minFOV, maxFOV);
     }
 }

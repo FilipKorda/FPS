@@ -25,16 +25,34 @@ namespace FPS.Guns.Demo
 
         private readonly Dictionary<GunType, GunScriptableObject> gunCache = new();
 
-        public float normalFOV = 60f;
-        public float zoomFOV = 30f;
-        public float zoomSpeed = 5f;
+        [Header("FOV / Zoom")]
+        [Tooltip("Mno¿nik FOV podczas celowania wzglêdem bazowego FOV z opcji.")]
+        [SerializeField, Range(0.1f, 1f)] private float zoomFovMultiplier = 0.5f;
+        [SerializeField] private float minZoomFov = 20f;
+        [SerializeField] private float maxZoomFov = 120f;
+
+        private const float defaultBaseFov = 60f;
         private bool isZoomed = false;
+
+        // Cache bazowego FOV i celów
+        private float cachedBaseFov;
+        private float targetFovHip;
+        private float targetFovAds;
+
+        // P³ynne przybli¿enie FOV (odseparowane od Camera.fieldOfView)
+        [Header("FOV Smoothing")]
+        [SerializeField] private bool smoothZoom = true;
+        [SerializeField, Range(0.02f, 0.3f)] private float fovSmoothTime = 0.08f;
+        [SerializeField, Range(0.001f, 0.2f)] private float fovSnapEpsilon = 0.03f;
+        private float fovVelocity;
+        private float currentFov; // <- AUTORYTATYWNY stan FOV
+
+        // Pozycje broni (zmieniane na sztywno)
         private Vector3 originalWeaponPosition = new(0.35f, -0.3f, 0.6f);
         public Vector3 glockZoomedPosition = new(0f, -0.14f, 0.33f);
         public Vector3 m4a1ZoomedPosition = new(0f, -0.1f, 0.3f);
         public Vector3 uziSilencerZoomedPosition = new(0f, -0.155f, 0.4f);
 
-        [Header("Weapon Draw")]
         [SerializeField] private float drawDuration = 0.15f;
         [SerializeField] private float drawStartYOffset = -0.5f;
         private Coroutine drawCoroutine;
@@ -42,33 +60,95 @@ namespace FPS.Guns.Demo
         private readonly Dictionary<Transform, Coroutine> childDrawCoroutines = new();
         private readonly HashSet<Transform> seenChildren = new();
 
+        [Header("Zoom effects")]
+        [SerializeField, Range(0f, 1f)] private float zoomSpeedMultiplier = 0.2f; // -80%
+        [SerializeField] private PlayerController playerController;
+        [SerializeField] private CameraHeadBob cameraHeadBob;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+                return;
+            }
+            Instance = this;
+        }
+
         private void Start()
         {
             ActiveBaseGun = GetGunOfType(GunType.M4A1);
             ActiveGun = GetCachedGun(ActiveBaseGun);
             ActiveGun.Spawn(GunParent, this, Camera);
 
+            if (GunParent != null)
+            {
+                originalWeaponPosition = GunParent.localPosition;
+            }
+
+            RecomputeFovTargets();
+
+            // Zainicjalizuj stan lokalny FOV i ustaw kamerê raz
+            currentFov = targetFovHip;
+            if (Camera != null)
+            {
+                Camera.fieldOfView = currentFov;
+            }
+
             PlayDrawAnimation();
         }
 
-        private void Awake()
+        private float GetBaseFov()
         {
-            Instance = this;
+            if (cameraFovSettings != null)
+                return cameraFovSettings.ClampedValue;
+
+            if (PlayerPrefs.HasKey("FOVValue"))
+                return PlayerPrefs.GetFloat("FOVValue");
+
+            return defaultBaseFov;
+        }
+
+        private void RecomputeFovTargets()
+        {
+            cachedBaseFov = Mathf.Clamp(GetBaseFov(), minZoomFov, maxZoomFov);
+            targetFovHip = cachedBaseFov;
+            targetFovAds = Mathf.Clamp(cachedBaseFov * zoomFovMultiplier, minZoomFov, maxZoomFov);
+        }
+
+        private void OnDisable()
+        {
+            ApplyZoomEffects(false);
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(1))
+            bool rmb = Input.GetMouseButton(1);
+            if (rmb != isZoomed)
             {
-                isZoomed = true;
+                isZoomed = rmb;
+                ApplyZoomEffects(isZoomed);
+
+                RecomputeFovTargets();
+                // Reset prêdkoœci; nie nadpisujemy currentFov, by kontynuowaæ p³ynnie z bie¿¹cej wartoœci
+                fovVelocity = 0f;
             }
 
-            if (Input.GetMouseButtonUp(1))
+            if (!isZoomed)
             {
-                isZoomed = false;
-            }
+                float baseNow = Mathf.Clamp(GetBaseFov(), minZoomFov, maxZoomFov);
+                if (!Mathf.Approximately(baseNow, cachedBaseFov))
+                {
+                    cachedBaseFov = baseNow;
+                    targetFovHip = cachedBaseFov;
+                    targetFovAds = Mathf.Clamp(cachedBaseFov * zoomFovMultiplier, minZoomFov, maxZoomFov);
 
-            UpdateZoom();
+                    if (!smoothZoom)
+                    {
+                        currentFov = targetFovHip;
+                    }
+                }
+            }
 
             CheckAndAnimateNewChildren();
 
@@ -94,31 +174,75 @@ namespace FPS.Guns.Demo
             }
         }
 
+        private void LateUpdate()
+        {
+            UpdateZoom();
+        }
+
+        private void ApplyZoomEffects(bool zoomOn)
+        {
+            if (playerController != null)
+            {
+                playerController.SetExternalSpeedMultiplier(zoomOn ? zoomSpeedMultiplier : 1f);
+            }
+            if (cameraHeadBob != null)
+            {
+                cameraHeadBob.SetZooming(zoomOn);
+            }
+        }
+
         void UpdateZoom()
         {
-            if (!DialogueManager.Instance.isTalking)
+            if (Camera == null) return;
+            if (DialogueManager.Instance != null && DialogueManager.Instance.isTalking)
+                return;
+
+            float targetFOV = isZoomed ? targetFovAds : targetFovHip;
+
+            if (smoothZoom)
             {
-                float targetFOV = isZoomed ? zoomFOV : cameraFovSettings.ClampedValue;
-                Camera.fieldOfView = Mathf.Lerp(Camera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+                // U¿ywamy currentFov jako Ÿród³a, nie Camera.fieldOfView (unikamy konfliktów)
+                currentFov = Mathf.SmoothDamp(
+                    currentFov,
+                    targetFOV,
+                    ref fovVelocity,
+                    fovSmoothTime,
+                    Mathf.Infinity,
+                    Time.deltaTime
+                );
 
-                float lerpValue = isZoomed ? 1f : 0f;
-
-                if (ActiveGun.Type == GunType.Glock)
+                // Snap do celu i zerowanie prêdkoœci, by nie by³o oscylacji
+                if (Mathf.Abs(currentFov - targetFOV) <= fovSnapEpsilon)
                 {
-                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, glockZoomedPosition, lerpValue);
-                }
-
-                if (ActiveGun.Type == GunType.M4A1)
-                {
-                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, m4a1ZoomedPosition, lerpValue);
-                }
-
-                if (ActiveGun.Type == GunType.UziSilencer)
-                {
-                    GunParent.localPosition = Vector3.Lerp(originalWeaponPosition, uziSilencerZoomedPosition, lerpValue);
+                    currentFov = targetFOV;
+                    fovVelocity = 0f;
                 }
             }
+            else
+            {
+                currentFov = targetFOV;
+            }
 
+            // Jedyny punkt zapisu do kamery – na koñcu klatki
+            Camera.fieldOfView = currentFov;
+
+            if (GunParent != null && ActiveGun != null)
+            {
+                Vector3 targetPos = originalWeaponPosition;
+
+                if (isZoomed)
+                {
+                    if (ActiveGun.Type == GunType.Glock)
+                        targetPos = glockZoomedPosition;
+                    else if (ActiveGun.Type == GunType.M4A1)
+                        targetPos = m4a1ZoomedPosition;
+                    else if (ActiveGun.Type == GunType.UziSilencer)
+                        targetPos = uziSilencerZoomedPosition;
+                }
+
+                // zmiana pozycji broni bez wyg³adzania (na sztywno)
+                GunParent.localPosition = targetPos;
+            }
         }
 
         public void SetupNewGun(GunScriptableObject newGun)
@@ -129,6 +253,13 @@ namespace FPS.Guns.Demo
                 ActiveBaseGun = newGun;
                 ActiveGun = GetCachedGun(ActiveBaseGun);
                 ActiveGun.Spawn(GunParent, this, Camera);
+
+                if (GunParent != null)
+                    originalWeaponPosition = GunParent.localPosition;
+
+                RecomputeFovTargets();
+                // zachowaj ci¹g³oœæ ruchu FOV
+                fovVelocity = 0f;
 
                 PlayDrawAnimation();
 
@@ -156,6 +287,12 @@ namespace FPS.Guns.Demo
             ActiveGun = GetCachedGun(ActiveBaseGun);
             ActiveGun.Spawn(GunParent, this, Camera);
 
+            if (GunParent != null)
+                originalWeaponPosition = GunParent.localPosition;
+
+            RecomputeFovTargets();
+            fovVelocity = 0f;
+
             PlayDrawAnimation();
         }
 
@@ -182,7 +319,6 @@ namespace FPS.Guns.Demo
             }
             return gunCache[gun.Type];
         }
-
 
         public void PlayDrawAnimationInIntro()
         {

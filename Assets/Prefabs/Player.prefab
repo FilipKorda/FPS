@@ -308,14 +308,19 @@ MonoBehaviour:
   GunSelector: {fileID: 0}
   PlayerAction: {fileID: 505002914750229988}
   cameraFovSettings: {fileID: 0}
-  normalFOV: 60
-  zoomFOV: 30
-  zoomSpeed: 20
+  zoomFovMultiplier: 0.5
+  minZoomFov: 20
+  maxZoomFov: 120
+  smoothZoom: 1
+  fovSmoothTime: 0.06
   glockZoomedPosition: {x: 0, y: -0.14, z: 0.33}
   m4a1ZoomedPosition: {x: 0, y: -0.1, z: 0.3}
   uziSilencerZoomedPosition: {x: 0, y: -0.155, z: 0.4}
   drawDuration: 0.15
   drawStartYOffset: -0.5
+  zoomSpeedMultiplier: 0.2
+  playerController: {fileID: 5283495462586899811}
+  cameraHeadBob: {fileID: 8954624566329137485}
 --- !u!114 &505002914750229988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,6 +713,7 @@ GameObject:
   - component: {fileID: 6837742129534001810}
   - component: {fileID: 3661646352287276375}
   - component: {fileID: 2253253666441147247}
+  - component: {fileID: 8954624566329137485}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -887,6 +893,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraShakeDuration: 0.75
   cameraShakeMagnitude: 0.1
+--- !u!114 &8954624566329137485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137869256399922481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e505d71a9ebf0af4ca6e65450756d18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobTarget: {fileID: 3245085939705525823}
+  motionSource: {fileID: 7864397323582606732}
+  characterController: {fileID: 577276823158347797}
+  requireGrounded: 1
+  minSpeedToBob: 0.1
+  returnSpeed: 9
+  crouchAmplitude: {x: 0.03, y: 0.02}
+  walkAmplitude: {x: 0.05, y: 0.03}
+  sprintAmplitude: {x: 0.08, y: 0.05}
+  crouchFrequency: 6
+  walkFrequency: 9
+  sprintFrequency: 12
+  stepSharpness: 0.1
+  lateralSharpness: 2.2
+  useStompStyle: 1
+  stompLateralShape: 5
+  stompImpulseShape: 6
+  stompSmoothTime: 0.06
+  stompMaxSpeed: 100
+  useManualState: 0
+  isCrouching: 0
+  isSprinting: 0
+  sprintSpeedReference: 6
+  crouchSpeedReference: 2
+  zoomAmplitudeScale: 0.3
 --- !u!1 &3980033788777963428
 GameObject:
   m_ObjectHideFlags: 0
