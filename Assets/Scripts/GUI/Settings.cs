@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class Settings : MonoBehaviour
 {
@@ -74,6 +77,19 @@ public class Settings : MonoBehaviour
     public bool settingsInMainMenu = false;
     [SerializeField] private MainMenu mainMenu;
 
+    [Header("Localization")]
+    [SerializeField] private string uiStringTable = "UI";
+
+    void OnEnable()
+    {
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+    }
+
+    void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
     void Start()
     {
         panels = new GameObject[] { soundPanel, controlsPanel, gameplayPanel, graphicsPanel };
@@ -85,12 +101,14 @@ public class Settings : MonoBehaviour
         ShowCurrentPanel();
         UpdateTabHighlight();
 
+        RefreshQualityDropdownLocalization();
+
         InitializeResolutionOptions();
 
         InitializeAntiAliasing();
         SetAntiAliasingLevel(availableAntiAliasingLevels[0]);
 
-        InitializeShadow();
+        InitializeShadow(); 
         SetShadowResolution(availableShadowResolutions[0]);
 
         SetSoundState(soundToggle.isOn);
@@ -102,7 +120,6 @@ public class Settings : MonoBehaviour
         ReadingShadowSaveValues();
         ReadingToggleMuteSaveValue();
         ReadingToggleFullscreenSaveValue();
-
     }
 
     void ReadingSoundsSaveValues()
@@ -198,7 +215,6 @@ public class Settings : MonoBehaviour
         graphicsTab.UpdateHighlight();
     }
 
-    // ============================= Quality ======================
     public void SetQualityLevel(int level)
     {
         qualityLevel = level;
@@ -224,6 +240,7 @@ public class Settings : MonoBehaviour
         {
             qualityLevelDropdown.value = 2;
         }
+        qualityLevelDropdown.RefreshShownValue();
     }
 
     public void ResetQuality()
@@ -243,10 +260,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
     }
-    // ===================================================
-
-
-    // ============================= Resolution ======================
+  
     void InitializeResolutionOptions()
     {
         resolutionDropdown.ClearOptions();
@@ -294,9 +308,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
     }
-    // ===================================================
 
-    // ============================= Fullscreen ======================
     public void OnFullscreenToggleValueChanged(bool isOn)
     {
         Screen.fullScreen = isOn;
@@ -340,9 +352,7 @@ public class Settings : MonoBehaviour
             }
         }
     }
-    // ===================================================
 
-    // ============================= AntiAliasing ======================
     void InitializeAntiAliasing()
     {
         if (antiAliasingDropdown != null)
@@ -389,18 +399,11 @@ public class Settings : MonoBehaviour
         {
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
-    }
-    // ===================================================
+    } 
 
-    // ============================= Shadow ======================
     void InitializeShadow()
     {
-        shadowResolutionDropdown.ClearOptions();
-        foreach (var resolution in availableShadowResolutions)
-        {
-            shadowResolutionDropdown.options.Add(new TMP_Dropdown.OptionData(resolution.ToString()));
-        }
-        shadowResolutionDropdown.RefreshShownValue();
+        RefreshShadowDropdownLocalization();
     }
 
     void SetShadowResolution(ShadowResolution resolution)
@@ -437,9 +440,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
     }
-    // ===================================================
 
-    // ============================= Sounds ======================
     public void SetVolume(string parameterName, float volume)
     {
         audioMainMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
@@ -466,7 +467,7 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("SfxVolume", volume);
     }
 
-    //Mute
+   
     public void OnSoundToggleChanged(bool isSoundOn)
     {
         SetSoundState(isSoundOn);
@@ -494,7 +495,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
         }
     }
-    //==
+   
     public void SetSoundState(bool isSoundOn)
     {
         if (!isSoundOn)
@@ -562,19 +563,67 @@ public class Settings : MonoBehaviour
         }
     }
 
-    // ===================================================
+    private void OnLocaleChanged(Locale _)
+    {
+        int qIdx = qualityLevelDropdown != null ? qualityLevelDropdown.value : 0;
+        int sIdx = shadowResolutionDropdown != null ? shadowResolutionDropdown.value : 0;
 
+        RefreshQualityDropdownLocalization();
+        RefreshShadowDropdownLocalization();
 
+        if (qualityLevelDropdown != null) qualityLevelDropdown.value = qIdx;
+        if (shadowResolutionDropdown != null) shadowResolutionDropdown.value = sIdx;
 
+        if (qualityLevelDropdown != null) qualityLevelDropdown.RefreshShownValue();
+        if (shadowResolutionDropdown != null) shadowResolutionDropdown.RefreshShownValue();
+    }
 
+    private void RefreshQualityDropdownLocalization()
+    {
+        if (qualityLevelDropdown == null) return;
 
+        int selected = qualityLevelDropdown.value;
 
+        qualityLevelDropdown.ClearOptions();
+        var options = new List<TMP_Dropdown.OptionData>();
+        var names = QualitySettings.names;
 
+        for (int i = 0; i < names.Length; i++)
+        {
+            string key = $"Settings_{names[i]}"; 
+            string text = LocalizationSettings.StringDatabase.GetLocalizedString(uiStringTable, key);
+            if (string.IsNullOrEmpty(text))
+                text = names[i]; 
 
+            options.Add(new TMP_Dropdown.OptionData(text));
+        }
 
+        qualityLevelDropdown.AddOptions(options);
+        qualityLevelDropdown.value = Mathf.Clamp(selected, 0, options.Count - 1);
+        qualityLevelDropdown.RefreshShownValue();
+    }
 
+    private void RefreshShadowDropdownLocalization()
+    {
+        if (shadowResolutionDropdown == null) return;
 
+        int selected = shadowResolutionDropdown.value;
 
+        shadowResolutionDropdown.ClearOptions();
+        var options = new List<TMP_Dropdown.OptionData>();
 
+        foreach (var resolution in availableShadowResolutions)
+        {
+            string key = $"Settings_{resolution}"; 
+            string text = LocalizationSettings.StringDatabase.GetLocalizedString(uiStringTable, key);
+            if (string.IsNullOrEmpty(text))
+                text = resolution.ToString(); 
 
+            options.Add(new TMP_Dropdown.OptionData(text));
+        }
+
+        shadowResolutionDropdown.AddOptions(options);
+        shadowResolutionDropdown.value = Mathf.Clamp(selected, 0, options.Count - 1);
+        shadowResolutionDropdown.RefreshShownValue();
+    }
 }

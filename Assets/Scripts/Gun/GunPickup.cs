@@ -173,7 +173,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
 
         imageToActivate.SetActive(true);
         isImageActivate = true;
-        NotificationSystem.Instance.ShowInfiniteNotification($"Press [E] to pick up {Gun.Name}");
+       // NotificationSystem.Instance.ShowInfiniteNotification($"Press [E] to pick up {Gun.Name}");
 
     }
 

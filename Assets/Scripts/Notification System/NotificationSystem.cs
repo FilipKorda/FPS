@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.Localization;
 
 public class NotificationSystem : MonoBehaviour
 {
@@ -17,14 +18,14 @@ public class NotificationSystem : MonoBehaviour
         Instance = this;
     }
 
-    public void ShowNotification(string message, float duration)
+    public void ShowNotification(LocalizedString localizeString, string message, float duration)
     {
         GameObject notificationObject = Instantiate(notificationPrefab, notificationParentTransform);
 
         TextMeshProUGUI textMesh = notificationObject.GetComponentInChildren<TextMeshProUGUI>();
         if (textMesh != null)
         {
-            textMesh.text = message;
+            SetTextPreferLocalized(textMesh, localizeString, message);
         }
 
         AnimateNotification(notificationObject.transform, duration);
@@ -43,7 +44,7 @@ public class NotificationSystem : MonoBehaviour
             });
     }
 
-    public void ShowInfiniteNotification(string message)
+    public void ShowInfiniteNotification(LocalizedString localizeString, string message)
     {
         if (activeGunNotification != null)
         {
@@ -54,7 +55,7 @@ public class NotificationSystem : MonoBehaviour
         TextMeshProUGUI textMesh = activeGunNotification.GetComponentInChildren<TextMeshProUGUI>();
         if (textMesh != null)
         {
-            textMesh.text = message;
+            SetTextPreferLocalized(textMesh, localizeString, message);
         }
     }
 
@@ -64,6 +65,35 @@ public class NotificationSystem : MonoBehaviour
         {
             Destroy(activeGunNotification);
             activeGunNotification = null;
+        }
+    }
+
+    private void SetTextPreferLocalized(TextMeshProUGUI textMesh, LocalizedString localizedString, string fallbackMessage)
+    {
+        if (textMesh == null) return;
+
+        textMesh.text = string.IsNullOrEmpty(fallbackMessage) ? string.Empty : fallbackMessage;
+
+        if (localizedString == null) return;
+
+        var handle = localizedString.GetLocalizedStringAsync();
+
+        if (handle.IsDone)
+        {
+            if (!string.IsNullOrEmpty(handle.Result))
+            {
+                textMesh.text = handle.Result;
+            }
+        }
+        else
+        {
+            handle.Completed += op =>
+            {
+                if (textMesh != null && !string.IsNullOrEmpty(op.Result))
+                {
+                    textMesh.text = op.Result;
+                }
+            };
         }
     }
 }

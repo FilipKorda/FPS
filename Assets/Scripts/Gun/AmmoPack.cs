@@ -2,6 +2,7 @@ using DG.Tweening;
 using FPS.Guns.Demo;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class AmmoPack : MonoBehaviour, IPickupable
 {
@@ -24,6 +25,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
 
     [SerializeField] private GameObject ammoPackModel;
 
+    public LocalizedString localizeStringEventPress;
 
     private void Start()
     {
@@ -50,7 +52,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
         }
         else
         {
-            NotificationSystem.Instance.ShowNotification($"This {PlayerGunSelector.Instance.ActiveGun.Name} have full ammo", 1f);
+            //NotificationSystem.Instance.ShowNotification($"This {PlayerGunSelector.Instance.ActiveGun.Name} have full ammo", 1f);
         }
     }
 
@@ -62,7 +64,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
         PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo += AmountToAdd;
         totalAmmo -= AmountToAdd;
 
-        NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1f);
+       // NotificationSystem.Instance.ShowNotification($"Added {AmountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1f);
 
         totalAmmoText.DOColor(Color.red, 0.05f)
            .OnComplete(() =>
@@ -102,7 +104,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
         headerText.text = headerString;
         mainFirstText.text = mainFirstString;
         totalAmmoText.text = totalAmmo.ToString();
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to restore Ammo!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventPress, "Press [E] to restore Ammo!");
     }
 
     public void HideAmmoPackPanel()

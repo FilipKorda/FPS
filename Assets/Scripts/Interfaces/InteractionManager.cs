@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class InteractionManager : MonoBehaviour
 
     [SerializeField] private GameObject platform;
 
+    public LocalizedString localizeStringEvent;
 
     private IPickupable currentlyPickupableHighlightedObject;
     private IGunPickupable currentlyGunPickupableHighlightedObject;
@@ -425,7 +427,7 @@ public class InteractionManager : MonoBehaviour
                 }
                 else
                 {
-                    NotificationSystem.Instance.ShowNotification("Can`t do this, Turret is broken!", 2f);
+                    NotificationSystem.Instance.ShowNotification(localizeStringEvent,"Can`t do this, Turret is broken!", 2f);
                 }
             }
         }

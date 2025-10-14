@@ -70,6 +70,36 @@ MonoBehaviour:
   isRedCard: 0
   isGreenCard: 1
   isBlueCard: 0
+  localizeStringEventRedCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 6455082373120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventGreenCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 6608560345088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventBlueCard:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 6674880679936
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5460596876733304909
 GameObject:
   m_ObjectHideFlags: 0

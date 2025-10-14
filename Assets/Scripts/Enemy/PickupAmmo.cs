@@ -28,7 +28,7 @@ public class PickupAmmo : MonoBehaviour
 
         PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo += amountToAdd;
 
-        NotificationSystem.Instance.ShowNotification($"Add {amountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1.0f);
+        //NotificationSystem.Instance.ShowNotification($"Add {amountToAdd} ammo to {PlayerGunSelector.Instance.ActiveGun.Name}", 1.0f);
 
 
         AmmoDisplayer.Instance.AmmoChanged();

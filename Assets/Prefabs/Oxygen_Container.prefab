@@ -67,6 +67,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b74b8e772a48ba4584bf2867fd78562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 6312148881408
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6248502179385096892
 GameObject:
   m_ObjectHideFlags: 0

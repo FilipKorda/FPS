@@ -19,6 +19,15 @@ public class Doors : MonoBehaviour, IDoorController
     private Renderer originalColorRenderer;
     [SerializeField] private Doors door;
 
+    [Header("Button Press")]
+    [SerializeField] private Transform buttonTransform;            
+    [SerializeField] private float buttonPressDepth = 0.02f;        
+    [SerializeField] private float buttonPressDuration = 0.06f;      
+    [SerializeField] private float buttonReleaseDuration = 0.10f;    
+    [SerializeField] private Ease buttonPressEase = Ease.OutSine;
+    [SerializeField] private Ease buttonReleaseEase = Ease.InSine;
+    private Vector3 initialLocalButtonPos;
+
     void Start()
     {
         initialPositionRight = rightDoor.position;
@@ -26,6 +35,11 @@ public class Doors : MonoBehaviour, IDoorController
 
         originalColorRenderer = GetComponent<Renderer>();
         originalColor = originalColorRenderer.material.color;
+
+        if (buttonTransform != null)
+        {
+            initialLocalButtonPos = buttonTransform.localPosition;
+        }
     }
 
     public void OpenDoor()
@@ -35,7 +49,9 @@ public class Doors : MonoBehaviour, IDoorController
         isOpen = true;
         DOVirtual.DelayedCall(delayBeforeClosing, CloseDoors);
 
-        if(isOpen)
+        AnimateButtonPress();
+
+        if (isOpen)
         {
             door.isOpen = true;
         }
@@ -47,7 +63,7 @@ public class Doors : MonoBehaviour, IDoorController
         leftDoor.DOMove(initialPositionLeft, animationDuration);
         isOpen = false;
 
-        if(!isOpen)
+        if (!isOpen)
         {
             door.isOpen = false;
         }
@@ -72,4 +88,15 @@ public class Doors : MonoBehaviour, IDoorController
         return isOpen;
     }
 
+    private void AnimateButtonPress()
+    {
+        if (buttonTransform == null) return;
+
+        buttonTransform.DOKill();
+
+        float targetZ = initialLocalButtonPos.z - buttonPressDepth; 
+        Sequence seq = DOTween.Sequence();
+        seq.Append(buttonTransform.DOLocalMoveZ(targetZ, buttonPressDuration).SetEase(buttonPressEase));
+        seq.Append(buttonTransform.DOLocalMoveZ(initialLocalButtonPos.z, buttonReleaseDuration).SetEase(buttonReleaseEase));
+    }
 }

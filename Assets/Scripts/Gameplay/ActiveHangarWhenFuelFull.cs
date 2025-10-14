@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
 {
@@ -15,6 +16,14 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
     [SerializeField] private float timeUntilGateOpen = 1f;
     [SerializeField] private float heightToGateOpen = 2.75f;
 
+    [SerializeField] private GameObject buttonObj;
+
+    [SerializeField] private float buttonPressDepth = 0.02f;
+    [SerializeField] private float buttonPressTime = 0.1f;
+
+    public LocalizedString localizeStringEventOpenGate;
+    public LocalizedString localizeStringEventFindFuelTank;
+
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -29,7 +38,10 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
 
     public void OpenGateHangar()
     {
-        gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen).SetEase(Ease.OutQuad);
+        PlayButtonLocalYAnimation();
+
+        gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen)
+            .SetEase(Ease.OutQuad);
         isGateOpen = true;
     }
 
@@ -37,11 +49,11 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
     {
         if (CanOpenGate())
         {
-            NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to OpenGare!");
+            NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventOpenGate, "Press [E] to OpenGate!");
         }
         else
         {
-            NotificationSystem.Instance.ShowInfiniteNotification("Find Fuel Tank and red card to Active This Button");
+            NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventFindFuelTank, "Find Fuel Tank and red card to Active This Button");
         }
 
         foreach (Material mat in meshRenderer.materials)
@@ -69,5 +81,22 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
     public bool IsOpenGate()
     {
         return isGateOpen;
+    }
+
+    [ContextMenu("!!!!!!!!!!!!!!")]
+    public void PlayButtonLocalYAnimation()
+    {
+        if (buttonObj == null) return;
+
+        var t = buttonObj.transform;
+
+        t.DOKill(complete: true);
+
+        var startPos = t.position;         
+        var pressDir = -t.up;              
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(t.DOMove(startPos + pressDir * buttonPressDepth, buttonPressTime).SetEase(Ease.OutQuad));
+        seq.Append(t.DOMove(startPos,                          buttonPressTime).SetEase(Ease.InQuad));
     }
 }

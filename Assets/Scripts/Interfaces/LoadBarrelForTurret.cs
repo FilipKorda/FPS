@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
 {
@@ -12,6 +13,8 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
 
     public bool isBarrelSet = false;
 
+    public LocalizedString localizeStringEvent;
+    public LocalizedString localizeStringEventPress;
 
     private void Start()
     {
@@ -40,7 +43,7 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
         }
         else
         {
-            NotificationSystem.Instance.ShowNotification("You dont have Barrel!", 2);
+            NotificationSystem.Instance.ShowNotification(localizeStringEvent, "You dont have Barrel!", 2);
         }
     }
 
@@ -52,7 +55,7 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Instal Barrel!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventPress, "Press [E] to Instal Barrel!");
 
         foreach (Material mat in meshRenderer.materials)
         {

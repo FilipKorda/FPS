@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 {
@@ -10,7 +11,9 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
     private Color originalColor;
     private Renderer originalColorRenderer;
     private bool isMoving = false; 
-    private float t = 0.0f; 
+    private float t = 0.0f;
+
+    public LocalizedString localizeStringEventPress;
 
     private void Start()
     {
@@ -49,7 +52,7 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Activate Bridge!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventPress, "Press [E] to Activate Bridge!");
         originalColorRenderer.material.color = Color.yellow;
     }
 
@@ -61,6 +64,6 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     public bool IsPlatformInTheRightPosition()
     {
-        return !isMoving && t >= 1.0f; // Jeœli targetObject osi¹gn¹³ punkt B i przesta³ siê poruszaæ
+        return !isMoving && t >= 1.0f; 
     }
 }

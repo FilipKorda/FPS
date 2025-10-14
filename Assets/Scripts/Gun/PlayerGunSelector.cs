@@ -34,20 +34,17 @@ namespace FPS.Guns.Demo
         private const float defaultBaseFov = 60f;
         private bool isZoomed = false;
 
-        // Cache bazowego FOV i celów
         private float cachedBaseFov;
         private float targetFovHip;
         private float targetFovAds;
 
-        // P³ynne przybli¿enie FOV (odseparowane od Camera.fieldOfView)
         [Header("FOV Smoothing")]
         [SerializeField] private bool smoothZoom = true;
         [SerializeField, Range(0.02f, 0.3f)] private float fovSmoothTime = 0.08f;
         [SerializeField, Range(0.001f, 0.2f)] private float fovSnapEpsilon = 0.03f;
         private float fovVelocity;
-        private float currentFov; // <- AUTORYTATYWNY stan FOV
+        private float currentFov; 
 
-        // Pozycje broni (zmieniane na sztywno)
         private Vector3 originalWeaponPosition = new(0.35f, -0.3f, 0.6f);
         public Vector3 glockZoomedPosition = new(0f, -0.14f, 0.33f);
         public Vector3 m4a1ZoomedPosition = new(0f, -0.1f, 0.3f);
@@ -61,7 +58,7 @@ namespace FPS.Guns.Demo
         private readonly HashSet<Transform> seenChildren = new();
 
         [Header("Zoom effects")]
-        [SerializeField, Range(0f, 1f)] private float zoomSpeedMultiplier = 0.2f; // -80%
+        [SerializeField, Range(0f, 1f)] private float zoomSpeedMultiplier = 0.2f; 
         [SerializeField] private PlayerController playerController;
         [SerializeField] private CameraHeadBob cameraHeadBob;
 
@@ -88,7 +85,6 @@ namespace FPS.Guns.Demo
 
             RecomputeFovTargets();
 
-            // Zainicjalizuj stan lokalny FOV i ustaw kamerê raz
             currentFov = targetFovHip;
             if (Camera != null)
             {
@@ -130,7 +126,6 @@ namespace FPS.Guns.Demo
                 ApplyZoomEffects(isZoomed);
 
                 RecomputeFovTargets();
-                // Reset prêdkoœci; nie nadpisujemy currentFov, by kontynuowaæ p³ynnie z bie¿¹cej wartoœci
                 fovVelocity = 0f;
             }
 
@@ -201,7 +196,6 @@ namespace FPS.Guns.Demo
 
             if (smoothZoom)
             {
-                // U¿ywamy currentFov jako Ÿród³a, nie Camera.fieldOfView (unikamy konfliktów)
                 currentFov = Mathf.SmoothDamp(
                     currentFov,
                     targetFOV,
@@ -211,7 +205,6 @@ namespace FPS.Guns.Demo
                     Time.deltaTime
                 );
 
-                // Snap do celu i zerowanie prêdkoœci, by nie by³o oscylacji
                 if (Mathf.Abs(currentFov - targetFOV) <= fovSnapEpsilon)
                 {
                     currentFov = targetFOV;
@@ -223,7 +216,6 @@ namespace FPS.Guns.Demo
                 currentFov = targetFOV;
             }
 
-            // Jedyny punkt zapisu do kamery – na koñcu klatki
             Camera.fieldOfView = currentFov;
 
             if (GunParent != null && ActiveGun != null)
@@ -240,7 +232,6 @@ namespace FPS.Guns.Demo
                         targetPos = uziSilencerZoomedPosition;
                 }
 
-                // zmiana pozycji broni bez wyg³adzania (na sztywno)
                 GunParent.localPosition = targetPos;
             }
         }
@@ -258,7 +249,7 @@ namespace FPS.Guns.Demo
                     originalWeaponPosition = GunParent.localPosition;
 
                 RecomputeFovTargets();
-                // zachowaj ci¹g³oœæ ruchu FOV
+                
                 fovVelocity = 0f;
 
                 PlayDrawAnimation();

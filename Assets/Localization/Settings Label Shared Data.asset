@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Settings Label Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Settings Label
+  m_TableCollectionNameGuidString: d97fd494d1d920640ae84e243943a937
+  m_Entries:
+  - m_Id: 17840754688
+    m_Key: Settings_gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174145687552
+    m_Key: Settings_sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353989054464
+    m_Key: Settings_graphic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434628743168
+    m_Key: Settings_controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2737343582208
+    m_Key: Settings_master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2768259796992
+    m_Key: Settings_music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2839470690304
+    m_Key: Settings_sfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934673002496
+    m_Key: Settings_mute
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3571913609216
+    m_Key: 'Settings_ExplorationandCombat
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3702759116800
+    m_Key: Settings_MoveFoward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3986923212800
+    m_Key: Settings_Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5244069367808
+    m_Key: Settings_MoveLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5312331665408
+    m_Key: Settings_MoveRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408964235264
+    m_Key: Settings_Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5455466483712
+    m_Key: Settings_Sprint(Hold)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5541000925184
+    m_Key: Settings_Crouch(Hold)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601562480640
+    m_Key: Settings_CycleWeapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5668058976256
+    m_Key: Settings_SelectFirstWeapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5723566395392
+    m_Key: Settings_SelectSecondWeapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5785180721152
+    m_Key: Settings_Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5844723060736
+    m_Key: Settings_Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5900037541888
+    m_Key: Settings_Reload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953359728640
+    m_Key: Settings_EagleVision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6044678115328
+    m_Key: Settings_SelectGrenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6096112865280
+    m_Key: Settings_ThrowGrenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6140199194624
+    m_Key: Settings_Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6180439347200
+    m_Key: Settings_SkipDialogue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6239595810816
+    m_Key: Settings_UseOxygenTank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6301747007488
+    m_Key: Settings_UseHeal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6337037881344
+    m_Key: Settings_OpenInventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6554676121600
+    m_Key: Settings_FieldOfView
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6610632331264
+    m_Key: Settings_Sensivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6684917649408
+    m_Key: Settings_TurnOn/OffFps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6784075190272
+    m_Key: Settings_CapFPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6871190884352
+    m_Key: Settings_Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6931387535360
+    m_Key: Settings_Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6977042534400
+    m_Key: Settings_Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7135738220544
+    m_Key: Settings_Antialiasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7214867959808
+    m_Key: Settings_ShadowResolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7373425233920
+    m_Key: Settings_ESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7411744395264
+    m_Key: Settings_CLOSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7470154272768
+    m_Key: Settings_RESET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26988008198144
+    m_Key: Settings_Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27032245522432
+    m_Key: Settings_Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27090772840448
+    m_Key: Settings_High
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4284506868755726361
+  references:
+    version: 2
+    RefIds:
+    - rid: 4284506868755726361
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1760436179304

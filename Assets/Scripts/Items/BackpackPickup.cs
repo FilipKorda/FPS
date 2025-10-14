@@ -2,6 +2,7 @@ using FPS.Guns.Demo;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class BackpackPickup : MonoBehaviour, IBackpackPickupable
 {
@@ -16,10 +17,6 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
     [SerializeField] private float uiFadeDuration = 0.3f;
     [SerializeField] private AnimationCurve uiFadeCurve = null;
 
-    [SerializeField] private GameObject hintUI;
-    [SerializeField] private TextMeshProUGUI hintText;
-    private string HintString => $"Press [E] to pick Up Backpack";
-
     [SerializeField] private Renderer highlightRenderer;
     [SerializeField] private Color highlightColor = Color.cyan;
     private Color? _originalColor;
@@ -29,6 +26,8 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
 
     [SerializeField] private GetBackpackQuest getBackpackQuest;
     [SerializeField] private PlayerGunSelector playerGunSelector;
+
+    public LocalizedString localizeStringEvent;
 
     private void Awake()
     {
@@ -170,20 +169,11 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
 
     public void ShowHint()
     {
-        if (hintUI != null) hintUI.SetActive(true);
-
-        if (hintText != null)
-        {
-            hintText.text = HintString;
-        }
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent, "Press [E] to pick Up Backpack");
     }
 
     public void HideHint()
     {
-        if (hintUI != null) hintUI.SetActive(false);
-        if (hintText != null)
-        {
-            hintText.text = "";
-        }
+        NotificationSystem.Instance.HideInfiniteNotification();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class LinePuzzle : MonoBehaviour, ILinePuzzle
@@ -52,6 +53,9 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     public float moveSpeed = 0.45f;
     private bool isPlatformMoving = false;
     private float t = 0.0f;
+
+
+    public LocalizedString localizeStringEvent;
 
     private void Start()
     {
@@ -176,7 +180,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Activate Line Puzzle!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent, "Press [E] to Activate Line Puzzle!");
         originalColorRenderer.material.color = Color.yellow;
     }
 

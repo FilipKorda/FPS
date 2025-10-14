@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class CardHolder : MonoBehaviour, ICardHolder
 {
@@ -8,6 +9,11 @@ public class CardHolder : MonoBehaviour, ICardHolder
     [SerializeField] private TextMeshProUGUI hint_Text;
     [SerializeField] private float timeUntilGateOpen = 1f;
     [SerializeField] private float heightToGateOpen = 2.75f;
+
+    public LocalizedString localizeStringEventRedCard;
+    public LocalizedString localizeStringEventGreenCard;
+    public LocalizedString localizeStringEventBlueCard;
+
 
     private string HintString
     {
@@ -25,7 +31,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             {
                 return $"Press [E] to place the {MainInventory.Instance.blueCardName}!";
             }
-            
+
         }
     }
 
@@ -57,7 +63,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             }
             else
             {
-                NotificationSystem.Instance.ShowNotification("You dont have Red Card!", 2f);
+                NotificationSystem.Instance.ShowNotification(localizeStringEventRedCard, "You dont have Red Card!", 2f);
             }
         }
         else if (needGreenCard)
@@ -69,7 +75,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             }
             else
             {
-                NotificationSystem.Instance.ShowNotification("You dont have Green Card!", 2f);
+                NotificationSystem.Instance.ShowNotification(localizeStringEventGreenCard, "You dont have Green Card!", 2f);
             }
         }
         else if (needBlueCard)
@@ -81,7 +87,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
             }
             else
             {
-                NotificationSystem.Instance.ShowNotification("You dont have Blue Card!", 2f);
+                NotificationSystem.Instance.ShowNotification(localizeStringEventBlueCard, "You dont have Blue Card!", 2f);
             }
         }
     }

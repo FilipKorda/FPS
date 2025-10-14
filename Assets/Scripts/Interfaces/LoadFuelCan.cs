@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class LoadFuelCan : MonoBehaviour, IFuelCan
 {
@@ -12,6 +13,9 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
 
     public bool isFuelFull = false;
     private bool isFuelCan = false;
+
+    public LocalizedString localizeStringEventFuelCan;
+    public LocalizedString localizeStringEventPress;
 
     private void Start()
     {
@@ -39,14 +43,14 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
         }
         else
         {
-            NotificationSystem.Instance.ShowNotification("You dont have Fuel Can!", 2);
+            NotificationSystem.Instance.ShowNotification(localizeStringEventFuelCan, "You dont have Fuel Can!", 2);
         }
 
     }
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Load Fuel!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEventPress, "Press [E] to Load Fuel!");
 
         foreach (Material mat in meshRenderer.materials)
         {

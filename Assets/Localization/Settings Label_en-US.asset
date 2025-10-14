@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Settings Label_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: d97fd494d1d920640ae84e243943a937, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 17840754688
+    m_Localized: GAMEPLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174145687552
+    m_Localized: SOUND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353989054464
+    m_Localized: GRAPHICS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434628743168
+    m_Localized: CONTROLS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934673002496
+    m_Localized: MUTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2839470690304
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2768259796992
+    m_Localized: MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2737343582208
+    m_Localized: MASTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3571913609216
+    m_Localized: Exploration and Combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3702759116800
+    m_Localized: Move Foward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3986923212800
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5244069367808
+    m_Localized: Move Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5312331665408
+    m_Localized: Move Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408964235264
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5455466483712
+    m_Localized: Sprint (Hold)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5541000925184
+    m_Localized: Crouch (Hold)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601562480640
+    m_Localized: Cycle Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5668058976256
+    m_Localized: Select First Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5723566395392
+    m_Localized: Select Second Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5785180721152
+    m_Localized: Shoot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5844723060736
+    m_Localized: Aim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5900037541888
+    m_Localized: Reload
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953359728640
+    m_Localized: Eagle Vision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6044678115328
+    m_Localized: Select Grenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6096112865280
+    m_Localized: Throw Grenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6140199194624
+    m_Localized: Interact
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6180439347200
+    m_Localized: Skip Dialogue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6239595810816
+    m_Localized: Use Oxygen Tank
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6301747007488
+    m_Localized: Use Heal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6337037881344
+    m_Localized: Open Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6554676121600
+    m_Localized: Field Of View
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6610632331264
+    m_Localized: Sensivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6684917649408
+    m_Localized: Turn On/Off Fps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6784075190272
+    m_Localized: Cap FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6871190884352
+    m_Localized: Quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6931387535360
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6977042534400
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7135738220544
+    m_Localized: Anti-aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7214867959808
+    m_Localized: Shadow Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7373425233920
+    m_Localized: ESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7411744395264
+    m_Localized: CLOSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7470154272768
+    m_Localized: RESET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26988008198144
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27032245522432
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27090772840448
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

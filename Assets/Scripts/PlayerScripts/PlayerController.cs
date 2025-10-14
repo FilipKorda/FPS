@@ -1,6 +1,7 @@
 using FPS.Guns.Demo;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private float vertical_Velocity;
     public List<GunPickup> gunPickupList;
     public bool canMove = true;
+
+
+    public LocalizedString localizeStringEvent;
 
     public float ExternalSpeedMultiplier { get; private set; } = 1f;
     public void SetExternalSpeedMultiplier(float multiplier)
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            NotificationSystem.Instance.ShowNotification("You can only change second gun", 1.0f);
+            NotificationSystem.Instance.ShowNotification(localizeStringEvent,"You can only change second gun", 1.0f);
         }
     }
 

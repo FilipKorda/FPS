@@ -79,7 +79,7 @@ public class QuestManager : MonoBehaviour
     {
         if (!questsConditions.Contains(newQuest))
         {
-            NotificationSystem.Instance.ShowNotification("<color=orange>Get Quest </color>" + newQuest.questName, 2f);
+          //  NotificationSystem.Instance.ShowNotification("<color=orange>Get Quest </color>" + newQuest.questName, 2f);
             questsConditions.Add(newQuest);
             Debug.Log($"New quest received: {newQuest.questName}");
             UpdateUI();

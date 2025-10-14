@@ -122,6 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e49284387e49ce45bb93da8a5059c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 5241065472
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!65 &8093274022110778644
 BoxCollider:
   m_ObjectHideFlags: 0

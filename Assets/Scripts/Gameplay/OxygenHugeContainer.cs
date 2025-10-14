@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class OxygenHugeContainer : MonoBehaviour, IOxygenHugeContainer
 {
@@ -14,6 +14,8 @@ public class OxygenHugeContainer : MonoBehaviour, IOxygenHugeContainer
     private LineRenderer lineRenderer;
 
     public bool isRefillingOxygen;
+
+    public LocalizedString localizeStringEvent;
 
     private void Awake()
     {
@@ -80,7 +82,7 @@ public class OxygenHugeContainer : MonoBehaviour, IOxygenHugeContainer
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification("Press [E] to Refil Oxygen");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent, "Press [E] to Refil Oxygen");
 
         foreach (Material mat in meshRenderer.materials)
         {

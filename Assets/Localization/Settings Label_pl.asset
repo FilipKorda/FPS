@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Settings Label_pl
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pl
+  m_SharedData: {fileID: 11400000, guid: d97fd494d1d920640ae84e243943a937, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 17840754688
+    m_Localized: ROZGRYWKA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174145687552
+    m_Localized: "D\u0179WI\u0118KI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353989054464
+    m_Localized: GRAFIKA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434628743168
+    m_Localized: STEROWANIE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2934673002496
+    m_Localized: WYCISZ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2839470690304
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2768259796992
+    m_Localized: MUZYKA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2737343582208
+    m_Localized: "G\u0141OWNE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5953359728640
+    m_Localized: "Wizja Or\u0142a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7373425233920
+    m_Localized: ESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7411744395264
+    m_Localized: ZAMKNIJ
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7470154272768
+    m_Localized: RESET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7214867959808
+    m_Localized: "Rozdzielczo\u015B\u0107 cieni"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7135738220544
+    m_Localized: Anti-aliasing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6977042534400
+    m_Localized: "Rozdzielczo\u015B\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6931387535360
+    m_Localized: "\rPe\u0142ny ekran"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6871190884352
+    m_Localized: "\rJako\u015B\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6784075190272
+    m_Localized: Ograniczenie FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6684917649408
+    m_Localized: "W\u0142\u0105cz/wy\u0142\u0105cz FPS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6610632331264
+    m_Localized: "Czu\u0142o\u015B\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6554676121600
+    m_Localized: Pole Widzenia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6337037881344
+    m_Localized: "Otw\xF3rz inwentarz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6239595810816
+    m_Localized: "U\u017Cyj butli tlenowej"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6180439347200
+    m_Localized: "Pomi\u0144 dialog"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6140199194624
+    m_Localized: Interakcja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6096112865280
+    m_Localized: "Rzu\u0107 granat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6044678115328
+    m_Localized: Wybierz Granat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5900037541888
+    m_Localized: "\rPrze\u0142adowa\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5844723060736
+    m_Localized: Celowanie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5785180721152
+    m_Localized: "Strza\u0142"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5723566395392
+    m_Localized: "Wybierz drug\u0105 bro\u0144"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5668058976256
+    m_Localized: "Wybierz pierwsz\u0105 bro\u0144"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5601562480640
+    m_Localized: "Wybierz bro\u0144"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5541000925184
+    m_Localized: Kucnij (przytrzymaj)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5455466483712
+    m_Localized: "\rSprint (przytrzymaj)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5408964235264
+    m_Localized: Skok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5312331665408
+    m_Localized: "Id\u017A w prawo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5244069367808
+    m_Localized: "Id\u017A w lewo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3986923212800
+    m_Localized: "Cofnij si\u0119"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3702759116800
+    m_Localized: "Id\u017A do przodu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3571913609216
+    m_Localized: Eksploracja i walka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6301747007488
+    m_Localized: "U\u017Cyj Uzdrawiania"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26988008198144
+    m_Localized: Niskie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27032245522432
+    m_Localized: "\u015Arednie"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27090772840448
+    m_Localized: Wysokie
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
