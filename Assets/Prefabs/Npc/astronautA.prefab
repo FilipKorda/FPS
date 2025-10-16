@@ -294,6 +294,18 @@ MonoBehaviour:
   conversationData: {fileID: 11400000, guid: e39f260cbdd6a144e914bcf793adcc87, type: 2}
   secondConversationData: {fileID: 11400000, guid: e9c6218375fd749428e93b0f22a9203c, type: 2}
   wasOpen: 0
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 781880364650496
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5993416395545098474
 GameObject:
   m_ObjectHideFlags: 0

@@ -149,6 +149,66 @@ MonoBehaviour:
     m_Key: Gameplay_YoudonthaveRedCard
     m_Metadata:
       m_Items: []
+  - m_Id: 781880364650496
+    m_Key: Gameplay_presstotalkwithnpc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783087837663232
+    m_Key: Gameplay_PresstoOpenDoors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783479640182784
+    m_Key: Gameplay_PresstoActivateTurret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784823990112256
+    m_Key: Gameplay_QUEST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784920891117568
+    m_Key: Gameplay_QuestItems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785036192534528
+    m_Key: Gameplay_UsableItems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785169386852352
+    m_Key: Gameplay_INVENTORY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786708503482368
+    m_Key: Gameplay_OxygenContainer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786880914542592
+    m_Key: Gameplay_Bandage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788081039134720
+    m_Key: Gameplay_Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788551107366912
+    m_Key: Gameplay_FireRate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788661971210240
+    m_Key: Gameplay_TotalAmmo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788741625237504
+    m_Key: Gameplay_ReloadTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788855873884160
+    m_Key: Gameplay_MagazineSize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789409085804544
+    m_Key: Gameplay_RecoilRecovery
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -1,0 +1,476 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Dialogue Label Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Dialogue Label
+  m_TableCollectionNameGuidString: d3ae0272d6633c34ea10a3c47fde0ab8
+  m_Entries:
+  - m_Id: 955645186048
+    m_Key: Dialog_You_Conv0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1027028045824
+    m_Key: Dialog_You_Conv1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331517739008
+    m_Key: Dialog_You_Conv2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1922428063744
+    m_Key: Dialog_You_Conv_Hi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1949875589120
+    m_Key: Dialog_You_Conv4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2073750163456
+    m_Key: Dialog_You_Conv_Hello
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2147360198656
+    m_Key: Dialog_You_Conv5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2213886054400
+    m_Key: Dialog_You_Conv6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2256676343808
+    m_Key: Dialog_You_Conv7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315883139072
+    m_Key: Dialog_You_Conv8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2370308427776
+    m_Key: Dialog_You_Conv9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2976624431104
+    m_Key: Dialog_You_Conv10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049517240320
+    m_Key: Dialog_You_Conv11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3059445157888
+    m_Key: Dialog_You_Conv12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3105624444928
+    m_Key: Dialog_You_Conv13
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3161387716608
+    m_Key: 'Dialog_You_Conv14
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3259718979584
+    m_Key: 'Dialog_You_Conv15
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3395970945024
+    m_Key: 'Dialog_You_Conv16
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3458570932224
+    m_Key: 'Dialog_You_Conv17
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3500178427904
+    m_Key: 'Dialog_You_Conv18
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3635948048384
+    m_Key: Dialog_You_Conv19
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3672421715968
+    m_Key: Dialog_You_Conv20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3810510786560
+    m_Key: Dialog_You_Conv21
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3885140037632
+    m_Key: Dialog_You_Conv22
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3951896580096
+    m_Key: Dialog_You_Conv23
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3987162288128
+    m_Key: Dialog_You_Conv24
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4040174096384
+    m_Key: Dialog_You_Conv25
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4120901865472
+    m_Key: Dialog_You_Conv26
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4178858758144
+    m_Key: Dialog_You_Conv27
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4252355547136
+    m_Key: Dialog_You_Conv28
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292801220608
+    m_Key: Dialog_You_Conv29
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4319158226944
+    m_Key: Dialog_You_Conv30
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4355527036928
+    m_Key: Dialog_You_Conv31
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4386569080832
+    m_Key: Dialog_You_Conv32
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481788170240
+    m_Key: Dialog_You_Conv33
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4507230818304
+    m_Key: Dialog_You_Conv34
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4551354896384
+    m_Key: Dialog_You_Intro0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4569155522560
+    m_Key: Dialog_You_Intro1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4579171520512
+    m_Key: Dialog_You_Intro2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4589829246976
+    m_Key: Dialog_You_Intro3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4692568723456
+    m_Key: Dialog_You_Intro4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5265762308096
+    m_Key: 'Dialog_Adventurer2_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365972619264
+    m_Key: 'Dialog_Oklahoma2_0
+
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5474626064384
+    m_Key: 'Dialog_Steve2_0
+
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5528032137216
+    m_Key: 'Dialog_Steve2_1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5631597891584
+    m_Key: 'Dialog_Ben2_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5786543869952
+    m_Key: 'Dialog_John2_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5860380397568
+    m_Key: 'Dialog_Man2_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971412013056
+    m_Key: 'Dialog_Boy2_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060599693312
+    m_Key: Dialog_Soldier2_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6087237718016
+    m_Key: Dialog_Soldier_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6331140689920
+    m_Key: Dialog_Women_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6392373334016
+    m_Key: Dialog_Girl_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426368167936
+    m_Key: Dialog_Adventurerv_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6533390028800
+    m_Key: Dialog_Adventurerv_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6801800318976
+    m_Key: Dialog_Oklahoma_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6879705321472
+    m_Key: Dialog_Oklahoma_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6891885580288
+    m_Key: Dialog_Oklahoma_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6902614609920
+    m_Key: Dialog_Oklahoma_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6969811554304
+    m_Key: 'Dialog_Oklahoma_4
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6987167584256
+    m_Key: Dialog_Oklahoma_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7002497765376
+    m_Key: Dialog_Oklahoma_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7078288838656
+    m_Key: Dialog_Oklahoma_7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7089781231616
+    m_Key: Dialog_Oklahoma_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7331381530624
+    m_Key: Dialog_Steve_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7420082671616
+    m_Key: Dialog_Steve_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7465687339008
+    m_Key: 'Dialog_Steve_2
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7612169211904
+    m_Key: 'Dialog_Steve_3
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621480566784
+    m_Key: 'Dialog_Steve_4
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719291736064
+    m_Key: 'Dialog_Steve_5
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7729391620096
+    m_Key: 'Dialog_Steve_6
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7738543591424
+    m_Key: 'Dialog_Steve_7
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7799134507008
+    m_Key: Dialog_Steve_8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7815458738176
+    m_Key: Dialog_Steve_9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8001270599680
+    m_Key: Dialog_Ben0_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8303910604800
+    m_Key: Dialog_Ben0_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8410630475776
+    m_Key: Dialog_Ben0_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8419430125568
+    m_Key: Dialog_Ben0_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8595645419520
+    m_Key: Dialog_Ben0_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8979134828544
+    m_Key: Dialog_John2_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9049402003456
+    m_Key: 'Dialog_John2_1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9129358020608
+    m_Key: Dialog_John2_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9139113971712
+    m_Key: Dialog_John2_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9199352565760
+    m_Key: Dialog_John2_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9224761659392
+    m_Key: Dialog_John2_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9229924847616
+    m_Key: Dialog_John2_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9462696136704
+    m_Key: Dialog_Man_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9710655000576
+    m_Key: Dialog_Man_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9901550358528
+    m_Key: Dialog_Boy_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9951110254592
+    m_Key: Dialog_Boy_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9995083337728
+    m_Key: Dialog_Boy_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10078247997440
+    m_Key: Dialog_Soldier_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10266677104640
+    m_Key: 'Dialog_Soldier_1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10316287332352
+    m_Key: 'Dialog_Women_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10361665507328
+    m_Key: 'Dialog_Women_1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10441202094080
+    m_Key: 'Dialog_Women_2
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10699881598976
+    m_Key: 'Dialog_Girl_0
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10740176277504
+    m_Key: 'Dialog_Girl_1
+
+'
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4284506920296382466
+  references:
+    version: 2
+    RefIds:
+    - rid: 4284506920296382466
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1760634902378

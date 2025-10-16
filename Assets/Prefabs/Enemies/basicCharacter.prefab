@@ -592,6 +592,18 @@ MonoBehaviour:
   conversationData: {fileID: 0}
   secondConversationData: {fileID: 0}
   wasOpen: 0
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 781880364650496
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!195 &1451426655612594524
 NavMeshAgent:
   m_ObjectHideFlags: 0

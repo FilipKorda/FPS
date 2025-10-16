@@ -15,7 +15,7 @@ MonoBehaviour:
   conversation:
   - Name: You
     Sentences:
-    - ' How are your plants?'
+    - How are your plants?
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}

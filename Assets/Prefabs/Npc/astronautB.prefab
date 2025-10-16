@@ -77,8 +77,19 @@ MonoBehaviour:
   hintText: {fileID: 0}
   conversationData: {fileID: 11400000, guid: 65fa53d74b7cade468fcccd2ae4e501f, type: 2}
   secondConversationData: {fileID: 11400000, guid: 159f9a1eecad6c346a235fc32ea2b561, type: 2}
-  questToGive: {fileID: 11400000, guid: 52f1c5da69b4f07479596f97aec5d998, type: 2}
   wasOpen: 0
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 781880364650496
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2853734272485369914
 GameObject:
   m_ObjectHideFlags: 0

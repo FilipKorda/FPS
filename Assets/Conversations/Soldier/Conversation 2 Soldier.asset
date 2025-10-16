@@ -23,7 +23,7 @@ MonoBehaviour:
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
-  - Name: Man
+  - Name: Soldier
     Sentences:
     - It's very safe
     - Good bye!

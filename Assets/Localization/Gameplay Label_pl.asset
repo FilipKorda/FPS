@@ -155,10 +155,71 @@ MonoBehaviour:
     m_Localized: Nie masz zielonej karty.
     m_Metadata:
       m_Items: []
+  - m_Id: 781880364650496
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby pogada\u0107 z {0}"
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726394
+  - m_Id: 783087837663232
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby otworzy\u0107 drzwi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783479640182784
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby aktywowa\u0107 wie\u017Cyczk\u0119"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784823990112256
+    m_Localized: ZADANIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784920891117568
+    m_Localized: Przedmioty zadaniowe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785036192534528
+    m_Localized: "U\u017Cywalne przedmioty"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785169386852352
+    m_Localized: EKWIPUNEK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786708503482368
+    m_Localized: Kanister z Tlenem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786880914542592
+    m_Localized: "Banda\u017C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788081039134720
+    m_Localized: "Obra\u017Cemnia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788551107366912
+    m_Localized: "\rSzybko\u015B\u0107 ognia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788661971210240
+    m_Localized: Max Amunicji
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788741625237504
+    m_Localized: "Czas prze\u0142adowania"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788855873884160
+    m_Localized: "Wielko\u015B\u0107 magazynku"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789409085804544
+    m_Localized: Odzyskiwanie odrzutu
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 4284506868755726394
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0050a445ef0900000050e4c4c50800000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000
+        m_Entries: 0050a445ef0900000050e4c4c50800000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000005064b51dc70200

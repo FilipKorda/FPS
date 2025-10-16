@@ -154,10 +154,71 @@ MonoBehaviour:
     m_Localized: You dont have Red Card
     m_Metadata:
       m_Items: []
+  - m_Id: 781880364650496
+    m_Localized: Press [E] to Talk to {0}
+    m_Metadata:
+      m_Items:
+      - rid: 4284506868755726393
+  - m_Id: 783087837663232
+    m_Localized: Press [E] to Open Doors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 783479640182784
+    m_Localized: Press [E] to Activate Turret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784823990112256
+    m_Localized: QUEST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 784920891117568
+    m_Localized: Quest Items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785036192534528
+    m_Localized: Usable Items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 785169386852352
+    m_Localized: INVENTORY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786708503482368
+    m_Localized: Oxygen Container
+    m_Metadata:
+      m_Items: []
+  - m_Id: 786880914542592
+    m_Localized: Bandage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788081039134720
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788551107366912
+    m_Localized: Fire Rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788661971210240
+    m_Localized: Total Ammo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788741625237504
+    m_Localized: Reload Time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 788855873884160
+    m_Localized: Magazine Size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789409085804544
+    m_Localized: Recoil Recovery
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
     - rid: 4284506868755726393
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0050e4c4c50800000050a445ef0900000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000
+        m_Entries: 0050e4c4c50800000050a445ef0900000050643b76260000005064f52127000000502468ea270000005024d6722800000050a45d632c0000005064b51dc70200

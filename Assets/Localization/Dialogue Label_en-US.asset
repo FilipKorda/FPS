@@ -1,0 +1,419 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Dialogue Label_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: d3ae0272d6633c34ea10a3c47fde0ab8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1949875589120
+    m_Localized: Do you have more tasks like this?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 955645186048
+    m_Localized: Emmm...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1027028045824
+    m_Localized: Ohh thats you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331517739008
+    m_Localized: hey, you're alive?!?!?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1922428063744
+    m_Localized: Hi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2073750163456
+    m_Localized: Hello!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2147360198656
+    m_Localized: I'm lost in thought, but I don't want anything from you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2213886054400
+    m_Localized: How is it at work?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2256676343808
+    m_Localized: How is the defense of this place going?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315883139072
+    m_Localized: Did something happen?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2370308427776
+    m_Localized: How are your plants?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2976624431104
+    m_Localized: Sounds risky.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049517240320
+    m_Localized: What happened here?!?!?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3059445157888
+    m_Localized: Is something wrong with you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3105624444928
+    m_Localized: Okay, but what happened to you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3161387716608
+    m_Localized: Why are you hurt?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3259718979584
+    m_Localized: What can I do for you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3395970945024
+    m_Localized: No problem, I'll find 4 oxygen canisters.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3458570932224
+    m_Localized: Is that all you have to tell me?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3500178427904
+    m_Localized: I'll take good care of this green access card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3635948048384
+    m_Localized: Is that all?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3672421715968
+    m_Localized: Bye.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3810510786560
+    m_Localized: Where?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3885140037632
+    m_Localized: Okay, thanks, I'll look for it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3951896580096
+    m_Localized: I'm just exploring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3987162288128
+    m_Localized: But one of the barrels of this turret was lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4040174096384
+    m_Localized: Okay, I'll find that barrel and fix the turret.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4120901865472
+    m_Localized: What do you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4178858758144
+    m_Localized: Hard job?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4252355547136
+    m_Localized: Sounds serious.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292801220608
+    m_Localized: What is your profession?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4319158226944
+    m_Localized: Sounds intense.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4355527036928
+    m_Localized: How are you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4386569080832
+    m_Localized: Must be busy work.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481788170240
+    m_Localized: What are you doing here?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4507230818304
+    m_Localized: That sounds fun.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4551354896384
+    m_Localized: It was a rough night.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4569155522560
+    m_Localized: I'm so sleepy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4579171520512
+    m_Localized: I don't remember anything.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4589829246976
+    m_Localized: I need to figure out what's going on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4692568723456
+    m_Localized: Oh, I see a backpack, I should take it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5265762308096
+    m_Localized: Are you looking for a problem?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5365972619264
+    m_Localized: . . . . . . .. . . . .
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5474626064384
+    m_Localized: I don't have any more tasks for you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5528032137216
+    m_Localized: Bye.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5631597891584
+    m_Localized: Did you find those grenades and ammo?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5786543869952
+    m_Localized: Fix the turret!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5860380397568
+    m_Localized: Okay, if you have any questions, feel free to ask.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971412013056
+    m_Localized: Nothing is happening, I'm bored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6087237718016
+    m_Localized: Good bye!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060599693312
+    m_Localized: It's very safe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6331140689920
+    m_Localized: No, but thank you for asking.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6392373334016
+    m_Localized: ' Very good'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426368167936
+    m_Localized: Hey there, stranger! I roam this dusty station looking for trouble
+      and adventure.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6533390028800
+    m_Localized: Risk is the only thing that keeps life exciting out here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6801800318976
+    m_Localized: No, nothing happened.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6879705321472
+    m_Localized: '. . . . . '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6891885580288
+    m_Localized: Of course it happened, I'm dying here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6902614609920
+    m_Localized: But you have to get out of here!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6969811554304
+    m_Localized: You have to turn on the generators!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6987167584256
+    m_Localized: You have to find gasoline!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7002497765376
+    m_Localized: And at the very end, you have to open the gate!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7078288838656
+    m_Localized: ' Because. . . . '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7089781231616
+    m_Localized: ' .. . . . .. . ahhgh ...  agggh'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7331381530624
+    m_Localized: Hello.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7420082671616
+    m_Localized: I have a task for you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7465687339008
+    m_Localized: Collect 4 oxygen canisters!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7612169211904
+    m_Localized: Wait, that's not all.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621480566784
+    m_Localized: Now I'm asking you to collect 4 bandages.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719291736064
+    m_Localized: No.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7729391620096
+    m_Localized: You need to find the green  access card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7738543591424
+    m_Localized: It will definitely be useful to you in the future.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7799134507008
+    m_Localized: Yes,  Good luck.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7815458738176
+    m_Localized: Good Bye.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8001270599680
+    m_Localized: Hi!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8303910604800
+    m_Localized: Did you know that there is an ammunition depot in this place?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8410630475776
+    m_Localized: I don't know exactly, so you have to find them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8419430125568
+    m_Localized: There are also different types of grenades.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8595645419520
+    m_Localized: Bye!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8979134828544
+    m_Localized: Hello?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9049402003456
+    m_Localized: How can i help you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9129358020608
+    m_Localized: Ohh okay but listen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9139113971712
+    m_Localized: I created a missile system at this station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9199352565760
+    m_Localized: But one of the barrels of this turret was lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9224761659392
+    m_Localized: Please find it and install it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9229924847616
+    m_Localized: To test the turret you need to press this button.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9462696136704
+    m_Localized: "Hey there. I\u2019m just a worker here, fixing pipes and hauling
+      supplies."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9710655000576
+    m_Localized: Yeah, but it keeps the station running.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9901550358528
+    m_Localized: Hello
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9951110254592
+    m_Localized: "Welcome to the Martian station! I\u2019m in charge of the life
+      support systems."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9995083337728
+    m_Localized: Yeah, without my work, no one would last long here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10078247997440
+    m_Localized: Soldier on duty. I keep this Martian station safe from any threats.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10266677104640
+    m_Localized: It is, but someone has to protect this place.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10316287332352
+    m_Localized: Hello! I`m fine, thanks!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10361665507328
+    m_Localized: I run the communications hub here on the Martian station.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10441202094080
+    m_Localized: It is, but without me, no one could call for help out here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10699881598976
+    m_Localized: "Hi! I\u2019m ten, and I help feed the little greenhouse plants
+      on the station."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10740176277504
+    m_Localized: Yeah! If they grow big, everyone gets fresh veggies.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

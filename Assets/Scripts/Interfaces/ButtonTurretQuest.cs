@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
 {
@@ -19,7 +20,8 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
 
     private Color originalColor;
     private Renderer originalColorRenderer;
-    private string HintString => $"Press [E] to Activate Turret";
+
+    public LocalizedString localizeStringEvent;
 
     void Start()
     {
@@ -54,7 +56,9 @@ public class ButtonTurretQuest : MonoBehaviour, IButtonTurretQuest
     public void ActiveHint()
     {
         hint_Panel.SetActive(true);
-        hint_Text.text = HintString;
+        hint_Text.text = localizeStringEvent != null
+        ? localizeStringEvent.GetLocalizedString()
+        : string.Empty;
         originalColorRenderer.material.color = Color.yellow;
     }
 

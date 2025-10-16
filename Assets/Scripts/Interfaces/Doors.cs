@@ -1,12 +1,12 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class Doors : MonoBehaviour, IDoorController
 {
     [SerializeField] private GameObject hint_Panel;
     [SerializeField] private TextMeshProUGUI hint_Text;
-    private string HintString => "Press [E] to Open Doors";
 
     [SerializeField] private Transform rightDoor;
     [SerializeField] private Transform leftDoor;
@@ -27,6 +27,8 @@ public class Doors : MonoBehaviour, IDoorController
     [SerializeField] private Ease buttonPressEase = Ease.OutSine;
     [SerializeField] private Ease buttonReleaseEase = Ease.InSine;
     private Vector3 initialLocalButtonPos;
+
+    public LocalizedString localizeStringEvent;
 
     void Start()
     {
@@ -72,7 +74,11 @@ public class Doors : MonoBehaviour, IDoorController
     public void ActiveHint()
     {
         hint_Panel.SetActive(true);
-        hint_Text.text = HintString;
+
+        hint_Text.text = localizeStringEvent != null
+         ? localizeStringEvent.GetLocalizedString()
+         : string.Empty;
+
         originalColorRenderer.material.color = Color.yellow;
     }
 
