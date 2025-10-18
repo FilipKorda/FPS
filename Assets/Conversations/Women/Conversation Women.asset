@@ -17,6 +17,23 @@ MonoBehaviour:
     Sentences:
     - Hi!
     - How are you?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 1922428063744
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 4355527036928
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -27,6 +44,23 @@ MonoBehaviour:
     Sentences:
     - Hello! I`m fine, thanks!
     - I run the communications hub here on the Martian station.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 10316287332352
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 10361665507328
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -36,6 +70,15 @@ MonoBehaviour:
   - Name: You
     Sentences:
     - Must be busy work.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 4386569080832
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -45,9 +88,21 @@ MonoBehaviour:
   - Name: Women
     Sentences:
     - It is, but without me, no one could call for help out here.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 10441202094080
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

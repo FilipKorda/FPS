@@ -1,11 +1,16 @@
+ using System;
 using FPS.Enemy;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Grenade", menuName = "Grenades/Grenade", order = 0)]
 public class GrenadeSO : ScriptableObject
 {
     public Sprite GrenadeIcon;
+
     public string Name;
+
+    public LocalizedString localizeStringGrenadeName;
     public GameObject ModelPrefab;
     public DamageGrenadeConfigScriptableObject DamageGrenadeConfig;
 
@@ -15,6 +20,22 @@ public class GrenadeSO : ScriptableObject
     public float ExplosionDelay = 5f;
     public float DestroyDelay = 7f;
     public GameObject ExplosionParticleSystem;
+
+    public string GetLocalizedName()
+    {
+        string localized = null;
+        try
+        {
+            localized = localizeStringGrenadeName != null ? localizeStringGrenadeName.GetLocalizedString() : null;
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning($"[GrenadeSO] B³¹d pobierania zlokalizowanej nazwy: {e.Message}");
+        }
+
+        if (!string.IsNullOrEmpty(localized)) return localized;
+        return name; 
+    }
 
     public void Explode(Vector3 explosionPosition)
     {
@@ -33,6 +54,5 @@ public class GrenadeSO : ScriptableObject
                 }
             }
         }
-
     }
 }

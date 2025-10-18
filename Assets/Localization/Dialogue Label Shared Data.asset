@@ -190,16 +190,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5265762308096
-    m_Key: 'Dialog_Adventurer2_0
-
-'
+    m_Key: Dialog_Adventurer2_0
     m_Metadata:
       m_Items: []
   - m_Id: 5365972619264
-    m_Key: 'Dialog_Oklahoma2_0
-
-
-'
+    m_Key: Dialog_Oklahoma2_0
     m_Metadata:
       m_Items: []
   - m_Id: 5474626064384
@@ -222,7 +217,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5786543869952
-    m_Key: 'Dialog_John2_0
+    m_Key: 'Dialog_John2_0New
 
 '
     m_Metadata:
@@ -244,15 +239,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6087237718016
-    m_Key: Dialog_Soldier_1
+    m_Key: Dialog_Soldier_1New
     m_Metadata:
       m_Items: []
   - m_Id: 6331140689920
-    m_Key: Dialog_Women_1
+    m_Key: Dialog_Women_1New
     m_Metadata:
       m_Items: []
   - m_Id: 6392373334016
-    m_Key: Dialog_Girl_1
+    m_Key: Dialog_Girl_1New
     m_Metadata:
       m_Items: []
   - m_Id: 6426368167936
@@ -459,6 +454,20 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10740176277504
     m_Key: 'Dialog_Girl_1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11246424576000
+    m_Key: DialogAnswer_You_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11341824020480
+    m_Key: DialogAnswer_You_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 652774562091008
+    m_Key: 'Dialog_You_Conv12.1
 
 '
     m_Metadata:

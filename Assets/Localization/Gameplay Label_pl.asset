@@ -216,6 +216,26 @@ MonoBehaviour:
     m_Localized: Odzyskiwanie odrzutu
     m_Metadata:
       m_Items: []
+  - m_Id: 1453514939453440
+    m_Localized: "Naci\u015Bnij [E] \u017Ceby kontunuowa\u0107."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1454110740336640
+    m_Localized: Tak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1454129841197056
+    m_Localized: Nie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1499902494658560
+    m_Localized: Granat Dymny
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500019662540800
+    m_Localized: Granat
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GrenadeIcon: {fileID: 21300000, guid: 04a89611db93c214da32ae3e1eefc5e3, type: 3}
   Name: Grenade
+  localizeStringGrenadeName:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 1500019662540800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   ModelPrefab: {fileID: 7875520364351733718, guid: 9a4f2dc0bd514f14ea22a1c19dbc2228, type: 3}
   DamageGrenadeConfig: {fileID: 11400000, guid: feccdfe6dbdf82e4291a297ac2e15b00, type: 2}
   sphereCollider: {fileID: 3045000470701614510, guid: 9a4f2dc0bd514f14ea22a1c19dbc2228, type: 3}
@@ -23,3 +32,6 @@ MonoBehaviour:
   ExplosionDelay: 5
   DestroyDelay: 6
   ExplosionParticleSystem: {fileID: 4399636482972324979, guid: d6af7d081cd01364b82f8c44c6d2d56e, type: 3}
+  references:
+    version: 2
+    RefIds: []

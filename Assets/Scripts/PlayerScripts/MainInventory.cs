@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class MainInventory : MonoBehaviour
@@ -57,7 +58,7 @@ public class MainInventory : MonoBehaviour
     private Image redCardImage;
     public GameObject instantiatedRedCardPrefab;
     public int redCard = 0;
-    public string redCardName = "Red Card";
+    public LocalizedString localizeStringRedCardName;
     [Header("==== Green ====")]
     [Space(5)]
     [SerializeField] private Color greenCardColor;
@@ -68,7 +69,7 @@ public class MainInventory : MonoBehaviour
     private Image greenCardImage;
     public GameObject instantiatedGreenCardPrefab;
     public int greenCard = 0;
-    public string greenCardName = "Green Card";
+    public LocalizedString localizeStringGreenCardName;
     [Header("==== Blue ====")]
     [Space(5)]
     [SerializeField] private Color blueCardColor;
@@ -79,7 +80,7 @@ public class MainInventory : MonoBehaviour
     private Image blueCardImage;
     public GameObject instantiatedBlueCardPrefab;
     public int blueCard = 0;
-    public string blueCardName = "Blue Card";
+    public LocalizedString localizeStringBlueCardName;
 
 
     [Header("========= Fuel Can ==========")]
@@ -93,7 +94,7 @@ public class MainInventory : MonoBehaviour
     private GameObject instantiatedFuelCanPrefab;
     public int currentfuelCans;
     public int fuelCanForQuest;
-    public string fuelCanName = "Fuel Can";
+    public LocalizedString localizeStringFuelCanName;
 
     [Header("========= Barrel ==========")]
     [SerializeField] private Color barrelColor;
@@ -105,7 +106,7 @@ public class MainInventory : MonoBehaviour
     private GameObject instantiatedBarrelPrefab;
     public int currentBarrels;
     public int barrelForQuest;
-    public string barrelName = "Barrel";
+    public LocalizedString localizeStringBarrelName;
 
 
     private void Awake()
@@ -345,7 +346,7 @@ public class MainInventory : MonoBehaviour
 
         redCardMainImage.color = redCardColor;
         redCardImage.sprite = redCardIcon;
-        redCardNameText.text = redCardName;
+        redCardNameText.text = localizeStringRedCardName.GetLocalizedString();
     }
     private void GreenCardQuestPrefabItemsGUI()
     {
@@ -356,7 +357,7 @@ public class MainInventory : MonoBehaviour
 
         greenCardMainImage.color = greenCardColor;
         greenCardImage.sprite = greenCardIcon;
-        greenCardNameText.text = greenCardName;
+        greenCardNameText.text = localizeStringGreenCardName.GetLocalizedString();
     }
     private void BlueCardQuestPrefabItemsGUI()
     {
@@ -367,7 +368,7 @@ public class MainInventory : MonoBehaviour
 
         blueCardMainImage.color = blueCardColor;
         blueCardImage.sprite = blueCardIcon;
-        blueCardNameText.text = blueCardName;
+        blueCardNameText.text = localizeStringBlueCardName.GetLocalizedString();
     }
 
     private void FuelCanQuestPrefabItemsGUI()
@@ -379,7 +380,7 @@ public class MainInventory : MonoBehaviour
 
         fuelCanMainImage.color = fuelCanColor;
         fuelCanImage.sprite = fuelCanIcon;
-        fuelCanNameText.text = fuelCanName;
+        fuelCanNameText.text = localizeStringFuelCanName.GetLocalizedString();
     }
 
     private void BarrelQuestPrefabItemsGUI()
@@ -391,6 +392,6 @@ public class MainInventory : MonoBehaviour
 
         barrelMainImage.color = barrelColor;
         barrelImage.sprite = barrelIcon;
-        barrelNameText.text = barrelName;
+        barrelNameText.text = localizeStringBarrelName.GetLocalizedString();
     }
 }

@@ -12,6 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ced1f2255282f45a43e2d471b6aa3f, type: 3}
   m_Name: Open Gate Quest Condition
   m_EditorClassIdentifier: 
+  localizeQuestName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 1988224110592
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeQuestDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 1989637591040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   questName: Open Gate
   questDescription: Get to the Tower and press button to open Gate!
   isCompleted: 0
+  references:
+    version: 2
+    RefIds: []

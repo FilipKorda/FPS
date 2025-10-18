@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.Localization;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public float typingSpeed = 0.03f;
     public bool isTalking = false;
     private bool waitForInput = false;
+
+    private ConversationData optionsSubscribedFrom;
 
     private void Awake()
     {
@@ -87,9 +90,9 @@ public class DialogueManager : MonoBehaviour
             currentDialogueData = dialogue;
             nameText.text = dialogue.Name;
 
-            foreach (var sentence in dialogue.Sentences)
+            foreach (var sentence in dialogue.LocalizedSentences)
             {
-                yield return TypeLetter(sentence);
+                yield return TypeLetter(sentence.GetLocalizedString());
                 yield return new WaitForSeconds(typingSpeed);
 
                 if (currentDialogueData != null && dialogue.OptionOne != null && dialogue.OptionTwo != null && currentDialogueData.isAskingQuestion)
@@ -98,8 +101,8 @@ public class DialogueManager : MonoBehaviour
                     optionTwo.gameObject.SetActive(true);
                     W.gameObject.SetActive(true);
                     Q.gameObject.SetActive(true);
-                    optionOne.text = dialogue.OptionOne;
-                    optionTwo.text = dialogue.OptionTwo;
+
+                    SubscribeOptionLocalization(dialogue);
 
                     yield return WaitForAnswer();
 
@@ -107,6 +110,8 @@ public class DialogueManager : MonoBehaviour
                     optionTwo.gameObject.SetActive(false);
                     W.gameObject.SetActive(false);
                     Q.gameObject.SetActive(false);
+
+                    UnsubscribeOptionLocalization();
                     optionOne.text = "";
                     optionTwo.text = "";
                 }
@@ -129,9 +134,9 @@ public class DialogueManager : MonoBehaviour
             currentDialogueData = dialogue;
             nameText.text = dialogue.Name;
 
-            foreach (var sentence in dialogue.Sentences)
+            foreach (var sentence in dialogue.LocalizedSentences)
             {
-                yield return TypeLetter(sentence);
+                yield return TypeLetter(sentence.GetLocalizedString());
 
                 yield return new WaitForSeconds(typingSpeed);
 
@@ -196,6 +201,8 @@ public class DialogueManager : MonoBehaviour
         isTalking = false;
         playerController.canMove = false;
         mouseLook.canLookAround = false;
+
+        UnsubscribeOptionLocalization();
     }
 
     public void OnPressE()
@@ -217,5 +224,48 @@ public class DialogueManager : MonoBehaviour
     {
         if (QuestManager.Instance != null && currentDialogueData.questToGive != null)
             QuestManager.Instance.GetQuest(currentDialogueData.questToGive);
+    }
+
+
+    private void SubscribeOptionLocalization(ConversationData dialogue)
+    {
+        UnsubscribeOptionLocalization();
+        optionsSubscribedFrom = dialogue;
+
+        if (dialogue.OptionOne != null)
+        {
+            optionOne.text = dialogue.OptionOne.GetLocalizedString();
+          
+            dialogue.OptionOne.StringChanged += OnOptionOneChanged;
+        }
+
+        if (dialogue.OptionTwo != null)
+        {
+            optionTwo.text = dialogue.OptionTwo.GetLocalizedString();
+            dialogue.OptionTwo.StringChanged += OnOptionTwoChanged;
+        }
+    }
+
+    private void UnsubscribeOptionLocalization()
+    {
+        if (optionsSubscribedFrom == null) return;
+
+        if (optionsSubscribedFrom.OptionOne != null)
+            optionsSubscribedFrom.OptionOne.StringChanged -= OnOptionOneChanged;
+
+        if (optionsSubscribedFrom.OptionTwo != null)
+            optionsSubscribedFrom.OptionTwo.StringChanged -= OnOptionTwoChanged;
+
+        optionsSubscribedFrom = null;
+    }
+
+    private void OnOptionOneChanged(string value)
+    {
+        optionOne.text = value;
+    }
+
+    private void OnOptionTwoChanged(string value)
+    {
+        optionTwo.text = value;
     }
 }

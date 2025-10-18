@@ -5,35 +5,40 @@ public class Object : MonoBehaviour, IEagleVision
 {
     private Renderer objectRenderer;
     private Material originalMaterial;
-    public Material highlightMaterial;
+    [SerializeField] public Material highlightMaterial;
     private bool isDetected = false;
 
     private void Start()
     {
         objectRenderer = GetComponent<Renderer>();
-        originalMaterial = objectRenderer.material;
+        if (objectRenderer != null)
+        {
+            originalMaterial = objectRenderer.material;
+        }
     }
 
     public void InteractEagleVision()
     {
-        if (!isDetected)
-        {
-            string objectName = gameObject.name;
-            Debug.Log(objectName);
+        if (isDetected || objectRenderer == null || highlightMaterial == null)
+            return;
 
-            isDetected = true;
-            gameObject.layer = LayerMask.NameToLayer("EagleVisionObject");
-            StartCoroutine(RestoreMaterial());
+        Debug.Log(gameObject.name);
 
-            objectRenderer.material = highlightMaterial;
-        }
+        isDetected = true;
+   
+        objectRenderer.material = highlightMaterial;
+        StartCoroutine(RestoreMaterial());
     }
 
     private IEnumerator RestoreMaterial()
     {
         yield return new WaitForSeconds(4.0f);
-        gameObject.layer = LayerMask.NameToLayer("Default");
-        objectRenderer.material = originalMaterial;
+
+        if (objectRenderer != null && originalMaterial != null)
+        {
+            objectRenderer.material = originalMaterial;
+        }
+
         isDetected = false;
     }
 }

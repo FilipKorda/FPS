@@ -246,6 +246,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   canMove: 0
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6110594692073742339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +325,7 @@ MonoBehaviour:
   maxZoomFov: 120
   smoothZoom: 1
   fovSmoothTime: 0.06
+  fovSnapEpsilon: 0.03
   glockZoomedPosition: {x: 0, y: -0.14, z: 0.33}
   m4a1ZoomedPosition: {x: 0, y: -0.1, z: 0.3}
   uziSilencerZoomedPosition: {x: 0, y: -0.155, z: 0.4}
@@ -401,6 +414,18 @@ MonoBehaviour:
   transformPosition: {fileID: 2938502792820871762}
   maxRaycastDistance: 3
   platform: {fileID: 0}
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &9093528366935985848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,30 +509,78 @@ MonoBehaviour:
   instantiatedRedCardPrefab: {fileID: 0}
   redCard: 0
   redCardName: Red Card
+  localizeStringRedCardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 501699858432
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   greenCardColor: {r: 0.19188325, g: 0.8301887, b: 0.36817715, a: 0.3764706}
   greenCardPrefab: {fileID: 9037175206301491974, guid: 3980ac0af288ec34bbac5a0ecd0db4f7, type: 3}
   greenCardIcon: {fileID: 21300000, guid: 3b6c79c4d4500a24da7a39021adee937, type: 3}
   instantiatedGreenCardPrefab: {fileID: 0}
   greenCard: 0
   greenCardName: Green Card
+  localizeStringGreenCardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 359303237632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   blueCardColor: {r: 0, g: 0.75686276, b: 1, a: 0.39215687}
   blueCardPrefab: {fileID: 9037175206301491974, guid: 3980ac0af288ec34bbac5a0ecd0db4f7, type: 3}
   blueCardIcon: {fileID: 21300000, guid: 7ad950bc6622c744295054a927c498a8, type: 3}
   instantiatedBlueCardPrefab: {fileID: 0}
   blueCard: 0
   blueCardName: Blue Card
+  localizeStringBlueCardName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 9158545408
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   fuelCanColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   fuelCanPrefab: {fileID: 2906487599698792156, guid: 401a06334cd1db74a9c6b67af9c026e8, type: 3}
   fuelCanIcon: {fileID: 21300000, guid: 1914ca5666a225145acdc2b3faa6f9bd, type: 3}
   currentfuelCans: 0
   fuelCanForQuest: 0
   fuelCanName: Fuel Can
+  localizeStringFuelCanName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 1346881474560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   barrelColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0.39215687}
   barrelPrefab: {fileID: 2906487599698792156, guid: e6b28c84c293ef54d9e528b1cf29ac79, type: 3}
   barrelIcon: {fileID: 21300000, guid: 3c433f7b1905d9b48b824c68cd9ef467, type: 3}
   currentBarrels: 0
   barrelForQuest: 0
   barrelName: Barrel
+  localizeStringBarrelName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 2292990627840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &7030066217234686974
 MonoBehaviour:
   m_ObjectHideFlags: 0

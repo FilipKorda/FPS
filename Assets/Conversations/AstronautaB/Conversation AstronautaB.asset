@@ -17,6 +17,23 @@ MonoBehaviour:
     Sentences:
     - Hi!
     - What can I do for you?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 1922428063744
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3259718979584
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -28,6 +45,31 @@ MonoBehaviour:
     - Hello.
     - I have a task for you.
     - Collect 4 oxygen canisters!
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7331381530624
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7420082671616
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7465687339008
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -37,6 +79,15 @@ MonoBehaviour:
   - Name: You
     Sentences:
     - ' No problem, I''ll find 4 oxygen canisters.'
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3395970945024
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -47,6 +98,23 @@ MonoBehaviour:
     Sentences:
     - Wait, that's not all.
     - Now I'm asking you to collect 4 bandages.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7612169211904
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7621480566784
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -56,6 +124,15 @@ MonoBehaviour:
   - Name: You
     Sentences:
     - Is that all you have to tell me?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3458570932224
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -67,6 +144,31 @@ MonoBehaviour:
     - No.
     - You need to find the green  access card.
     - It will definitely be useful to you in the future.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7719291736064
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7729391620096
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7738543591424
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -77,6 +179,23 @@ MonoBehaviour:
     Sentences:
     - I'll take good care of this green access card.
     - ' Is that all?'
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3500178427904
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3635948048384
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -87,6 +206,23 @@ MonoBehaviour:
     Sentences:
     - Yes,  Good luck.
     - Good Bye.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7799134507008
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 7815458738176
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
@@ -96,9 +232,21 @@ MonoBehaviour:
   - Name: You
     Sentences:
     - Bye.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 3672421715968
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: "Odpowied\u017A jeden TAK"
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
     OptionTwo: "Odpowied\u017A dwa NIE"
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
     questToGive: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

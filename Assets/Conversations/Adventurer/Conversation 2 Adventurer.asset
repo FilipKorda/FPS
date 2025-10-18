@@ -17,6 +17,23 @@ MonoBehaviour:
     Sentences:
     - Emmm...
     - Ohh thats you.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 955645186048
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 1027028045824
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -26,9 +43,21 @@ MonoBehaviour:
   - Name: Adventurer
     Sentences:
     - Are you looking for a problem?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 5265762308096
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

@@ -37,7 +37,12 @@ public class QuestManager : MonoBehaviour
             if (!quest.isCompleted && quest.CheckCompletion())
             {
                 quest.isCompleted = true;
-                Debug.Log($"{quest.questName} completed!");
+
+                var localizedName = quest.localizeQuestName != null
+                    ? quest.localizeQuestName.GetLocalizedString()
+                    : quest.questName;
+
+                Debug.Log($"{localizedName} completed!");
 
                 RemoveCompletedQuest(quest);
 
@@ -82,9 +87,15 @@ public class QuestManager : MonoBehaviour
     {
         if (!questsConditions.Contains(newQuest))
         {
-            NotificationSystem.Instance.ShowNotification(localizeStringEvent, "<color=orange>Get Quest </color>" + newQuest.questName, 2f, newQuest.questName);
+            var localizedName = newQuest.localizeQuestName != null
+                ? newQuest.localizeQuestName.GetLocalizedString()
+                : newQuest.questName;
+
+            // message fallback zawiera ju¿ nazwê questa (po PL jeœli LocalizedString ustawiony)
+            NotificationSystem.Instance.ShowNotification(localizeStringEvent, "<color=orange>Get Quest </color>" + localizedName, 2f, localizedName);
+
             questsConditions.Add(newQuest);
-            Debug.Log($"New quest received: {newQuest.questName}");
+            Debug.Log($"New quest received: {localizedName}");
             UpdateUI();
         }
     }
@@ -96,8 +107,13 @@ public class QuestManager : MonoBehaviour
         TextMeshProUGUI questHolderQuestName = instantiatedQuestHolderPrefab.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI questHolderQuestDescription = instantiatedQuestHolderPrefab.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        questHolderQuestName.text = quest.questName;
-        questHolderQuestDescription.text = quest.questDescription;
+        questHolderQuestName.text = quest.localizeQuestName != null
+            ? quest.localizeQuestName.GetLocalizedString()
+            : quest.questName;
+
+        questHolderQuestDescription.text = quest.localizeQuestDescription != null
+            ? quest.localizeQuestDescription.GetLocalizedString()
+            : quest.questDescription;
 
         questToPrefabMap.Add(quest, instantiatedQuestHolderPrefab);
     }

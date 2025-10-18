@@ -13,21 +13,38 @@ MonoBehaviour:
   m_Name: Conversation 2 AstronautaC
   m_EditorClassIdentifier: 
   conversation:
-  - Name: You
-    Sentences:
-    - Hi
-    isAskingQuestion: 0
-    OptionOne: 
-    answerOne: {fileID: 0}
-    OptionTwo: 
-    answerTwo: {fileID: 0}
-    questToGive: {fileID: 0}
   - Name: Ben
-    Sentences:
-    - Did you find those grenades and ammo?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 5631597891584
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 1
-    OptionOne: Yes
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+      m_TableEntryReference:
+        m_KeyId: 1454110740336640
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 11400000, guid: c59f429a06709444b9e24880021a1bb1, type: 2}
-    OptionTwo: No
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+      m_TableEntryReference:
+        m_KeyId: 1454129841197056
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 11400000, guid: 9762bb101fda85e4483ad228ffe6f65d, type: 2}
     questToGive: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

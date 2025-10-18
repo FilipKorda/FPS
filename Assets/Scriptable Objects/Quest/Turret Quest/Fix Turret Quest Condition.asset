@@ -12,7 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8a3ecbb41218a4c8d193035d59e268, type: 3}
   m_Name: Fix Turret Quest Condition
   m_EditorClassIdentifier: 
+  localizeQuestName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 2713025007616
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeQuestDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 2714409127936
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   questName: Fix Turret Quest
   questDescription: Fix turret with the barrel you find.
   isCompleted: 1
   isBarrelSet: 0
+  references:
+    version: 2
+    RefIds: []

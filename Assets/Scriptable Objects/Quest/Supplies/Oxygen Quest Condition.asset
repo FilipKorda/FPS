@@ -12,6 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d562c66f4ac160c4cabd99153044edf9, type: 3}
   m_Name: Oxygen Quest Condition
   m_EditorClassIdentifier: 
+  localizeQuestName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 987127631872
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeQuestDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 988708884480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   questName: Oxygen
   questDescription: Find and get 4 oxygen tanks.
   isCompleted: 0
+  references:
+    version: 2
+    RefIds: []

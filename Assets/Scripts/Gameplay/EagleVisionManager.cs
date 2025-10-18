@@ -4,7 +4,6 @@ using DG.Tweening;
 
 public class EagleVisionManager : MonoBehaviour
 {
-
     public float maxDetectionRadius = 15f;
     [SerializeField] private Image eagleVision;
     [SerializeField] private float fadeInDuration = 0.2f;
@@ -15,7 +14,7 @@ public class EagleVisionManager : MonoBehaviour
     public bool isExpanding = false;
     public float radiusIncreaseSpeed = 10f;
 
-
+    private Sequence uiSeq;
 
     private void Update()
     {
@@ -29,6 +28,7 @@ public class EagleVisionManager : MonoBehaviour
             ShakeCamera();
             eagleVisionWave.SetActive(true);
             isExpanding = true;
+            StartUiFadeOnce();
         }
 
         if (isExpanding)
@@ -41,6 +41,7 @@ public class EagleVisionManager : MonoBehaviour
             if (detectionRadius >= maxDetectionRadius)
             {
                 isExpanding = false;
+                detectionRadius = 0f;
             }
         }
         else
@@ -60,22 +61,18 @@ public class EagleVisionManager : MonoBehaviour
             {
                 objectDetector.InteractEagleVision();
             }
-           
         }
-
-        eagleVision.DOFade(0.3f, fadeInDuration)
-              .OnComplete(() => MaintainAlpha());
     }
 
-    private void MaintainAlpha()
+    private void StartUiFadeOnce()
     {
-        eagleVision.DOFade(0.3f, durationToMaintain)
-            .OnComplete(() => StartFadeOut());
-    }
-
-    private void StartFadeOut()
-    {
-        eagleVision.DOFade(0f, fadeOutDuration);
+        if (uiSeq != null && uiSeq.IsActive()) uiSeq.Kill();
+        uiSeq = DOTween.Sequence();
+        uiSeq.Append(eagleVision.DOFade(0.3f, fadeInDuration));
+        uiSeq.AppendInterval(durationToMaintain);
+        uiSeq.Append(eagleVision.DOFade(0f, fadeOutDuration));
+        uiSeq.OnComplete(() => { if (eagleVisionWave != null) eagleVisionWave.SetActive(false); });
+        uiSeq.Play();
     }
 
     private void OnDrawGizmos()
@@ -85,7 +82,7 @@ public class EagleVisionManager : MonoBehaviour
     }
 
     void ShakeCamera()
-    {       
+    {
         float shakeDuration = 0.1f;
         float shakeIntensity = 0.2f;
         float zoomFOV = 55f;
@@ -96,7 +93,6 @@ public class EagleVisionManager : MonoBehaviour
         cameraSequence.Append(Camera.main.DOFieldOfView(zoomFOV, zoomDuration));
         cameraSequence.Append(Camera.main.transform.DOShakePosition(shakeDuration, shakeIntensity, 10, 90, false, false));
         cameraSequence.Append(Camera.main.DOFieldOfView(originalFOV, zoomDuration));
-  
         cameraSequence.Play();
     }
 }

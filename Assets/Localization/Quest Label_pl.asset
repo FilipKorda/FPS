@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Quest Label_pl
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pl
+  m_SharedData: {fileID: 11400000, guid: 2003ef350c3f3b646a29d02f1a5cc04e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9158545408
+    m_Localized: Niebieska Karta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 249550884864
+    m_Localized: "Znajd\u017A i zbierz niebiesk\u0105 karte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359303237632
+    m_Localized: Zielona Karta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362566406144
+    m_Localized: "Znajd\u017A i zbierz zielon\u0105 karte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501699858432
+    m_Localized: Czerwona Karta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504283549696
+    m_Localized: "Znajd\u017A i zbierz czerwon\u0105 karte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 645941972992
+    m_Localized: "Bada\u017Ce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649326776320
+    m_Localized: "Znajd\u017A i zbierz 4 banda\u017Ce."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 987127631872
+    m_Localized: Tlen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 988708884480
+    m_Localized: "Znajd\u017A i zbierz 4 butle z tlenem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1346881474560
+    m_Localized: Benzyna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1348395618304
+    m_Localized: "Znajd\u017A 4 karnisty z benzyn\u0105 do generetora."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1771013689344
+    m_Localized: Aktywuj Generatory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1772280369152
+    m_Localized: "Nape\u0142nij 4 generatory!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1988224110592
+    m_Localized: "Otw\xF3rz Brame"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1989637591040
+    m_Localized: "Dotrzyj do wie\u017Cy i naci\u015Bnij przycisk \u017Ceby otworzy\u0107
+      brame."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2292990627840
+    m_Localized: Lufa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2294441857024
+    m_Localized: "Musisz znale\u017A\u0107 luf\u0119"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2713025007616
+    m_Localized: "Napraw wie\u017Cyczk\u0119"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2714409127936
+    m_Localized: "Napraw wie\u017Cyczk\u0119 za pomoc\u0105 lufy kt\xF3r\u0105 znalaz\u0142e\u015B."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3009230950400
+    m_Localized: Nowy plecak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3010732511232
+    m_Localized: Zbierz plecak
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

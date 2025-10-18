@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Quest Label_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 2003ef350c3f3b646a29d02f1a5cc04e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 249550884864
+    m_Localized: Find and get blue card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9158545408
+    m_Localized: Blue Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 359303237632
+    m_Localized: Green Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 362566406144
+    m_Localized: Find and get green card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501699858432
+    m_Localized: Red Card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504283549696
+    m_Localized: Find and get red card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 645941972992
+    m_Localized: Bandages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649326776320
+    m_Localized: Find and get 4 bandages.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 987127631872
+    m_Localized: Oxygen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 988708884480
+    m_Localized: Find and get 4 oxygen tanks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1346881474560
+    m_Localized: Fuel Cans
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1348395618304
+    m_Localized: Get 4 Fuel cans for generators!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1771013689344
+    m_Localized: Generator Active
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1772280369152
+    m_Localized: Fill up all 4 generator!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1988224110592
+    m_Localized: Open Gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1989637591040
+    m_Localized: Get to the Tower and press button to open Gate!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2292990627840
+    m_Localized: Barrel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2294441857024
+    m_Localized: You need to find Barrel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2713025007616
+    m_Localized: 'Fix Turret '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2714409127936
+    m_Localized: Fix turret with the barrel you find.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3009230950400
+    m_Localized: New Backpack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3010732511232
+    m_Localized: Get Backpack
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

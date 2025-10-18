@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 8457097810449196423}
   - component: {fileID: 605116194706472835}
   - component: {fileID: 87918714188146407}
+  - component: {fileID: 615904337576194045}
   m_Layer: 0
   m_Name: Card_Mesh
   m_TagString: Untagged
@@ -183,3 +184,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &615904337576194045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073768682177519393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef2a777e2fd49042a62af8c44deb65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 2100000, guid: 08dfe312f8811f941befd3e56d23dc2b, type: 2}

@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3951896580096
-    m_Localized: I'm just exploring
+    m_Localized: I'm just exploring.
     m_Metadata:
       m_Items: []
   - m_Id: 3987162288128
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6392373334016
-    m_Localized: ' Very good'
+    m_Localized: Very good!
     m_Metadata:
       m_Items: []
   - m_Id: 6426368167936
@@ -373,7 +373,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9901550358528
-    m_Localized: Hello
+    m_Localized: Hello!
     m_Metadata:
       m_Items: []
   - m_Id: 9951110254592
@@ -412,6 +412,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10740176277504
     m_Localized: Yeah! If they grow big, everyone gets fresh veggies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11246424576000
+    m_Localized: I didn't find it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11341824020480
+    m_Localized: Yes, I found it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 652774562091008
+    m_Localized: How do I get out of here?
     m_Metadata:
       m_Items: []
   references:

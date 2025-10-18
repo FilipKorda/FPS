@@ -17,6 +17,23 @@ MonoBehaviour:
     Sentences:
     - Hi
     - Do you have more tasks like this?
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 1922428063744
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 1949875589120
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
@@ -27,9 +44,29 @@ MonoBehaviour:
     Sentences:
     - I don't have any more tasks for you.
     - Bye.
+    LocalizedSentences:
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 5474626064384
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    - m_TableReference:
+        m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
+      m_TableEntryReference:
+        m_KeyId: 5528032137216
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     isAskingQuestion: 0
     OptionOne: 
     answerOne: {fileID: 0}
     OptionTwo: 
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

@@ -12,6 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49efcbd4c43e19d44a50e163c0dc2956, type: 3}
   m_Name: Green Card Quest Condition
   m_EditorClassIdentifier: 
+  localizeQuestName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 359303237632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeQuestDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 362566406144
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   questName: Green Card
   questDescription: Find and get green card.
   isCompleted: 0
+  references:
+    version: 2
+    RefIds: []

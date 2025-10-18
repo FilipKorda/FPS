@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GrenadeIcon: {fileID: 21300000, guid: 09051c54b79896e4c93a7185d2434729, type: 3}
   Name: Smoke Grenade
+  localizeStringGrenadeName:
+    m_TableReference:
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
+    m_TableEntryReference:
+      m_KeyId: 1499902494658560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   ModelPrefab: {fileID: 1724941412585170234, guid: d1847c725fca11d438df7e49aeab86f8, type: 3}
   DamageGrenadeConfig: {fileID: 11400000, guid: 2c9e9373fd4da3840bafdf5dec674d40, type: 2}
   sphereCollider: {fileID: 0}
@@ -23,3 +32,6 @@ MonoBehaviour:
   ExplosionDelay: 5
   DestroyDelay: 20
   ExplosionParticleSystem: {fileID: 164608963827711781, guid: 280023df18b06f442973cb52d5a19ead, type: 3}
+  references:
+    version: 2
+    RefIds: []

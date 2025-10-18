@@ -55,11 +55,382 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7331381530624
-    m_Localized: Siema
+    m_Localized: Siema.
     m_Metadata:
       m_Items: []
   - m_Id: 8595645419520
-    m_Localized: "\u017Begnam"
+    m_Localized: "\u017Begnam!\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3810510786560
+    m_Localized: Gdzie?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1027028045824
+    m_Localized: O, to ty.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1331517739008
+    m_Localized: "Hej, \u017Cyjesz?!?!?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1949875589120
+    m_Localized: "Masz wi\u0119cej tego typu zada\u0144?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2147360198656
+    m_Localized: "Jestem zamy\u015Blony, ale niczego od ciebie nie chc\u0119."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2213886054400
+    m_Localized: Jak jest w pracy?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2256676343808
+    m_Localized: Jak przebiega obrona tego miejsca?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2315883139072
+    m_Localized: "Czy co\u015B si\u0119 sta\u0142o?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2370308427776
+    m_Localized: "Jak si\u0119 maj\u0105 Twoje ro\u015Bliny?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2976624431104
+    m_Localized: Brzmi ryzykownie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3049517240320
+    m_Localized: "Co tu si\u0119 sta\u0142o?!?!?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3059445157888
+    m_Localized: "Czy co\u015B jest z tob\u0105 nie tak?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3105624444928
+    m_Localized: "No dobrze, ale co si\u0119 z tob\u0105 sta\u0142o?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3161387716608
+    m_Localized: "Dlaczego jeste\u015B ranny?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3259718979584
+    m_Localized: "Co mog\u0119 dla Ciebie zrobi\u0107?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3395970945024
+    m_Localized: "Nie ma problemu, znajd\u0119 4 butle z tlenem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3458570932224
+    m_Localized: To wszystko co masz mi do powiedzenia?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3500178427904
+    m_Localized: "B\u0119d\u0119 dobrze dba\u0107 o t\u0119 zielon\u0105 kart\u0119
+      dost\u0119pu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3635948048384
+    m_Localized: Czy to wszystko?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3885140037632
+    m_Localized: "Ok, dzi\u0119kuj\u0119, poszukam."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3951896580096
+    m_Localized: Po prostu tutaj odkrywam.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3987162288128
+    m_Localized: "Jednak jedna z luf tej wie\u017Cyczki zosta\u0142a utracona."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4040174096384
+    m_Localized: "Dobra, znajd\u0119 t\u0119 luf\u0119 i naprawi\u0119 wie\u017Cyczk\u0119."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4120901865472
+    m_Localized: Co robisz?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4178858758144
+    m_Localized: "Ci\u0119\u017Cka praca?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4252355547136
+    m_Localized: "Brzmi powa\u017Cnie"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292801220608
+    m_Localized: "Jaki jest Tw\xF3j zaw\xF3d?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4319158226944
+    m_Localized: Brzmi intensywnie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4355527036928
+    m_Localized: "Jak si\u0119 czujesz?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4386569080832
+    m_Localized: "Pewnie to ci\u0119\u017Cka praca."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4481788170240
+    m_Localized: Co tutaj robisz?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4507230818304
+    m_Localized: To brzmi zabawnie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4551354896384
+    m_Localized: "To by\u0142a ci\u0119\u017Cka noc."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4569155522560
+    m_Localized: "Jestem taki \u015Bpi\u0105cy."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4579171520512
+    m_Localized: "Nic nie pami\u0119tam."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4589829246976
+    m_Localized: "Musze si\u0119 dowiedzie\u0107 o co tu si\u0119 sta\u0142o."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4692568723456
+    m_Localized: "Oh, widz\u0119 plecak, powinienem go zabra\u0107."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5265762308096
+    m_Localized: Szukasz problemu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5474626064384
+    m_Localized: "Nie mam ju\u017C dla ciebie \u017Cadnych zada\u0144."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5631597891584
+    m_Localized: "Znalaz\u0142e\u015B granaty i amunicj\u0119?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5786543869952
+    m_Localized: "Napraw wie\u017Cyczk\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5860380397568
+    m_Localized: "Dobrze, je\u015Bli masz jakie\u015B pytania, \u015Bmia\u0142o je
+      zadawaj."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971412013056
+    m_Localized: "Nic si\u0119 nie dzieje, nudz\u0119 si\u0119."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060599693312
+    m_Localized: Jest bardzo bezpiecznie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6087237718016
+    m_Localized: Do widzenia!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6331140689920
+    m_Localized: "Nie, ale dzi\u0119kuj\u0119 za pytanie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6392373334016
+    m_Localized: Bardzo dobrze!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426368167936
+    m_Localized: "Hej, nieznajomy! W\u0119druj\u0119 po tej zakurzonej stacji w poszukiwaniu
+      k\u0142opot\xF3w i przyg\xF3d."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6533390028800
+    m_Localized: "Ryzyko to jedyna rzecz, kt\xF3ra sprawia, \u017Ce \u200B\u200B\u017Cycie
+      tutaj jest ekscytuj\u0105ce."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6801800318976
+    m_Localized: "Nie, nic si\u0119 nie sta\u0142o."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6891885580288
+    m_Localized: "Oczywi\u015Bcie, \u017Ce tak si\u0119 sta\u0142o. Ja tu umieram."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6902614609920
+    m_Localized: "Ale musisz si\u0119 st\u0105d wydosta\u0107!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6969811554304
+    m_Localized: "Trzeba w\u0142\u0105czy\u0107 generatory!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6987167584256
+    m_Localized: "Musisz znale\u017A\u0107 benzyn\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7002497765376
+    m_Localized: "A na samym ko\u0144cu trzeba otworzy\u0107 bram\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7420082671616
+    m_Localized: Mam dla ciebie zadanie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7465687339008
+    m_Localized: Zbierz 4 butle z tlenem!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7612169211904
+    m_Localized: Zaczekaj, to nie wszystko.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7621480566784
+    m_Localized: "Teraz prosz\u0119 Ci\u0119 o zebranie 4 banda\u017Cy."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7719291736064
+    m_Localized: Nie.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7729391620096
+    m_Localized: "Musisz znale\u017A\u0107 zielon\u0105 kart\u0119 dost\u0119pu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7738543591424
+    m_Localized: "Na pewno przyda Ci si\u0119 w przysz\u0142o\u015Bci."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7799134507008
+    m_Localized: Tak, powodzenia.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7815458738176
+    m_Localized: Do widzenia.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8001270599680
+    m_Localized: "Cze\u015B\u0107!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8303910604800
+    m_Localized: "Czy wiesz, \u017Ce w tym miejscu znajduje si\u0119 sk\u0142ad amunicji?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8410630475776
+    m_Localized: "Nie wiem dok\u0142adnie, wi\u0119c musisz ich znale\u017A\u0107."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8419430125568
+    m_Localized: "Istniej\u0105 r\xF3wnie\u017C r\xF3\u017Cne rodzaje granat\xF3w."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8979134828544
+    m_Localized: Witaj?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9049402003456
+    m_Localized: "Jak mog\u0119 ci pom\xF3c?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9129358020608
+    m_Localized: "Och, okej, ale pos\u0142uchaj."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9139113971712
+    m_Localized: "Stworzy\u0142em na tej stacji system rakietowy."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9199352565760
+    m_Localized: "Jednak jedna z luf tej wie\u017Cyczki zosta\u0142a utracona."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9224761659392
+    m_Localized: "Prosz\u0119 go znale\u017A\u0107 i zainstalowa\u0107."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9229924847616
+    m_Localized: "Aby przetestowa\u0107 wie\u017Cyczk\u0119 nale\u017Cy nacisn\u0105\u0107
+      ten przycisk."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9462696136704
+    m_Localized: "Cze\u015B\u0107. Jestem tu tylko robotnikiem, naprawiam rury i
+      nosz\u0119 materia\u0142y."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9710655000576
+    m_Localized: "Tak, ale dzi\u0119ki temu stacja funkcjonuje."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9901550358528
+    m_Localized: Siema!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9951110254592
+    m_Localized: "Witamy na stacji marsja\u0144skiej! Odpowiadam za systemy podtrzymywania
+      \u017Cycia."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9995083337728
+    m_Localized: "Tak, bez mojej pracy nikt by tu d\u0142ugo nie przetrwa\u0142."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10078247997440
+    m_Localized: "\u017Bo\u0142nierz na s\u0142u\u017Cbie. Dbam o bezpiecze\u0144stwo
+      tej stacji marsja\u0144skiej przed wszelkimi zagro\u017Ceniami."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10266677104640
+    m_Localized: "Tak, ale kto\u015B musi chroni\u0107 to miejsce."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10316287332352
+    m_Localized: "Cze\u015B\u0107! Wszystko w porz\u0105dku, dzi\u0119kuj\u0119!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10361665507328
+    m_Localized: "Zajmuj\u0119 si\u0119 w\u0119z\u0142em komunikacyjnym na stacji
+      marsja\u0144skiej."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10441202094080
+    m_Localized: "Tak, ale beze mnie nikt nie m\xF3g\u0142by tu wezwa\u0107 pomocy."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10699881598976
+    m_Localized: "Cze\u015B\u0107! Mam dziesi\u0119\u0107 lat i pomagam karmi\u0107
+      ma\u0142e ro\u015Bliny w szklarni na stacji."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10740176277504
+    m_Localized: "Jasne! Je\u015Bli urosn\u0105, wszyscy dostan\u0105 \u015Bwie\u017Ce
+      warzywa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11246424576000
+    m_Localized: "Nie znalaz\u0142em."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11341824020480
+    m_Localized: "Tak, znalaz\u0142em."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 652774562091008
+    m_Localized: "Jak si\u0119 st\u0105d wydosta\u0107?"
     m_Metadata:
       m_Items: []
   references:

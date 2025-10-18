@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "Conversation", menuName = "Conversation/Conversation Data", order = 0)]
 public class Conversation : ScriptableObject
@@ -13,17 +14,17 @@ public class Conversation : ScriptableObject
 public class ConversationData
 {
     public string Name;
-    public string[] Sentences;
+    public LocalizedString[] LocalizedSentences;
 
     public bool isAskingQuestion = false;
 
     [Header("========================================================================")]
     [Space(8)]
-    [HideInInspector] public string OptionOne;
+    [HideInInspector] public LocalizedString OptionOne;
     [HideInInspector] public Conversation answerOne;
     [Header("========================================================================")]
     [Space(8)]
-    [HideInInspector] public string OptionTwo;  
+    [HideInInspector] public LocalizedString OptionTwo;  
     [HideInInspector] public Conversation answerTwo;
 
     [SerializeField] public Quest questToGive;

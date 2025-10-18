@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -45,6 +46,13 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
     private bool youPassedThePuzzle;
 
+    // NEW: prosta blokada wielokrotnego wywo³ania przegranej
+    private bool hasLost;
+    // NEW: tablica kolejnoœci oczekiwanych numerów
+    private int[] correctOrder;
+
+    // NEW: zapamiêtanie oryginalnych kolorów przycisków, reset na starcie
+    private readonly Dictionary<GameObject, Color> originalButtonColors = new Dictionary<GameObject, Color>();
 
     [Header("Platform Moving")]
     public Transform platformObject;
@@ -54,12 +62,12 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     private bool isPlatformMoving = false;
     private float t = 0.0f;
 
-
     public LocalizedString localizeStringEvent;
 
     private void Start()
     {
         youPassedThePuzzle = false;
+        hasLost = false;
 
         originalColorRenderer = GetComponent<Renderer>();
         originalColor = originalColorRenderer.material.color;
@@ -73,6 +81,9 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         {
             originalPosition = linePuzzle.transform.localPosition;
         }
+
+        // NEW: ustaw kolejnoœæ oczekiwanych numerów
+        correctOrder = new[] { correctNumerOne, correctNumerTwo, correctNumerThree, correctNumerFour };
     }
 
     void StartToMoveMainLine()
@@ -94,6 +105,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         }
     }
 
+    [ContextMenu("Active Line Puzzle")]
     public void ActiveLinePuzzle()
     {
         PlayerSingleton.Instance.canShoot = false;
@@ -108,7 +120,18 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         DisablePlayer();
         StartToMoveMainLine();
         MainLineAtStartPosition();
+        ResetButtonColors(); // NEW: reset kolorów przycisków przed startem
         EnableButtons();
+
+        // NEW: odblokuj przegran¹ przy starcie
+        hasLost = false;
+
+        // reset stanów etapów
+        correctNumberOneWasPreesed = false;
+        correctNumberTwoWasPreesed = false;
+        correctNumberThreeWasPreesed = false;
+        correctNumberFourWasPreesed = false;
+        youPassedThePuzzle = false;
     }
 
     public void DeactivateLinePuzzle()
@@ -127,6 +150,9 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
     public void ShakeAfterLosePuzzle()
     {
+        if (hasLost || youPassedThePuzzle) return; // NEW: zabezpieczenie
+        hasLost = true;
+
         isMoving = false;
         if (linePuzzle != null)
         {
@@ -139,7 +165,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         foreach (GameObject puzzleImage in linePuzzleNumberImage)
         {
             Button button = puzzleImage.GetComponent<Button>();
-
             button.interactable = false;
         }
     }
@@ -149,7 +174,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         foreach (GameObject puzzleImage in linePuzzleNumberImage)
         {
             Button button = puzzleImage.GetComponent<Button>();
-
             button.interactable = true;
         }
     }
@@ -259,7 +283,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
             {
                 ShakeAfterLosePuzzle();
             }
-
         }
     }
 
@@ -270,12 +293,61 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         Vector2 topPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y + mainLineRectTransform.rect.height / 8);
         Vector2 bottomPoint = new Vector2(mainLineRectTransform.position.x, mainLineRectTransform.position.y - mainLineRectTransform.rect.height / 8);
 
+        // NEW: sprawdzenie klikniêcia "z³ego" przycisku (nie pod mainLine lub z³y numer)
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject clicked = null;
+            RectTransform clickedRect = null;
+            NumerLinePuzzle clickedNumer = null;
+
+            foreach (GameObject puzzleImage in linePuzzleNumberImage)
+            {
+                RectTransform rt = puzzleImage.GetComponent<RectTransform>();
+                if (RectTransformUtility.RectangleContainsScreenPoint(rt, Input.mousePosition, null))
+                {
+                    clicked = puzzleImage;
+                    clickedRect = rt;
+                    clickedNumer = puzzleImage.GetComponent<NumerLinePuzzle>();
+                    break;
+                }
+            }
+
+            if (clicked != null)
+            {
+                bool isOver = IsOverlappingRect(clickedRect, topPoint, bottomPoint);
+                int expected = GetExpectedNumber();
+                int clickedNumber = clickedNumer != null ? clickedNumer.number : -999;
+
+                // je¿eli klik nie jest pod mainLine LUB numer nie jest oczekiwany => przegrana + czerwony
+                if (!isOver || clickedNumber != expected)
+                {
+                    ColorizeButton(clicked, Color.red);
+                    ShakeAfterLosePuzzle();
+                    return;
+                }
+            }
+        }
+
+        // NEW: przegrana gdy miniesz oczekiwany numer bez klikniêcia
+        int currentStage = GetCurrentStage();
+        if (currentStage < 4)
+        {
+            int expectedNumber = GetExpectedNumber();
+            if (TryGetPuzzleByNumber(expectedNumber, out var expectedGO, out var expectedRect, out _))
+            {
+                if (HasMainLinePassedRightEdge(expectedRect, mainLineRectTransform) && !HasPressedStage(currentStage))
+                {
+                    // mainLine min¹³ oczekiwany element, a etap nie zosta³ zaliczony
+                    ShakeAfterLosePuzzle();
+                    return;
+                }
+            }
+        }
+
         foreach (GameObject puzzleImage in linePuzzleNumberImage)
         {
             RectTransform puzzleImageRectTransform = puzzleImage.GetComponent<RectTransform>();
-
             NumerLinePuzzle numerLinePuzzle = puzzleImage.GetComponent<NumerLinePuzzle>();
-
             Button button = puzzleImage.GetComponent<Button>();
 
             if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, topPoint, null) ||
@@ -285,16 +357,13 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
 
                 if (numerLinePuzzle.number == correctNumerOne)
                 {
-                    // Sprawdzamy, czy u¿ytkownik klikn¹³ na przycisk i czy mainLine nachodzi na przycisk
                     if (button != null && Input.GetMouseButtonDown(0))
                     {
-                        // Sprawdzamy, czy punkt klikniêcia mieœci siê w obszarze przycisku
                         if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
                         {
-                            Debug.Log("Button clicked !" + button);
+                            ColorizeButton(puzzleImage, Color.green); // NEW: poprawny klik => zielony
                             UpdateNumberTwoUI();
                         }
-
                     }
                 }
                 if (correctNumberOneWasPreesed && numerLinePuzzle.number == correctNumerTwo)
@@ -303,10 +372,9 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                     {
                         if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
                         {
-                            Debug.Log("Button clicked !" + button);
+                            ColorizeButton(puzzleImage, Color.green); // NEW
                             UpdateNumberThreeUI();
                         }
-
                     }
                 }
                 if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && numerLinePuzzle.number == correctNumerThree)
@@ -315,10 +383,9 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                     {
                         if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
                         {
-                            Debug.Log("Button clicked !" + button);
+                            ColorizeButton(puzzleImage, Color.green); // NEW
                             UpdateNumberFourUI();
                         }
-
                     }
                 }
                 if (correctNumberOneWasPreesed && correctNumberTwoWasPreesed && correctNumberThreeWasPreesed && numerLinePuzzle.number == correctNumerFour)
@@ -327,10 +394,10 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
                     {
                         if (RectTransformUtility.RectangleContainsScreenPoint(puzzleImageRectTransform, Input.mousePosition, null))
                         {
+                            ColorizeButton(puzzleImage, Color.green); // NEW
                             correctNumberFourWasPreesed = true;
                             correctNumerPanel.SetActive(false);
                         }
-
                     }
                 }
             }
@@ -371,8 +438,6 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         }
     }
 
-
-    //Platform Moving 
     public void ActivatePlatform()
     {
         isPuzzleFinish = true;
@@ -392,5 +457,106 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
         {
             isMoving = false;
         }
+    }
+
+    // ---------- Helpers (NEW) ----------
+    int GetCurrentStage()
+    {
+        // 0 -> oczekujemy correctNumerOne
+        // 1 -> oczekujemy correctNumerTwo
+        // 2 -> oczekujemy correctNumerThree
+        // 3 -> oczekujemy correctNumerFour
+        // 4 -> wszystkie zrobione
+        if (correctNumberFourWasPreesed) return 4;
+        if (correctNumberThreeWasPreesed) return 3;
+        if (correctNumberTwoWasPreesed) return 2;
+        if (correctNumberOneWasPreesed) return 1;
+        return 0;
+    }
+
+    int GetExpectedNumber()
+    {
+        int stage = GetCurrentStage();
+        if (stage >= 4) return -1;
+        return correctOrder[stage];
+    }
+
+    bool HasPressedStage(int stage)
+    {
+        switch (stage)
+        {
+            case 0: return correctNumberOneWasPreesed;
+            case 1: return correctNumberTwoWasPreesed;
+            case 2: return correctNumberThreeWasPreesed;
+            case 3: return correctNumberFourWasPreesed;
+            default: return true;
+        }
+    }
+
+    bool TryGetPuzzleByNumber(int number, out GameObject puzzleGo, out RectTransform rect, out NumerLinePuzzle numer)
+    {
+        foreach (var go in linePuzzleNumberImage)
+        {
+            var n = go.GetComponent<NumerLinePuzzle>();
+            if (n != null && n.number == number)
+            {
+                puzzleGo = go;
+                rect = go.GetComponent<RectTransform>();
+                numer = n;
+                return true;
+            }
+        }
+        puzzleGo = null;
+        rect = null;
+        numer = null;
+        return false;
+    }
+
+    bool IsOverlappingRect(RectTransform rect, Vector2 topPoint, Vector2 bottomPoint)
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(rect, topPoint, null)
+               || RectTransformUtility.RectangleContainsScreenPoint(rect, bottomPoint, null);
+    }
+
+    bool HasMainLinePassedRightEdge(RectTransform targetRect, RectTransform mainLineRectTransform)
+    {
+        // porównujemy po³o¿enie X œrodka mainLine do prawej krawêdzi targetu w przestrzeni œwiata
+        Vector3[] wc = new Vector3[4];
+        targetRect.GetWorldCorners(wc);
+        float rightEdgeX = wc[2].x; // top-right
+        return mainLineRectTransform.position.x > rightEdgeX;
+    }
+
+    // Kolorowanie przycisku (Image/TargetGraphic)
+    void ColorizeButton(GameObject go, Color color)
+    {
+        var g = GetTargetGraphic(go);
+        if (g != null)
+        {
+            if (!originalButtonColors.ContainsKey(go))
+                originalButtonColors[go] = g.color;
+            g.color = color;
+        }
+    }
+
+    void ResetButtonColors()
+    {
+        foreach (var go in linePuzzleNumberImage)
+        {
+            var g = GetTargetGraphic(go);
+            if (g == null) continue;
+
+            if (originalButtonColors.TryGetValue(go, out var original))
+                g.color = original;
+            else
+                g.color = Color.white;
+        }
+    }
+
+    Graphic GetTargetGraphic(GameObject go)
+    {
+        var btn = go.GetComponent<Button>();
+        if (btn != null && btn.targetGraphic != null) return btn.targetGraphic;
+        return go.GetComponent<Image>();
     }
 }

@@ -12,6 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54dcedd00a231984b835955a3153ea5d, type: 3}
   m_Name: Fuel Can Quest Condition
   m_EditorClassIdentifier: 
+  localizeQuestName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 1346881474560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeQuestDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
+    m_TableEntryReference:
+      m_KeyId: 1348395618304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   questName: Fuel Cans
   questDescription: Get 4 Fuel cans for generators!
   isCompleted: 0
+  references:
+    version: 2
+    RefIds: []

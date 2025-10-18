@@ -215,6 +215,26 @@ MonoBehaviour:
     m_Localized: Recoil Recovery
     m_Metadata:
       m_Items: []
+  - m_Id: 1453514939453440
+    m_Localized: Press [E] to continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1454110740336640
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1454129841197056
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1499902494658560
+    m_Localized: Smoke Grenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1500019662540800
+    m_Localized: Grenade
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

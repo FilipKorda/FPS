@@ -25,17 +25,15 @@ public class GrenadeSelector : MonoBehaviour
     {
         if (newType == GrenadeHandler.GrenadeType.Regular)
         {
-            Sprite grenadeIconSprite = grenadeHandler.granatPrefab.GrenadeIcon;
-            grenadeIcon.sprite = grenadeIconSprite;
-            grenadeNameText.text = grenadeHandler.granatPrefab.name;
+            var so = grenadeHandler.granatPrefab;
+            grenadeIcon.sprite = so.GrenadeIcon;
+            grenadeNameText.text = so.GetLocalizedName();
         }
         else if (newType == GrenadeHandler.GrenadeType.Smoke)
         {
-            Sprite smokeGrenadeIconSprite = grenadeHandler.smokeGranatPrefab.GrenadeIcon;
-            grenadeIcon.sprite = smokeGrenadeIconSprite;
-            grenadeNameText.text = grenadeHandler.smokeGranatPrefab.name;         
+            var so = grenadeHandler.smokeGranatPrefab;
+            grenadeIcon.sprite = so.GrenadeIcon;
+            grenadeNameText.text = so.GetLocalizedName();
         }
     }
-
-
 }

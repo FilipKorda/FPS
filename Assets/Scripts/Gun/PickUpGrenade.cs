@@ -17,19 +17,33 @@ public class PickUpGrenade : MonoBehaviour
 
             if (isSmoke)
             {
-                NotificationSystem.Instance.ShowNotification(localizeStringEventPress, $"Pick up 1 {grenadeHandler.smokeGranatPrefab.Name}", 1.0f, grenadeHandler.smokeGranatPrefab.Name);
+                var so = grenadeHandler.smokeGranatPrefab;
+                var grenadeName = so.GetLocalizedName();
+                NotificationSystem.Instance.ShowNotification(
+                    localizeStringEventPress,
+                    $"Pick up 1 {grenadeName}",
+                    1.0f,
+                     grenadeName
+                );
                 Inventory.Instance.AddSmokeGrenade();
             }
             else
             {
-                NotificationSystem.Instance.ShowNotification(localizeStringEventPress, $"Pick up 1 {grenadeHandler.granatPrefab.Name}", 1.0f, grenadeHandler.smokeGranatPrefab.Name);
+                var so = grenadeHandler.granatPrefab;
+                var grenadeName = so.GetLocalizedName();
+                NotificationSystem.Instance.ShowNotification(
+                    localizeStringEventPress,
+                    $"Pick up 1 {grenadeName}",
+                    1.0f,
+                    grenadeName
+                );
                 Inventory.Instance.AddGrenade();
             }
+
             if (grenadeDisplayer != null)
             {
                 grenadeDisplayer.UpdateGrenadeCount();
             }
         }
-
     }
 }

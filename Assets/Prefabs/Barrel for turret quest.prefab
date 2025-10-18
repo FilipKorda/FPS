@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2738009280830955194}
   - component: {fileID: 8093274022110778644}
   - component: {fileID: 722954622439927699}
+  - component: {fileID: 5179001177384535893}
   m_Layer: 0
   m_Name: Barrel for turret quest
   m_TagString: Untagged
@@ -182,3 +183,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &5179001177384535893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8701561160134286468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef2a777e2fd49042a62af8c44deb65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMaterial: {fileID: 2100000, guid: 08dfe312f8811f941befd3e56d23dc2b, type: 2}

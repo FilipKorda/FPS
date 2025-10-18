@@ -56,44 +56,49 @@ public class CardHolder : MonoBehaviour, ICardHolder
 
     private string BuildHintLocalized()
     {
-        LocalizedString ls;
-        string cardName;
+        LocalizedString template;
+        LocalizedString cardNameLs;
 
         if (needRedCard)
         {
-            ls = localizeStringEventPressERedCard;
-            cardName = MainInventory.Instance.redCardName;
+            template = localizeStringEventPressERedCard;
+            cardNameLs = MainInventory.Instance.localizeStringRedCardName;
         }
         else if (needGreenCard)
         {
-            ls = localizeStringEventPressEGreenCard;
-            cardName = MainInventory.Instance.greenCardName;
+            template = localizeStringEventPressEGreenCard;
+            cardNameLs = MainInventory.Instance.localizeStringGreenCardName;
         }
         else
         {
-            ls = localizeStringEventPressEBlueCard;
-            cardName = MainInventory.Instance.blueCardName;
+            template = localizeStringEventPressEBlueCard;
+            cardNameLs = MainInventory.Instance.localizeStringBlueCardName;
         }
 
-        string localized = null;
-        if (ls != null)
+        string cardNameText = null;
+        try
+        {
+            cardNameText = cardNameLs?.GetLocalizedString();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[CardHolder] Nie uda³o siê pobraæ zlokalizowanej nazwy karty: {e.Message}");
+        }
+
+        if (!string.IsNullOrEmpty(cardNameText) && template != null)
         {
             try
             {
-                localized = ls.GetLocalizedString(cardName);
+                return template.GetLocalizedString(cardNameText);
             }
-            catch
+            catch (System.Exception e)
             {
-                
+                Debug.LogWarning($"[CardHolder] B³¹d formatowania komunikatu: {e.Message}");
             }
         }
 
-        if (string.IsNullOrEmpty(localized))
-        {
-            return $"Press [E] to place the {cardName}!";
-        }
-
-        return localized;
+        var fallbackName = string.IsNullOrEmpty(cardNameText) ? "Card" : cardNameText;
+        return $"Press [E] to place the {fallbackName}!";
     }
 
     public void UseCard()
