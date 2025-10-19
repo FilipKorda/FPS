@@ -183,6 +183,7 @@ public class Settings : MonoBehaviour
         if (allLocales == null || allLocales.Count == 0)
             yield break;
 
+        // Zbieramy tylko PL i EN (jak dotychczas)
         Locale pl = null, en = null;
         foreach (var locale in allLocales)
         {
@@ -213,27 +214,68 @@ public class Settings : MonoBehaviour
         }
         languageDropdown.AddOptions(options);
 
-        var targetLocale = pl ?? (languageOptions.Count > 0 ? languageOptions[0] : null);
-        if (targetLocale != null)
+        // 1) Spróbuj odczytaæ kod z PlayerPrefLocaleSelector
+        string savedCode = null;
+        var selectors = LocalizationSettings.StartupLocaleSelectors;
+        foreach (var s in selectors)
         {
-            LocalizationSettings.SelectedLocale = targetLocale;
-            PlayerPrefs.SetString(LocalePrefKey, targetLocale.Identifier.Code);
-
-            var selectors = LocalizationSettings.StartupLocaleSelectors;
-            foreach (var s in selectors)
+            if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey) && PlayerPrefs.HasKey(pp.PlayerPreferenceKey))
             {
-                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
-                {
-                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, targetLocale.Identifier.Code);
-                    break;
-                }
+                savedCode = PlayerPrefs.GetString(pp.PlayerPreferenceKey);
+                break;
             }
         }
 
+        // 2) Jeœli brak, odczytaj nasz w³asny klucz
+        if (string.IsNullOrEmpty(savedCode) && PlayerPrefs.HasKey(LocalePrefKey))
+            savedCode = PlayerPrefs.GetString(LocalePrefKey);
+
+        // 3) Jeœli nadal brak, u¿yj aktualnie ustawionego locale
+        if (string.IsNullOrEmpty(savedCode) && LocalizationSettings.SelectedLocale != null)
+            savedCode = LocalizationSettings.SelectedLocale.Identifier.Code;
+
+        // Ustal docelowy locale i indeks dropdownu
+        Locale targetLocale = null;
+        int dropdownIndex = 0;
+
+        if (!string.IsNullOrEmpty(savedCode))
+        {
+            int idx = FindLanguageIndexByCode(savedCode);
+            if (idx >= 0)
+            {
+                targetLocale = languageOptions[idx];
+                dropdownIndex = idx;
+            }
+        }
+
+        // Fallback: PL lub pierwszy dostêpny
+        if (targetLocale == null)
+        {
+            int plIdx = FindLanguageIndexByCode("pl");
+            if (plIdx >= 0)
+            {
+                targetLocale = languageOptions[plIdx];
+                dropdownIndex = plIdx;
+            }
+            else if (languageOptions.Count > 0)
+            {
+                targetLocale = languageOptions[0];
+                dropdownIndex = 0;
+            }
+        }
+
+        // Zapisz/persistuj tylko wybrany docelowy (nie nadpisuj zawsze na PL)
+        if (targetLocale != null)
+            PersistSelectedLocale(targetLocale);
+
+        // Ustaw dropdown pod aktualny locale (bez wymuszania 0)
         languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
-        languageDropdown.value = 0;
+        languageDropdown.value = dropdownIndex;
         languageDropdown.RefreshShownValue();
         languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
+
+        // Synchronizuj dodatkowo, gdyby SelectedLocale ró¿ni³ siê od indexu
+        SyncLanguageDropdownWithSelectedLocale();
     }
 
     public void OnLanguageDropdownValueChanged(int index)
@@ -243,18 +285,7 @@ public class Settings : MonoBehaviour
         var selected = languageOptions[index];
         if (selected != null && LocalizationSettings.SelectedLocale != selected)
         {
-            LocalizationSettings.SelectedLocale = selected;
-            PlayerPrefs.SetString(LocalePrefKey, selected.Identifier.Code);
-
-            var selectors = LocalizationSettings.StartupLocaleSelectors;
-            foreach (var s in selectors)
-            {
-                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
-                {
-                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, selected.Identifier.Code);
-                    break;
-                }
-            }
+            PersistSelectedLocale(selected);
         }
     }
 
@@ -285,33 +316,16 @@ public class Settings : MonoBehaviour
         PlayerPrefs.DeleteKey(LocalePrefKey);
 
         Locale target = null;
-        foreach (var l in languageOptions)
-        {
-            if (GetLanguageKey(l.Identifier.Code) == "pl")
-            {
-                target = l; break;
-            }
-        }
-        if (target == null && languageOptions.Count > 0)
-            target = languageOptions[0];
+        int idx = FindLanguageIndexByCode("pl");
+        if (idx >= 0) target = languageOptions[idx];
+        else if (languageOptions.Count > 0) { target = languageOptions[0]; idx = 0; }
 
         if (target != null)
         {
-            LocalizationSettings.SelectedLocale = target;
-            PlayerPrefs.SetString(LocalePrefKey, target.Identifier.Code);
-
-            var selectors = LocalizationSettings.StartupLocaleSelectors;
-            foreach (var s in selectors)
-            {
-                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
-                {
-                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, target.Identifier.Code);
-                    break;
-                }
-            }
+            PersistSelectedLocale(target);
 
             languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
-            languageDropdown.value = 0;
+            languageDropdown.value = Mathf.Max(0, idx);
             languageDropdown.RefreshShownValue();
             languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
         }
@@ -865,5 +879,26 @@ public class Settings : MonoBehaviour
 
         if (mouseLook != null)
             mouseLook.SetInvert(invert);
+    }
+
+    private void PersistSelectedLocale(Locale locale)
+    {
+        if (locale == null) return;
+
+        LocalizationSettings.SelectedLocale = locale;
+
+        PlayerPrefs.SetString(LocalePrefKey, locale.Identifier.Code);
+
+        var selectors = LocalizationSettings.StartupLocaleSelectors;
+        foreach (var s in selectors)
+        {
+            if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
+            {
+                PlayerPrefs.SetString(pp.PlayerPreferenceKey, locale.Identifier.Code);
+                break;
+            }
+        }
+
+        PlayerPrefs.Save();
     }
 }

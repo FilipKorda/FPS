@@ -42,7 +42,7 @@ public class GameOverScreen : MonoBehaviour
     public void ReturnToMainMenu()
     {
         DeactiveThisGameObjects();
-        // Czyœcimy przyczynê po opuszczeniu ekranu
+       
         DeathCauseManager.ResetCause();
         LoadingSystem.Instance.LoadLevel(sceneName);
     }

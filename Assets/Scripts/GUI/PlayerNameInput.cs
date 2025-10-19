@@ -46,11 +46,9 @@ public class PlayerNameInput : MonoBehaviour
 
     private static string _cachedName;
 
-    // Referencje placeholdera
     private Graphic _placeholderGraphic;
     private TMP_Text _placeholderText;
 
-    // Cache stanu do ograniczenia zbêdnych operacji
     private bool _lastFocused;
     private bool _lastEmpty;
 
@@ -88,8 +86,7 @@ public class PlayerNameInput : MonoBehaviour
         if (tmpInputField != null)
         {
             tmpInputField.onEndEdit.AddListener(OnEndEdit);
-            tmpInputField.onSelect.AddListener(OnInputSelected);
-            tmpInputField.onDeselect.AddListener(OnInputDeselected);
+         
             tmpInputField.onValueChanged.AddListener(OnValueChanged);
         }
 
@@ -110,7 +107,7 @@ public class PlayerNameInput : MonoBehaviour
         BindKeyButtons();
         WarnIfCountMismatch();
 
-        ForcePlaceholderState(); // inicjalne wymuszenie
+        ForcePlaceholderState(); 
     }
 
     private void OnDisable()
@@ -118,8 +115,7 @@ public class PlayerNameInput : MonoBehaviour
         if (tmpInputField != null)
         {
             tmpInputField.onEndEdit.RemoveListener(OnEndEdit);
-            tmpInputField.onSelect.RemoveListener(OnInputSelected);
-            tmpInputField.onDeselect.RemoveListener(OnInputDeselected);
+  
             tmpInputField.onValueChanged.RemoveListener(OnValueChanged);
         }
 
@@ -159,7 +155,6 @@ public class PlayerNameInput : MonoBehaviour
         }
     }
 
-    // Wymuszaj stan placeholdera po wewnêtrznych aktualizacjach TMP
     private void LateUpdate()
     {
         ForcePlaceholderState();
@@ -222,8 +217,7 @@ public class PlayerNameInput : MonoBehaviour
     private void SetText(string value)
     {
         if (tmpInputField != null) tmpInputField.text = value;
-        // Stan placeholdera i tak zostanie wymuszony w LateUpdate,
-        // ale aktualizujemy cache by ograniczyæ operacje.
+       
         _lastEmpty = string.IsNullOrEmpty(value);
     }
 
@@ -406,7 +400,6 @@ public class PlayerNameInput : MonoBehaviour
         BindKeyButtons();
     }
 
-    // --- Placeholder helpers ---
 
     private void CachePlaceholder()
     {
@@ -417,24 +410,15 @@ public class PlayerNameInput : MonoBehaviour
         if (localizeString == null && _placeholderText != null)
             localizeString = _placeholderText.GetComponent<LocalizeStringEvent>();
 
-        // Zainicjalizuj cache stanu
         _lastFocused = tmpInputField.isFocused;
         _lastEmpty = string.IsNullOrEmpty(tmpInputField.text);
     }
 
-    private void OnInputSelected(string _)
-    {
-        // Nic nie odpinamy — stan zostanie wymuszony w LateUpdate
-    }
 
-    private void OnInputDeselected(string _)
-    {
-        // Nic nie odpinamy — stan zostanie wymuszony w LateUpdate
-    }
+
 
     private void OnValueChanged(string _)
     {
-        // Aktualizacja nast¹pi w LateUpdate; tu tylko szybka aktualizacja cache
         _lastEmpty = string.IsNullOrEmpty(tmpInputField.text);
     }
 
@@ -445,12 +429,10 @@ public class PlayerNameInput : MonoBehaviour
         bool focused = tmpInputField.isFocused;
         bool empty = string.IsNullOrEmpty(tmpInputField.text);
 
-        // Tylko jeœli stan siê zmieni³, wykonaj operacje
         if (focused != _lastFocused || empty != _lastEmpty || _placeholderGraphic.gameObject.activeSelf == focused || (!focused && _placeholderGraphic.gameObject.activeSelf != empty))
         {
             bool shouldShow = !focused && empty;
 
-            // Upewnij siê, ¿e tmpInputField.placeholder wskazuje na nasz placeholder
             if (tmpInputField.placeholder == null)
                 tmpInputField.placeholder = _placeholderGraphic;
 
