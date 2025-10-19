@@ -233,6 +233,42 @@ MonoBehaviour:
     m_Key: Gameplay_PresstoHeal
     m_Metadata:
       m_Items: []
+  - m_Id: 1784101487267840
+    m_Key: Gameplay_KilledByAlien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784247650373632
+    m_Key: Gameplay_KilledByBoss
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784328558497792
+    m_Key: Gameplay_KilledByAlienMag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784485878452224
+    m_Key: Gameplay_KilledByOrc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784598348713984
+    m_Key: Gameplay_KilledByCyborg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784788170330112
+    m_Key: Gameplay_KilledByUnknow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784971520135168
+    m_Key: Gameplay_KilledByNoOxygen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1785108468355072
+    m_Key: Gameplay_KilledNoMask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1795777406193664
+    m_Key: 'Gameplay_YOUAREDEAD '
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

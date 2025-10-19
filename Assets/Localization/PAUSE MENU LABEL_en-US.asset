@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 8516816896
-    m_Localized: Resume
+    m_Localized: RESUME
     m_Metadata:
       m_Items: []
   - m_Id: 85444546560
-    m_Localized: Return To Main Menu
+    m_Localized: RETURN TO MAIN MENU
     m_Metadata:
       m_Items: []
   - m_Id: 1054966304768

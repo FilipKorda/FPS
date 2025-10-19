@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class AttackCollider : MonoBehaviour
+public class RobotAttackColider : MonoBehaviour
 {
-    [SerializeField] private float damageAmount = 10;
+    [SerializeField] private float damageAmount = 15;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
         {
-            DeathCauseManager.MarkKilledByEnemy(0);
+            DeathCauseManager.MarkKilledByEnemy(3);
             damageable.TakeDamage(damageAmount);
             Debug.Log("Deal damage: " + damageAmount);
         }

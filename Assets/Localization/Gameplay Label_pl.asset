@@ -240,6 +240,49 @@ MonoBehaviour:
     m_Localized: "Naci\u015Bnij [X] \u017Ceby si\u0119 wyleczy\u0107"
     m_Metadata:
       m_Items: []
+  - m_Id: 1784101487267840
+    m_Localized: "Beka z ciebie, pierwszy przeciwnik z bardzo s\u0142ab\u0105 animacj\u0105
+      ataku ciebie zabi\u0142"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784247650373632
+    m_Localized: "\u017Benada Ha Ha Ha jaka\u015B zabawna d\u017Cd\u017Cownica ci\u0119
+      zabi\u0142a, a taki straszny to boss"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784328558497792
+    m_Localized: "Nie ukrywajmy Co\u015B s\u0142aby jeste\u015B w sumie jak zabija
+      ciebie lataj\u0105ca fioletowa kula"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784485878452224
+    m_Localized: "Dobra teraz na powa\u017Cnie wielka bro\u0144 orka to powa\u017Cna
+      sprawa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784598348713984
+    m_Localized: "To takie \u015Bmieszn\u0119 \u017Ce zabija ciebie jaki\u015B particle
+      system\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784788170330112
+    m_Localized: "Nie wiadomo co ciebie zabi\u0142o i dobrze, nigdy sie nie dowiesz
+      co to by\u0142o XD"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784971520135168
+    m_Localized: "Chyba tylko ryby potrafi\u0105 oddycha\u0107 bez tlenu, jeste\u015B
+      ryb\u0105?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1785108468355072
+    m_Localized: "No to ten, \u017Cal \u017Ce maski nie za\u0142o\u017Cy\u0142e\u015B"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1795777406193664
+    m_Localized: "JESTE\u015A MARTWY"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

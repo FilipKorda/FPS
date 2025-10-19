@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &5516466880971999928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &5514405743464717755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &2737670141938306293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &3763068308832280228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,7 +740,7 @@ GameObject:
   - component: {fileID: 2361742035073285580}
   - component: {fileID: 6060661423678539456}
   - component: {fileID: 3074233075484286709}
-  - component: {fileID: 4482598359056961973}
+  - component: {fileID: 772874610068463577}
   m_Layer: 0
   m_Name: CrawlAttackCollider
   m_TagString: Untagged
@@ -788,7 +792,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0.25, z: 0}
---- !u!114 &4482598359056961973
+--- !u!114 &772874610068463577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -797,7 +801,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3821684152385409796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743877da54213694d95f5197723ebf37, type: 3}
+  m_Script: {fileID: 11500000, guid: 41bf6f3c283266e47aa1b795f0d57cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 5
@@ -938,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &4051569017616978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,8 +1079,14 @@ MonoBehaviour:
   legRight: {fileID: 7695500566640543260}
   armLeft: {fileID: 266312736189761603}
   armRight: {fileID: 1351820976120384739}
+  projectilePrefab: {fileID: 0}
+  shootPoint: {fileID: 0}
+  projectileSpeed: 10
+  canShoot: 0
+  projectilePS: {fileID: 0}
   enemyAlien: 0
   enemyOrc: 1
+  enemyRobot: 0
   isDead: 0
   partHealths:
   - {fileID: 266312736189761603}
@@ -1131,7 +1142,7 @@ GameObject:
   - component: {fileID: 3615195508401397061}
   - component: {fileID: 5512950317394203457}
   - component: {fileID: 4100002393673134168}
-  - component: {fileID: 1016054130193139648}
+  - component: {fileID: 579851935594404566}
   m_Layer: 0
   m_Name: 'StandAttackCollider '
   m_TagString: Untagged
@@ -1183,7 +1194,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1016054130193139648
+--- !u!114 &579851935594404566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1192,10 +1203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4829291063507528863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743877da54213694d95f5197723ebf37, type: 3}
+  m_Script: {fileID: 11500000, guid: 41bf6f3c283266e47aa1b795f0d57cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 5
+  damageAmount: 6
 --- !u!1 &5292114107139066595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1250,7 @@ GameObject:
   - component: {fileID: 1230552443785341955}
   - component: {fileID: 3888429124839346398}
   - component: {fileID: 9200535856628405535}
-  - component: {fileID: 8298340825543380056}
+  - component: {fileID: 5825036432189134630}
   m_Layer: 0
   m_Name: SwordAttackCollider
   m_TagString: Untagged
@@ -1291,7 +1302,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8298340825543380056
+--- !u!114 &5825036432189134630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1300,10 +1311,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5399497749905816006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743877da54213694d95f5197723ebf37, type: 3}
+  m_Script: {fileID: 11500000, guid: 41bf6f3c283266e47aa1b795f0d57cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 6
 --- !u!1 &7033463431395944109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852b37b56fa3b094f89e98b4a2c26169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stopingDistanceAfterFall: 3
 --- !u!114 &2214688293522558761
 MonoBehaviour:
   m_ObjectHideFlags: 0

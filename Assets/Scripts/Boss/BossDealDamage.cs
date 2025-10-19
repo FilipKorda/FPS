@@ -32,6 +32,7 @@ public class BossDealDamage : MonoBehaviour
         var playerHealth = other.GetComponentInParent<PlayerHealth>();
         if (playerHealth != null && !playerHealth.isDead && playerHealth.CompareTag("Player"))
         {
+            DeathCauseManager.MarkKilledByBoss();
             playerHealth.TakeDamage(damageAmount);
             return;
         }

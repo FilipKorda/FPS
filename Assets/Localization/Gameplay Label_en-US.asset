@@ -239,6 +239,45 @@ MonoBehaviour:
     m_Localized: Press [X] to Heal
     m_Metadata:
       m_Items: []
+  - m_Id: 1784101487267840
+    m_Localized: LMAO the first enemy with a very weak attack animation killed you
+      HaHA LOL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784247650373632
+    m_Localized: Some funny earthworm killed you, such a scary boss, LOL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784328558497792
+    m_Localized: Let's not hide it, you're actually kind of weak when a flying purple
+      ball kills you. OMG!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784485878452224
+    m_Localized: Okay now seriously, the big orc weapon is a serious business
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784598348713984
+    m_Localized: This is so funny, that you were killed by some particle system
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784788170330112
+    m_Localized: No one knows what killed you, and that's a good thing, you'll never
+      know what it was.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1784971520135168
+    m_Localized: "I think only fish can breathe without oxygen\r, are you a fish?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1785108468355072
+    m_Localized: Instead of running around like that, maybe put on a mask?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1795777406193664
+    m_Localized: YOU ARE DEAD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

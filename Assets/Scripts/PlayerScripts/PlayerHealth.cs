@@ -126,6 +126,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         if (!isInside && !haveMask)
         {
+            DeathCauseManager.MarkNoMask();
             TakeDamage(1000);
             return;
         }
@@ -251,7 +252,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             UpdateOxygenSlider();
 
             if (currentOxygen == 0f)
-            {
+            {             
+                DeathCauseManager.MarkNoOxygen();
                 TakeDamage(0.025f);
             }
         }

@@ -1,15 +1,23 @@
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] private GameObject textMeshProPanel;
     [SerializeField] private GameObject buttonHolder;
+    [SerializeField] private TextMeshProUGUI deathText;
     private readonly float tweenTime = 0.1f;
     public string sceneName = "MainMenu";
 
     private void Start()
     {
+        // Ustaw treœæ przyczyny œmierci
+        if (DeathCauseManager.HasInstance)
+        {
+            deathText.text = DeathCauseManager.Instance.GetDeathMessage();
+        }
+
         StartAnimYouAreDeadText();
         ActiveMouse();
     }
@@ -24,7 +32,7 @@ public class GameOverScreen : MonoBehaviour
         seq.Append(textMeshProPanel.transform.DOScale(Vector3.one, tweenTime).SetEase(Ease.OutBack));
         seq.AppendInterval(0.25f);
         seq.Append(textMeshProPanel.transform.DOLocalMoveY(
-            textMeshProPanel.transform.localPosition.y + 150f,
+            textMeshProPanel.transform.localPosition.y + 200f,
             0.3f
         ).SetEase(Ease.OutQuad));
         seq.AppendInterval(0.1f);
@@ -34,6 +42,8 @@ public class GameOverScreen : MonoBehaviour
     public void ReturnToMainMenu()
     {
         DeactiveThisGameObjects();
+        // Czyœcimy przyczynê po opuszczeniu ekranu
+        DeathCauseManager.ResetCause();
         LoadingSystem.Instance.LoadLevel(sceneName);
     }
 

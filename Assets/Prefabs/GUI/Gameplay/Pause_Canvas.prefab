@@ -7575,9 +7575,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:d97fd494d1d920640ae84e243943a937
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 1838953789673472
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -13946,7 +13946,7 @@ GameObject:
   - component: {fileID: 8953506067313424971}
   - component: {fileID: 81101361494469569}
   m_Layer: 5
-  m_Name: CapFPS_Text
+  m_Name: Language_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14082,9 +14082,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:d97fd494d1d920640ae84e243943a937
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 1838993908191232
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -16322,6 +16322,7 @@ MonoBehaviour:
   settingsInMainMenu: 0
   mainMenu: {fileID: 0}
   uiStringTable: Settings Label
+  languageDropdown: {fileID: 4750279743385640074}
 --- !u!1 &8993923525155138141
 GameObject:
   m_ObjectHideFlags: 0

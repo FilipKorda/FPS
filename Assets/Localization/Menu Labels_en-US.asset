@@ -30,6 +30,18 @@ MonoBehaviour:
     m_Localized: QUIT
     m_Metadata:
       m_Items: []
+  - m_Id: 1899164701315072
+    m_Localized: Enter text...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1899302681333760
+    m_Localized: ENTER YOUR CHARACTER NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1899712510971904
+    m_Localized: Accept
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -27,6 +27,18 @@ MonoBehaviour:
     m_Key: MainMenu_Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 1899164701315072
+    m_Key: MainMenu_EnterText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1899302681333760
+    m_Key: MainMenu_EnterYourName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1899712510971904
+    m_Key: MainMenu_Accept
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

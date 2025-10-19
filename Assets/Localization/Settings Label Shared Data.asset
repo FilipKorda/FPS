@@ -197,6 +197,14 @@ MonoBehaviour:
     m_Key: Settings_High
     m_Metadata:
       m_Items: []
+  - m_Id: 1838953789673472
+    m_Key: Settings_MouseInver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1838993908191232
+    m_Key: Settings_Language
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

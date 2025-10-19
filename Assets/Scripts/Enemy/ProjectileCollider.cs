@@ -5,6 +5,8 @@ public class ProjectileCollider : MonoBehaviour
     [SerializeField] private float damageAmount = 10;
     [SerializeField] private ParticleSystem collisonEffectPS;
 
+    public bool isRobotProjectile = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
@@ -12,6 +14,14 @@ public class ProjectileCollider : MonoBehaviour
             damageable.TakeDamage(damageAmount);
             Destroy(gameObject);
             PlayCollisionEffetct();
+            if (isRobotProjectile)
+            {
+                DeathCauseManager.MarkKilledByEnemy(3);
+            }
+            else
+            {
+                DeathCauseManager.MarkKilledByEnemy(1);
+            }
             Debug.Log("Deal damage: " + damageAmount);
         }
         else if (!(other.gameObject.layer == LayerMask.NameToLayer("Enemy")))
@@ -19,7 +29,7 @@ public class ProjectileCollider : MonoBehaviour
             PlayCollisionEffetct();
             Destroy(gameObject);
         }
-       
+
     }
 
     private void PlayCollisionEffetct()

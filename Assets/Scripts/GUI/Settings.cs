@@ -63,15 +63,15 @@ public class Settings : MonoBehaviour
     //Master
     [SerializeField] private Slider masterSlider;
     [SerializeField] private TextMeshProUGUI masterAmountText;
-    private float resetMasterVolume = 5f;
+    private float resetMasterVolume = 1f;
     //music
     [SerializeField] private Slider musicSlider;
     [SerializeField] private TextMeshProUGUI musicAmountText;
-    private float resetMusicVolume = 5f;
+    private float resetMusicVolume = 1f;
     //sfx
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private TextMeshProUGUI sfxAmountText;
-    private float resetSfxVolume = 5f;
+    private float resetSfxVolume = 1f;
     //Mute
     [SerializeField] private Toggle soundToggle;
     const string MIXER_MASTER = "MasterVolume";
@@ -118,7 +118,7 @@ public class Settings : MonoBehaviour
         InitializeAntiAliasing();
         SetAntiAliasingLevel(availableAntiAliasingLevels[0]);
 
-        InitializeShadow(); 
+        InitializeShadow();
         SetShadowResolution(availableShadowResolutions[0]);
 
         SetSoundState(soundToggle.isOn);
@@ -148,14 +148,12 @@ public class Settings : MonoBehaviour
     {
         if (string.IsNullOrEmpty(code) || languageOptions.Count == 0) return -1;
 
-        // Najpierw próba pe³nego dopasowania kodu (np. en-US)
         for (int i = 0; i < languageOptions.Count; i++)
         {
-            if (string.Equals(languageOptions[i].Identifier.Code, code, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(languageOptions[i].Identifier.Code, code))
                 return i;
         }
 
-        // Fallback po dwuliterowym jêzyku (np. "en" dopasuje "en-US")
         string lang = GetLanguageKey(code);
         for (int i = 0; i < languageOptions.Count; i++)
         {
@@ -185,16 +183,15 @@ public class Settings : MonoBehaviour
         if (allLocales == null || allLocales.Count == 0)
             yield break;
 
-
-        var addedLangs = new HashSet<string>();
+        Locale pl = null, en = null;
         foreach (var locale in allLocales)
         {
-            string lang = GetLanguageKey(locale.Identifier.Code);
-            if ((lang == "pl" || lang == "en") && addedLangs.Add(lang))
-            {
-                languageOptions.Add(locale);
-            }
+            var lang = GetLanguageKey(locale.Identifier.Code);
+            if (lang == "pl") pl = pl ?? locale;
+            else if (lang == "en") en = en ?? locale;
         }
+        if (pl != null) languageOptions.Add(pl);
+        if (en != null) languageOptions.Add(en);
 
         var options = new List<TMP_Dropdown.OptionData>(languageOptions.Count);
         foreach (var locale in languageOptions)
@@ -216,21 +213,25 @@ public class Settings : MonoBehaviour
         }
         languageDropdown.AddOptions(options);
 
-        int idx = -1;
-        string savedCode = PlayerPrefs.GetString(LocalePrefKey, string.Empty);
-
-        if (!string.IsNullOrEmpty(savedCode))
+        var targetLocale = pl ?? (languageOptions.Count > 0 ? languageOptions[0] : null);
+        if (targetLocale != null)
         {
-            idx = FindLanguageIndexByCode(savedCode);
-        }
+            LocalizationSettings.SelectedLocale = targetLocale;
+            PlayerPrefs.SetString(LocalePrefKey, targetLocale.Identifier.Code);
 
-        if (idx < 0 && LocalizationSettings.SelectedLocale != null)
-        {
-            idx = FindLanguageIndexByCode(LocalizationSettings.SelectedLocale.Identifier.Code);
+            var selectors = LocalizationSettings.StartupLocaleSelectors;
+            foreach (var s in selectors)
+            {
+                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
+                {
+                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, targetLocale.Identifier.Code);
+                    break;
+                }
+            }
         }
 
         languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
-        languageDropdown.value = Mathf.Clamp(idx, 0, Math.Max(0, languageOptions.Count - 1));
+        languageDropdown.value = 0;
         languageDropdown.RefreshShownValue();
         languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
     }
@@ -243,7 +244,17 @@ public class Settings : MonoBehaviour
         if (selected != null && LocalizationSettings.SelectedLocale != selected)
         {
             LocalizationSettings.SelectedLocale = selected;
-            PlayerPrefs.SetString(LocalePrefKey, selected.Identifier.Code); 
+            PlayerPrefs.SetString(LocalePrefKey, selected.Identifier.Code);
+
+            var selectors = LocalizationSettings.StartupLocaleSelectors;
+            foreach (var s in selectors)
+            {
+                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
+                {
+                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, selected.Identifier.Code);
+                    break;
+                }
+            }
         }
     }
 
@@ -287,7 +298,42 @@ public class Settings : MonoBehaviour
         if (target != null)
         {
             LocalizationSettings.SelectedLocale = target;
+            PlayerPrefs.SetString(LocalePrefKey, target.Identifier.Code);
+
+            var selectors = LocalizationSettings.StartupLocaleSelectors;
+            foreach (var s in selectors)
+            {
+                if (s is PlayerPrefLocaleSelector pp && !string.IsNullOrEmpty(pp.PlayerPreferenceKey))
+                {
+                    PlayerPrefs.SetString(pp.PlayerPreferenceKey, target.Identifier.Code);
+                    break;
+                }
+            }
+
+            languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
+            languageDropdown.value = 0;
+            languageDropdown.RefreshShownValue();
+            languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
         }
+    }
+
+    public void ResetInvertMouse()
+    {
+        bool defaultInvert = false;
+        PlayerPrefs.DeleteKey("InvertMouse"); 
+        PlayerPrefs.SetInt("InvertMouse", defaultInvert ? 1 : 0); 
+
+        if (invertMouseToggle != null)
+            invertMouseToggle.isOn = defaultInvert;
+
+        if (mouseLook != null)
+            mouseLook.SetInvert(defaultInvert);
+    }
+
+    public void ResetMouseInvertAndLanguageSettings()
+    {
+        ResetLanguageDropdown();
+        ResetInvertMouse();
     }
 
     void ReadingSoundsSaveValues()
@@ -302,6 +348,11 @@ public class Settings : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+          ResetMouseInvertAndLanguageSettings();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             escClose.SetActive(false);
@@ -428,7 +479,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
     }
-  
+
     void InitializeResolutionOptions()
     {
         resolutionDropdown.ClearOptions();
@@ -567,7 +618,7 @@ public class Settings : MonoBehaviour
         {
             Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
         }
-    } 
+    }
 
     void InitializeShadow()
     {
@@ -635,7 +686,6 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("SfxVolume", volume);
     }
 
-   
     public void OnSoundToggleChanged(bool isSoundOn)
     {
         SetSoundState(isSoundOn);
@@ -663,7 +713,7 @@ public class Settings : MonoBehaviour
             Debug.LogError("Toggle nie jest przypisany. Przypisz Toggle w inspektorze.");
         }
     }
-   
+
     public void SetSoundState(bool isSoundOn)
     {
         if (!isSoundOn)
@@ -760,10 +810,10 @@ public class Settings : MonoBehaviour
 
         for (int i = 0; i < names.Length; i++)
         {
-            string key = $"Settings_{names[i]}"; 
+            string key = $"Settings_{names[i]}";
             string text = LocalizationSettings.StringDatabase.GetLocalizedString(uiStringTable, key);
             if (string.IsNullOrEmpty(text))
-                text = names[i]; 
+                text = names[i];
 
             options.Add(new TMP_Dropdown.OptionData(text));
         }
@@ -784,10 +834,10 @@ public class Settings : MonoBehaviour
 
         foreach (var resolution in availableShadowResolutions)
         {
-            string key = $"Settings_{resolution}"; 
+            string key = $"Settings_{resolution}";
             string text = LocalizationSettings.StringDatabase.GetLocalizedString(uiStringTable, key);
             if (string.IsNullOrEmpty(text))
-                text = resolution.ToString(); 
+                text = resolution.ToString();
 
             options.Add(new TMP_Dropdown.OptionData(text));
         }
@@ -797,16 +847,17 @@ public class Settings : MonoBehaviour
         shadowResolutionDropdown.RefreshShownValue();
     }
 
+    // ZMIANA: zawsze zapisuj PlayerPrefs i ustawiaj MouseLook
     public void OnInvertMouseToggleChanged(bool isOn)
     {
+        PlayerPrefs.SetInt("InvertMouse", isOn ? 1 : 0);
+
         if (mouseLook != null)
             mouseLook.SetInvert(isOn);
-        else
-            PlayerPrefs.SetInt("InvertMouse", isOn ? 1 : 0);
     }
 
     private void ReadingInvertMouseSaveValue()
-    {      
+    {
         bool invert = PlayerPrefs.GetInt("InvertMouse", 0) == 1;
 
         if (invertMouseToggle != null)

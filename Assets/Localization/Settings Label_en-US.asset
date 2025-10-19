@@ -35,19 +35,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2934673002496
-    m_Localized: MUTE
+    m_Localized: Mute
     m_Metadata:
       m_Items: []
   - m_Id: 2839470690304
-    m_Localized: SFX
+    m_Localized: Sfx
     m_Metadata:
       m_Items: []
   - m_Id: 2768259796992
-    m_Localized: MUSIC
+    m_Localized: Music
     m_Metadata:
       m_Items: []
   - m_Id: 2737343582208
-    m_Localized: MASTER
+    m_Localized: Master
     m_Metadata:
       m_Items: []
   - m_Id: 3571913609216
@@ -196,6 +196,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 27090772840448
     m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1838993908191232
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1838953789673472
+    m_Localized: Mouse Invert
     m_Metadata:
       m_Items: []
   references:
