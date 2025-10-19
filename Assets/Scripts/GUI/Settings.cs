@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
@@ -30,6 +32,10 @@ public class Settings : MonoBehaviour
     [Header("Gameplay")]
     [Space(5)]
     [SerializeField] private FPSDisplay fPSDisplay;
+    [Header("Controls")]
+    [Space(5)]
+    [SerializeField] private Toggle invertMouseToggle;
+    [SerializeField] private MouseLook mouseLook;
     [Header("Graphic")]
     [Space(5)]
     [SerializeField] private TMP_Dropdown qualityLevelDropdown;
@@ -79,6 +85,10 @@ public class Settings : MonoBehaviour
 
     [Header("Localization")]
     [SerializeField] private string uiStringTable = "UI";
+    [SerializeField] private TMP_Dropdown languageDropdown;
+
+    private readonly List<Locale> languageOptions = new List<Locale>();
+    private const string LocalePrefKey = "SelectedLocaleCode";
 
     void OnEnable()
     {
@@ -120,6 +130,164 @@ public class Settings : MonoBehaviour
         ReadingShadowSaveValues();
         ReadingToggleMuteSaveValue();
         ReadingToggleFullscreenSaveValue();
+
+        ReadingInvertMouseSaveValue();
+        invertMouseToggle.onValueChanged.AddListener(OnInvertMouseToggleChanged);
+
+        StartCoroutine(InitializeLanguageDropdown());
+    }
+
+    private static string GetLanguageKey(string code)
+    {
+        if (string.IsNullOrEmpty(code)) return string.Empty;
+        int dash = code.IndexOf('-');
+        return (dash >= 0 ? code.Substring(0, dash) : code).ToLowerInvariant();
+    }
+
+    private int FindLanguageIndexByCode(string code)
+    {
+        if (string.IsNullOrEmpty(code) || languageOptions.Count == 0) return -1;
+
+        // Najpierw próba pe³nego dopasowania kodu (np. en-US)
+        for (int i = 0; i < languageOptions.Count; i++)
+        {
+            if (string.Equals(languageOptions[i].Identifier.Code, code, StringComparison.OrdinalIgnoreCase))
+                return i;
+        }
+
+        // Fallback po dwuliterowym jêzyku (np. "en" dopasuje "en-US")
+        string lang = GetLanguageKey(code);
+        for (int i = 0; i < languageOptions.Count; i++)
+        {
+            if (GetLanguageKey(languageOptions[i].Identifier.Code) == lang)
+                return i;
+        }
+
+        return -1;
+    }
+
+    private IEnumerator InitializeLanguageDropdown()
+    {
+        if (languageDropdown == null)
+            yield break;
+
+        var init = LocalizationSettings.InitializationOperation;
+        if (!init.IsDone)
+            yield return init;
+
+        languageDropdown.ClearOptions();
+        languageOptions.Clear();
+
+        var allLocales = LocalizationSettings.AvailableLocales != null
+            ? LocalizationSettings.AvailableLocales.Locales
+            : null;
+
+        if (allLocales == null || allLocales.Count == 0)
+            yield break;
+
+
+        var addedLangs = new HashSet<string>();
+        foreach (var locale in allLocales)
+        {
+            string lang = GetLanguageKey(locale.Identifier.Code);
+            if ((lang == "pl" || lang == "en") && addedLangs.Add(lang))
+            {
+                languageOptions.Add(locale);
+            }
+        }
+
+        var options = new List<TMP_Dropdown.OptionData>(languageOptions.Count);
+        foreach (var locale in languageOptions)
+        {
+            var ci = locale.Identifier.CultureInfo;
+            string label = locale.Identifier.Code;
+
+            if (ci != null)
+            {
+                var name = ci.EnglishName;
+                int paren = name.IndexOf(" (", StringComparison.Ordinal);
+                label = paren > 0 ? name.Substring(0, paren) : name;
+            }
+
+            if (string.IsNullOrWhiteSpace(label))
+                label = GetLanguageKey(locale.Identifier.Code);
+
+            options.Add(new TMP_Dropdown.OptionData(label));
+        }
+        languageDropdown.AddOptions(options);
+
+        int idx = -1;
+        string savedCode = PlayerPrefs.GetString(LocalePrefKey, string.Empty);
+
+        if (!string.IsNullOrEmpty(savedCode))
+        {
+            idx = FindLanguageIndexByCode(savedCode);
+        }
+
+        if (idx < 0 && LocalizationSettings.SelectedLocale != null)
+        {
+            idx = FindLanguageIndexByCode(LocalizationSettings.SelectedLocale.Identifier.Code);
+        }
+
+        languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
+        languageDropdown.value = Mathf.Clamp(idx, 0, Math.Max(0, languageOptions.Count - 1));
+        languageDropdown.RefreshShownValue();
+        languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
+    }
+
+    public void OnLanguageDropdownValueChanged(int index)
+    {
+        if (index < 0 || index >= languageOptions.Count) return;
+
+        var selected = languageOptions[index];
+        if (selected != null && LocalizationSettings.SelectedLocale != selected)
+        {
+            LocalizationSettings.SelectedLocale = selected;
+            PlayerPrefs.SetString(LocalePrefKey, selected.Identifier.Code); 
+        }
+    }
+
+    private void SyncLanguageDropdownWithSelectedLocale()
+    {
+        if (languageDropdown == null || languageOptions.Count == 0) return;
+        var current = LocalizationSettings.SelectedLocale;
+        if (current == null) return;
+
+        int idx = FindLanguageIndexByCode(current.Identifier.Code);
+        if (idx >= 0 && languageDropdown.value != idx)
+        {
+            languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
+            languageDropdown.value = idx;
+            languageDropdown.RefreshShownValue();
+            languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
+        }
+    }
+
+    public void ResetLanguageDropdown()
+    {
+        if (languageDropdown == null)
+        {
+            Debug.LogError("Dropdown nie jest przypisany. Przypisz Dropdown w inspektorze.");
+            return;
+        }
+
+        PlayerPrefs.DeleteKey(LocalePrefKey);
+
+        Locale target = null;
+        foreach (var l in languageOptions)
+        {
+            if (GetLanguageKey(l.Identifier.Code) == "pl")
+            {
+                target = l; break;
+            }
+        }
+        if (target == null && languageOptions.Count > 0)
+            target = languageOptions[0];
+
+        if (target != null)
+        {
+            LocalizationSettings.SelectedLocale = target;
+        }
     }
 
     void ReadingSoundsSaveValues()
@@ -563,7 +731,7 @@ public class Settings : MonoBehaviour
         }
     }
 
-    private void OnLocaleChanged(Locale _)
+    private void OnLocaleChanged(Locale locale)
     {
         int qIdx = qualityLevelDropdown != null ? qualityLevelDropdown.value : 0;
         int sIdx = shadowResolutionDropdown != null ? shadowResolutionDropdown.value : 0;
@@ -576,6 +744,8 @@ public class Settings : MonoBehaviour
 
         if (qualityLevelDropdown != null) qualityLevelDropdown.RefreshShownValue();
         if (shadowResolutionDropdown != null) shadowResolutionDropdown.RefreshShownValue();
+
+        SyncLanguageDropdownWithSelectedLocale();
     }
 
     private void RefreshQualityDropdownLocalization()
@@ -625,5 +795,24 @@ public class Settings : MonoBehaviour
         shadowResolutionDropdown.AddOptions(options);
         shadowResolutionDropdown.value = Mathf.Clamp(selected, 0, options.Count - 1);
         shadowResolutionDropdown.RefreshShownValue();
+    }
+
+    public void OnInvertMouseToggleChanged(bool isOn)
+    {
+        if (mouseLook != null)
+            mouseLook.SetInvert(isOn);
+        else
+            PlayerPrefs.SetInt("InvertMouse", isOn ? 1 : 0);
+    }
+
+    private void ReadingInvertMouseSaveValue()
+    {      
+        bool invert = PlayerPrefs.GetInt("InvertMouse", 0) == 1;
+
+        if (invertMouseToggle != null)
+            invertMouseToggle.isOn = invert;
+
+        if (mouseLook != null)
+            mouseLook.SetInvert(invert);
     }
 }

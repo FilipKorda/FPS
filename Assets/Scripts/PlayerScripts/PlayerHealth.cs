@@ -1,6 +1,7 @@
 using DG.Tweening;
 using FPS.Guns.Demo;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private float currentHealth;
     [SerializeField] private Animator bandageAnimator;
     [SerializeField] private GameObject bandageObject;
+    [SerializeField] private TextMeshProUGUI pressXToHeal;
 
     [Header("============ Oxygen ============")]
     [SerializeField] private Slider oxygenSlider;
@@ -28,6 +30,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private readonly float oxygenIncreaseRate = 0.1f;
     [SerializeField] private Animator oxygenAnimator;
     [SerializeField] private GameObject oxygenObject;
+    [SerializeField] private TextMeshProUGUI pressZToRefilOxygen;
 
     [Header("=========== Mars Mask ===========")]
     [SerializeField] private GameObject filterMaks;
@@ -35,7 +38,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private readonly float timeWhenInsde = 1f;
     private Vector3 filterMaksTransformWhenOutsisde = new(0f, 0f, 0f);
     private readonly float timeWhenOutInsde = 0.2f;
-    public bool isInside = false;
+    public bool isInside = true;
+    public bool haveMask = false;
 
     [Header("=========== Pause Menu ===========")]
     [SerializeField] private PauseMenu pauseMenu;
@@ -72,6 +76,15 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private Coroutine cameraFallCoroutine;
     private bool isCameraFallActive;
     public bool isDead = false;
+
+    [Header("=========== Hints Blink ===========")]
+    [SerializeField] private float hintFadeDuration = 0.25f;   
+    [SerializeField] private float hintVisibleDuration = 1f;  
+    [SerializeField] private float hintHiddenDuration = 2f;   
+
+    private Sequence pressXBlinkSeq;
+    private Sequence pressZBlinkSeq;
+    
 
     private void Awake()
     {
@@ -111,6 +124,12 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     {
         if (isDead) return;
 
+        if (!isInside && !haveMask)
+        {
+            TakeDamage(1000);
+            return;
+        }
+
         //cheat
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -124,7 +143,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(UseOxygenContainer(75));
+            StartCoroutine(UseOxygenContainer(60));
         }
 
         if (OxygenHugeContainer.Instance.isRefillingOxygen)
@@ -180,11 +199,13 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             if (currentHealth >= 75)
             {
                 damageScreenImage.color = new Color(1f, 1f, 1f, 0f);
+                StopBlink(pressXToHeal, ref pressXBlinkSeq, true);
             }
             else if (currentHealth <= 75 && currentHealth > 50)
             {
                 damageScreenImage.color = new Color(1f, 1f, 1f, 1f);
                 damageScreenImage.sprite = damageScreens[0];
+
             }
             else if (currentHealth <= 50 && currentHealth > 25)
             {
@@ -209,6 +230,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         if (currentOxygen == maxOxygen)
         {
             oxygenSlider.gameObject.SetActive(false);
+            StopBlink(pressZToRefilOxygen, ref pressZBlinkSeq, true);
         }
     }
 
@@ -219,6 +241,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             if (currentOxygen <= 75)
             {
                 oxygenSlider.gameObject.SetActive(true);
+                StartBlink(pressZToRefilOxygen, ref pressZBlinkSeq);
             }
 
             currentOxygen -= oxygenDecreaseRate;
@@ -251,9 +274,16 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     public void TakeDamage(float damageAmount)
     {
-        if (currentHealth <= 75)
+        if (isDead) return;
+
+        if (currentHealth <= 74)
+        {
+            StartBlink(pressXToHeal, ref pressXBlinkSeq);
+        }
+        else if (currentHealth <= 75)
         {
             healthSlider.gameObject.SetActive(true);
+
         }
 
         currentHealth -= damageAmount;
@@ -270,6 +300,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private void PlayerDie()
     {
+        if (isDead) return;
+
         DisablePlayer();
         DetacedGunFromPlayer();
 
@@ -315,6 +347,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private void DetacedGunFromPlayer()
     {
+        if (!haveMask) return;
         Transform child = gunParent.transform.GetChild(0);
         child.gameObject.AddComponent<BoxCollider>();
         child.gameObject.AddComponent<Rigidbody>();
@@ -364,7 +397,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         isCameraFallActive = false;
         cameraFallCoroutine = null;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2f);
 
         ActiveGameOverScreen();
     }
@@ -476,5 +509,54 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     public void SetIsInside(bool inside)
     {
         isInside = inside;
+    }
+
+    private void EnsureBlinkSequence(TextMeshProUGUI text, ref Sequence seq)
+    {
+        if (text == null) return;
+        if (seq != null) return;
+
+        var c = text.color;
+        c.a = 0f;
+        text.color = c;
+
+        seq = DOTween.Sequence()
+            .SetAutoKill(false)
+            .Pause()
+            .Append(text.DOFade(1f, hintFadeDuration))
+            .AppendInterval(hintVisibleDuration)
+            .Append(text.DOFade(0f, hintFadeDuration))
+            .AppendInterval(hintHiddenDuration)
+            .SetLoops(-1, LoopType.Restart);
+    }
+
+    private void StartBlink(TextMeshProUGUI text, ref Sequence seq)
+    {
+        if (text == null) return;
+        text.gameObject.SetActive(true);
+        EnsureBlinkSequence(text, ref seq);
+        seq.Restart();
+    }
+
+    private void StopBlink(TextMeshProUGUI text, ref Sequence seq, bool hideGO)
+    {
+        if (text == null) return;
+        if (seq != null)
+        {
+            seq.Pause();
+            seq.Rewind();
+        }
+
+        var c = text.color;
+        c.a = 0f;
+        text.color = c;
+
+        if (hideGO) text.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        pressXBlinkSeq?.Kill();
+        pressZBlinkSeq?.Kill();
     }
 }

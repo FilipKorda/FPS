@@ -32,7 +32,7 @@ namespace FPS.Guns.Demo
         [SerializeField] private float maxZoomFov = 120f;
 
         private const float defaultBaseFov = 60f;
-        private bool isZoomed = false;
+        public bool isZoomed = false;
 
         private float cachedBaseFov;
         private float targetFovHip;

@@ -1,6 +1,5 @@
 using FPS.Guns.Demo;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 
@@ -42,6 +41,8 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
     {
         if (_pickedUp) return;
         _pickedUp = true;
+
+        PlayerHealth.Instance.haveMask = true;
 
         getBackpackQuest.isBackpackSet = true;
 

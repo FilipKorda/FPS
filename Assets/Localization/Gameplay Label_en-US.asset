@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6133588971520
-    m_Localized: Press [E] to Refil Oxygen
+    m_Localized: Press [Z] to Refil Oxygen
     m_Metadata:
       m_Items: []
   - m_Id: 6312148881408
@@ -233,6 +233,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1500019662540800
     m_Localized: Grenade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1570694540578816
+    m_Localized: Press [X] to Heal
     m_Metadata:
       m_Items: []
   references:

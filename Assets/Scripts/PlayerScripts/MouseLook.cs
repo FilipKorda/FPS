@@ -1,11 +1,11 @@
+using FPS.Guns.Demo;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
     [SerializeField]
     private Transform playerRoot, lookRoot;
-    [SerializeField]
-    private bool invert;
+    public bool invert;
     [SerializeField]
     private Vector2 default_Look_Limits = new(-70f, 80f);
     private Vector2 look_Angles;
@@ -14,6 +14,14 @@ public class MouseLook : MonoBehaviour
     public bool canLookAround = true;
 
     [SerializeField] private SensivitySettings sensivitySettings;
+
+    [SerializeField, Range(0.01f, 1f)]
+    private float zoomSensitivityMultiplier = 0.2f;
+
+    void Start()
+    {
+        invert = PlayerPrefs.GetInt("InvertMouse", 0) == 1;
+    }
 
     void Update()
     {
@@ -29,8 +37,16 @@ public class MouseLook : MonoBehaviour
         {
             current_Mouse_Look = new Vector2(Input.GetAxis(MouseAxis.MOUSE_Y), Input.GetAxis(MouseAxis.MOUSE_X));
 
-            look_Angles.x += current_Mouse_Look.x * sensivitySettings.ClampedSensivityValue * (invert ? 1f : -1f);
-            look_Angles.y += current_Mouse_Look.y * sensivitySettings.ClampedSensivityValue;
+            float effectiveSensitivity = sensivitySettings != null ? sensivitySettings.ClampedSensivityValue : 1f;
+
+            if (PlayerGunSelector.Instance != null && PlayerGunSelector.Instance.isZoomed)
+            {
+                effectiveSensitivity *= zoomSensitivityMultiplier;
+            }
+
+            look_Angles.x += (invert ? current_Mouse_Look.x : -current_Mouse_Look.x) * effectiveSensitivity;
+
+            look_Angles.y += (invert ? -current_Mouse_Look.y : current_Mouse_Look.y) * effectiveSensitivity;
 
             look_Angles.x = Mathf.Clamp(look_Angles.x, default_Look_Limits.x, default_Look_Limits.y);
 
@@ -48,5 +64,11 @@ public class MouseLook : MonoBehaviour
         if (yaw > 180f) yaw -= 360f;
 
         look_Angles = new Vector2(pitch, yaw);
+    }
+
+    public void SetInvert(bool value)
+    {
+        invert = value;
+        PlayerPrefs.SetInt("InvertMouse", value ? 1 : 0);
     }
 }

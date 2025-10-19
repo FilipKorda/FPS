@@ -50,11 +50,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 6312148881408
-    m_Localized: "Zebra\u0142e\u015B kanister z tlenem!"
+    m_Localized: "Zebra\u0142e\u015B kanister z tlenem"
     m_Metadata:
       m_Items: []
   - m_Id: 6133588971520
-    m_Localized: "Naci\u015Bnij [E] \u017Ceby pdnowi\u0107 tlen!"
+    m_Localized: "Naci\u015Bnij [Z] \u017Ceby pdnowi\u0107 tlen"
     m_Metadata:
       m_Items: []
   - m_Id: 5443684683776
@@ -234,6 +234,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1500019662540800
     m_Localized: Granat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1570694540578816
+    m_Localized: "Naci\u015Bnij [X] \u017Ceby si\u0119 wyleczy\u0107"
     m_Metadata:
       m_Items: []
   references:

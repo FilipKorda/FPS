@@ -5,6 +5,10 @@ public class OpenGateToNextEpisod : Quest
 {
     public override bool CheckCompletion()
     {
-        return GameManager.Instance.activeHangarWhenFuelFull.isGateOpen;
+        var gm = GameManager.Instance;
+        if (gm == null || gm.activeHangarWhenFuelFull == null)
+            return false; 
+
+        return gm.activeHangarWhenFuelFull.isGateOpen;
     }
 }

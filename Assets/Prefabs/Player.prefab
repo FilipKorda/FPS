@@ -248,9 +248,9 @@ MonoBehaviour:
   canMove: 0
   localizeStringEvent:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 2726534860800
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -416,9 +416,9 @@ MonoBehaviour:
   platform: {fileID: 0}
   localizeStringEvent:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:9dc320dddbb8fdd4695ca26f8e7fcebd
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 3052482613248
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -448,13 +448,16 @@ MonoBehaviour:
   maxHealth: 100
   bandageAnimator: {fileID: 619244523948895311}
   bandageObject: {fileID: 880929247280448415}
+  pressXToHeal: {fileID: 0}
   oxygenSlider: {fileID: 0}
   maxOxygen: 100
   currentOxygen: 0
   oxygenAnimator: {fileID: 1177448743406778199}
   oxygenObject: {fileID: 1655941588823599486}
+  pressZToRefilOxygen: {fileID: 0}
   filterMaks: {fileID: 0}
-  isInside: 0
+  isInside: 1
+  haveMask: 0
   pauseMenu: {fileID: 0}
   playerCamera: {fileID: 8766085917040621850}
   fallDuration: 1.5
@@ -470,6 +473,9 @@ MonoBehaviour:
   croshair: {fileID: 0}
   ammoPackPanel: {fileID: 0}
   isDead: 0
+  hintFadeDuration: 0.3
+  hintVisibleDuration: 1.25
+  hintHiddenDuration: 5
 --- !u!114 &4807746633708868834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +514,6 @@ MonoBehaviour:
   redCardIcon: {fileID: 21300000, guid: 7ad950bc6622c744295054a927c498a8, type: 3}
   instantiatedRedCardPrefab: {fileID: 0}
   redCard: 0
-  redCardName: Red Card
   localizeStringRedCardName:
     m_TableReference:
       m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
@@ -523,7 +528,6 @@ MonoBehaviour:
   greenCardIcon: {fileID: 21300000, guid: 3b6c79c4d4500a24da7a39021adee937, type: 3}
   instantiatedGreenCardPrefab: {fileID: 0}
   greenCard: 0
-  greenCardName: Green Card
   localizeStringGreenCardName:
     m_TableReference:
       m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
@@ -538,7 +542,6 @@ MonoBehaviour:
   blueCardIcon: {fileID: 21300000, guid: 7ad950bc6622c744295054a927c498a8, type: 3}
   instantiatedBlueCardPrefab: {fileID: 0}
   blueCard: 0
-  blueCardName: Blue Card
   localizeStringBlueCardName:
     m_TableReference:
       m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
@@ -553,7 +556,6 @@ MonoBehaviour:
   fuelCanIcon: {fileID: 21300000, guid: 1914ca5666a225145acdc2b3faa6f9bd, type: 3}
   currentfuelCans: 0
   fuelCanForQuest: 0
-  fuelCanName: Fuel Can
   localizeStringFuelCanName:
     m_TableReference:
       m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
@@ -568,7 +570,6 @@ MonoBehaviour:
   barrelIcon: {fileID: 21300000, guid: 3c433f7b1905d9b48b824c68cd9ef467, type: 3}
   currentBarrels: 0
   barrelForQuest: 0
-  barrelName: Barrel
   localizeStringBarrelName:
     m_TableReference:
       m_TableCollectionName: GUID:2003ef350c3f3b646a29d02f1a5cc04e
