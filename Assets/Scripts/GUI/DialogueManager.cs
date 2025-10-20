@@ -41,8 +41,11 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerNameRuntime.Instance.ApplyToAllLoadedConversations();
-
+        if(PlayerNameRuntime.Instance != null)
+        {
+            PlayerNameRuntime.Instance.ApplyToAllLoadedConversations();
+        }
+       
         pressEPanel.SetActive(false);
         optionOne.gameObject.SetActive(false);
         optionTwo.gameObject.SetActive(false);

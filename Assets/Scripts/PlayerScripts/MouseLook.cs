@@ -44,9 +44,9 @@ public class MouseLook : MonoBehaviour
                 effectiveSensitivity *= zoomSensitivityMultiplier;
             }
 
-            look_Angles.x += (invert ? current_Mouse_Look.x : -current_Mouse_Look.x) * effectiveSensitivity;
+            look_Angles.x += (invert ? current_Mouse_Look.x : -current_Mouse_Look.x) * effectiveSensitivity * Time.timeScale;
 
-            look_Angles.y += (invert ? -current_Mouse_Look.y : current_Mouse_Look.y) * effectiveSensitivity;
+            look_Angles.y += (invert ? -current_Mouse_Look.y : current_Mouse_Look.y) * effectiveSensitivity * Time.timeScale;
 
             look_Angles.x = Mathf.Clamp(look_Angles.x, default_Look_Limits.x, default_Look_Limits.y);
 
