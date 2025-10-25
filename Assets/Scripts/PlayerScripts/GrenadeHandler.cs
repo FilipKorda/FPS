@@ -77,10 +77,12 @@ public class GrenadeHandler : MonoBehaviour
 
             if (currentGrenadeType == GrenadeType.Regular)
             {
+                StatisticsCollector.AddGrenadeUsed();
                 Inventory.Instance.RemoveGrenade();
             }
             else
             {
+                StatisticsCollector.AddSmokeGrenadeUsed();
                 Inventory.Instance.RemoveSmokeGrenade();
             }
         }
@@ -98,7 +100,6 @@ public class GrenadeHandler : MonoBehaviour
             pinRigidbody.transform.parent = null;
 
             BoxCollider[] boxColliders = pinTransform.GetComponents<BoxCollider>();
-
 
             float duration = 0.1f;
             Sequence pinRemovalSequence = DOTween.Sequence();

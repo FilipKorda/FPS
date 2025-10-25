@@ -28,7 +28,15 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+        UpdateStatistics();
     }
+
+    private void UpdateStatistics()
+    {
+        int count = questHolder.Count;
+        StatisticsCollector.AddAllQuests(count);
+    }
+
 
     private void Update()
     {
@@ -91,12 +99,13 @@ public class QuestManager : MonoBehaviour
                 ? newQuest.localizeQuestName.GetLocalizedString()
                 : newQuest.questName;
 
-            // message fallback zawiera ju¿ nazwê questa (po PL jeœli LocalizedString ustawiony)
             NotificationSystem.Instance.ShowNotification(localizeStringEvent, "<color=orange>Get Quest </color>" + localizedName, 2f, localizedName);
 
             questsConditions.Add(newQuest);
             Debug.Log($"New quest received: {localizedName}");
             UpdateUI();
+
+            StatisticsCollector.AddQuestGet();
         }
     }
 
@@ -125,5 +134,7 @@ public class QuestManager : MonoBehaviour
             Destroy(questToPrefabMap[quest]);
             questToPrefabMap.Remove(quest);
         }
+
+        StatisticsCollector.AddQuestCompleted();
     }
 }

@@ -251,6 +251,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
             UpdateOxygenSlider();
 
+            StatisticsCollector.AddOxygenLost(oxygenDecreaseRate);
+
             if (currentOxygen == 0f)
             {             
                 DeathCauseManager.MarkNoOxygen();
@@ -271,6 +273,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
 
             UpdateOxygenSlider();
+
+            StatisticsCollector.AddOxygenRecovery(oxygenIncreaseRate);
         }
     }
 
@@ -287,6 +291,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             healthSlider.gameObject.SetActive(true);
 
         }
+
+        StatisticsCollector.AddHealthLost(damageAmount);
 
         currentHealth -= damageAmount;
 
@@ -434,6 +440,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                 currentHealth = Mathf.Min(maxHealth, currentHealth);
                 UpdateHealthSlider();
 
+                StatisticsCollector.AddHealthHealed(healAmount);
+
                 MainInventory.Instance.RemoveHealthBandage();
                 if (MainInventory.Instance.currentHealthBandage == 0)
                 {
@@ -469,6 +477,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                 currentOxygen += oxygenAmount;
                 currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
                 UpdateOxygenSlider();
+
+                StatisticsCollector.AddOxygenRecovery(oxygenAmount);
 
                 MainInventory.Instance.RemoveOxygenContainer();
                 if (MainInventory.Instance.currentOxygenContainer == 0)

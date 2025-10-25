@@ -99,6 +99,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
             PlayerGunSelector.Instance.ActiveGun.Name
         );
 
+        StatisticsCollector.AddAmmoPickedUp(AmountToAdd);
+
         totalAmmoText.DOColor(Color.red, 0.05f)
            .OnComplete(() =>
            {

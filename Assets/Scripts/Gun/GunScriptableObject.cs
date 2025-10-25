@@ -160,6 +160,8 @@ namespace FPS.Guns
 
                     AmmoConfig.CurrentClipAmmo--;
 
+                    StatisticsCollector.AddAmmoShot();
+
                     if (ShootConfig.IsHitscan)
                     {
                         DoHitscanShoot(shootDirection, GetRaycastOrigin(), ShootSystem.transform.position);
@@ -421,7 +423,10 @@ namespace FPS.Guns
                     }
                 }
 
-                damageable.TakeDamage(DamageConfig.GetDamage(DistanceTraveled, maxPercentDamage));
+                var damage = DamageConfig.GetDamage(DistanceTraveled, maxPercentDamage);
+                damageable.TakeDamage(damage);
+
+                StatisticsCollector.AddDamage(damage);
             }
 
             foreach (ICollisionHandler collisionHandler in BulletImpactEffects)

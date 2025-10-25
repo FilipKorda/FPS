@@ -23,6 +23,7 @@ public class ProjectileCollider : MonoBehaviour
                 DeathCauseManager.MarkKilledByEnemy(1);
             }
             Debug.Log("Deal damage: " + damageAmount);
+            StatisticsCollector.AddDamage(damageAmount);
         }
         else if (!(other.gameObject.layer == LayerMask.NameToLayer("Enemy")))
         {

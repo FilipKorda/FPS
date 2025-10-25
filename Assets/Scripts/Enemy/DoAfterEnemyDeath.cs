@@ -50,6 +50,37 @@ namespace FPS.Enemy
             {
                 gameObject.SetActive(false);
             }
+
+            // statystyka: zwiêkszamy licznik zabitych wrogów na podstawie rodzica
+            var mainEnemy = GetComponentInParent<MainEnemyBehaviour>();
+            if (mainEnemy != null)
+            {
+                if (GetComponentInParent<AlienMagEnemyMovement>() != null)
+                {
+                    StatisticsCollector.IncrementKill(EnemyKillType.AlienMag);
+                }
+                else if (mainEnemy.enemyAlien)
+                {
+                    StatisticsCollector.IncrementKill(EnemyKillType.Alien);
+                }
+                else if (mainEnemy.enemyOrc)
+                {
+                    StatisticsCollector.IncrementKill(EnemyKillType.Orc);
+                }
+                else if (mainEnemy.enemyRobot)
+                {
+                    StatisticsCollector.IncrementKill(EnemyKillType.Robot);
+                }
+            }
+            else
+            {
+                // spróbuj wykryæ bossa po komponencie w rodzicu
+                var boss = GetComponentInParent<MonoBehaviour>();
+                if (boss != null && boss.GetType().Name.ToLower().Contains("boss"))
+                {
+                    StatisticsCollector.IncrementKill(EnemyKillType.Boss);
+                }
+            }
         }
 
         private void Damageable_OnDeath_DropObject(Vector3 Position)

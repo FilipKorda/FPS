@@ -213,12 +213,15 @@ public class MainInventory : MonoBehaviour
 
         currentOxygenContainer++;
         UpdateAmountOfOxygenNumber();
+
+        StatisticsCollector.AddItemPickedUp();
     }
 
     public void RemoveOxygenContainer()
     {
         currentOxygenContainer--;
         UpdateAmountOfOxygenNumber();
+        StatisticsCollector.AddItemUsed();
     }
 
     private void HealthBandageUseblePrefabItemsToGUI()
@@ -265,12 +268,15 @@ public class MainInventory : MonoBehaviour
 
         currentHealthBandage++;
         UpdateAmountOfHealthBandageNumber();
+
+        StatisticsCollector.AddItemPickedUp();
     }
 
     public void RemoveHealthBandage()
     {
         currentHealthBandage--;
         UpdateAmountOfHealthBandageNumber();
+        StatisticsCollector.AddItemUsed();
     }
 
 
@@ -279,11 +285,13 @@ public class MainInventory : MonoBehaviour
         FuelCanQuestPrefabItemsGUI();
         currentfuelCans++;
         fuelCanForQuest++;
+        StatisticsCollector.AddItemPickedUp();
     }
     public void RemoveFuelCan()
     {
         Destroy(instantiatedFuelCanPrefab);
         currentfuelCans--;
+        StatisticsCollector.AddItemUsed();
     }
 
     public void AddBarrel()
@@ -291,12 +299,14 @@ public class MainInventory : MonoBehaviour
         BarrelQuestPrefabItemsGUI();
         currentBarrels++;
         barrelForQuest++;
+        StatisticsCollector.AddItemPickedUp();
     }
 
     public void RemoveBarrel()
     {
         Destroy(instantiatedBarrelPrefab);
         currentBarrels--;
+        StatisticsCollector.AddItemUsed();
     }
 
     public void AddCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
@@ -316,6 +326,8 @@ public class MainInventory : MonoBehaviour
             BlueCardQuestPrefabItemsGUI();
             blueCard++;
         }
+
+        StatisticsCollector.AddItemPickedUp();
     }
 
     public void RemoveCard(bool isRedCard, bool isGreenCard, bool isBlueCard)
@@ -335,6 +347,8 @@ public class MainInventory : MonoBehaviour
             blueCard--;
             Destroy(instantiatedBlueCardPrefab);
         }
+
+        StatisticsCollector.AddItemUsed();
     }
 
     private void RedCardQuestPrefabItemsGUI()

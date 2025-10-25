@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class WinGame : MonoBehaviour
 {
+    [SerializeField] private StatisticManager statisticManager;
+
     [SerializeField] private float slowDurationSeconds = 5f;
     [SerializeField] private TextMeshProUGUI counterText;
     [SerializeField] private Image winScreenImage;
@@ -30,6 +32,8 @@ public class WinGame : MonoBehaviour
 
     private void Start()
     {
+        statisticManager.GenerateStats();
+
         if (counterText != null)
         {
             _counterOriginalScale = counterText.rectTransform.localScale;
