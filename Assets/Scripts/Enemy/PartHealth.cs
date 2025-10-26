@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace FPS.Enemy
 {
@@ -16,6 +17,7 @@ namespace FPS.Enemy
         public event IDamageable.ParticleDeathEvent ParticleOnDeath;
         public event IDamageable.DropDeathEvent DropOnDeath;
 
+        [SerializeField] private Transform parent;
 
         private void OnEnable()
         {
@@ -27,7 +29,7 @@ namespace FPS.Enemy
             if (enemyMovement != null)
             {
                 enemyMovement.StartFollowPlayerAFterHit();
-            }          
+            }
 
             int damageTaken = Mathf.Clamp(Damage, 0, CurrentHealth);
 
@@ -42,12 +44,27 @@ namespace FPS.Enemy
             {
                 if (Name == "Head" || Name == "Body")
                 {
-                    DropOnDeath?.Invoke(transform.position);
-                    ParticleOnDeath?.Invoke(transform.position);
+                    if(parent != null)
+                    {
+                        DropOnDeath?.Invoke(parent.position);
+                        ParticleOnDeath?.Invoke(parent.position);
+                    }
+                    else
+                    {
+                        DropOnDeath?.Invoke(transform.position);
+                        ParticleOnDeath?.Invoke(transform.position);
+                    }
                 }
                 else
                 {
-                    ParticleOnDeath?.Invoke(transform.position);
+                    if (parent != null)
+                    {
+                        ParticleOnDeath?.Invoke(parent.position);
+                    }
+                    else
+                    {
+                        ParticleOnDeath?.Invoke(transform.position);
+                    }
                 }
 
             }
