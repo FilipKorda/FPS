@@ -20,6 +20,8 @@ public class QuestManager : MonoBehaviour
 
     public LocalizedString localizeStringEvent;
 
+    private bool mainStatisticsUpdatedOnStart = false;
+
     private void Awake()
     {
         Instance = this;
@@ -33,10 +35,15 @@ public class QuestManager : MonoBehaviour
 
     private void UpdateStatistics()
     {
-        int count = questHolder.Count;
-        StatisticsCollector.AddAllQuests(count);
-    }
+        if (!mainStatisticsUpdatedOnStart)
+        {
+            int count = questHolder.Count;
+            StatisticsCollector.AddAllQuests(count);
 
+            mainStatisticsUpdatedOnStart = true;
+        }
+
+    }
 
     private void Update()
     {

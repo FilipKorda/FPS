@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class WinGame : MonoBehaviour
 {
+    public string sceneName = "MainMenu";
+
     [SerializeField] private StatisticManager statisticManager;
+    [SerializeField] private PauseMenu pauseMenu;
 
     [SerializeField] private float slowDurationSeconds = 5f;
     [SerializeField] private TextMeshProUGUI counterText;
@@ -18,7 +21,7 @@ public class WinGame : MonoBehaviour
     [SerializeField] private Image leftImage;
 
     [Header("Close screen")]
-    [SerializeField] private float closeOverlap = 4f; 
+    [SerializeField] private float closeOverlap = 4f;
 
     [Header("Counter bump")]
     [SerializeField] private float bumpScale = 1.2f;
@@ -32,8 +35,6 @@ public class WinGame : MonoBehaviour
 
     private void Start()
     {
-        statisticManager.GenerateStats();
-
         if (counterText != null)
         {
             _counterOriginalScale = counterText.rectTransform.localScale;
@@ -46,8 +47,8 @@ public class WinGame : MonoBehaviour
         }
     }
 
-    [ContextMenu("Active Slow Motion")]
-    public void ActivateTimeSlow()
+    [ContextMenu("Active Win Game Panel")]
+    public void ActivateWinGamePanel()
     {
         if (_slowRoutine != null)
             StopCoroutine(_slowRoutine);
@@ -135,14 +136,14 @@ public class WinGame : MonoBehaviour
         var parent = rt.transform.parent as RectTransform;
         if (parent == null) return;
 
-      
+
         var world = new Vector3[4];
         rt.GetWorldCorners(world);
 
         for (int i = 0; i < 4; i++)
             world[i] = parent.InverseTransformPoint(world[i]);
 
-      
+
         Vector2 center = parent.rect.center;
 
         float endX = rt.anchoredPosition.x;
@@ -153,7 +154,7 @@ public class WinGame : MonoBehaviour
             case MoveDir.Down:
                 {
                     float bottomY = world[0].y;
-                    float targetEdgeY = center.y - halfOverlap; 
+                    float targetEdgeY = center.y - halfOverlap;
                     float deltaY = targetEdgeY - bottomY;
                     endY = rt.anchoredPosition.y + deltaY;
                     rt.DOKill();
@@ -172,7 +173,7 @@ public class WinGame : MonoBehaviour
                 }
             case MoveDir.Left:
                 {
-                    float leftX = world[1].x; 
+                    float leftX = world[1].x;
                     float targetEdgeX = center.x - halfOverlap;
                     float deltaX = targetEdgeX - leftX;
                     endX = rt.anchoredPosition.x + deltaX;
@@ -182,7 +183,7 @@ public class WinGame : MonoBehaviour
                 }
             case MoveDir.Right:
                 {
-                    float rightX = world[2].x; 
+                    float rightX = world[2].x;
                     float targetEdgeX = center.x + halfOverlap;
                     float deltaX = targetEdgeX - rightX;
                     endX = rt.anchoredPosition.x + deltaX;
@@ -205,11 +206,11 @@ public class WinGame : MonoBehaviour
         if (counterText == null) return;
 
         var t = counterText.rectTransform;
-        t.DOKill(true); 
+        t.DOKill(true);
         t.localScale = _counterOriginalScale;
 
         DOTween.Sequence()
-            .SetUpdate(true) 
+            .SetUpdate(true)
             .Append(t.DOScale(_counterOriginalScale * bumpScale, bumpInDuration).SetEase(Ease.OutQuad))
             .Append(t.DOScale(_counterOriginalScale, bumpOutDuration).SetEase(Ease.InQuad));
     }
@@ -228,9 +229,20 @@ public class WinGame : MonoBehaviour
         if (rightImage != null) rightImage.gameObject.SetActive(false);
         if (counterText != null) counterText.gameObject.SetActive(false);
 
-        if (winScreenImage != null)
-        {
-            winScreenImage.gameObject.SetActive(true);
-        }
+        winScreenImage.gameObject.SetActive(true);
+
+        statisticManager.GenerateStats();
+        statisticManager.PlayEntryAnimation();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        LoadingSystem.Instance.LoadLevel(sceneName);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("wychodzisz z gry");
+        Application.Quit();
     }
 }

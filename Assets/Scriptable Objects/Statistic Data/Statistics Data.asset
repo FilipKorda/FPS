@@ -12,3 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2092011dac08d4ab89480a3913f4f9, type: 3}
   m_Name: Statistics Data
   m_EditorClassIdentifier: 
+  damageDealt: 0
+  ammoShot: 0
+  healthLost: 0
+  healthHealed: 0
+  oxygenLost: 0
+  oxygenRecovery: 0
+  alienKillCount: 0
+  alienMagKillCount: 0
+  orcKillCount: 0
+  robotKillCount: 0
+  bossKillCount: 0
+  allQuestsCount: 0
+  questsGetCount: 0
+  questsCompletedCount: 0
+  itemsPickedUpCount: 0
+  itemsUsedCount: 0
+  ammoPickedUpCount: 0
+  grenadesUsedCount: 0
+  smokeGrenadesUsedCount: 0

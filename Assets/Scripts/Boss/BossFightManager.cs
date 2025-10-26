@@ -1,4 +1,5 @@
 using FPS.Enemy;
+using System.Collections;
 using UnityEngine;
 using static SnakeBoss;
 
@@ -8,6 +9,7 @@ public class BossFightManager : MonoBehaviour
     [SerializeField] private SnakeBossHealth snakeBossHealth;
     [SerializeField] private BossRaycastHit bossRaycastHit;
     [SerializeField] private NpcMovement[] npcMovements;
+    [SerializeField] private WinGame winGame;
 
     [ContextMenu(" -= Set Boss To Patrol =-")]
     public void SetBossToPatrol()
@@ -26,14 +28,23 @@ public class BossFightManager : MonoBehaviour
         SetNpcHide();
     }
 
+    [ContextMenu(" -= End Boss Fight =-")]
     public void EndBossFight()
     {
         snakeBoss.SetMove(false);
-        bossRaycastHit.SetUseRaycast(false); 
+        bossRaycastHit.SetUseRaycast(false);
         snakeBoss.ChangeBossState(BossState.Idle, 1);
         snakeBossHealth.HideBossHealthSlider();
         SetNpcStandUp();
+        StartCoroutine(ActivateWinGamePanel());
     }
+
+    private IEnumerator ActivateWinGamePanel()
+    {
+        yield return new WaitForSeconds(5f);
+        winGame.ActivateWinGamePanel();
+    }
+
 
     private void SetNpcHide()
     {
@@ -50,7 +61,4 @@ public class BossFightManager : MonoBehaviour
             npc.StandUpNpcAfterBossDead();
         }
     }
-
-
-
 }

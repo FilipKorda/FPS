@@ -274,7 +274,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
             UpdateOxygenSlider();
 
-            StatisticsCollector.AddOxygenRecovery(oxygenIncreaseRate);
+            if(currentOxygen < maxOxygen)
+            {
+                StatisticsCollector.AddOxygenRecovery(oxygenIncreaseRate);
+            }            
         }
     }
 

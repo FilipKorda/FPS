@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Stats Lebel_pl
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pl
+  m_SharedData: {fileID: 11400000, guid: 19932bcc0ddde0244a4b1bdecc1f0ed9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 809188478976
+    m_Localized: "Dzi\u0119ki za gre!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769527140352
+    m_Localized: "U\u017Cycie granatu dymnego"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 742901698560
+    m_Localized: "U\u017Cycie granatu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702783180800
+    m_Localized: Zebrana amunicja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 673322389504
+    m_Localized: "U\u017Cycie przedmiotui"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 639247863808
+    m_Localized: "Podnie\u015Benie przedmiotu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567177138176
+    m_Localized: Zadania wykonane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 539264045056
+    m_Localized: Otrzymane zadania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501154598912
+    m_Localized: Wszyskie zadania
+    m_Metadata:
+      m_Items: []
+  - m_Id: 468397084672
+    m_Localized: Inne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 440899227648
+    m_Localized: "Boss (W\u0105\u017C)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 421035003904
+    m_Localized: Robot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 401212723200
+    m_Localized: Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 374629224448
+    m_Localized: Obcy Mag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 337870344192
+    m_Localized: Obcy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302797574144
+    m_Localized: "Ilo\u015B\u0107 zabi\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 266898526208
+    m_Localized: Imie potwora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216248111104
+    m_Localized: Odzyskany tlen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180936265728
+    m_Localized: Stracony tlen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143577600000
+    m_Localized: Odzyskane zdrowie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117484834816
+    m_Localized: Stracone zdrowie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79312474112
+    m_Localized: "Wystrza\u0142y"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34995458048
+    m_Localized: "Zadane obra\u017Cenia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5798907904
+    m_Localized: Statystyki
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

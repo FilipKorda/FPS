@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Stats Lebel_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 19932bcc0ddde0244a4b1bdecc1f0ed9, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5798907904
+    m_Localized: Statisctics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34995458048
+    m_Localized: Damage Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 79312474112
+    m_Localized: Ammo Shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 117484834816
+    m_Localized: Health Lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 143577600000
+    m_Localized: Health Heal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180936265728
+    m_Localized: Oxygen Lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216248111104
+    m_Localized: Oxygen Recover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 266898526208
+    m_Localized: Monster Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302797574144
+    m_Localized: Kill Amount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 337870344192
+    m_Localized: Alien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 374629224448
+    m_Localized: Alien Mag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 401212723200
+    m_Localized: Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 421035003904
+    m_Localized: Robot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 440899227648
+    m_Localized: Boss (Snake)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 468397084672
+    m_Localized: Others
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501154598912
+    m_Localized: All Quests
+    m_Metadata:
+      m_Items: []
+  - m_Id: 539264045056
+    m_Localized: Quest Get
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567177138176
+    m_Localized: Quest Completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 639247863808
+    m_Localized: Item Pick Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 673322389504
+    m_Localized: Item Use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702783180800
+    m_Localized: Pick Up Ammo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 742901698560
+    m_Localized: Grenade Use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 769527140352
+    m_Localized: Smoke Grenade Use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 809188478976
+    m_Localized: Thanks For Playing!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
