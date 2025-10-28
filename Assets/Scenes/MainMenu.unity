@@ -123,6 +123,62 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &222718729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222718731}
+  - component: {fileID: 222718730}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &222718730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222718729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266ed859251f5cc4bab5d1c9a7f6099b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuClip: {fileID: 8300000, guid: 7d3f7d4e6a3f8e84c8f53339d751138b, type: 3}
+  loadingClip: {fileID: 8300000, guid: a1b30223eb4a84c419eda0c464bc1b01, type: 3}
+  levelStartClip: {fileID: 8300000, guid: 07841661032c8944394f7d9e0e0221e0, type: 3}
+  winClip: {fileID: 8300000, guid: 760c6beea8821134eb8684ec088d42e6, type: 3}
+  loseClip: {fileID: 8300000, guid: f9c326c84ed7c624f9ee4e2c48507720, type: 3}
+  sectorClips:
+  - {fileID: 8300000, guid: 631b2829b068fcd469abe8434b33cec5, type: 3}
+  - {fileID: 8300000, guid: 51c9c763a710ebd49a7abcda3ce45c23, type: 3}
+  crossfadeDuration: 1.5
+  musicVolume: 1
+  musicMixerGroup: {fileID: 24300002, guid: 7b1a9caf8bf06754b92aed0466a9f24a, type: 2}
+  audioMixer: {fileID: 24100000, guid: 7b1a9caf8bf06754b92aed0466a9f24a, type: 2}
+--- !u!4 &222718731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222718729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9659258, z: -0, w: 0.2588191}
+  m_LocalPosition: {x: -35.975, y: 1, z: 68.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &524897920
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b319afcfa2c54740843f8d39b8f214c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeholderToken: You
   caseInsensitive: 1
   mainMenuSceneName: MainMenu
   conversations:
@@ -686,3 +741,4 @@ SceneRoots:
   - {fileID: 1791843729729973250}
   - {fileID: 1417821190818107999}
   - {fileID: 524897922}
+  - {fileID: 222718731}

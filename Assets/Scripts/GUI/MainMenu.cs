@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -8,6 +9,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject mainPausePanel;
     public bool isSettingsOpen = false;
     public string sceneName = "SampleScene";
+
+
+    private void Start()
+    {
+        PlayMainMenuMusic();
+    }
+
+    private void PlayMainMenuMusic()
+    {
+        MusicManager.Instance.PlayMainMenu();
+    }
 
     public void PlayGame()
     {

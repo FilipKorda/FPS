@@ -60,6 +60,9 @@ public class TimelineEventsHandler : MonoBehaviour
 
     public void StartCutscene()
     {
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayLevelStart();
+
         playerController.canMove = true;
         mouseLook.canLookAround = true;
         playerSingleton.canShoot = false;

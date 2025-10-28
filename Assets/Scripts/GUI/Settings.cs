@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
+using Game.Audio;
 
 public class Settings : MonoBehaviour
 {
@@ -74,9 +75,6 @@ public class Settings : MonoBehaviour
     private float resetSfxVolume = 1f;
     //Mute
     [SerializeField] private Toggle soundToggle;
-    const string MIXER_MASTER = "MasterVolume";
-    const string MIXER_MUSIC = "MusicVolume";
-    const string MIXER_SFX = "SfxVolume";
     [SerializeField] private Button[] buttons;
 
     [Header("Main Menu Adjustmetns")]
@@ -93,6 +91,10 @@ public class Settings : MonoBehaviour
     void OnEnable()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+
+        ReadingSoundsSaveValues();
+        ReadingToggleMuteSaveValue();
+        SetSoundState(soundToggle != null ? soundToggle.isOn : false); 
     }
 
     void OnDisable()
@@ -121,18 +123,19 @@ public class Settings : MonoBehaviour
         InitializeShadow();
         SetShadowResolution(availableShadowResolutions[0]);
 
-        SetSoundState(soundToggle.isOn);
-
         ReadingSoundsSaveValues();
+        ReadingToggleMuteSaveValue(); 
+        SetSoundState(soundToggle != null ? soundToggle.isOn : false); 
+
         ReadingQualitySaveValues();
         ReadingResolutionSaveValues();
         ReadingAntiAliasingSaveValues();
         ReadingShadowSaveValues();
-        ReadingToggleMuteSaveValue();
         ReadingToggleFullscreenSaveValue();
 
         ReadingInvertMouseSaveValue();
-        invertMouseToggle.onValueChanged.AddListener(OnInvertMouseToggleChanged);
+        if (invertMouseToggle != null)
+            invertMouseToggle.onValueChanged.AddListener(OnInvertMouseToggleChanged);
 
         StartCoroutine(InitializeLanguageDropdown());
     }
@@ -183,7 +186,6 @@ public class Settings : MonoBehaviour
         if (allLocales == null || allLocales.Count == 0)
             yield break;
 
-        // Zbieramy tylko PL i EN (jak dotychczas)
         Locale pl = null, en = null;
         foreach (var locale in allLocales)
         {
@@ -214,7 +216,6 @@ public class Settings : MonoBehaviour
         }
         languageDropdown.AddOptions(options);
 
-        // 1) Spróbuj odczytaæ kod z PlayerPrefLocaleSelector
         string savedCode = null;
         var selectors = LocalizationSettings.StartupLocaleSelectors;
         foreach (var s in selectors)
@@ -226,15 +227,12 @@ public class Settings : MonoBehaviour
             }
         }
 
-        // 2) Jeœli brak, odczytaj nasz w³asny klucz
         if (string.IsNullOrEmpty(savedCode) && PlayerPrefs.HasKey(LocalePrefKey))
             savedCode = PlayerPrefs.GetString(LocalePrefKey);
 
-        // 3) Jeœli nadal brak, u¿yj aktualnie ustawionego locale
         if (string.IsNullOrEmpty(savedCode) && LocalizationSettings.SelectedLocale != null)
             savedCode = LocalizationSettings.SelectedLocale.Identifier.Code;
 
-        // Ustal docelowy locale i indeks dropdownu
         Locale targetLocale = null;
         int dropdownIndex = 0;
 
@@ -248,7 +246,6 @@ public class Settings : MonoBehaviour
             }
         }
 
-        // Fallback: PL lub pierwszy dostêpny
         if (targetLocale == null)
         {
             int plIdx = FindLanguageIndexByCode("pl");
@@ -264,17 +261,14 @@ public class Settings : MonoBehaviour
             }
         }
 
-        // Zapisz/persistuj tylko wybrany docelowy (nie nadpisuj zawsze na PL)
         if (targetLocale != null)
             PersistSelectedLocale(targetLocale);
 
-        // Ustaw dropdown pod aktualny locale (bez wymuszania 0)
         languageDropdown.onValueChanged.RemoveListener(OnLanguageDropdownValueChanged);
         languageDropdown.value = dropdownIndex;
         languageDropdown.RefreshShownValue();
         languageDropdown.onValueChanged.AddListener(OnLanguageDropdownValueChanged);
 
-        // Synchronizuj dodatkowo, gdyby SelectedLocale ró¿ni³ siê od indexu
         SyncLanguageDropdownWithSelectedLocale();
     }
 
@@ -352,12 +346,18 @@ public class Settings : MonoBehaviour
 
     void ReadingSoundsSaveValues()
     {
-        float savedMasterVolume = PlayerPrefs.GetFloat("MasterVolume", resetMasterVolume);
-        float savedMusicVolume = PlayerPrefs.GetFloat("MusicVolume", resetMusicVolume);
-        float savedSfxVolume = PlayerPrefs.GetFloat("SfxVolume", resetSfxVolume);
-        masterSlider.value = savedMasterVolume;
-        musicSlider.value = savedMusicVolume;
-        sfxSlider.value = savedSfxVolume;
+        float savedMaster = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefMasterVolume, resetMasterVolume);
+        float savedMusic = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefMusicVolume, resetMusicVolume);
+        float savedSfx = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefSfxVolume, resetSfxVolume);
+
+        if (masterSlider != null)
+            masterSlider.value = (masterSlider.maxValue > 1f) ? Mathf.Clamp01(savedMaster) * masterSlider.maxValue : Mathf.Clamp01(savedMaster);
+
+        if (musicSlider != null)
+            musicSlider.value = (musicSlider.maxValue > 1f) ? Mathf.Clamp01(savedMusic) * musicSlider.maxValue : Mathf.Clamp01(savedMusic);
+
+        if (sfxSlider != null)
+            sfxSlider.value = (sfxSlider.maxValue > 1f) ? Mathf.Clamp01(savedSfx) * sfxSlider.maxValue : Mathf.Clamp01(savedSfx);
     }
 
     void Update()
@@ -676,42 +676,69 @@ public class Settings : MonoBehaviour
 
     public void SetVolume(string parameterName, float volume)
     {
-        audioMainMixer.SetFloat(parameterName, Mathf.Log10(volume) * 20);
+        if (audioMainMixer == null) return;
+
+        float linear = (volume > 1f) ? Mathf.Clamp01(volume / 100f) : Mathf.Clamp01(volume);
+
+        if (linear <= 0f)
+        {
+            audioMainMixer.SetFloat(parameterName, -80f);
+        }
+        else
+        {
+            float db = Mathf.Log10(Mathf.Max(linear, 0.0001f)) * 20f;
+            audioMainMixer.SetFloat(parameterName, db);
+        }
     }
 
     public void OnMasterVolumeChanged(float volume)
     {
-        SetVolume(MIXER_MASTER, volume);
+        SetVolume(AudioKeys.MixerMasterParam, volume);
         UpdateMasterAmountText(volume);
-        PlayerPrefs.SetFloat("MasterVolume", volume);
+
+        float linear = (volume > 1f)
+            ? Mathf.Clamp01(volume / (masterSlider != null ? masterSlider.maxValue : 100f))
+            : Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMasterVolume, linear);
     }
 
     public void OnMusicVolumeChanged(float volume)
     {
-        SetVolume(MIXER_MUSIC, volume);
+        SetVolume(AudioKeys.MixerMusicParam, volume);
         UpdateMusicAmountText(volume);
-        PlayerPrefs.SetFloat("MusicVolume", volume);
+
+        float linear = (volume > 1f) ? Mathf.Clamp01(volume / (musicSlider != null ? musicSlider.maxValue : 100f)) : Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMusicVolume, linear);
+
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetVolume(linear);
     }
 
     public void OnSFXVolumeChanged(float volume)
     {
-        SetVolume(MIXER_SFX, volume);
+        SetVolume(AudioKeys.MixerSfxParam, volume);
         UpdateSfxAmountText(volume);
-        PlayerPrefs.SetFloat("SfxVolume", volume);
+
+        float linear = (volume > 1f)
+            ? Mathf.Clamp01(volume / (sfxSlider != null ? sfxSlider.maxValue : 100f))
+            : Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(AudioKeys.PlayerPrefSfxVolume, linear);
     }
 
-    public void OnSoundToggleChanged(bool isSoundOn)
+    public void OnSoundToggleChanged(bool isMuted)
     {
-        SetSoundState(isSoundOn);
-        PlayerPrefs.SetInt("ToggleMute", isSoundOn ? 1 : 0);
+        PlayerPrefs.SetInt(AudioKeys.PlayerPrefToggleMute, isMuted ? 1 : 0);
+
+        SetSoundState(isMuted);
     }
 
     private void ReadingToggleMuteSaveValue()
     {
-        if (PlayerPrefs.HasKey("ToggleMute"))
+        if (PlayerPrefs.HasKey(AudioKeys.PlayerPrefToggleMute))
         {
-            int savedState = PlayerPrefs.GetInt("ToggleMute");
-            soundToggle.isOn = savedState == 1;
+            int savedState = PlayerPrefs.GetInt(AudioKeys.PlayerPrefToggleMute);
+            if (soundToggle != null)
+                soundToggle.isOn = savedState == 1; 
         }
     }
 
@@ -719,8 +746,10 @@ public class Settings : MonoBehaviour
     {
         if (soundToggle != null)
         {
-            PlayerPrefs.DeleteKey("ToggleMute");
+            PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefToggleMute);
+            
             soundToggle.isOn = false;
+            SetSoundState(false);
         }
         else
         {
@@ -728,46 +757,58 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public void SetSoundState(bool isSoundOn)
+    public void SetSoundState(bool isMuted)
     {
-        if (!isSoundOn)
+        if (isMuted)
         {
-            SetVolume(MIXER_MASTER, masterSlider.value);
-            SetVolume(MIXER_MUSIC, musicSlider.value);
-            SetVolume(MIXER_SFX, sfxSlider.value);
+            SetVolume(AudioKeys.MixerMasterParam, 0f);
+            SetVolume(AudioKeys.MixerMusicParam, 0f);
+            SetVolume(AudioKeys.MixerSfxParam, 0f);
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.SetVolume(0f);
         }
         else
         {
-            SetVolume(MIXER_MASTER, 0f);
-            SetVolume(MIXER_MUSIC, 0f);
-            SetVolume(MIXER_SFX, 0f);
+            SetVolume(AudioKeys.MixerMasterParam, masterSlider != null ? masterSlider.value : resetMasterVolume);
+            SetVolume(AudioKeys.MixerMusicParam, musicSlider != null ? musicSlider.value : resetMusicVolume);
+            SetVolume(AudioKeys.MixerSfxParam, sfxSlider != null ? sfxSlider.value : resetSfxVolume);
+
+            float musicLinear = (musicSlider != null)
+                ? ((musicSlider.value > 1f) ? Mathf.Clamp01(musicSlider.value / musicSlider.maxValue) : Mathf.Clamp01(musicSlider.value))
+                : resetMusicVolume;
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.SetVolume(musicLinear);
         }
     }
 
     public void ResetMaster()
     {
         masterSlider.value = resetMasterVolume;
-        PlayerPrefs.DeleteKey("MasterVolume");
+        PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefMasterVolume);
         masterSlider.value = resetMasterVolume;
-        SetVolume(MIXER_MASTER, resetMasterVolume);
+        SetVolume(AudioKeys.MixerMasterParam, resetMasterVolume);
         UpdateMasterAmountText(resetMasterVolume);
     }
 
     public void ResetMusic()
     {
         musicSlider.value = resetMusicVolume;
-        PlayerPrefs.DeleteKey("MusicVolume");
+        PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefMusicVolume);
         musicSlider.value = resetMusicVolume;
-        SetVolume(MIXER_MUSIC, resetMusicVolume);
+        SetVolume(AudioKeys.MixerMusicParam, resetMusicVolume);
         UpdateMusicAmountText(resetMusicVolume);
+
+        float linear = (resetMusicVolume > 1f) ? Mathf.Clamp01(resetMusicVolume / (musicSlider != null ? musicSlider.maxValue : 100f)) : Mathf.Clamp01(resetMusicVolume);
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetVolume(linear);
     }
 
     public void ResetSfx()
     {
         sfxSlider.value = resetSfxVolume;
-        PlayerPrefs.DeleteKey("SfxVolume");
+        PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefSfxVolume);
         sfxSlider.value = resetSfxVolume;
-        SetVolume(MIXER_SFX, resetSfxVolume);
+        SetVolume(AudioKeys.MixerSfxParam, resetSfxVolume);
         UpdateSfxAmountText(resetSfxVolume);
     }
 
@@ -861,7 +902,6 @@ public class Settings : MonoBehaviour
         shadowResolutionDropdown.RefreshShownValue();
     }
 
-    // ZMIANA: zawsze zapisuj PlayerPrefs i ustawiaj MouseLook
     public void OnInvertMouseToggleChanged(bool isOn)
     {
         PlayerPrefs.SetInt("InvertMouse", isOn ? 1 : 0);

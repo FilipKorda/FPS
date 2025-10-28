@@ -24,6 +24,9 @@ public class EnemyAreaSpawner : MonoBehaviour
 
     public void ActivateSecondArea()
     {
+        if(MusicManager.Instance != null)
+            MusicManager.Instance.PlaySector(0);
+
         firstEnemyArea.SetActive(false);
         secondEnemyArea.SetActive(true);
         thirdEnemyArea.SetActive(false);
@@ -36,6 +39,9 @@ public class EnemyAreaSpawner : MonoBehaviour
 
     public void ActivateThirdArea()
     {
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlaySector(1);
+
         firstEnemyArea.SetActive(false);
         secondEnemyArea.SetActive(false);
         thirdEnemyArea.SetActive(true);

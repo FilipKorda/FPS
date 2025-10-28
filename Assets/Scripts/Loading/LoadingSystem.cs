@@ -33,6 +33,8 @@ public class LoadingSystem : MonoBehaviour
 
     public void LoadLevel(string sceneName)
     {
+        MusicManager.Instance.PlayLoading();
+
         StartAnimations();
         StartCoroutine(LoadLevelAsync(sceneName));
     }

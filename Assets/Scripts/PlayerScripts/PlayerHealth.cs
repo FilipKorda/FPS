@@ -78,13 +78,13 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     public bool isDead = false;
 
     [Header("=========== Hints Blink ===========")]
-    [SerializeField] private float hintFadeDuration = 0.25f;   
-    [SerializeField] private float hintVisibleDuration = 1f;  
-    [SerializeField] private float hintHiddenDuration = 2f;   
+    [SerializeField] private float hintFadeDuration = 0.25f;
+    [SerializeField] private float hintVisibleDuration = 1f;
+    [SerializeField] private float hintHiddenDuration = 2f;
 
     private Sequence pressXBlinkSeq;
     private Sequence pressZBlinkSeq;
-    
+
 
     private void Awake()
     {
@@ -254,7 +254,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             StatisticsCollector.AddOxygenLost(oxygenDecreaseRate);
 
             if (currentOxygen == 0f)
-            {             
+            {
                 DeathCauseManager.MarkNoOxygen();
                 TakeDamage(0.025f);
             }
@@ -274,10 +274,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
             UpdateOxygenSlider();
 
-            if(currentOxygen < maxOxygen)
+            if (currentOxygen < maxOxygen)
             {
                 StatisticsCollector.AddOxygenRecovery(oxygenIncreaseRate);
-            }            
+            }
         }
     }
 
@@ -321,6 +321,9 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             StopCoroutine(cameraFallCoroutine);
             cameraFallCoroutine = null;
         }
+
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayLose();
 
         isDead = true;
         isCameraFallActive = true;

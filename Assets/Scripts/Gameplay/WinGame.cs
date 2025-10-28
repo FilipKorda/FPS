@@ -50,6 +50,9 @@ public class WinGame : MonoBehaviour
     [ContextMenu("Active Win Game Panel")]
     public void ActivateWinGamePanel()
     {
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.PlayWin();
+
         if (_slowRoutine != null)
             StopCoroutine(_slowRoutine);
 
