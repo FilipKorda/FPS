@@ -9,7 +9,7 @@ public class OrcAttackColider : MonoBehaviour
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
         {
             DeathCauseManager.MarkKilledByEnemy(2);
-            damageable.TakeDamage(damageAmount);
+            damageable.TakeDamage(damageAmount, transform.position);
             Debug.Log("Deal damage: " + damageAmount);
         }
     }

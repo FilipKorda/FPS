@@ -9,7 +9,7 @@ public class RobotAttackColider : MonoBehaviour
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
         {
             DeathCauseManager.MarkKilledByEnemy(3);
-            damageable.TakeDamage(damageAmount);
+            damageable.TakeDamage(damageAmount, transform.position);
             Debug.Log("Deal damage: " + damageAmount);
         }
     }

@@ -9,7 +9,8 @@ public class AttackCollider : MonoBehaviour
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
         {
             DeathCauseManager.MarkKilledByEnemy(0);
-            damageable.TakeDamage(damageAmount);
+            // przeka¿ pozycjê atakuj¹cego (ten collider nale¿y do wroga)
+            damageable.TakeDamage(damageAmount, transform.position);
             Debug.Log("Deal damage: " + damageAmount);
         }
     }

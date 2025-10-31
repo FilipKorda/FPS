@@ -10,6 +10,8 @@ public class PlayerSingleton : MonoBehaviour
 
     public bool canShoot = true;
 
+    public GameObject crosshair;
+
     private void Awake()
     {
         if (Instance == null)

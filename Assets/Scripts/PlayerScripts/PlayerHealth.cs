@@ -85,6 +85,27 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private Sequence pressXBlinkSeq;
     private Sequence pressZBlinkSeq;
 
+    [Header("=========== Direct Of Danger ===========")]
+    [SerializeField] private DirectOfDanger directOfDanger;
+
+    [Header("=========== Death Sounds ===========")]
+    [Tooltip("Lista dŸwiêków œmierci — bêdzie wybierany losowo.")]
+    [SerializeField] private AudioClip[] deathClips;
+    [SerializeField] private AudioSource deathAudioSource;
+
+    [Header("=========== Damage Sounds ===========")]
+    [Tooltip("Lista dŸwiêków przy otrzymaniu obra¿eñ — bêdzie wybierany losowo.")]
+    [SerializeField] private AudioClip[] damageClips;
+    [SerializeField] private AudioSource damageAudioSource;
+
+    [Header("=========== Choking Sounds ===========")]
+    [Tooltip("Lista dŸwiêków duszenia (brak tlenu) — bêd¹ odtwarzane kolejno.")]
+    [SerializeField] private AudioClip[] chokingClips;
+    [SerializeField] private AudioSource chokingDamageAudioSource;
+
+    private bool lastDamageWasOxygen = false;
+
+    private int chokingIndex = 0;
 
     private void Awake()
     {
@@ -104,6 +125,24 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         interactionManager = GetComponent<InteractionManager>();
         mainInventory = GetComponent<MainInventory>();
         marsHurricaneController = GetComponent<MarsHurricaneController>();
+
+        if (deathAudioSource != null)
+        {
+            deathAudioSource.playOnAwake = false;
+            deathAudioSource.volume = 0.05f;
+        }
+
+        if (damageAudioSource != null)
+        {
+            damageAudioSource.playOnAwake = false;
+            damageAudioSource.volume = 0.05f;
+        }
+
+        if (chokingDamageAudioSource != null)
+        {
+            chokingDamageAudioSource.playOnAwake = false;
+            chokingDamageAudioSource.volume = 0.05f;
+        }
     }
 
     void Start()
@@ -127,14 +166,14 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         if (!isInside && !haveMask)
         {
             DeathCauseManager.MarkNoMask();
-            TakeDamage(1000);
+            TakeDamage(1000, transform.position);
             return;
         }
 
         //cheat
         if (Input.GetKeyDown(KeyCode.O))
         {
-            TakeDamage(10);
+            TakeDamage(10, transform.position);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -256,7 +295,9 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             if (currentOxygen == 0f)
             {
                 DeathCauseManager.MarkNoOxygen();
-                TakeDamage(0.025f);
+        
+                lastDamageWasOxygen = true;
+                TakeDamage(0.025f, transform.position);
             }
         }
 
@@ -281,9 +322,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         }
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, UnityEngine.Vector3 sourcePosition)
     {
         if (isDead) return;
+
+        directOfDanger.NotifyDamageFrom(sourcePosition, PlayerSingleton.Instance.transform, playerCamera, true);
 
         if (currentHealth <= 74)
         {
@@ -292,7 +335,6 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         else if (currentHealth <= 75)
         {
             healthSlider.gameObject.SetActive(true);
-
         }
 
         StatisticsCollector.AddHealthLost(damageAmount);
@@ -302,6 +344,20 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
         currentHealth = Mathf.Max(0f, currentHealth);
 
         UpdateHealthSlider();
+
+        if (currentHealth > 0f)
+        {
+            if (lastDamageWasOxygen)
+            {
+                PlayNextChokingSound();
+            }
+            else
+            {
+                PlayRandomDamageSound();
+            }
+        }
+
+        lastDamageWasOxygen = false;
 
         if (currentHealth == 0f)
         {
@@ -321,6 +377,8 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             StopCoroutine(cameraFallCoroutine);
             cameraFallCoroutine = null;
         }
+
+        PlayRandomDeathSound();
 
         if (MusicManager.Instance != null)
             MusicManager.Instance.PlayLose();
@@ -576,5 +634,41 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     {
         pressXBlinkSeq?.Kill();
         pressZBlinkSeq?.Kill();
+    }
+
+    private void PlayRandomDeathSound()
+    {
+        if (deathAudioSource == null) return;
+        if (deathClips == null || deathClips.Length == 0) return;
+
+        var clip = deathClips[Random.Range(0, deathClips.Length)];
+        if (clip != null)
+        {
+            deathAudioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayRandomDamageSound()
+    {
+        if (damageAudioSource == null) return;
+        if (damageClips == null || damageClips.Length == 0) return;
+
+        var clip = damageClips[Random.Range(0, damageClips.Length)];
+        if (clip != null)
+        {
+            damageAudioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayNextChokingSound()
+    {
+        if (chokingDamageAudioSource == null) return;
+        if (chokingClips == null || chokingClips.Length == 0) return;
+
+        var clip = chokingClips[chokingIndex];
+        chokingIndex = (chokingIndex + 1) % chokingClips.Length;
+
+        chokingDamageAudioSource.clip = clip;
+        chokingDamageAudioSource.Play();
     }
 }

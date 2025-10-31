@@ -67,23 +67,32 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (!canMove)
+        // natychmiastowe wejœcie bez wyg³adzenia (koniec "p³yniêcia")
+        Vector3 input = new Vector3(Input.GetAxisRaw(Axis.HORIZONTAL), 0f,
+                                    Input.GetAxisRaw(Axis.VERTICAL));
+
+        // zapobiegamy szybszemu poruszaniu po przek¹tnej
+        if (input.sqrMagnitude > 1f) input.Normalize();
+
+        // prêdkoœæ horyzontalna w m/s
+        Vector3 horizontalVelocity = transform.TransformDirection(input) * (speed * ExternalSpeedMultiplier);
+
+        // aktualizuj pionow¹ prêdkoœæ (m/s)
+        ApplyGravity();
+
+        // ca³kowity ruch jako velocity (m/s)
+        Vector3 velocity = horizontalVelocity + Vector3.up * vertical_Velocity;
+
+        // przesuniêcie na klatkê
+        var flags = character_Controller.Move(velocity * Time.deltaTime);
+
+        if ((flags & CollisionFlags.Above) != 0 && vertical_Velocity > 0f)
         {
-            move_Direction = new Vector3(Input.GetAxis(Axis.HORIZONTAL), 0f,
-                                  Input.GetAxis(Axis.VERTICAL));
-            move_Direction = transform.TransformDirection(move_Direction);
-            // U¿yj mno¿nika prêdkoœci
-            move_Direction *= (speed * ExternalSpeedMultiplier) * Time.deltaTime;
-
-            ApplyGravity();
-
-            var flags = character_Controller.Move(move_Direction);
-
-            if ((flags & CollisionFlags.Above) != 0 && vertical_Velocity > 0f)
-            {
-                vertical_Velocity = 0f; 
-            }
+            vertical_Velocity = 0f; 
         }
+
+        // dla innych systemów (jeœli potrzebujesz)
+        move_Direction = velocity;
     }
 
     void ApplyGravity()
@@ -102,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerJump();
 
-        move_Direction.y = vertical_Velocity * Time.deltaTime;
+        // ju¿ nie przypisujemy tu move_Direction.y jako przesuniêcia — vertical_Velocity jest prêdkoœci¹ (m/s)
     }
 
     void PlayerJump()

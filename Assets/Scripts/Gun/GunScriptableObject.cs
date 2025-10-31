@@ -40,6 +40,15 @@ namespace FPS.Guns
         private ObjectPool<Bullet> BulletPool;
         private bool LastFrameWantedToShoot;
 
+        private Vector3 modelOriginalLocalPosition;
+        private Coroutine reloadAnimationCoroutine;
+        private bool modelHidden = false;
+
+        // konfiguracja animacji
+        private const float defaultHideDuration = 0.25f; // ile trwa schowanie (lerp)
+        private const float showAnimDuration = 0.2f;     // ile trwa pojawienie (lerp)
+        private readonly Vector3 hideOffset = Vector3.down * 1.5f;
+
         public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehaviour, Camera Camera = null)
         {
             this.ActiveMonoBehaviour = ActiveMonoBehaviour;
@@ -54,6 +63,9 @@ namespace FPS.Guns
             Model.transform.SetParent(Parent, false);
 
             Model.transform.SetLocalPositionAndRotation(SpawnPoint, Quaternion.Euler(SpawnRotation));
+
+            modelOriginalLocalPosition = Model.transform.localPosition;
+
             ActiveCamera = Camera;
 
             ShootingAudioSource = Model.GetComponent<AudioSource>();
@@ -102,12 +114,40 @@ namespace FPS.Guns
         {
             Debug.Log("Start Reloading");
             AudioConfig.PlayReloadClip(ShootingAudioSource);
+
+            if (ActiveMonoBehaviour != null)
+            {
+                if (reloadAnimationCoroutine != null)
+                {
+                    ActiveMonoBehaviour.StopCoroutine(reloadAnimationCoroutine);
+                    reloadAnimationCoroutine = null;
+                }
+
+                reloadAnimationCoroutine = ActiveMonoBehaviour.StartCoroutine(HideThenAutoShowRoutine(AmmoConfig.reloadTime));
+            }
         }
 
         public void EndReload()
         {
             Debug.Log("Reloading complete");
             AmmoConfig.Reload();
+
+            // Jeœli animation coroutine wci¹¿ dzia³a — zatrzymaj i natychmiast przywróæ.
+            if (ActiveMonoBehaviour != null)
+            {
+                if (reloadAnimationCoroutine != null)
+                {
+                    ActiveMonoBehaviour.StopCoroutine(reloadAnimationCoroutine);
+                    reloadAnimationCoroutine = null;
+                }
+
+                // upewnij siê ¿e broñ wróci do oryginalnej pozycji (szybki lerp)
+                if (Model != null)
+                {
+                    // uruchamiamy korutinê, aby dopilnowa³a p³ynnego przywrócenia
+                    reloadAnimationCoroutine = ActiveMonoBehaviour.StartCoroutine(ShowWeaponRoutineImmediate());
+                }
+            }
         }
 
         public bool CanReload()
@@ -480,6 +520,90 @@ namespace FPS.Guns
             config.SpawnRotation = SpawnRotation;
 
             return config;
+        }
+
+        private IEnumerator HideThenAutoShowRoutine(float reloadTime)
+        {
+            if (Model == null) yield break;
+
+            // wy³¹czamy celownik
+            PlayerSingleton.Instance.crosshair.SetActive(false);
+
+            float hideDur = Mathf.Min(defaultHideDuration, reloadTime * 0.4f);
+            float showDur = Mathf.Min(showAnimDuration, reloadTime * 0.4f);
+
+            if (reloadTime <= hideDur + showDur)
+            {
+                hideDur = reloadTime * 0.5f;
+                showDur = reloadTime - hideDur;
+            }
+
+            yield return MoveModelTo(modelOriginalLocalPosition + hideOffset, hideDur);
+
+            if (Model != null)
+            {
+                Model.SetActive(false);
+                modelHidden = true;
+            }
+
+            float wait = reloadTime - hideDur - showDur;
+            if (wait > 0f)
+            {
+                float elapsed = 0f;
+                while (elapsed < wait)
+                {
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+            }
+
+            if (Model != null)
+            {
+                Model.transform.localPosition = modelOriginalLocalPosition + hideOffset;
+                Model.SetActive(true);
+                modelHidden = false;
+
+                yield return MoveModelTo(modelOriginalLocalPosition, showDur);
+            }
+
+            reloadAnimationCoroutine = null;
+        }
+
+        private IEnumerator ShowWeaponRoutineImmediate()
+        {
+            if (Model == null)
+                yield break;
+
+            Model.SetActive(true);
+            PlayerSingleton.Instance.crosshair.SetActive(true);
+
+            yield return MoveModelTo(modelOriginalLocalPosition, showAnimDuration);
+
+            modelHidden = false;
+            reloadAnimationCoroutine = null;
+        }
+
+        private IEnumerator MoveModelTo(Vector3 targetLocalPos, float duration)
+        {
+            if (Model == null)
+                yield break;
+
+            Vector3 start = Model.transform.localPosition;
+            float t = 0f;
+            if (duration <= 0f)
+            {
+                Model.transform.localPosition = targetLocalPos;
+                yield break;
+            }
+
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                Model.transform.localPosition = Vector3.Lerp(start, targetLocalPos, Mathf.Clamp01(t / duration));
+                yield return null;
+            }
+
+            Model.transform.localPosition = targetLocalPos;
         }
     }
 }

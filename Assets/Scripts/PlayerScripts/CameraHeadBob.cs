@@ -57,6 +57,15 @@ public class CameraHeadBob : MonoBehaviour
     private float currentZoomAmpScale = 1f;
     public void SetZooming(bool zoom) => currentZoomAmpScale = zoom ? zoomAmplitudeScale : 1f;
 
+    [Header("Footstep Sounds")]
+    [Tooltip("Lista dźwięków kroków — będą wybierane losowo, jeśli więcej niż 1.")]
+    [SerializeField] private AudioClip[] stepClips;
+    [Tooltip("AudioSource do odtwarzania kroków. Jeśli puste, zostanie dodane automatycznie.")]
+    [SerializeField] private AudioSource stepAudioSource;
+    [SerializeField, Range(0f, 1f)] private float stepVolume = 0.7f;
+    [Tooltip("Jeżeli true, wybiera losowy klip z tablicy; jeśli false — wybór sekwencyjny zależny od kroku.")]
+    [SerializeField] private bool useRandomClip = true;
+
     private Vector3 originalLocalPos; 
     private Vector3 baseLocalPos;    
     private Vector3 bobOffset;     
@@ -65,6 +74,9 @@ public class CameraHeadBob : MonoBehaviour
     private float phase;
 
     private Vector3 bobVelocity;
+
+    // detekcja kroku
+    private int lastStepIndex;
 
     public void SetCrouching(bool crouch) => isCrouching = crouch;
     public void SetSprinting(bool sprint) => isSprinting = sprint;
@@ -81,6 +93,21 @@ public class CameraHeadBob : MonoBehaviour
         bobOffset = Vector3.zero;
 
         lastSourcePos = motionSource.position;
+
+        // przygotuj AudioSource jeśli podano klipy, a nie ma źródła
+        if (stepClips != null && stepClips.Length > 0 && stepAudioSource == null)
+        {
+            stepAudioSource = GetComponent<AudioSource>();
+            if (stepAudioSource == null)
+            {
+                stepAudioSource = gameObject.AddComponent<AudioSource>();
+                stepAudioSource.playOnAwake = false;
+                // domyślnie spatial blend do 1 dla 3D (możesz ustawić w Inspectorze)
+                stepAudioSource.spatialBlend = 1f;
+            }
+        }
+
+        lastStepIndex = Mathf.FloorToInt(phase / Mathf.PI);
     }
 
     private void OnEnable()
@@ -154,6 +181,17 @@ public class CameraHeadBob : MonoBehaviour
         {
             phase += dt * freq;
 
+            // detekcja kroku: krok następuje co PI fazy (lewa/prawa noga)
+            if (stepClips != null && stepClips.Length > 0 && stepAudioSource != null)
+            {
+                int stepIndex = Mathf.FloorToInt(phase / Mathf.PI);
+                if (stepIndex != lastStepIndex)
+                {
+                    PlayStepSound(stepIndex);
+                    lastStepIndex = stepIndex;
+                }
+            }
+
             if (useStompStyle)
             {
                 float half = Mathf.Repeat(phase, Mathf.PI);
@@ -201,5 +239,22 @@ public class CameraHeadBob : MonoBehaviour
             bobOffset = Vector3.Lerp(bobOffset, targetOffset, dt * returnSpeed);
             bobTarget.localPosition = baseLocalPos + bobOffset;
         }
+    }
+
+    private void PlayStepSound(int stepIndex)
+    {
+        if (stepClips == null || stepClips.Length == 0 || stepAudioSource == null) return;
+
+        AudioClip clip;
+        if (useRandomClip)
+        {
+            clip = stepClips[Random.Range(0, stepClips.Length)];
+        }
+        else
+        {
+            clip = stepClips[Mathf.Abs(stepIndex) % stepClips.Length];
+        }
+
+        stepAudioSource.PlayOneShot(clip, stepVolume);
     }
 }

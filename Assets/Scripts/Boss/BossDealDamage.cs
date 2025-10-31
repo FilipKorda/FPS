@@ -33,14 +33,14 @@ public class BossDealDamage : MonoBehaviour
         if (playerHealth != null && !playerHealth.isDead && playerHealth.CompareTag("Player"))
         {
             DeathCauseManager.MarkKilledByBoss();
-            playerHealth.TakeDamage(damageAmount);
+            playerHealth.TakeDamage(damageAmount, transform.position);
             return;
         }
 
         var damagable = other.GetComponentInParent<IEnemyDamagable>();
         if (damagable != null && other.CompareTag("Player"))
         {
-            damagable.TakeDamage(damageAmount);
+            damagable.TakeDamage(damageAmount, transform.position);
         }
     }
 }

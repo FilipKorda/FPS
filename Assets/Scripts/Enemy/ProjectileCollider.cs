@@ -11,7 +11,7 @@ public class ProjectileCollider : MonoBehaviour
     {
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
         {
-            damageable.TakeDamage(damageAmount);
+            damageable.TakeDamage(damageAmount, transform.position);
             Destroy(gameObject);
             PlayCollisionEffetct();
             if (isRobotProjectile)
