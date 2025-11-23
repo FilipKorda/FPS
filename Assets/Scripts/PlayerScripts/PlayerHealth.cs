@@ -40,6 +40,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
     private readonly float timeWhenOutInsde = 0.2f;
     public bool isInside = true;
     public bool haveMask = false;
+    [SerializeField] private AudioSource maskOff;
+    [SerializeField] private AudioClip maskOffClip;
+    [SerializeField] private AudioSource wearMask;
+    [SerializeField] private AudioClip wearMaskClip;
 
     [Header("=========== Pause Menu ===========")]
     [SerializeField] private PauseMenu pauseMenu;
@@ -107,6 +111,9 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private int chokingIndex = 0;
 
+    private bool wasInside; // NEW
+    private Tween maskTween; // NEW
+
     private void Awake()
     {
         Instance = this;
@@ -155,8 +162,10 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
         healthSlider.gameObject.SetActive(false);
         oxygenSlider.gameObject.SetActive(false);
-
         gameOverScreenPanel.SetActive(false);
+
+        wasInside = isInside;          // NEW
+        ApplyMaskState(wasInside);     // NEW (ustaw stan pocz¹tkowy maski)
     }
 
     private void Update()
@@ -170,27 +179,18 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             return;
         }
 
-        //cheat
-        if (Input.GetKeyDown(KeyCode.O))
+        // cheat
+        if (Input.GetKeyDown(KeyCode.O)) TakeDamage(10, transform.position);
+        if (Input.GetKeyDown(KeyCode.X)) StartCoroutine(Heal(20));
+        if (Input.GetKeyDown(KeyCode.Z)) StartCoroutine(UseOxygenContainer(60));
+
+        if (isInside != wasInside)     
         {
-            TakeDamage(10, transform.position);
+            ApplyMaskState(isInside);
+            wasInside = isInside;     
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            StartCoroutine(Heal(20));
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartCoroutine(UseOxygenContainer(60));
-        }
-
-        if (OxygenHugeContainer.Instance.isRefillingOxygen)
-        {
-            IncreaseOxygen();
-        }
-        else if (!OxygenHugeContainer.Instance.isRefillingOxygen && isInside)
+        if (isInside)
         {
             IncreaseOxygen();
 
@@ -198,26 +198,44 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             {
                 PlayerSingleton.Instance.marsHurricaneController.DeactivePs_MarsHurricane();
             }
-
-            if (filterMaks != null)
-            {
-                filterMaks.transform.DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
-            }
-
         }
         else
         {
-            if (PlayerSingleton.Instance.marsHurricaneController.isHurricaneActive)
+            if (PlayerSingleton.Instance.marsHurricaneController.isHurricaneActive == false)
             {
                 PlayerSingleton.Instance.marsHurricaneController.ActivePs_MarsHurricane();
             }
 
-            if (filterMaks != null)
+            DecreaseOxygen();
+        }
+    }
+
+    private void ApplyMaskState(bool nowInside)
+    {
+        if (filterMaks == null) return;
+
+        maskTween?.Kill(); // nie nak³adaj wielu tweenów
+
+        if (nowInside)
+        {
+            // Zdejmujemy maskê (ruch w górê)
+            if (maskOff != null && maskOffClip != null)
             {
-                filterMaks.transform.DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);
+                maskOff.PlayOneShot(maskOffClip);
             }
 
-            DecreaseOxygen();
+            maskTween = filterMaks.transform
+                .DOLocalMove(filterMaksTransformWhenInside, timeWhenInsde);
+        }
+        else
+        {
+            if (wearMask != null && wearMaskClip != null)
+            {
+                wearMask.PlayOneShot(wearMaskClip);
+            }
+
+            maskTween = filterMaks.transform
+                .DOLocalMove(filterMaksTransformWhenOutsisde, timeWhenOutInsde);
         }
     }
 
@@ -295,7 +313,7 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
             if (currentOxygen == 0f)
             {
                 DeathCauseManager.MarkNoOxygen();
-        
+
                 lastDamageWasOxygen = true;
                 TakeDamage(0.025f, transform.position);
             }

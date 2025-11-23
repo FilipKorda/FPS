@@ -97,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 10
   collisonEffectPS: {fileID: 6785767817021644654, guid: 8950491b7bc2295478b06080f38771b7, type: 3}
+  isRobotProjectile: 0
+  projectileHitSound: {fileID: 8300000, guid: ce60baebc37cccb4d802fb782f40c059, type: 3}
 --- !u!1001 &4928815585228726521
 PrefabInstance:
   m_ObjectHideFlags: 0

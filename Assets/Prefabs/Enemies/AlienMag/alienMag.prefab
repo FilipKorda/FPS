@@ -453,6 +453,8 @@ MonoBehaviour:
   canShoot: 0
   projectilePS: {fileID: 8153621723489678102}
   floatingPS: {fileID: 3865746369753860244}
+  loopIdleSound: {fileID: 8300000, guid: a3139ffac804ad34e91c70a52c534648, type: 3}
+  shootSound: {fileID: 8300000, guid: df474627d5e5d4a4f9a335b8fc79c36e, type: 3}
   isDead: 0
 --- !u!4 &2185678577800792593 stripped
 Transform:
@@ -503,6 +505,8 @@ MonoBehaviour:
   _MaxHealth: 50
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1 &4822813988600642805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2652130149045022449, guid: b9bd66a678f6c8d43b7e30d157c87fa2, type: 3}
@@ -547,6 +551,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1 &4970256862922250748 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2511240423080479738, guid: b9bd66a678f6c8d43b7e30d157c87fa2, type: 3}
@@ -591,6 +597,8 @@ MonoBehaviour:
   _MaxHealth: 30
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1 &5789143668868943559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3924740746642414787, guid: b9bd66a678f6c8d43b7e30d157c87fa2, type: 3}
@@ -635,6 +643,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1 &5831993217243896206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3949436395788077964, guid: b9bd66a678f6c8d43b7e30d157c87fa2, type: 3}
@@ -679,6 +689,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1 &8337640099784268117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7668100837431030959, guid: b9bd66a678f6c8d43b7e30d157c87fa2, type: 3}
@@ -723,6 +735,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 8022986611625104820}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 2d15c570c33fd4b4cbdac08325804661, type: 3}
+  deathSound: {fileID: 8300000, guid: 84da0b0e4bda82247a848d6d71b43b07, type: 3}
 --- !u!1001 &2004060364369183136
 PrefabInstance:
   m_ObjectHideFlags: 0

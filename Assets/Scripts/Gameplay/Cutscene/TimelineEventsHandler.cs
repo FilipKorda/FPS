@@ -19,7 +19,7 @@ public class TimelineEventsHandler : MonoBehaviour
     [SerializeField] private AnimationCurve blinkCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
+   // [SerializeField] private AudioSource audioSource;
 
     [Header("Dialogues")]
     [SerializeField] private Conversation conversationData;
@@ -39,8 +39,8 @@ public class TimelineEventsHandler : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        if (clip != null && audioSource != null)
-            audioSource.PlayOneShot(clip);
+    //    if (clip != null && audioSource != null)
+    //        audioSource.PlayOneShot(clip);
     }
 
     public void ActiveIntroDialgue()

@@ -7,6 +7,9 @@ public class ProjectileCollider : MonoBehaviour
 
     public bool isRobotProjectile = false;
 
+
+    [SerializeField] private AudioClip projectileHitSound;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IEnemyDamagable>(out var damageable))
@@ -14,6 +17,9 @@ public class ProjectileCollider : MonoBehaviour
             damageable.TakeDamage(damageAmount, transform.position);
             Destroy(gameObject);
             PlayCollisionEffetct();
+
+            AudioManager.Instance.PlayClip(projectileHitSound, transform.position, 0.01f, true, 1, 500, 1, false, transform);
+
             if (isRobotProjectile)
             {
                 DeathCauseManager.MarkKilledByEnemy(3);

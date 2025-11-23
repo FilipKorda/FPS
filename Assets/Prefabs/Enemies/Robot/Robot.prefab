@@ -159,6 +159,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &4799514214134865653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +424,9 @@ MonoBehaviour:
   projectileSpeed: 14
   canShoot: 1
   projectilePS: {fileID: 7896101295790348849}
+  respawnSound: {fileID: 8300000, guid: cb778bcc23530d54a9312742bc72633f, type: 3}
+  loopIdleSound: {fileID: 8300000, guid: 29eb2bae71712a047aa292aea6997b5e, type: 3}
+  shootSound: {fileID: 8300000, guid: c8d340ae6b051f049839902e09623127, type: 3}
   enemyAlien: 0
   enemyOrc: 0
   enemyRobot: 1
@@ -631,6 +636,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &1038625654386805009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +797,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &6043726252550609017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,6 +958,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &1931058771228992113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1119,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &1891505702552750603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1410,8 @@ MonoBehaviour:
   _MaxHealth: 25
   enemyMovement: {fileID: 3726310530620746867}
   parent: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 97fa14ba1d25c3849a7f38a9336a5c98, type: 3}
+  deathSound: {fileID: 8300000, guid: 0eb7fda987fa38e4e90bb84b8fe2032c, type: 3}
 --- !u!114 &496373798727361883
 MonoBehaviour:
   m_ObjectHideFlags: 0

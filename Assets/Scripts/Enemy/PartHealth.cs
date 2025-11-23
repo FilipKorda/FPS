@@ -19,6 +19,9 @@ namespace FPS.Enemy
 
         [SerializeField] private Transform parent;
 
+        [SerializeField] private AudioClip hitSound;
+        [SerializeField] private AudioClip deathSound;
+
         private void OnEnable()
         {
             _Health = MaxHealth;
@@ -26,6 +29,8 @@ namespace FPS.Enemy
 
         public void TakeDamage(int Damage)
         {
+            AudioManager.Instance.PlayClip(hitSound, transform.position, 0.01f, true, 1, 500, 1, false, transform);
+
             if (enemyMovement != null)
             {
                 enemyMovement.StartFollowPlayerAFterHit();
@@ -44,7 +49,9 @@ namespace FPS.Enemy
             {
                 if (Name == "Head" || Name == "Body")
                 {
-                    if(parent != null)
+                    AudioManager.Instance.PlayClip(deathSound, transform.position, 0.1f, true, 1, 500, 1, false, transform);
+
+                    if (parent != null)
                     {
                         DropOnDeath?.Invoke(parent.position);
                         ParticleOnDeath?.Invoke(parent.position);

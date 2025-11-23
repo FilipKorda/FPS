@@ -32,6 +32,12 @@ namespace FPS.Enemy
         [SerializeField] private ParticleSystem projectilePS;
         [SerializeField] private GameObject floatingPS;
 
+
+        [SerializeField] private AudioClip loopIdleSound;
+        [SerializeField] private AudioClip shootSound;
+
+        private AudioSource loopIdleAudioSource;
+
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -51,6 +57,7 @@ namespace FPS.Enemy
 
         private void Start()
         {
+          
             StartCoroutine(DealySpawnAnimIsOff(1f));
             StartCoroutine(Roam(1.1f));
             alienMagAnimator.SetTrigger("IDLE");
@@ -136,6 +143,8 @@ namespace FPS.Enemy
         {
             Debug.Log("Shoot Projectile at player position");
 
+            AudioManager.Instance.PlayClip(shootSound, transform.position, 0.05f, false, 1, 500, 1, false, null);
+
             canShoot = false;
             projectilePS.gameObject.SetActive(false);
             projectilePS.Stop();
@@ -156,6 +165,7 @@ namespace FPS.Enemy
         {
             yield return new WaitForSeconds(delay);
             spawnAnimIsOff = true;
+            loopIdleAudioSource = AudioManager.Instance.PlayClip(loopIdleSound, transform.position, 0.1f, true, 1, 500, 1, true, transform);
         }
 
 
@@ -170,9 +180,23 @@ namespace FPS.Enemy
             agent.isStopped = true;
             agent.speed = dieSpeed;
             alienMagEnemy.isDead = true;
+
+            if (loopIdleAudioSource != null)
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.Stop(loopIdleAudioSource);
+                }
+                else
+                {
+                    loopIdleAudioSource.Stop();
+                }
+                loopIdleAudioSource = null;
+            }
+
             projectilePS.gameObject.SetActive(false);
             projectilePS.Stop();
-            floatingPS.SetActive(false);    
+            floatingPS.SetActive(false);
             thisCollider.enabled = false;
             thisSphereCollider.enabled = false;
         }

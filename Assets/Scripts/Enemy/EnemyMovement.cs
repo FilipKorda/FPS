@@ -39,6 +39,13 @@ namespace FPS.Enemy
         [SerializeField] private bool canShoot;
         [SerializeField] private ParticleSystem projectilePS;
 
+
+        [SerializeField] private AudioClip respawnSound;
+        [SerializeField] private AudioClip loopIdleSound;
+        [SerializeField] private AudioClip shootSound;
+
+        private AudioSource loopIdleAudioSource;
+
         private void Awake()
         {
             Agent = GetComponent<NavMeshAgent>();
@@ -55,6 +62,7 @@ namespace FPS.Enemy
 
         private void Start()
         {
+            AudioManager.Instance.PlayClip(respawnSound, transform.position, 0.05f, false, 1, 500, 1, false, null);
             StartCoroutine(DealySpawnAnimIsOff(dealySpawnTiameAnimToOff));
             StartCoroutine(Roam(dealyTimeToRoam));
             thisEnemyAnimator.SetTrigger("IDLE");
@@ -91,14 +99,14 @@ namespace FPS.Enemy
         {
             yield return new WaitForSeconds(delay);
             spawnAnimIsOff = true;
+
+            loopIdleAudioSource = AudioManager.Instance.PlayClip(loopIdleSound, transform.position, 0.1f, true, 1, 500, 1, true, transform);
         }
 
         public void ResetAttackBool()
         {
             canAttack = true;
         }
-
-
 
         private IEnumerator Roam(float delay)
         {
@@ -269,6 +277,8 @@ namespace FPS.Enemy
         {
             Debug.Log("Shoot Projectile at player position");
 
+            AudioManager.Instance.PlayClip(shootSound, transform.position, 0.05f, false, 1, 500, 1, false, null);
+
             canShoot = true;
             projectilePS.gameObject.SetActive(false);
             projectilePS.Stop();
@@ -302,6 +312,19 @@ namespace FPS.Enemy
             Agent.isStopped = true;
             Agent.speed = dieSpeed;
             mainEnemyBehaviour.isDead = true;
+
+            if (loopIdleAudioSource != null)
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.Stop(loopIdleAudioSource);
+                }
+                else
+                {
+                    loopIdleAudioSource.Stop();
+                }
+                loopIdleAudioSource = null;
+            }
 
             mainEnemyBehaviour.DisablePartHealths();
             mainEnemyBehaviour.DisableEnemys();

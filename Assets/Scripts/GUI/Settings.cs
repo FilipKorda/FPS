@@ -61,19 +61,19 @@ public class Settings : MonoBehaviour
     [Header("Sounds")]
     [Space(5)]
     [SerializeField] private AudioMixer audioMainMixer;
-    //Master
+    // Master (wartoœci domyœlne jako znormalizowane 0..1)
     [SerializeField] private Slider masterSlider;
     [SerializeField] private TextMeshProUGUI masterAmountText;
-    private float resetMasterVolume = 1f;
-    //music
+    private float resetMasterVolume = 0.2f; // 20% bazowo
+    // Music
     [SerializeField] private Slider musicSlider;
     [SerializeField] private TextMeshProUGUI musicAmountText;
-    private float resetMusicVolume = 1f;
-    //sfx
+    private float resetMusicVolume = 0.2f;
+    // SFX
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private TextMeshProUGUI sfxAmountText;
-    private float resetSfxVolume = 1f;
-    //Mute
+    private float resetSfxVolume = 0.2f;
+    // Mute
     [SerializeField] private Toggle soundToggle;
     [SerializeField] private Button[] buttons;
 
@@ -94,7 +94,7 @@ public class Settings : MonoBehaviour
 
         ReadingSoundsSaveValues();
         ReadingToggleMuteSaveValue();
-        SetSoundState(soundToggle != null ? soundToggle.isOn : false); 
+        SetSoundState(soundToggle != null ? soundToggle.isOn : false);
     }
 
     void OnDisable()
@@ -123,10 +123,7 @@ public class Settings : MonoBehaviour
         InitializeShadow();
         SetShadowResolution(availableShadowResolutions[0]);
 
-        ReadingSoundsSaveValues();
-        ReadingToggleMuteSaveValue(); 
-        SetSoundState(soundToggle != null ? soundToggle.isOn : false); 
-
+        // Drugi raz niepotrzebne – pozostawiamy tylko raz w OnEnable (komentarz informacyjny)
         ReadingQualitySaveValues();
         ReadingResolutionSaveValues();
         ReadingAntiAliasingSaveValues();
@@ -328,8 +325,8 @@ public class Settings : MonoBehaviour
     public void ResetInvertMouse()
     {
         bool defaultInvert = false;
-        PlayerPrefs.DeleteKey("InvertMouse"); 
-        PlayerPrefs.SetInt("InvertMouse", defaultInvert ? 1 : 0); 
+        PlayerPrefs.DeleteKey("InvertMouse");
+        PlayerPrefs.SetInt("InvertMouse", defaultInvert ? 1 : 0);
 
         if (invertMouseToggle != null)
             invertMouseToggle.isOn = defaultInvert;
@@ -351,20 +348,18 @@ public class Settings : MonoBehaviour
         float savedSfx = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefSfxVolume, resetSfxVolume);
 
         if (masterSlider != null)
-            masterSlider.value = (masterSlider.maxValue > 1f) ? Mathf.Clamp01(savedMaster) * masterSlider.maxValue : Mathf.Clamp01(savedMaster);
-
+            masterSlider.value = Mathf.Clamp01(savedMaster) * masterSlider.maxValue;
         if (musicSlider != null)
-            musicSlider.value = (musicSlider.maxValue > 1f) ? Mathf.Clamp01(savedMusic) * musicSlider.maxValue : Mathf.Clamp01(savedMusic);
-
+            musicSlider.value = Mathf.Clamp01(savedMusic) * musicSlider.maxValue;
         if (sfxSlider != null)
-            sfxSlider.value = (sfxSlider.maxValue > 1f) ? Mathf.Clamp01(savedSfx) * sfxSlider.maxValue : Mathf.Clamp01(savedSfx);
+            sfxSlider.value = Mathf.Clamp01(savedSfx) * sfxSlider.maxValue;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-          ResetMouseInvertAndLanguageSettings();
+            ResetMouseInvertAndLanguageSettings();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -674,12 +669,20 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public void SetVolume(string parameterName, float volume)
+    // --- AUDIO ---
+
+    private float NormalizeSliderValue(float raw, Slider slider)
+    {
+        if (slider == null) return Mathf.Clamp01(raw);
+        return Mathf.Clamp01(raw / slider.maxValue);
+    }
+
+    // Teraz SetVolume przyjmuje ZNORMALIZOWAN¥ wartoœæ 0..1
+    public void SetVolume(string parameterName, float normalized)
     {
         if (audioMainMixer == null) return;
 
-        float linear = (volume > 1f) ? Mathf.Clamp01(volume / 100f) : Mathf.Clamp01(volume);
-
+        float linear = Mathf.Clamp01(normalized);
         if (linear <= 0f)
         {
             audioMainMixer.SetFloat(parameterName, -80f);
@@ -691,44 +694,36 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public void OnMasterVolumeChanged(float volume)
+    public void OnMasterVolumeChanged(float sliderValue)
     {
-        SetVolume(AudioKeys.MixerMasterParam, volume);
-        UpdateMasterAmountText(volume);
-
-        float linear = (volume > 1f)
-            ? Mathf.Clamp01(volume / (masterSlider != null ? masterSlider.maxValue : 100f))
-            : Mathf.Clamp01(volume);
+        float linear = NormalizeSliderValue(sliderValue, masterSlider);
+        SetVolume(AudioKeys.MixerMasterParam, linear);
+        UpdateMasterAmountText(sliderValue);
         PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMasterVolume, linear);
     }
 
-    public void OnMusicVolumeChanged(float volume)
+    public void OnMusicVolumeChanged(float sliderValue)
     {
-        SetVolume(AudioKeys.MixerMusicParam, volume);
-        UpdateMusicAmountText(volume);
-
-        float linear = (volume > 1f) ? Mathf.Clamp01(volume / (musicSlider != null ? musicSlider.maxValue : 100f)) : Mathf.Clamp01(volume);
+        float linear = NormalizeSliderValue(sliderValue, musicSlider);
+        SetVolume(AudioKeys.MixerMusicParam, linear);
+        UpdateMusicAmountText(sliderValue);
         PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMusicVolume, linear);
 
         if (MusicManager.Instance != null)
             MusicManager.Instance.SetVolume(linear);
     }
 
-    public void OnSFXVolumeChanged(float volume)
+    public void OnSFXVolumeChanged(float sliderValue)
     {
-        SetVolume(AudioKeys.MixerSfxParam, volume);
-        UpdateSfxAmountText(volume);
-
-        float linear = (volume > 1f)
-            ? Mathf.Clamp01(volume / (sfxSlider != null ? sfxSlider.maxValue : 100f))
-            : Mathf.Clamp01(volume);
+        float linear = NormalizeSliderValue(sliderValue, sfxSlider);
+        SetVolume(AudioKeys.MixerSfxParam, linear);
+        UpdateSfxAmountText(sliderValue);
         PlayerPrefs.SetFloat(AudioKeys.PlayerPrefSfxVolume, linear);
     }
 
     public void OnSoundToggleChanged(bool isMuted)
     {
         PlayerPrefs.SetInt(AudioKeys.PlayerPrefToggleMute, isMuted ? 1 : 0);
-
         SetSoundState(isMuted);
     }
 
@@ -738,7 +733,7 @@ public class Settings : MonoBehaviour
         {
             int savedState = PlayerPrefs.GetInt(AudioKeys.PlayerPrefToggleMute);
             if (soundToggle != null)
-                soundToggle.isOn = savedState == 1; 
+                soundToggle.isOn = savedState == 1;
         }
     }
 
@@ -747,7 +742,6 @@ public class Settings : MonoBehaviour
         if (soundToggle != null)
         {
             PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefToggleMute);
-            
             soundToggle.isOn = false;
             SetSoundState(false);
         }
@@ -769,71 +763,73 @@ public class Settings : MonoBehaviour
         }
         else
         {
-            SetVolume(AudioKeys.MixerMasterParam, masterSlider != null ? masterSlider.value : resetMasterVolume);
-            SetVolume(AudioKeys.MixerMusicParam, musicSlider != null ? musicSlider.value : resetMusicVolume);
-            SetVolume(AudioKeys.MixerSfxParam, sfxSlider != null ? sfxSlider.value : resetSfxVolume);
+            float masterLin = NormalizeSliderValue(masterSlider != null ? masterSlider.value : resetMasterVolume *  (masterSlider != null ? masterSlider.maxValue : 1f), masterSlider);
+            float musicLin  = NormalizeSliderValue(musicSlider != null ? musicSlider.value : resetMusicVolume *   (musicSlider != null ? musicSlider.maxValue : 1f), musicSlider);
+            float sfxLin    = NormalizeSliderValue(sfxSlider != null ? sfxSlider.value : resetSfxVolume *       (sfxSlider != null ? sfxSlider.maxValue : 1f), sfxSlider);
 
-            float musicLinear = (musicSlider != null)
-                ? ((musicSlider.value > 1f) ? Mathf.Clamp01(musicSlider.value / musicSlider.maxValue) : Mathf.Clamp01(musicSlider.value))
-                : resetMusicVolume;
+            SetVolume(AudioKeys.MixerMasterParam, masterLin);
+            SetVolume(AudioKeys.MixerMusicParam, musicLin);
+            SetVolume(AudioKeys.MixerSfxParam, sfxLin);
+
             if (MusicManager.Instance != null)
-                MusicManager.Instance.SetVolume(musicLinear);
+                MusicManager.Instance.SetVolume(musicLin);
         }
     }
 
     public void ResetMaster()
     {
-        masterSlider.value = resetMasterVolume;
         PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefMasterVolume);
-        masterSlider.value = resetMasterVolume;
-        SetVolume(AudioKeys.MixerMasterParam, resetMasterVolume);
-        UpdateMasterAmountText(resetMasterVolume);
+        if (masterSlider != null)
+        {
+            masterSlider.value = resetMasterVolume * masterSlider.maxValue;
+            UpdateMasterAmountText(masterSlider.value);
+            SetVolume(AudioKeys.MixerMasterParam, resetMasterVolume);
+            PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMasterVolume, resetMasterVolume);
+        }
     }
 
     public void ResetMusic()
     {
-        musicSlider.value = resetMusicVolume;
         PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefMusicVolume);
-        musicSlider.value = resetMusicVolume;
-        SetVolume(AudioKeys.MixerMusicParam, resetMusicVolume);
-        UpdateMusicAmountText(resetMusicVolume);
-
-        float linear = (resetMusicVolume > 1f) ? Mathf.Clamp01(resetMusicVolume / (musicSlider != null ? musicSlider.maxValue : 100f)) : Mathf.Clamp01(resetMusicVolume);
-        if (MusicManager.Instance != null)
-            MusicManager.Instance.SetVolume(linear);
+        if (musicSlider != null)
+        {
+            musicSlider.value = resetMusicVolume * musicSlider.maxValue;
+            UpdateMusicAmountText(musicSlider.value);
+            SetVolume(AudioKeys.MixerMusicParam, resetMusicVolume);
+            PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMusicVolume, resetMusicVolume);
+            if (MusicManager.Instance != null)
+                MusicManager.Instance.SetVolume(resetMusicVolume);
+        }
     }
 
     public void ResetSfx()
     {
-        sfxSlider.value = resetSfxVolume;
         PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefSfxVolume);
-        sfxSlider.value = resetSfxVolume;
-        SetVolume(AudioKeys.MixerSfxParam, resetSfxVolume);
-        UpdateSfxAmountText(resetSfxVolume);
+        if (sfxSlider != null)
+        {
+            sfxSlider.value = resetSfxVolume * sfxSlider.maxValue;
+            UpdateSfxAmountText(sfxSlider.value);
+            SetVolume(AudioKeys.MixerSfxParam, resetSfxVolume);
+            PlayerPrefs.SetFloat(AudioKeys.PlayerPrefSfxVolume, resetSfxVolume);
+        }
     }
 
-    void UpdateMasterAmountText(float volume)
+    void UpdateMasterAmountText(float rawSliderValue)
     {
         if (masterAmountText != null)
-        {
-            masterAmountText.text = volume.ToString("F0");
-        }
+            masterAmountText.text = rawSliderValue.ToString("F0");
     }
 
-    void UpdateMusicAmountText(float volume)
+    void UpdateMusicAmountText(float rawSliderValue)
     {
         if (musicAmountText != null)
-        {
-            musicAmountText.text = volume.ToString("F0");
-        }
+            musicAmountText.text = rawSliderValue.ToString("F0");
     }
 
-    void UpdateSfxAmountText(float volume)
+    void UpdateSfxAmountText(float rawSliderValue)
     {
         if (sfxAmountText != null)
-        {
-            sfxAmountText.text = volume.ToString("F0");
-        }
+            sfxAmountText.text = rawSliderValue.ToString("F0");
     }
 
     private void OnLocaleChanged(Locale locale)

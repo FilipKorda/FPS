@@ -16,6 +16,9 @@ public class PartHealthAlienMag : MonoBehaviour, IDamageable
 
     [SerializeField] private Transform parent;
 
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip deathSound;
+
     private void OnEnable()
     {
         _Health = MaxHealth;
@@ -23,6 +26,8 @@ public class PartHealthAlienMag : MonoBehaviour, IDamageable
 
     public void TakeDamage(int Damage)
     {
+        AudioManager.Instance.PlayClip(hitSound, transform.position, 0.01f, true, 1, 500, 1, false, transform);
+
         if (enemyMovement != null)
         {
             enemyMovement.StartFollowPlayerAFterHit();
@@ -41,6 +46,8 @@ public class PartHealthAlienMag : MonoBehaviour, IDamageable
         {
             if (Name == "Head" || Name == "Body")
             {
+                AudioManager.Instance.PlayClip(deathSound, transform.position, 0.1f, true, 1, 500, 1, false, transform);
+
                 if (parent != null)
                 {
                     enemyMovement.alienMagAnimator.SetTrigger("DIE");

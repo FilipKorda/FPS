@@ -1,9 +1,9 @@
+using FPS.Enemy;
+using FPS.Guns.ImpactEffects;
 using FPS.ImpactSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
-using FPS.Guns.ImpactEffects;
-using FPS.Enemy;
 
 namespace FPS.Guns
 {
@@ -91,23 +91,39 @@ namespace FPS.Guns
         public void Tick(bool WantsToShoot)
         {
             Model.transform.localRotation = Quaternion.Lerp(
-            Model.transform.localRotation,
-            Quaternion.Euler(SpawnRotation),
-            Time.deltaTime * ShootConfig.RecoilRecoverySpeed
-        );
+                Model.transform.localRotation,
+                Quaternion.Euler(SpawnRotation),
+                Time.deltaTime * ShootConfig.RecoilRecoverySpeed
+            );
+
+            bool previousWanted = LastFrameWantedToShoot;
 
             if (WantsToShoot)
             {
-                LastFrameWantedToShoot = true;
-                TryToShoot();
+                if (Type == GunType.Glock)
+                {
+                    if (!previousWanted)
+                    {
+                        LastFrameWantedToShoot = true;
+                        TryToShoot();
+                    }
+                    else
+                    {
+                        LastFrameWantedToShoot = true;
+                    }
+                }
+                else
+                {
+                    LastFrameWantedToShoot = true;
+                    TryToShoot();
+                }
             }
 
-            if (!WantsToShoot && LastFrameWantedToShoot)
+            if (!WantsToShoot && previousWanted)
             {
                 StopShootingTime = Time.time;
                 LastFrameWantedToShoot = false;
             }
-
         }
 
         public void StartReloading()
