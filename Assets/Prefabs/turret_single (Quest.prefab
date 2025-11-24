@@ -391,8 +391,23 @@ MonoBehaviour:
   hugeExplosion1: {fileID: 6787401680057783576}
   hangarGateDoor: {fileID: 0}
   loadBarrelForTurret: {fileID: 3430378772485344309}
+  bossFightManager: {fileID: 0}
+  enemyAreaSpawner: {fileID: 0}
+  triggerEnemyToSpawn: []
   hint_Panel: {fileID: 0}
   hint_Text: {fileID: 0}
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5462569833139765150
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +807,28 @@ MonoBehaviour:
   barrelPs: {fileID: 1201591875465243681}
   getFixTurretQuest: {fileID: 11400000, guid: 9b51f85fc754b1040813e4fc78aa7087, type: 2}
   isBarrelSet: 0
+  localizeStringEvent:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizeStringEventPress:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  repairSound: {fileID: 8300000, guid: cfd096d71a7424b428127a53e665a49a, type: 3}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &961281833644564530
 PrefabInstance:
   m_ObjectHideFlags: 0

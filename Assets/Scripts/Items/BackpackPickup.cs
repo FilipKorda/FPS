@@ -28,6 +28,8 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
 
     public LocalizedString localizeStringEvent;
 
+    [SerializeField] private AudioClip pickSound;
+
     private void Awake()
     {
         if (gunGameObject != null)
@@ -41,7 +43,7 @@ public class BackpackPickup : MonoBehaviour, IBackpackPickupable
     {
         if (_pickedUp) return;
         _pickedUp = true;
-
+        AudioManager.Instance.PlayClip(pickSound, transform.position, 0.01f, true, 1, 500, 1, false, null);
         PlayerHealth.Instance.haveMask = true;
 
         getBackpackQuest.isBackpackSet = true;

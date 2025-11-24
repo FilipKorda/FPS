@@ -172,6 +172,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  ammoPickUpSound: {fileID: 8300000, guid: 171725beb6546db428c9c52275083fb9, type: 3}
   references:
     version: 2
     RefIds: []

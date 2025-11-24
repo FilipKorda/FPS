@@ -143,7 +143,7 @@ namespace FPS.Enemy
         {
             Debug.Log("Shoot Projectile at player position");
 
-            AudioManager.Instance.PlayClip(shootSound, transform.position, 0.05f, false, 1, 500, 1, false, null);
+            AudioManager.Instance.PlayClip(shootSound, transform.position, 0.05f, true, 1, 500, 1, false, null);
 
             canShoot = false;
             projectilePS.gameObject.SetActive(false);
@@ -197,7 +197,7 @@ namespace FPS.Enemy
             projectilePS.gameObject.SetActive(false);
             projectilePS.Stop();
             floatingPS.SetActive(false);
-            thisCollider.enabled = false;
+           // thisCollider.enabled = false;
             thisSphereCollider.enabled = false;
         }
     }

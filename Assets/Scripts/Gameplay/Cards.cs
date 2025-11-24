@@ -11,10 +11,14 @@ public class Cards : MonoBehaviour
     public LocalizedString localizeStringEventGreenCard;
     public LocalizedString localizeStringEventBlueCard;
 
+    [SerializeField] private AudioClip pickSound;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlayClip(pickSound, transform.position, 0.01f, true, 1, 500, 1, false, null);
+
             if (isRedCard)
             {
                 NotificationSystem.Instance.ShowNotification(localizeStringEventRedCard, "You collect Red Card", 2f);

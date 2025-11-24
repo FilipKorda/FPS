@@ -17,6 +17,9 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
     public LocalizedString localizeStringEventFuelCan;
     public LocalizedString localizeStringEventPress;
 
+    [SerializeField] private AudioClip generatorSound;
+    private AudioSource loopIdleAudioSource;
+
     private void Start()
     {
         Material[] materials = meshRenderer.materials;
@@ -32,6 +35,8 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
     {
         if (MainInventory.Instance.currentfuelCans > 0)
         {
+            loopIdleAudioSource = AudioManager.Instance.PlayClip(generatorSound, transform.position, 0.01f, true, 1, 500, 1, true, transform);
+
             meshRenderer.enabled = false;
             fuelCanAnimation.SetActive(true);
             fuelCanAnimtor.SetTrigger("Play");

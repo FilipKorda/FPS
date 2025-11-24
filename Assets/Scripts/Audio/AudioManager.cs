@@ -17,10 +17,16 @@ public class AudioManager : MonoBehaviour
     private readonly Queue<AudioSource> pool = new Queue<AudioSource>();
     private readonly List<AudioSource> activeLooping = new List<AudioSource>();
 
+    private readonly Dictionary<AudioSource, float> baseVolumes = new Dictionary<AudioSource, float>();
+
+    private float masterVolume = 1f;
+    private float sfxVolume = 1f;
+
     private void Awake()
     {
         Instance = this;
         InitializePool(initialPoolSize);
+        RefreshVolumes(); 
     }
 
     private void InitializePool(int count)
@@ -61,6 +67,13 @@ public class AudioManager : MonoBehaviour
     private void ReleaseSource(AudioSource src)
     {
         if (src == null) return;
+
+        if (baseVolumes.ContainsKey(src))
+            baseVolumes.Remove(src);
+
+        if (activeLooping.Contains(src))
+            activeLooping.Remove(src);
+
         src.Stop();
         src.clip = null;
         src.loop = false;
@@ -86,9 +99,12 @@ public class AudioManager : MonoBehaviour
         if (clip == null) return null;
         var src = GetSource();
         src.clip = clip;
-        src.volume = Mathf.Clamp01(volume);
         src.pitch = Mathf.Clamp(pitch, -3f, 3f);
         src.loop = loop;
+
+        baseVolumes[src] = Mathf.Clamp01(volume);
+
+        src.volume = Mathf.Clamp01(baseVolumes[src] * sfxVolume * masterVolume);
 
         if (attachTo != null)
         {
@@ -129,6 +145,7 @@ public class AudioManager : MonoBehaviour
     {
         if (src == null) return;
         if (activeLooping.Contains(src)) activeLooping.Remove(src);
+        if (baseVolumes.ContainsKey(src)) baseVolumes.Remove(src);
         ReleaseSource(src);
     }
 
@@ -140,5 +157,21 @@ public class AudioManager : MonoBehaviour
         if (src == null) yield break;
         if (activeLooping.Contains(src)) yield break; // nie zwalniaj jeœli to looping
         ReleaseSource(src);
+    }
+
+    public void RefreshVolumes()
+    {
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        foreach (var kv in new List<KeyValuePair<AudioSource, float>>(baseVolumes))
+        {
+            var src = kv.Key;
+            var baseVol = kv.Value;
+            if (src != null)
+            {
+                src.volume = Mathf.Clamp01(baseVol * sfxVolume * masterVolume);
+            }
+        }
     }
 }

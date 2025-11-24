@@ -10,6 +10,9 @@ public class BossFightManager : MonoBehaviour
     [SerializeField] private BossRaycastHit bossRaycastHit;
     [SerializeField] private NpcMovement[] npcMovements;
     [SerializeField] private WinGame winGame;
+    [SerializeField] private AudioClip loopIdleSound;
+
+    private AudioSource loopIdleAudioSource;
 
     [ContextMenu(" -= Set Boss To Patrol =-")]
     public void SetBossToPatrol()
@@ -22,6 +25,7 @@ public class BossFightManager : MonoBehaviour
     [ContextMenu(" -= Start Boss Fight =-")]
     public void StartBossFight()
     {
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(loopIdleSound, transform.position, 0.1f, true, 1, 500, 1, true, transform);
         bossRaycastHit.SetUseRaycast(true);
         snakeBoss.ChangeBossState(BossState.Attack, 1);
         snakeBossHealth.ShowAndSetupBossHealthSlider();
@@ -31,12 +35,26 @@ public class BossFightManager : MonoBehaviour
     [ContextMenu(" -= End Boss Fight =-")]
     public void EndBossFight()
     {
+        StatisticsCollector.IncrementKill(EnemyKillType.Boss);
         snakeBoss.SetMove(false);
         bossRaycastHit.SetUseRaycast(false);
         snakeBoss.ChangeBossState(BossState.Idle, 1);
         snakeBossHealth.HideBossHealthSlider();
         SetNpcStandUp();
         StartCoroutine(ActivateWinGamePanel());
+
+        if (loopIdleAudioSource != null)
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.Stop(loopIdleAudioSource);
+            }
+            else
+            {
+                loopIdleAudioSource.Stop();
+            }
+            loopIdleAudioSource = null;
+        }
     }
 
     private IEnumerator ActivateWinGamePanel()

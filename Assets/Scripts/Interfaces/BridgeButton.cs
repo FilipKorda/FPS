@@ -24,7 +24,8 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 
 
     public LocalizedString localizeStringEvent;
-
+    [SerializeField] private AudioClip bridgeSound;
+    private AudioSource loopIdleAudioSource;
 
     private void Start()
     {
@@ -50,6 +51,8 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         if (points.Length == 0)
             return;
 
+        
+
         Vector3 direction = points[currentPoint].position - platform.transform.position;
         direction.Normalize();
 
@@ -64,12 +67,27 @@ public class BridgeButton : MonoBehaviour, IBridgeController
             if (currentPoint == points.Length - 1)
             {
                 isActivated = false;
+
+                if (loopIdleAudioSource != null)
+                {
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.Stop(loopIdleAudioSource);
+                    }
+                    else
+                    {
+                        loopIdleAudioSource.Stop();
+                    }
+                    loopIdleAudioSource = null;
+                }
             }
         }
     }
 
     public void ActivateBridge()
     {
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.05f, true, 1, 500, 1, true, platform.transform);
+
         if (currentPoint == points.Length - 1)
         {
             isActivated = false;

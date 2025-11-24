@@ -76,6 +76,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  pickSound: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
   references:
     version: 2
     RefIds: []

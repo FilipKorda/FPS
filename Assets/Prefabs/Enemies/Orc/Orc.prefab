@@ -1101,6 +1101,7 @@ MonoBehaviour:
   projectilePS: {fileID: 0}
   respawnSound: {fileID: 8300000, guid: 76328161d1f1e754d9cea0d2218d9ce5, type: 3}
   loopIdleSound: {fileID: 8300000, guid: 1be0d633e3156014ebfb5164dca67c6f, type: 3}
+  shootSound: {fileID: 8300000, guid: cd1cd1f314c5caa4cb67dc6bb871a440, type: 3}
   enemyAlien: 0
   enemyOrc: 1
   enemyRobot: 0

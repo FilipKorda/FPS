@@ -11,8 +11,8 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
     public float moveSpeed = 1.0f;
 
     [Header("Button Press Animation")]
-    public float pressDepth = 0.05f;        // jak g³êboko wciska siê przycisk (w jednostkach œwiata rodzica)
-    public float pressDuration = 0.08f;     // czas wciskania i odbicia (osobno)
+    public float pressDepth = 0.05f;        
+    public float pressDuration = 0.08f;     
 
     private Color originalColor;
     private Renderer originalColorRenderer;
@@ -21,9 +21,11 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     public LocalizedString localizeStringEventPress;
 
-    // stan animacji przycisku
     private Vector3 buttonInitialLocalPos;
     private Coroutine buttonPressCoroutine;
+
+    [SerializeField] private AudioClip bridgeSound;
+    private AudioSource loopIdleAudioSource;
 
     private void Start()
     {
@@ -36,8 +38,9 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     public void ActivateBridge()
     {
-        // animacja wciœniêcia przycisku
         AnimateButtonPress();
+
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.05f, true, 1, 500, 1, true, targetObject.transform);
 
         if (!isMoving)
         {
@@ -63,6 +66,19 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
         if (t >= 1.0f)
         {
             isMoving = false;
+
+            if (loopIdleAudioSource != null)
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.Stop(loopIdleAudioSource);
+                }
+                else
+                {
+                    loopIdleAudioSource.Stop();
+                }
+                loopIdleAudioSource = null;
+            }
         }
     }
 
@@ -83,7 +99,7 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
         return !isMoving && t >= 1.0f; 
     }
 
-    // --- Animacja przycisku ---
+  
 
     [ContextMenu("ASFDASDFASDF")]
     public void AnimateButtonPress()
@@ -94,7 +110,6 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
         if (buttonPressCoroutine != null)
             StopCoroutine(buttonPressCoroutine);
 
-        // upewnij siê, ¿e mamy poprawn¹ pozycjê startow¹ (np. po respawnie/enable)
         buttonInitialLocalPos = buttonObejct.localPosition;
 
         buttonPressCoroutine = StartCoroutine(PressAnimation());
@@ -102,19 +117,17 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
 
     private IEnumerator PressAnimation()
     {
-        // kierunek wciskania: w dó³ wzglêdem lokalnej osi Up przycisku (przekszta³conej do przestrzeni rodzica)
         Vector3 pressDirParentSpace;
         if (buttonObejct.parent != null)
             pressDirParentSpace = buttonObejct.parent.InverseTransformDirection(buttonObejct.up) * -1f;
         else
-            pressDirParentSpace = -buttonObejct.up; // bez rodzica – u¿yj przestrzeni œwiata
+            pressDirParentSpace = -buttonObejct.up;
 
         pressDirParentSpace = pressDirParentSpace.normalized;
 
         Vector3 start = buttonInitialLocalPos;
         Vector3 down = start + pressDirParentSpace * pressDepth;
 
-        // faza wciskania
         float elapsed = 0f;
         while (elapsed < pressDuration)
         {
@@ -124,7 +137,6 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
             yield return null;
         }
 
-        // faza odbicia
         elapsed = 0f;
         while (elapsed < pressDuration)
         {

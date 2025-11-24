@@ -31,6 +31,8 @@ public class AmmoPack : MonoBehaviour, IPickupable
     public LocalizedString localizeStringEventThisGunHaveFullAmmo;
     public LocalizedString localizeStringEventAddedAmmoTo;
 
+    [SerializeField] private AudioClip ammoPickUpSound;
+
     private void OnEnable()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
@@ -66,6 +68,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
     {
         if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo < PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo)
         {
+            AudioManager.Instance.PlayClip(ammoPickUpSound, transform.position, 0.05f, true, 1, 500, 1, false, null);
             IncreaseAmountOfAmmo();
             ShakeAmmoPackModel();
 

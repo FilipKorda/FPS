@@ -17670,6 +17670,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  openCloseDoor: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -26481,6 +26482,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1507931599}
     m_Modifications:
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorDoor
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
     - target: {fileID: 3534608211233807971, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.8
@@ -29594,6 +29603,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  pickSound: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
   references:
     version: 2
     RefIds: []
@@ -36916,6 +36926,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  bridgeSound: {fileID: 8300000, guid: 0bc01b9634df0e54a800bb2f0d125c8c, type: 3}
   references:
     version: 2
     RefIds: []
@@ -94960,6 +94971,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  bridgeSound: {fileID: 8300000, guid: 0bc01b9634df0e54a800bb2f0d125c8c, type: 3}
   references:
     version: 2
     RefIds: []
@@ -134826,6 +134838,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  openCloseDoor: {fileID: 8300000, guid: 02e5bd3025e03ac4795bc56a9c8f48a1, type: 3}
   references:
     version: 2
     RefIds: []
@@ -196239,6 +196252,7 @@ MonoBehaviour:
   gate: {fileID: 6076451334391884338}
   cardObject: {fileID: 492900189412358409}
   cardHolder: {fileID: 1046816076}
+  openGate: {fileID: 8300000, guid: 20fb5d1e5835e274583bd9c896b43cd8, type: 3}
   references:
     version: 2
     RefIds: []
@@ -196956,6 +196970,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1507931599}
     m_Modifications:
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorDoor
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
     - target: {fileID: 3534608211233807971, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.759
@@ -199237,6 +199259,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  bridgeSound: {fileID: 8300000, guid: 0bc01b9634df0e54a800bb2f0d125c8c, type: 3}
   references:
     version: 2
     RefIds: []
@@ -208254,6 +208277,7 @@ MonoBehaviour:
   gate: {fileID: 1573188805}
   cardObject: {fileID: 3633046999900458339}
   cardHolder: {fileID: 1104373804}
+  openGate: {fileID: 8300000, guid: 20fb5d1e5835e274583bd9c896b43cd8, type: 3}
   references:
     version: 2
     RefIds: []
@@ -219954,6 +219978,7 @@ MonoBehaviour:
   gate: {fileID: 3735555781543534272}
   cardObject: {fileID: 1527568652}
   cardHolder: {fileID: 1170058335}
+  openGate: {fileID: 8300000, guid: 20fb5d1e5835e274583bd9c896b43cd8, type: 3}
   references:
     version: 2
     RefIds: []
@@ -232894,7 +232919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.63848, y: -2.000061}
+  m_AnchoredPosition: {x: -0.63848, y: -2}
   m_SizeDelta: {x: 1921.3, y: 593.0326}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1243441773
@@ -238281,6 +238306,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  bridgeSound: {fileID: 8300000, guid: 0bc01b9634df0e54a800bb2f0d125c8c, type: 3}
   references:
     version: 2
     RefIds: []
@@ -313800,6 +313826,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1507931599}
     m_Modifications:
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorDoor
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
     - target: {fileID: 3534608211233807971, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.127
@@ -365960,7 +365994,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1916149088
 Canvas:
   m_ObjectHideFlags: 0
@@ -414344,6 +414378,10 @@ PrefabInstance:
       value: -15.869
       objectReference: {fileID: 0}
     - target: {fileID: 5365408517029312497, guid: eecc8300814644f46a4edf2a12fbf6ad, type: 3}
+      propertyPath: pickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
+    - target: {fileID: 5365408517029312497, guid: eecc8300814644f46a4edf2a12fbf6ad, type: 3}
       propertyPath: grenadeHandler
       value: 
       objectReference: {fileID: 3569468644845956134}
@@ -416577,6 +416615,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  pickSound: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
   references:
     version: 2
     RefIds: []
@@ -416710,6 +416749,10 @@ PrefabInstance:
       propertyPath: winGame
       value: 
       objectReference: {fileID: 4372138}
+    - target: {fileID: 6506400806799312361, guid: 6f3215f1bbf8ed74bb3b52ff4d3a86d5, type: 3}
+      propertyPath: loopIdleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e14661f9ff09b8349967f0c10d9ddd23, type: 3}
     - target: {fileID: 6506400806799312361, guid: 6f3215f1bbf8ed74bb3b52ff4d3a86d5, type: 3}
       propertyPath: npcMovements.Array.data[0]
       value: 
@@ -417114,6 +417157,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -24.335
       objectReference: {fileID: 0}
+    - target: {fileID: 6093670697295145150, guid: 99411139237cce64d9525e8d6ced9c4b, type: 3}
+      propertyPath: pickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
     - target: {fileID: 6093670697295145150, guid: 99411139237cce64d9525e8d6ced9c4b, type: 3}
       propertyPath: grenadeHandler
       value: 
@@ -417674,6 +417721,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  pickSound: {fileID: 8300000, guid: 9fc890c95efeb5b45a6b626c74598495, type: 3}
   references:
     version: 2
     RefIds: []
@@ -425585,6 +425633,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1507931599}
     m_Modifications:
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorDoor
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
+    - target: {fileID: 608680552896369111, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
+      propertyPath: generatorSound
+      value: 
+      objectReference: {fileID: 8300000, guid: af69600c5b45247468c16995a238d940, type: 3}
     - target: {fileID: 3534608211233807971, guid: 0b55f85f308ad624b92efc635776f418, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.298
@@ -427882,6 +427938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green_Card
       objectReference: {fileID: 0}
+    - target: {fileID: 8855296084465558722, guid: 9a04237cfa876cf4aa25ed9ad25caa7d, type: 3}
+      propertyPath: pickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 171725beb6546db428c9c52275083fb9, type: 3}
     - target: {fileID: 9151831336450235818, guid: 9a04237cfa876cf4aa25ed9ad25caa7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.291
@@ -429132,9 +429192,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5833580}
     - target: {fileID: 7761490444903245631, guid: c3828ddb37b3409468aa7f42f2fce39a, type: 3}
+      propertyPath: turretSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 11c749a3f219f1d4cb36fd2d2f93260c, type: 3}
+    - target: {fileID: 7761490444903245631, guid: c3828ddb37b3409468aa7f42f2fce39a, type: 3}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d6eac1985c55bab4fbb9c6c988885c93, type: 3}
+    - target: {fileID: 7761490444903245631, guid: c3828ddb37b3409468aa7f42f2fce39a, type: 3}
       propertyPath: hangarGateDoor
       value: 
       objectReference: {fileID: 1887798628}
+    - target: {fileID: 7761490444903245631, guid: c3828ddb37b3409468aa7f42f2fce39a, type: 3}
+      propertyPath: explosion2Sound
+      value: 
+      objectReference: {fileID: 8300000, guid: d6eac1985c55bab4fbb9c6c988885c93, type: 3}
     - target: {fileID: 7761490444903245631, guid: c3828ddb37b3409468aa7f42f2fce39a, type: 3}
       propertyPath: bossFightManager
       value: 

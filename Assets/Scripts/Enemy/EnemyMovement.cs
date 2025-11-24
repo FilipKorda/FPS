@@ -62,7 +62,7 @@ namespace FPS.Enemy
 
         private void Start()
         {
-            AudioManager.Instance.PlayClip(respawnSound, transform.position, 0.05f, false, 1, 500, 1, false, null);
+            AudioManager.Instance.PlayClip(respawnSound, transform.position, 0.1f, true, 1, 500, 1, false, null);
             StartCoroutine(DealySpawnAnimIsOff(dealySpawnTiameAnimToOff));
             StartCoroutine(Roam(dealyTimeToRoam));
             thisEnemyAnimator.SetTrigger("IDLE");

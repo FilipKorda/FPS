@@ -50,6 +50,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
     [SerializeField] private Sprite dot;
 
     public LocalizedString localizeStringEvent;
+    [SerializeField] private AudioClip pickSound;
 
     public enum ShapeType
     {
@@ -211,6 +212,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
     {
         if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
         {
+            AudioManager.Instance.PlayClip(pickSound, transform.position, 0.01f, true, 1, 500, 1, false, null);
             PlayerGunSelector.Instance.SetupNewGun(Gun);
             Destroy(gameObject);
             HideNotification();

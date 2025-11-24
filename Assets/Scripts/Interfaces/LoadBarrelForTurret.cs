@@ -16,6 +16,8 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
     public LocalizedString localizeStringEvent;
     public LocalizedString localizeStringEventPress;
 
+    [SerializeField] private AudioClip repairSound;
+
     private void Start()
     {
         Material[] materials = meshRenderer.materials;
@@ -32,6 +34,7 @@ public class LoadBarrelForTurret : MonoBehaviour, IBarrelForTurretQuest
     {
         if (MainInventory.Instance.currentBarrels > 0)
         {
+            AudioManager.Instance.PlayClip(repairSound, transform.position, 0.01f, true, 1, 500, 1, false, null);
             getFixTurretQuest.isBarrelSet = true;
             meshRenderer.enabled = false;
             barrelObject.SetActive(true);

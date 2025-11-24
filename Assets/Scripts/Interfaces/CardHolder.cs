@@ -28,6 +28,8 @@ public class CardHolder : MonoBehaviour, ICardHolder
     [SerializeField] private GameObject cardObject;
     [SerializeField] private GameObject cardHolder;
 
+    [SerializeField] private AudioClip openGate;
+
     private void OnEnable()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
@@ -157,6 +159,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
 
     public void OpenGate()
     {
+        AudioManager.Instance.PlayClip(openGate, transform.position, 0.05f, true, 1, 500, 1, false, null);
         cardObject.SetActive(true);
         cardHolder.SetActive(false);
         gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen).SetEase(Ease.OutQuad);
