@@ -153,9 +153,9 @@ public class AudioManager : MonoBehaviour
     {
         if (src == null) yield break;
         yield return new WaitForSeconds(time + 0.05f);
-        // w miêdzyczasie Ÿród³o mog³o zostaæ zatrzymane rêcznie
+      
         if (src == null) yield break;
-        if (activeLooping.Contains(src)) yield break; // nie zwalniaj jeœli to looping
+        if (activeLooping.Contains(src)) yield break; 
         ReleaseSource(src);
     }
 

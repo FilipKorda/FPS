@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a730c6e706911641bf3eefa3858131c, type: 3}
   m_Name: UziSilencer Audio Config
   m_EditorClassIdentifier: 
-  Volume: 0.1
+  Volume: 0.01
   FireClips:
   - {fileID: 8300000, guid: 4d590eb2e7c6ec34b9e7d540f43535cb, type: 3}
   EmptyClip: {fileID: 8300000, guid: 490fbf9daa8e3ae4c9d658465944a09b, type: 3}
