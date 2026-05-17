@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conversation:
   - Name: You
-    Sentences:
-    - Hi!
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -26,15 +24,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
   - Name: John
-    Sentences:
-    - Hello?
-    - How can i help you?
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -53,14 +64,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
   - Name: You
-    Sentences:
-    - I'm just exploring
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -71,15 +96,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
   - Name: John
-    Sentences:
-    - Ohh okay but listen.
-    - I created a missile system at this station.
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -98,14 +136,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
   - Name: John
-    Sentences:
-    - But one of the barrels of this turret was lost.
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -116,15 +168,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 11400000, guid: eb02c58701773494089ae63d072ab440, type: 2}
   - Name: John
-    Sentences:
-    - Please find it and install it.
-    - To test the turret you need to press this button.
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -143,14 +208,28 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 11400000, guid: 9b51f85fc754b1040813e4fc78aa7087, type: 2}
   - Name: You
-    Sentences:
-    - Okay, I'll find that barrel and fix the turret.
     LocalizedSentences:
     - m_TableReference:
         m_TableCollectionName: GUID:d3ae0272d6633c34ea10a3c47fde0ab8
@@ -161,9 +240,25 @@ MonoBehaviour:
       m_WaitForCompletion: 0
       m_LocalVariables: []
     isAskingQuestion: 0
-    OptionOne: 
+    OptionOne:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerOne: {fileID: 0}
-    OptionTwo: 
+    OptionTwo:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     answerTwo: {fileID: 0}
     questToGive: {fileID: 0}
   references:
