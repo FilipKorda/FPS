@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Audio;
 using UnityEngine;
 
 
@@ -8,25 +9,32 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [Tooltip("Iloœæ preinstancjonowanych AudioSource dla SFX")]
+    [Tooltip("Ilosc preinstancjonowanych AudioSource dla SFX")]
     [SerializeField] private int initialPoolSize = 16;
 
-    [Tooltip("Domyœlne ustawienia rolloffu (dla przestrzennych Ÿróde³)")]
+    [Tooltip("Domyslne ustawienia rolloffu dla przestrzennych zrodel")]
     [SerializeField] private AudioRolloffMode defaultRolloff = AudioRolloffMode.Logarithmic;
 
     private readonly Queue<AudioSource> pool = new Queue<AudioSource>();
     private readonly List<AudioSource> activeLooping = new List<AudioSource>();
 
     private readonly Dictionary<AudioSource, float> baseVolumes = new Dictionary<AudioSource, float>();
+    private readonly Dictionary<AudioSource, int> sourceVersions = new Dictionary<AudioSource, int>();
 
     private float masterVolume = 1f;
     private float sfxVolume = 1f;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         InitializePool(initialPoolSize);
-        RefreshVolumes(); 
+        RefreshVolumes();
     }
 
     private void InitializePool(int count)
@@ -61,6 +69,7 @@ public class AudioManager : MonoBehaviour
             src.rolloffMode = defaultRolloff;
         }
 
+        sourceVersions[src] = sourceVersions.TryGetValue(src, out int version) ? version + 1 : 1;
         return src;
     }
 
@@ -73,6 +82,8 @@ public class AudioManager : MonoBehaviour
 
         if (activeLooping.Contains(src))
             activeLooping.Remove(src);
+
+        sourceVersions[src] = sourceVersions.TryGetValue(src, out int releaseVersion) ? releaseVersion + 1 : 1;
 
         src.Stop();
         src.clip = null;
@@ -104,9 +115,10 @@ public class AudioManager : MonoBehaviour
 
         baseVolumes[src] = Mathf.Clamp01(volume);
 
-        src.volume = Mathf.Clamp01(baseVolumes[src] * sfxVolume * masterVolume);
+        bool isMuted = PlayerPrefs.GetInt(AudioKeys.PlayerPrefToggleMute, 0) == 1;
+        src.volume = isMuted ? 0f : Mathf.Clamp01(baseVolumes[src] * sfxVolume * masterVolume);
 
-        if (attachTo != null)
+        if (attachTo != null && loop)
         {
             src.transform.SetParent(attachTo, false);
             src.transform.localPosition = Vector3.zero;
@@ -119,7 +131,7 @@ public class AudioManager : MonoBehaviour
             src.spatialBlend = 1f;
             src.minDistance = Mathf.Max(0.01f, minDistance);
             src.maxDistance = Mathf.Max(minDistance, maxDistance);
-            src.transform.position = position ?? transform.position;
+            src.transform.position = attachTo != null ? attachTo.position : position ?? transform.position;
         }
         else
         {
@@ -131,11 +143,14 @@ public class AudioManager : MonoBehaviour
 
         if (loop)
         {
-            activeLooping.Add(src);
+            if (!activeLooping.Contains(src))
+                activeLooping.Add(src);
         }
         else
         {
-            StartCoroutine(ReleaseAfter(src, clip.length / Mathf.Abs(src.pitch)));
+            float safePitch = Mathf.Max(0.01f, Mathf.Abs(src.pitch));
+            int version = sourceVersions[src];
+            StartCoroutine(ReleaseAfter(src, version, clip.length / safePitch));
         }
 
         return src;
@@ -149,20 +164,22 @@ public class AudioManager : MonoBehaviour
         ReleaseSource(src);
     }
 
-    private IEnumerator ReleaseAfter(AudioSource src, float time)
+    private IEnumerator ReleaseAfter(AudioSource src, int version, float time)
     {
         if (src == null) yield break;
         yield return new WaitForSeconds(time + 0.05f);
-      
+
         if (src == null) yield break;
-        if (activeLooping.Contains(src)) yield break; 
+        if (!sourceVersions.TryGetValue(src, out int currentVersion) || currentVersion != version) yield break;
+        if (activeLooping.Contains(src)) yield break;
         ReleaseSource(src);
     }
 
     public void RefreshVolumes()
     {
-        masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        masterVolume = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefMasterVolume, 1f);
+        sfxVolume = PlayerPrefs.GetFloat(AudioKeys.PlayerPrefSfxVolume, 1f);
+        bool isMuted = PlayerPrefs.GetInt(AudioKeys.PlayerPrefToggleMute, 0) == 1;
 
         foreach (var kv in new List<KeyValuePair<AudioSource, float>>(baseVolumes))
         {
@@ -170,7 +187,7 @@ public class AudioManager : MonoBehaviour
             var baseVol = kv.Value;
             if (src != null)
             {
-                src.volume = Mathf.Clamp01(baseVol * sfxVolume * masterVolume);
+                src.volume = isMuted ? 0f : Mathf.Clamp01(baseVol * sfxVolume * masterVolume);
             }
         }
     }
