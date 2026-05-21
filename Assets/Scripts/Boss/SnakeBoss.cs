@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SnakeBoss : MonoBehaviour
 {
-    [HideInInspector][SerializeField] public enum BossState { Idle, Patrol, Attack }
+    [HideInInspector] public enum BossState { Idle, Patrol, Attack }
     [SerializeField] private BossState currentState = BossState.Idle;
     private Coroutine _stateChangeRoutine;
     [SerializeField] private BossRaycastHit bossRaycastHit;

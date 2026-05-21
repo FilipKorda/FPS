@@ -18,7 +18,7 @@ public class ProjectileCollider : MonoBehaviour
             Destroy(gameObject);
             PlayCollisionEffetct();
 
-            AudioManager.Instance.PlayClip(projectileHitSound, transform.position, 0.01f, true, 1, 500, 1, false, transform);
+            AudioManager.Instance.PlayClip(projectileHitSound, transform.position, 0.1f, true, 1, 500, 1, false, transform);
 
             if (isRobotProjectile)
             {

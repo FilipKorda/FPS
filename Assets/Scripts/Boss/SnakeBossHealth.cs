@@ -235,7 +235,7 @@ namespace FPS.Enemy
                 }
 
                 rb.useGravity = true;
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
 
                 rb.AddForce(Random.insideUnitSphere * 5f, ForceMode.Impulse);

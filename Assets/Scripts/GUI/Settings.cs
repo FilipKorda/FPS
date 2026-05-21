@@ -694,12 +694,19 @@ public class Settings : MonoBehaviour
         }
     }
 
+    private void NotifyAudioManagerVolumesChanged()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.RefreshVolumes();
+    }
+
     public void OnMasterVolumeChanged(float sliderValue)
     {
         float linear = NormalizeSliderValue(sliderValue, masterSlider);
         SetVolume(AudioKeys.MixerMasterParam, linear);
         UpdateMasterAmountText(sliderValue);
         PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMasterVolume, linear);
+        NotifyAudioManagerVolumesChanged();
     }
 
     public void OnMusicVolumeChanged(float sliderValue)
@@ -719,12 +726,14 @@ public class Settings : MonoBehaviour
         SetVolume(AudioKeys.MixerSfxParam, linear);
         UpdateSfxAmountText(sliderValue);
         PlayerPrefs.SetFloat(AudioKeys.PlayerPrefSfxVolume, linear);
+        NotifyAudioManagerVolumesChanged();
     }
 
     public void OnSoundToggleChanged(bool isMuted)
     {
         PlayerPrefs.SetInt(AudioKeys.PlayerPrefToggleMute, isMuted ? 1 : 0);
         SetSoundState(isMuted);
+        NotifyAudioManagerVolumesChanged();
     }
 
     private void ReadingToggleMuteSaveValue()
@@ -744,6 +753,7 @@ public class Settings : MonoBehaviour
             PlayerPrefs.DeleteKey(AudioKeys.PlayerPrefToggleMute);
             soundToggle.isOn = false;
             SetSoundState(false);
+            NotifyAudioManagerVolumesChanged();
         }
         else
         {
@@ -785,6 +795,7 @@ public class Settings : MonoBehaviour
             UpdateMasterAmountText(masterSlider.value);
             SetVolume(AudioKeys.MixerMasterParam, resetMasterVolume);
             PlayerPrefs.SetFloat(AudioKeys.PlayerPrefMasterVolume, resetMasterVolume);
+            NotifyAudioManagerVolumesChanged();
         }
     }
 
@@ -811,6 +822,7 @@ public class Settings : MonoBehaviour
             UpdateSfxAmountText(sfxSlider.value);
             SetVolume(AudioKeys.MixerSfxParam, resetSfxVolume);
             PlayerPrefs.SetFloat(AudioKeys.PlayerPrefSfxVolume, resetSfxVolume);
+            NotifyAudioManagerVolumesChanged();
         }
     }
 

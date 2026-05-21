@@ -24,6 +24,9 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
     public LocalizedString localizeStringEventOpenGate;
     public LocalizedString localizeStringEventFindFuelTank;
 
+    public GameObject notificationObject;
+    public AudioClip openGateClip;
+
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -38,6 +41,8 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
 
     public void OpenGateHangar()
     {
+        notificationObject.SetActive(false);
+
         PlayButtonLocalYAnimation();
 
         gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen)
@@ -87,6 +92,7 @@ public class ActiveHangarWhenFuelFull : MonoBehaviour, IOpenHangar
     public void PlayButtonLocalYAnimation()
     {
         if (buttonObj == null) return;
+        AudioManager.Instance.PlayClip(openGateClip, transform.position, 0.6f, false, 1, 500, 1, false, null);
 
         var t = buttonObj.transform;
 

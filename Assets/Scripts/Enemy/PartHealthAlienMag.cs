@@ -26,7 +26,7 @@ public class PartHealthAlienMag : MonoBehaviour, IDamageable
 
     public void TakeDamage(int Damage)
     {
-        AudioManager.Instance.PlayClip(hitSound, transform.position, 0.01f, true, 1, 500, 1, false, transform);
+        AudioManager.Instance.PlayClip(hitSound, transform.position, 0.4f, true, 1, 500, 1, false, transform);
 
         if (enemyMovement != null)
         {
@@ -46,7 +46,7 @@ public class PartHealthAlienMag : MonoBehaviour, IDamageable
         {
             if (Name == "Head" || Name == "Body")
             {
-                AudioManager.Instance.PlayClip(deathSound, transform.position, 0.1f, true, 1, 500, 1, false, transform);
+                AudioManager.Instance.PlayClip(deathSound, transform.position, 0.5f, true, 1, 500, 1, false, transform);
 
                 if (parent != null)
                 {

@@ -52,6 +52,7 @@ namespace FPS.Enemy
             }
 
             var mainEnemy = GetComponentInParent<MainEnemyBehaviour>();
+           
             if (mainEnemy != null)
             {
                 if (mainEnemy.enemyAlien)
@@ -66,11 +67,13 @@ namespace FPS.Enemy
                 {
                     StatisticsCollector.IncrementKill(EnemyKillType.Robot);
                 }
-                else
-                {
-                    StatisticsCollector.IncrementKill(EnemyKillType.AlienMag);
-                }
-            }     
+            }
+
+            var mainAlienMagEnemy = GetComponentInParent<AlienMagEnemyMovement>();
+            if(mainAlienMagEnemy != null)
+            {
+                StatisticsCollector.IncrementKill(EnemyKillType.AlienMag);
+            }
         }
 
         private void Damageable_OnDeath_DropObject(Vector3 Position)

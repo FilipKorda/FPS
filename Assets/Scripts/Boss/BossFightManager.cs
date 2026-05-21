@@ -25,7 +25,7 @@ public class BossFightManager : MonoBehaviour
     [ContextMenu(" -= Start Boss Fight =-")]
     public void StartBossFight()
     {
-        loopIdleAudioSource = AudioManager.Instance.PlayClip(loopIdleSound, transform.position, 0.1f, true, 1, 500, 1, true, transform);
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(loopIdleSound, transform.position, 0.3f, true, 1, 500, 1, true, transform);
         bossRaycastHit.SetUseRaycast(true);
         snakeBoss.ChangeBossState(BossState.Attack, 1);
         snakeBossHealth.ShowAndSetupBossHealthSlider();

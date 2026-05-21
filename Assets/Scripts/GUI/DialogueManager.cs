@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.Localization;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,13 +18,23 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI W;
     [SerializeField] private TextMeshProUGUI Q;
 
+    [Header("Dialogue Audio")]
+    [SerializeField] private AudioSource dialogueAudioSource;
+    [SerializeField] private AudioClip npcTalkingClip;
+    [SerializeField] private AudioClip playerTalkingClip;
+    [SerializeField, Range(0f, 1f)] private float talkingVolume = 0.5f;
+    [SerializeField] private Vector2 talkingPitchRange = new Vector2(0.95f, 1.05f);
+
     private ConversationData currentDialogueData;
 
     public float typingSpeed = 0.03f;
     public bool isTalking = false;
     private bool waitForInput = false;
+    private Coroutine dialogueCoroutine;
+    private AudioSource currentTalkingAudioSource;
 
     private ConversationData optionsSubscribedFrom;
+
 
     private void Awake()
     {
@@ -41,6 +50,15 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        if (dialogueAudioSource == null)
+        {
+            dialogueAudioSource = GetComponent<AudioSource>();
+            if (dialogueAudioSource == null)
+                dialogueAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        dialogueAudioSource.playOnAwake = false;
+
         if(PlayerNameRuntime.Instance != null)
         {
             PlayerNameRuntime.Instance.ApplyToAllLoadedConversations();
@@ -69,23 +87,40 @@ public class DialogueManager : MonoBehaviour
         if (conversationData == null || conversationData.conversation == null || conversationData.conversation.Length == 0)
             return;
 
-        StopAllCoroutines();
+        PrepareDialogueStart();
 
-        isTalking = true;
-        playerController.canMove = true;
-        mouseLook.canLookAround = true;
-        dialogueView.SetActive(true);
-
-        StartCoroutine(AutoTypeDialogue(conversationData.conversation));
+        dialogueCoroutine = StartCoroutine(AutoTypeDialogue(conversationData.conversation));
     }
 
     public void StartDialogue(ConversationData[] dialogueData)
     {
+        if (dialogueData == null || dialogueData.Length == 0)
+            return;
+
+        PrepareDialogueStart();
+
+        dialogueCoroutine = StartCoroutine(TypeDialogue(dialogueData));
+    }
+
+    private void PrepareDialogueStart()
+    {
+        if (dialogueCoroutine != null)
+        {
+            StopCoroutine(dialogueCoroutine);
+            dialogueCoroutine = null;
+        }
+
+        StopTalkingSfx();
+        waitForInput = false;
+        currentDialogueData = null;
+        UnsubscribeOptionLocalization();
+        HideOptions();
+
         isTalking = true;
         playerController.canMove = true;
         mouseLook.canLookAround = true;
         dialogueView.SetActive(true);
-        StartCoroutine(TypeDialogue(dialogueData));
+        pressEPanel.SetActive(false);
     }
 
     IEnumerator TypeDialogue(ConversationData[] dialogueData)
@@ -97,6 +132,7 @@ public class DialogueManager : MonoBehaviour
 
             foreach (var sentence in dialogue.LocalizedSentences)
             {
+                PlayTalkingSfx();
                 yield return TypeLetter(sentence.GetLocalizedString());
                 yield return new WaitForSeconds(typingSpeed);
 
@@ -111,10 +147,7 @@ public class DialogueManager : MonoBehaviour
 
                     yield return WaitForAnswer();
 
-                    optionOne.gameObject.SetActive(false);
-                    optionTwo.gameObject.SetActive(false);
-                    W.gameObject.SetActive(false);
-                    Q.gameObject.SetActive(false);
+                    HideOptions();
 
                     UnsubscribeOptionLocalization();
                     optionOne.text = "";
@@ -141,6 +174,7 @@ public class DialogueManager : MonoBehaviour
 
             foreach (var sentence in dialogue.LocalizedSentences)
             {
+                PlayTalkingSfx();
                 yield return TypeLetter(sentence.GetLocalizedString());
 
                 yield return new WaitForSeconds(typingSpeed);
@@ -174,15 +208,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogueData.isAskingQuestion)
         {
-
             if (answerIndex == 0 && currentDialogueData.answerOne != null)
             {
-
                 StartDialogue(currentDialogueData.answerOne.conversation);
             }
             else if (answerIndex == 1 && currentDialogueData.answerTwo != null)
             {
-
                 StartDialogue(currentDialogueData.answerTwo.conversation);
             }
         }
@@ -198,9 +229,66 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void PlayTalkingSfx()
+    {
+        AudioClip clip = IsPlayerSpeaking(currentDialogueData) ? playerTalkingClip : npcTalkingClip;
+        if (clip == null) return;
+
+        float pitch = Random.Range(talkingPitchRange.x, talkingPitchRange.y);
+
+        StopTalkingSfx();
+
+        if (AudioManager.Instance != null)
+        {
+            currentTalkingAudioSource = AudioManager.Instance.PlayClip(clip, volume: talkingVolume, spatial: false, pitch: pitch);
+        }
+        else if (dialogueAudioSource != null)
+        {
+            dialogueAudioSource.Stop();
+            dialogueAudioSource.pitch = pitch;
+            dialogueAudioSource.PlayOneShot(clip, talkingVolume);
+        }
+    }
+
+    private void StopTalkingSfx()
+    {
+        if (currentTalkingAudioSource != null && AudioManager.Instance != null)
+        {
+            if (currentTalkingAudioSource.gameObject.activeInHierarchy)
+                AudioManager.Instance.Stop(currentTalkingAudioSource);
+
+            currentTalkingAudioSource = null;
+        }
+
+        if (dialogueAudioSource != null)
+            dialogueAudioSource.Stop();
+    }
+
+    private bool IsPlayerSpeaking(ConversationData dialogue)
+    {
+        if (dialogue == null || string.IsNullOrWhiteSpace(dialogue.Name))
+            return false;
+
+        string speakerName = dialogue.Name.Trim();
+
+        if (PlayerNameRuntime.Instance != null)
+        {
+            string playerName = PlayerNameRuntime.Instance.PlayerName;
+            if (!string.IsNullOrWhiteSpace(playerName)
+                && string.Equals(speakerName, playerName.Trim(), System.StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return string.Equals(speakerName, "You", System.StringComparison.OrdinalIgnoreCase);
+    }
+
     void EndDialogue()
     {
         pressEPanel.SetActive(true);
+        StopTalkingSfx();
+        dialogueCoroutine = null;
         currentDialogueData = null;
         dialogueView.SetActive(false);
         isTalking = false;
@@ -208,6 +296,14 @@ public class DialogueManager : MonoBehaviour
         mouseLook.canLookAround = false;
 
         UnsubscribeOptionLocalization();
+    }
+
+    private void HideOptions()
+    {
+        optionOne.gameObject.SetActive(false);
+        optionTwo.gameObject.SetActive(false);
+        W.gameObject.SetActive(false);
+        Q.gameObject.SetActive(false);
     }
 
     public void OnPressE()
@@ -227,7 +323,7 @@ public class DialogueManager : MonoBehaviour
 
     private void GiveQuestToPlayer()
     {
-        if (QuestManager.Instance != null && currentDialogueData.questToGive != null)
+        if (QuestManager.Instance != null && currentDialogueData != null && currentDialogueData.questToGive != null)
             QuestManager.Instance.GetQuest(currentDialogueData.questToGive);
     }
 
