@@ -14,11 +14,14 @@ namespace FPS.Guns
 
         public void PlayShootingClip(AudioSource AudioSource, bool IsLastBullet = false)
         {
+            if (AudioSource == null)
+                return;
+
             if (IsLastBullet && LastBulletClip != null)
             {
                 AudioSource.PlayOneShot(LastBulletClip, Volume);
             }
-            else if (AudioSource != null)
+            else if (FireClips != null && FireClips.Length > 0)
             {
                 AudioSource.PlayOneShot(FireClips[Random.Range(0, FireClips.Length)], Volume);
             }
@@ -26,7 +29,7 @@ namespace FPS.Guns
 
         public void PlayOutOfAmmoClip(AudioSource AudioSource)
         {
-            if (EmptyClip != null)
+            if (AudioSource != null && EmptyClip != null)
             {
                 AudioSource.PlayOneShot(EmptyClip, Volume);
             }
@@ -34,7 +37,7 @@ namespace FPS.Guns
 
         public void PlayReloadClip(AudioSource AudioSource)
         {
-            if (ReloadClip != null)
+            if (AudioSource != null && ReloadClip != null)
             {
                 AudioSource.PlayOneShot(ReloadClip, Volume);
             }

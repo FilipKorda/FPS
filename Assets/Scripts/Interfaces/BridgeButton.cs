@@ -12,9 +12,9 @@ public class BridgeButton : MonoBehaviour, IBridgeController
     [SerializeField] private GameObject platform;
     [SerializeField] private GameObject buttonObject;
 
-    [SerializeField] private float buttonPressDistance = 0.05f;        
-    [SerializeField] private float buttonPressDuration = 0.1f;         
-    [SerializeField] private AnimationCurve buttonPressCurve = null;    
+    [SerializeField] private float buttonPressDistance = 0.05f;
+    [SerializeField] private float buttonPressDuration = 0.1f;
+    [SerializeField] private AnimationCurve buttonPressCurve = null;
 
     private int currentPoint = 0;
     private bool isActivated = false;
@@ -26,6 +26,8 @@ public class BridgeButton : MonoBehaviour, IBridgeController
     public LocalizedString localizeStringEvent;
     [SerializeField] private AudioClip bridgeSound;
     private AudioSource loopIdleAudioSource;
+
+    public GameObject notificationObject;
 
     private void Start()
     {
@@ -51,7 +53,7 @@ public class BridgeButton : MonoBehaviour, IBridgeController
         if (points.Length == 0)
             return;
 
-        
+
 
         Vector3 direction = points[currentPoint].position - platform.transform.position;
         direction.Normalize();
@@ -86,7 +88,12 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 
     public void ActivateBridge()
     {
-        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.05f, true, 1, 500, 1, true, platform.transform);
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 1f, true, 1, 500, 1, true, platform.transform);
+
+        if (notificationObject != null)
+        {
+            notificationObject.SetActive(false);
+        }
 
         if (currentPoint == points.Length - 1)
         {
@@ -108,7 +115,7 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 
     public void Highlight()
     {
-        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent,"Press [E] to Activate Bridge!");
+        NotificationSystem.Instance.ShowInfiniteNotification(localizeStringEvent, "Press [E] to Activate Bridge!");
         originalColorRenderer.material.color = Color.yellow;
     }
 
@@ -130,9 +137,9 @@ public class BridgeButton : MonoBehaviour, IBridgeController
 
         Vector3 localDownDir;
         if (t.parent != null)
-            localDownDir = t.parent.InverseTransformDirection(-t.up); 
+            localDownDir = t.parent.InverseTransformDirection(-t.up);
         else
-            localDownDir = -t.up; 
+            localDownDir = -t.up;
 
         localDownDir.Normalize();
         Vector3 downPos = startPos + localDownDir * buttonPressDistance;

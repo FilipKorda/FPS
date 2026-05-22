@@ -68,7 +68,7 @@ public class AmmoPack : MonoBehaviour, IPickupable
     {
         if (PlayerGunSelector.Instance.ActiveGun.AmmoConfig.CurrentAmmo < PlayerGunSelector.Instance.ActiveGun.AmmoConfig.MaxAmmo)
         {
-            AudioManager.Instance.PlayClip(ammoPickUpSound, transform.position, 0.05f, true, 1, 500, 1, false, null);
+            AudioManager.Instance.PlayClip(ammoPickUpSound, transform.position, 0.5f, false, 1, 500, 1, false, null);
             IncreaseAmountOfAmmo();
             ShakeAmmoPackModel();
 

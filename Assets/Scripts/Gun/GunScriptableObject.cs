@@ -148,7 +148,7 @@ namespace FPS.Guns
             Debug.Log("Reloading complete");
             AmmoConfig.Reload();
 
-            // Jeœli animation coroutine wci¹¿ dzia³a — zatrzymaj i natychmiast przywróæ.
+            // Jeï¿½li animation coroutine wciï¿½ï¿½ dziaï¿½a ï¿½ zatrzymaj i natychmiast przywrï¿½ï¿½.
             if (ActiveMonoBehaviour != null)
             {
                 if (reloadAnimationCoroutine != null)
@@ -157,10 +157,10 @@ namespace FPS.Guns
                     reloadAnimationCoroutine = null;
                 }
 
-                // upewnij siê ¿e broñ wróci do oryginalnej pozycji (szybki lerp)
+                // upewnij siï¿½ ï¿½e broï¿½ wrï¿½ci do oryginalnej pozycji (szybki lerp)
                 if (Model != null)
                 {
-                    // uruchamiamy korutinê, aby dopilnowa³a p³ynnego przywrócenia
+                    // uruchamiamy korutinï¿½, aby dopilnowaï¿½a pï¿½ynnego przywrï¿½cenia
                     reloadAnimationCoroutine = ActiveMonoBehaviour.StartCoroutine(ShowWeaponRoutineImmediate());
                 }
             }
@@ -406,7 +406,7 @@ namespace FPS.Guns
                     );
                     Bullet.transform.position = hit.point + direction * 0.01f;
 
-                    Bullet.Rigidbody.velocity = Bullet.SpawnVelocity - direction;
+                    Bullet.Rigidbody.linearVelocity = Bullet.SpawnVelocity - direction;
                 }
                 else
                 {
@@ -542,7 +542,7 @@ namespace FPS.Guns
         {
             if (Model == null) yield break;
 
-            // wy³¹czamy celownik
+            // wyï¿½ï¿½czamy celownik
             PlayerSingleton.Instance.crosshair.SetActive(false);
 
             float hideDur = Mathf.Min(defaultHideDuration, reloadTime * 0.4f);

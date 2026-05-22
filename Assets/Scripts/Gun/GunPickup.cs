@@ -212,7 +212,7 @@ public class GunPickup : MonoBehaviour, IGunPickupable
     {
         if (PlayerGunSelector.Instance.Guns[PlayerGunSelector.Instance.activeGunIndex] == PlayerGunSelector.Instance.Guns[1])
         {
-            AudioManager.Instance.PlayClip(pickSound, transform.position, 0.01f, true, 1, 500, 1, false, null);
+            AudioManager.Instance.PlayClip(pickSound, transform.position, 0.5f, false, 1, 500, 1, false, null);
             PlayerGunSelector.Instance.SetupNewGun(Gun);
             Destroy(gameObject);
             HideNotification();
