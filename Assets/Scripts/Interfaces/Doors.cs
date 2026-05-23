@@ -49,7 +49,7 @@ public class Doors : MonoBehaviour, IDoorController
     public void OpenDoor()
     {
 
-        AudioManager.Instance.PlayClip(openCloseDoor, transform.position, 0.05f, true, 1, 500, 1, false, null);
+        AudioManager.Instance.PlayClip(openCloseDoor, transform.position, 0.25f, true, 1, 500, 1, false, null);
         rightDoor.DOMoveX(rightDoor.position.x + 1f, animationDuration);
         leftDoor.DOMoveX(leftDoor.position.x - 1f, animationDuration);
         isOpen = true;
@@ -65,7 +65,7 @@ public class Doors : MonoBehaviour, IDoorController
 
     public void CloseDoors()
     {
-        AudioManager.Instance.PlayClip(openCloseDoor, transform.position, 0.05f, false, 1, 500, 1, false, null);
+        AudioManager.Instance.PlayClip(openCloseDoor, transform.position, 0.5f, false, 1, 500, 1, false, null);
         rightDoor.DOMove(initialPositionRight, animationDuration);
         leftDoor.DOMove(initialPositionLeft, animationDuration);
         isOpen = false;

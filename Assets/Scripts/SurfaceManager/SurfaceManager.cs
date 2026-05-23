@@ -134,7 +134,7 @@ namespace FPS.ImpactSystem
         {
             if (Renderer.TryGetComponent<MeshFilter>(out MeshFilter meshFilter))
             {
-                Mesh mesh = meshFilter.mesh;
+                Mesh mesh = meshFilter.sharedMesh;
 
                 return GetTextureFromMesh(mesh, TriangleIndex, Renderer.sharedMaterials);
             }
@@ -152,6 +152,17 @@ namespace FPS.ImpactSystem
 
         private Texture GetTextureFromMesh(Mesh mesh, int triangleIndex, Material[] materials)
         {
+            if (materials == null || materials.Length == 0)
+                return null;
+
+            Texture fallbackTexture = materials[0] != null ? materials[0].mainTexture : null;
+
+            if (mesh == null || triangleIndex < 0)
+                return fallbackTexture;
+
+            if (!mesh.isReadable)
+                return fallbackTexture;
+
             if (mesh.subMeshCount > 1)
             {
                 int[] hitTriangleIndices = new int[]
@@ -172,14 +183,16 @@ namespace FPS.ImpactSystem
                                 && submeshTriangles[j + 1] == hitTriangleIndices[1]
                                 && submeshTriangles[j + 2] == hitTriangleIndices[2])
                             {
-                                return materials[i].mainTexture;
+                                return i < materials.Length && materials[i] != null
+                                    ? materials[i].mainTexture
+                                    : fallbackTexture;
                             }
                         }
                     }
                 }
             }
 
-            return materials[0].mainTexture;
+            return fallbackTexture;
         }
 
 

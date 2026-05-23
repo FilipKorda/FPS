@@ -35,7 +35,7 @@ public class LoadFuelCan : MonoBehaviour, IFuelCan
     {
         if (MainInventory.Instance.currentfuelCans > 0)
         {
-            loopIdleAudioSource = AudioManager.Instance.PlayClip(generatorSound, transform.position, 0.01f, true, 1, 500, 1, true, transform);
+            loopIdleAudioSource = AudioManager.Instance.PlayClip(generatorSound, transform.position, 0.41f, false, 1, 500, 1, true, transform);
 
             meshRenderer.enabled = false;
             fuelCanAnimation.SetActive(true);

@@ -434,7 +434,7 @@ public class LinePuzzle : MonoBehaviour, ILinePuzzle
     {
         isPuzzleFinish = true;
 
-        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.05f, true, 1, 500, 1, true, platformObject.transform);
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.25f, true, 1, 500, 1, true, platformObject.transform);
 
         if (!isPlatformMoving && youPassedThePuzzle)
         {

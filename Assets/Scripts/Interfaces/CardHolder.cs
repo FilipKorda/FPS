@@ -159,7 +159,7 @@ public class CardHolder : MonoBehaviour, ICardHolder
 
     public void OpenGate()
     {
-        AudioManager.Instance.PlayClip(openGate, transform.position, 0.05f, true, 1, 500, 1, false, null);
+        AudioManager.Instance.PlayClip(openGate, transform.position, 0.3f, false, 1, 500, 1, false, null);
         cardObject.SetActive(true);
         cardHolder.SetActive(false);
         gate.transform.DOMoveY(gate.transform.position.y + heightToGateOpen, timeUntilGateOpen).SetEase(Ease.OutQuad);

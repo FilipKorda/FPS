@@ -40,7 +40,7 @@ public class MovePlatformOnButton : MonoBehaviour, IBridgeController
     {
         AnimateButtonPress();
 
-        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.05f, true, 1, 500, 1, true, targetObject.transform);
+        loopIdleAudioSource = AudioManager.Instance.PlayClip(bridgeSound, transform.position, 0.15f, true, 1, 500, 1, true, targetObject.transform);
 
         if (!isMoving)
         {
