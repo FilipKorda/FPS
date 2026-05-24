@@ -115,7 +115,7 @@ public class GrenadeHandler : MonoBehaviour
                 float verticalSpeed = initialSpeed * Mathf.Sin(angle * Mathf.Deg2Rad);
                 Rigidbody rb = heldGrenade.GetComponent<Rigidbody>();
                 rb.isKinematic = false;
-                rb.velocity = initialVelocity + Vector3.up * verticalSpeed;
+                rb.linearVelocity = initialVelocity + Vector3.up * verticalSpeed;
 
                 foreach (var collider in boxColliders)
                 {
