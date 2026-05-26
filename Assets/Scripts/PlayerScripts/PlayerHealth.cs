@@ -113,6 +113,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private bool wasInside; // NEW
     private Tween maskTween; // NEW
+    private bool isHealing;
+    private bool isUsingOxygenContainer;
+
+    [SerializeField] private AudioClip healSound;
+    [SerializeField] private AudioClip refilOxygenSound;
 
     private void Awake()
     {
@@ -511,13 +516,21 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
 
     private IEnumerator Heal(float healAmount)
     {
+        if (isHealing) yield break;
+        if (currentHealth >= maxHealth) yield break;
+        if (MainInventory.Instance.currentHealthBandage <= 0) yield break;
+
+        isHealing = true;
+
         if (currentHealth < maxHealth)
         {
             if (MainInventory.Instance.currentHealthBandage > 0)
             {
+
                 bandageObject.SetActive(true);
                 bandageAnimator.SetTrigger("HEAL");
                 yield return new WaitForSeconds(1.2f);
+                AudioManager.Instance.PlayClip(healSound, transform.position, 0.3f, false, 1, 500, 1, false, null);
                 currentHealth += healAmount;
                 currentHealth = Mathf.Min(maxHealth, currentHealth);
                 UpdateHealthSlider();
@@ -535,27 +548,29 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                 bandageAnimator.ResetTrigger("HEAL");
                 bandageObject.SetActive(false);
             }
-            else
-            {
-                Debug.Log("Nie masz wiecej Health Bandage");
-            }
+
         }
-        else
-        {
-            Debug.Log("Masz pe³en ¿ycie");
-        }
+
+        isHealing = false;
     }
 
     private IEnumerator UseOxygenContainer(float oxygenAmount)
     {
+        if (isUsingOxygenContainer) yield break;
+        if (currentOxygen >= maxOxygen) yield break;
+        if (MainInventory.Instance.currentOxygenContainer <= 0) yield break;
+
+
+        isUsingOxygenContainer = true;
+
         if (currentOxygen < maxOxygen)
         {
             if (MainInventory.Instance.currentOxygenContainer > 0)
-            {
+            {           
                 oxygenObject.SetActive(true);
                 oxygenAnimator.SetTrigger("REFIL");
                 yield return new WaitForSeconds(1);
-
+                AudioManager.Instance.PlayClip(refilOxygenSound, transform.position, 0.3f, false, 1, 500, 1, false, null);
                 currentOxygen += oxygenAmount;
                 currentOxygen = Mathf.Min(maxOxygen, currentOxygen);
                 UpdateOxygenSlider();
@@ -573,15 +588,11 @@ public class PlayerHealth : MonoBehaviour, IEnemyDamagable
                 oxygenAnimator.ResetTrigger("REFIL");
                 oxygenObject.SetActive(false);
             }
-            else
-            {
-                Debug.Log("Nie masz wiecej Oxyden Container");
-            }
+            
         }
-        else
-        {
-            Debug.Log("Masz pe³en tlen");
-        }
+        
+
+        isUsingOxygenContainer = false;
     }
 
     private void OnTriggerStay(Collider other)
