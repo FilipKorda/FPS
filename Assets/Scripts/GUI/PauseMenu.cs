@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
+    [SerializeField] private WinGame winGame;
     public bool isGamePaused = false;
 
     [SerializeField] private Settings settings;
@@ -24,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if(PlayerHealth.Instance.isDead) return;
+        if(PlayerHealth.Instance.isDead || winGame.playerIsWin) return;
 
         if (!isLoading)
         {
