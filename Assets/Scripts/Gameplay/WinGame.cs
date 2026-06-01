@@ -10,6 +10,7 @@ public class WinGame : MonoBehaviour
 
     [SerializeField] private StatisticManager statisticManager;
     [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private Button[] buttons;
 
     [SerializeField] private float slowDurationSeconds = 5f;
     [SerializeField] private TextMeshProUGUI counterText;
@@ -30,6 +31,8 @@ public class WinGame : MonoBehaviour
 
     private Coroutine _slowRoutine;
     private Vector3 _counterOriginalScale;
+
+    public bool playerIsWin = false;
 
     public static float SlowFactor => Time.timeScale;
 
@@ -52,6 +55,8 @@ public class WinGame : MonoBehaviour
     {
         if (MusicManager.Instance != null)
             MusicManager.Instance.PlayWin();
+
+        playerIsWin = true;
 
         if (_slowRoutine != null)
             StopCoroutine(_slowRoutine);
@@ -241,11 +246,16 @@ public class WinGame : MonoBehaviour
     public void ReturnToMainMenu()
     {
         LoadingSystem.Instance.LoadLevel(sceneName);
+
+        foreach (var button in buttons)
+        {
+            button.interactable = false;
+        }
     }
+
 
     public void QuitGame()
     {
-        Debug.Log("wychodzisz z gry");
         Application.Quit();
     }
 }

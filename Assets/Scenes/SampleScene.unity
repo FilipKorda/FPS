@@ -1062,6 +1062,9 @@ MonoBehaviour:
   sceneName: MainMenu
   statisticManager: {fileID: 4372139}
   pauseMenu: {fileID: 427137952}
+  buttons:
+  - {fileID: 1353299738}
+  - {fileID: 1605102440}
   slowDurationSeconds: 10
   counterText: {fileID: 1230406556}
   winScreenImage: {fileID: 884406539}
@@ -1073,6 +1076,7 @@ MonoBehaviour:
   bumpScale: 1.15
   bumpInDuration: 0.07
   bumpOutDuration: 0.13
+  playerIsWin: 0
 --- !u!114 &4372139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257908,7 +257912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.63848, y: -1.999939}
+  m_AnchoredPosition: {x: -0.63848, y: -2}
   m_SizeDelta: {x: 1921.3, y: 593.0326}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1243441773
@@ -282405,6 +282409,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 111834064064958366, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
   m_PrefabInstance: {fileID: 1353299736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1353299738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3251566979415378795, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
+  m_PrefabInstance: {fileID: 1353299736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1354992202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 827e15938d28435479cc09d9170ef335, type: 3}
@@ -335156,6 +335171,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 111834064064958366, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
   m_PrefabInstance: {fileID: 1605102438}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1605102440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3251566979415378795, guid: 3546d1413564b0444a2e9ddef8bd039f, type: 3}
+  m_PrefabInstance: {fileID: 1605102438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1605198417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -455319,6 +455345,14 @@ PrefabInstance:
       propertyPath: mouseLook
       value: 
       objectReference: {fileID: 7256972990214020546}
+    - target: {fileID: 7710679568143653038, guid: 593b4b8ccbd9d1d45b5532d88ad87183, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 23.866943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819349487255477215, guid: 593b4b8ccbd9d1d45b5532d88ad87183, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 73.97095
+      objectReference: {fileID: 0}
     - target: {fileID: 7878065623948048748, guid: 593b4b8ccbd9d1d45b5532d88ad87183, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
@@ -455339,6 +455373,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 8832886063721945303, guid: 593b4b8ccbd9d1d45b5532d88ad87183, type: 3}
+      propertyPath: winGame
+      value: 
+      objectReference: {fileID: 4372138}
     - target: {fileID: 9032543614825002880, guid: 593b4b8ccbd9d1d45b5532d88ad87183, type: 3}
       propertyPath: fpsText
       value: 
