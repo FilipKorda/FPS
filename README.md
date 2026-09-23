@@ -207,7 +207,6 @@ The project includes a complete UI structure covering both gameplay and meta-gam
 - Main Menu
 - Settings
 - Pause Menu
-- Save / Load
 - other game-related screens
 
 The UI is connected to the underlying gameplay systems and reacts to changes in the game state.
@@ -241,6 +240,4 @@ Progression can affect different parts of the game, including:
 - equipment
 - player state
 - story progression
-- saved game state
-
 ---
