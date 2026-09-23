@@ -244,5 +244,3 @@ Progression can affect different parts of the game, including:
 - saved game state
 
 ---
-    ├── Menus
-    └── Settings
