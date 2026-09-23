@@ -16,7 +16,7 @@ The player takes on missions, explores the environment, interacts with objects, 
 
 The project was created with a strong focus on building **modular and reusable gameplay systems**, rather than relying on hardcoded mechanics.
 
-The game includes systems for combat, enemies, weapons, quests, dialogue, localization, interaction, progression, saving/loading and UI.
+The game includes systems for combat, enemies, weapons, quests, dialogue, localization, interaction, progression and UI.
 
 ---
 
