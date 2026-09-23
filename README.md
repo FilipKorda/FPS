@@ -33,7 +33,6 @@ The main gameplay loop combines:
 | 🎒 Equipment | Weapons and inventory management |
 | 💬 Dialogue | Dialogue system for interacting with characters and progressing through missions |
 | 🌍 Localization | Support for multiple languages |
-| 💾 Save / Load | Persistent game progress |
 | 📈 Progression | Systems responsible for player progression and unlocking content |
 | 🖥️ UI | Gameplay HUD, menus and other user interfaces |
 
