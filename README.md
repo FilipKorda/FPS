@@ -1,4 +1,4 @@
-# 🔴 Mars FPS — First Person Shooter
+# 🔴 Mars FPS - First Person Shooter
 
 > A first-person shooter set on Mars, focused on combat, exploration, missions and modular gameplay systems.
 
